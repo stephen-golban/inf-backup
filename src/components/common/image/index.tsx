@@ -45,17 +45,16 @@ export const Image: React.FC<ImageProps> = props => {
   }, [errOccured, source]);
 
   return (
-    <View overflow="hidden" flex={1} {...rest}>
+    <View overflow="hidden" fill {...rest}>
       <FastImage
-        fallback
+        source={SOURCE}
         onError={handleError}
         resizeMode={resizeMode}
+        style={[layout.fullSize]}
         onLoadEnd={handleLoadEnd}
         onLoadStart={handleLoadStart}
-        style={[layout.fullSize]}
-        source={SOURCE}
       />
-      {isLoading && (
+      {(isLoading || loading) && (
         <View center absoluteFill fullSize bg="black_50">
           <ActivityIndicator size="large" />
         </View>
@@ -63,3 +62,5 @@ export const Image: React.FC<ImageProps> = props => {
     </View>
   );
 };
+
+export type { ImageProps };

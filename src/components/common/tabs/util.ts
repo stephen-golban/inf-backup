@@ -1,7 +1,7 @@
 import { type ReactElement, Children } from 'react';
 import type { TabsItemProps, TabsProps } from './type';
 
-function getDefaultTabIndex({ defaultSelectedTab = 0, children }: TabsProps) {
+function getDefaultTabIndex({ defaultSelectedTab = 0, children }: Pick<TabsProps, 'children' | 'defaultSelectedTab'>) {
   if (typeof defaultSelectedTab === 'string') {
     const child = Children.toArray(children).find(item => (item as ReactElement<TabsItemProps>).props.title === defaultSelectedTab);
     if (child) {

@@ -1,7 +1,7 @@
 import type { TextProps } from '../text';
 import type { ViewProps } from '../view';
 import type { ReactElement } from 'react';
-import type { ButtonProps } from '../button';
+import type { ButtonProps } from '../button/base';
 import type { I18nKey } from '@translations/locales';
 
 export type TabsItemProps = {

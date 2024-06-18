@@ -3,9 +3,9 @@ import React from 'react';
 import TimePickerIcon from './picker-icon';
 import { Text } from '@components/common/text';
 import { View } from '@components/common/view';
-import { Button } from '@components/common/button';
+import { BaseButton } from '@components/common/button';
 
-import type { IPicker } from '../types';
+import type { IPicker } from '../type';
 
 interface IPickerButton extends Pick<IPicker, 'Icon' | 'disabled' | 'label' | 'placeholder' | 'isColumnAppearance'> {
   text?: string;
@@ -25,7 +25,7 @@ const PickerButton: React.FC<IPickerButton> = props => {
           {label}
         </Text>
       )}
-      <Button
+      <BaseButton
         h={48}
         p="xs"
         minh={48}
@@ -43,7 +43,7 @@ const PickerButton: React.FC<IPickerButton> = props => {
           {text ?? placeholder}
         </Text>
         <TimePickerIcon Icon={Icon} />
-      </Button>
+      </BaseButton>
     </View>
   );
 };

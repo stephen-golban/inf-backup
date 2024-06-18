@@ -5,20 +5,22 @@ import { localStorage } from '@library/storage';
 import { createJSONStorage, persist, type PersistOptions } from 'zustand/middleware';
 
 import type { IAppState } from '@typings/app';
+import { APP_DISPLAY_NAME } from '@env';
 
 const app_state = (): IAppState => {
   return {
+    user: null,
     theme: 'light',
-    token: undefined,
     loadingApp: false,
+    isAuthenticated: false,
     locale: i18n.languages[0] as IAppState['locale'],
   };
 };
 
 const persist_config: PersistOptions<IAppState> = {
-  name: SLICE_NAME.APP + 'STORE',
+  partialize: state => state as IAppState,
   storage: createJSONStorage(() => localStorage),
-  partialize: state => ({ token: state.token }) as IAppState,
+  name: SLICE_NAME.APP + APP_DISPLAY_NAME + 'STORE',
 };
 
 const persisted = persist(app_state, persist_config);
@@ -29,9 +31,14 @@ function setAppStore<K extends keyof IAppState>(key: K, value: IAppState[K]) {
   useAppStore.setState({ [key]: value });
 }
 
-function setAppToken(token: IAppState['token']) {
-  useAppStore.setState({ token });
+function setAppIsAuthenticated(isAuthenticated: IAppState['isAuthenticated']) {
+  useAppStore.setState({ isAuthenticated });
 }
+
+function setAppUser(user: IAppState['user']) {
+  useAppStore.setState({ user });
+}
+
 function setAppTheme(theme: IAppState['theme']) {
   useAppStore.setState({ theme });
 }
@@ -43,4 +50,4 @@ function setAppLocale(locale: IAppState['locale']) {
   useAppStore.setState({ locale });
 }
 
-export { setAppStore, setAppLoading, setAppLocale, setAppTheme, setAppToken, useAppStore };
+export { setAppStore, setAppLoading, setAppLocale, setAppTheme, setAppIsAuthenticated, setAppUser, useAppStore };

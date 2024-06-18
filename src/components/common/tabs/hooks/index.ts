@@ -6,7 +6,7 @@ import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reani
 import type { TabsProps } from '../type';
 import type { LayoutChangeEvent, LayoutRectangle } from 'react-native';
 
-function useTabs(props: TabsProps) {
+function useTabs(props: Pick<TabsProps, 'children' | 'defaultSelectedTab'>) {
   const underlineX = useSharedValue(0);
   const underlineWidth = useSharedValue(0);
   const [tabLayouts, setTabLayouts] = useState<Array<LayoutRectangle>>([]);

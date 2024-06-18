@@ -1,8 +1,8 @@
-import { createRestyleComponent } from '@library/restyle';
+import { createStyled } from '@library/restyle';
 import { type ComponentProps, forwardRef } from 'react';
 import { ScrollView as RNScrollView } from 'react-native';
 
-const _ScrollView = createRestyleComponent(RNScrollView);
+const _ScrollView = createStyled(RNScrollView);
 
 type ScrollViewProps = ComponentProps<typeof _ScrollView>;
 

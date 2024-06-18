@@ -1,0 +1,15 @@
+{
+  "warn": "Warn",
+  "login": "Login",
+  "error": "Error",
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "apply": "Apply",
+  "select": "Select",
+  "logout": "Logout",
+  "loading": "Loading",
+  "continue": "Continue",
+  "back": "Back",
+  "request": "Request",
+  "save": "Save"
+}

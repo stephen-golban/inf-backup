@@ -6,7 +6,7 @@ import { internationalization } from '@translations/index';
 
 import NativeSWRConfig from '@api/provider';
 import { I18nextProvider } from 'react-i18next';
-import { ThemeProvider } from '@library/restyle';
+import { ThemeProvider } from '@shopify/restyle';
 import ApplicationNavigator from '@navigation/index';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';

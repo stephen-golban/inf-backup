@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { View } from '../view';
 import { Icon } from '../icon';
 import { Label } from './parts';
-import { Button } from '../button';
+import { BaseButton } from '../button';
 import Animated from 'react-native-reanimated';
 
 import { EyeCloseIcon, EyeOpenIcon } from '@components/icons';
@@ -101,9 +101,9 @@ const TextInput = React.forwardRef((props: TextInputProps, ref: React.ForwardedR
         />
         {rest.secureTextEntry ? (
           <View position="absolute" zIndex="huge" right={10} {...(iconProps as unknown as any)}>
-            <Button onPress={() => setIsPasswordInput(prev => !prev)}>
+            <BaseButton onPress={() => setIsPasswordInput(prev => !prev)}>
               <PasswordIcon color={colors.black} />
-            </Button>
+            </BaseButton>
           </View>
         ) : (
           rightChildren

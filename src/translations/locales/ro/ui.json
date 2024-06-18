@@ -1,0 +1,15 @@
+{
+  "warn": "Avertizare",
+  "login": "Autentificare",
+  "error": "Eroare",
+  "submit": "Trimite",
+  "cancel": "Anulează",
+  "apply": "Aplică",
+  "select": "Selectează",
+  "logout": "Deconectare",
+  "loading": "Încărcare",
+  "continue": "Continuă",
+  "back": "Înapoi",
+  "request": "Cerere",
+  "save": "Salvează"
+}

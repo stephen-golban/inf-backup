@@ -1,6 +1,6 @@
 import { View as RNView } from 'react-native';
-import { createRestyleComponent } from '@library/restyle';
+import { createStyled } from '@library/restyle';
 
-export const View = createRestyleComponent(RNView);
+export const View = createStyled(RNView);
 
 export type ViewProps = React.ComponentProps<typeof View>;

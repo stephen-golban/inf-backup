@@ -8,6 +8,7 @@ export * from './view';
 export * from './tabs';
 export * from './screen';
 export * from './button';
+export * from './dropdown';
 export * from './text-input';
 export * from './date-picker';
 export * from './scroll-view';

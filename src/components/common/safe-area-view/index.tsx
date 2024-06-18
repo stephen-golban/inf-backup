@@ -1,10 +1,10 @@
+import { createStyled } from '@library/restyle';
+
 import { SafeAreaView as RNSafeAreaView } from 'react-native-safe-area-context';
 
-import { createRestyleComponent } from '@library/restyle';
+import { type ComponentProps } from 'react';
 
-import type { ComponentProps } from 'react';
-
-const SafeAreaView = createRestyleComponent(RNSafeAreaView);
+const SafeAreaView = createStyled(RNSafeAreaView);
 
 type SafeAreaViewProps = ComponentProps<typeof SafeAreaView>;
 

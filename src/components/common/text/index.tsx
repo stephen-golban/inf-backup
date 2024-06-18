@@ -1,11 +1,12 @@
 import React from 'react';
 import { Text as RNText, StyleProp, TextStyle, Linking } from 'react-native';
-import { createText } from '@library/restyle';
+import { createText } from '@shopify/restyle';
 import { useTranslation } from 'react-i18next';
 
+import type { AppTheme } from '@theme/index';
 import type { ExtendedTextProps } from './type';
 
-const _Text = createText();
+const _Text = createText<AppTheme>();
 
 type TextProps = React.ComponentProps<typeof _Text> & ExtendedTextProps;
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IPicker } from '../types';
+import { IPicker } from '../type';
 import { Icon as CustomIcon } from '@components/common';
 
 const TimePickerIcon: React.FC<Pick<IPicker, 'Icon'>> = ({ Icon }) => {

@@ -5,7 +5,7 @@ import { useTabsItem } from './hook';
 
 import { Badge } from '@components/ui';
 import { Text } from '@components/common/text';
-import { Button } from '@components/common/button';
+import { BaseButton } from '@components/common/button';
 
 import type { TabsItemProps } from '../../type';
 import type { GestureResponderEvent } from 'react-native';
@@ -22,10 +22,10 @@ const TabsItem: React.FC<TabsItemProps> = ({ title, onPress, onLayout, badgeCoun
   }
 
   return (
-    <Button onPress={handlePress} onLayout={onLayoutHandler} py="sm">
-      <Text color="dark_blue" variant="16-bold" t18n={title} {...textProps} />
+    <BaseButton onPress={handlePress} onLayout={onLayoutHandler} py="sm">
+      <Text color="black" variant="16-bold" t18n={title} {...textProps} />
       {isNumber(badgeCount) && badgeCount > 0 && <Badge size={BADGE_SIZE} value={badgeCount} placement={placement} />}
-    </Button>
+    </BaseButton>
   );
 };
 

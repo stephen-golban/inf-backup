@@ -18,7 +18,7 @@ const Screen: React.FC<ScreenProps> = ({ loading, ...props }) => {
 
   const actualUnsafe = React.useMemo<boolean>(() => props.unsafe || edges.length <= 0, [edges.length, props.unsafe]);
 
-  const Wrapper = React.useMemo(() => (actualUnsafe ? View : SafeAreaView), [actualUnsafe]);
+  const Wrapper = actualUnsafe ? View : SafeAreaView;
 
   if (loading) {
     return (

@@ -2,21 +2,21 @@ import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import * as SCREENS from '@screens/logged-out';
-
-import { APP_SCREEN, LOGGED_OUT_SCREENS, type RootStackScreenProps, type LoggedOutStackParamList } from '@typings/navigators';
+import * as S from '@screens/logged-out';
 import { Screen } from '@components/common';
+
+import { APP_SCREEN, LOGGED_OUT_SCREENS, LoggedOutStackParamList, RootStackScreenProps } from '@typings/navigation';
 
 const Stack = createNativeStackNavigator<LoggedOutStackParamList>();
 
-const UnauthorizedStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_OUT>> = () => {
+const LoggedOutStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_OUT>> = () => {
   return (
-    <Screen bottomInsetColor="white" excludeEdges={['bottom']}>
-      <Stack.Navigator initialRouteName={LOGGED_OUT_SCREENS.DEFAULT} screenOptions={{ headerShown: false }}>
-        <Stack.Screen name={LOGGED_OUT_SCREENS.DEFAULT} component={SCREENS.Default} />
+    <Screen bg="primary">
+      <Stack.Navigator initialRouteName={LOGGED_OUT_SCREENS.Welcome} screenOptions={{ headerShown: false }}>
+        <Stack.Screen name={LOGGED_OUT_SCREENS.Welcome} component={S.Welcome} />
       </Stack.Navigator>
     </Screen>
   );
 };
 
-export default UnauthorizedStack;
+export default LoggedOutStack;

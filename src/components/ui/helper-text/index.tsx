@@ -9,7 +9,7 @@ import { Text, View } from '@components/common';
 import type { HelperTextProps } from './type';
 import { type LayoutChangeEvent, type LayoutRectangle, type StyleProp, type ViewStyle } from 'react-native';
 
-const HelperText: React.FC<HelperTextProps> = ({ msg, type, colorInfo = 'info', colorError = 'error', visible = false }) => {
+const HelperText: React.FC<HelperTextProps> = ({ msg, type, colorInfo = 'gold', colorError = 'error', visible = false }) => {
   const theme = useTheme();
 
   const [currentMessage, setCurrentMessage] = useState<string>(msg ?? '');

@@ -15,7 +15,7 @@ const TEXT_VARIANTS = StyleSheet.create({
     fontSize: sizeScale(10),
     fontFamily: Fonts.primary,
   },
-  '10-med': {
+  '10-mid': {
     fontWeight: '500',
     fontSize: sizeScale(10),
     fontFamily: Fonts.primary,
@@ -36,7 +36,7 @@ const TEXT_VARIANTS = StyleSheet.create({
     fontSize: sizeScale(12),
     fontFamily: Fonts.primary,
   },
-  '12-med': {
+  '12-mid': {
     fontWeight: '500',
     fontSize: sizeScale(12),
     fontFamily: Fonts.primary,
@@ -57,7 +57,7 @@ const TEXT_VARIANTS = StyleSheet.create({
     fontSize: sizeScale(14),
     fontFamily: Fonts.primary,
   },
-  '14-med': {
+  '14-mid': {
     fontWeight: '500',
     fontSize: sizeScale(14),
     fontFamily: Fonts.primary,
@@ -78,7 +78,7 @@ const TEXT_VARIANTS = StyleSheet.create({
     fontSize: sizeScale(16),
     fontFamily: Fonts.primary,
   },
-  '16-med': {
+  '16-mid': {
     fontWeight: '500',
     fontSize: sizeScale(16),
     fontFamily: Fonts.primary,
@@ -99,7 +99,7 @@ const TEXT_VARIANTS = StyleSheet.create({
     fontSize: sizeScale(18),
     fontFamily: Fonts.primary,
   },
-  '18-med': {
+  '18-mid': {
     fontWeight: '500',
     fontSize: sizeScale(18),
     fontFamily: Fonts.primary,
@@ -120,7 +120,7 @@ const TEXT_VARIANTS = StyleSheet.create({
     fontSize: sizeScale(20),
     fontFamily: Fonts.primary,
   },
-  '20-med': {
+  '20-mid': {
     fontWeight: '500',
     fontSize: sizeScale(20),
     fontFamily: Fonts.primary,
@@ -141,7 +141,7 @@ const TEXT_VARIANTS = StyleSheet.create({
     fontSize: sizeScale(24),
     fontFamily: Fonts.primary,
   },
-  '24-med': {
+  '24-mid': {
     fontWeight: '500',
     fontSize: sizeScale(24),
     fontFamily: Fonts.primary,
@@ -162,7 +162,7 @@ const TEXT_VARIANTS = StyleSheet.create({
     fontSize: sizeScale(32),
     fontFamily: Fonts.primary,
   },
-  '32-med': {
+  '32-mid': {
     fontWeight: '500',
     fontSize: sizeScale(32),
     fontFamily: Fonts.primary,
@@ -183,7 +183,7 @@ const TEXT_VARIANTS = StyleSheet.create({
     fontSize: sizeScale(40),
     fontFamily: Fonts.primary,
   },
-  '40-med': {
+  '40-mid': {
     fontWeight: '500',
     fontSize: sizeScale(40),
     fontFamily: Fonts.primary,
@@ -204,7 +204,7 @@ const TEXT_VARIANTS = StyleSheet.create({
     fontSize: sizeScale(56),
     fontFamily: Fonts.primary,
   },
-  '56-med': {
+  '56-mid': {
     fontWeight: '500',
     fontSize: sizeScale(56),
     fontFamily: Fonts.primary,

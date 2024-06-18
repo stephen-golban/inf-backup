@@ -9,7 +9,7 @@ export default ({ colors }: AppTheme) => {
       width: '100%',
       marginVertical: 3,
       overflow: 'hidden',
-      backgroundColor: colors.background,
+      backgroundColor: colors.lightGray,
     },
     fg: {
       flex: 1,

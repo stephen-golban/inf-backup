@@ -1,1 +1,1 @@
-export { DefaultModule } from './default';
+export * from './welcome';

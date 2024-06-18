@@ -2516,6 +2516,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@shopify/restyle@npm:^2.4.4":
+  version: 2.4.4
+  resolution: "@shopify/restyle@npm:2.4.4"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 730c8a9f0a30325b8239a60615bf15412eacddaa0f913da5937981a422b10e98a955e8aa0badf65e1eede6bc8d35dd2301b04ca0aa427dfafdf7e6544b63682e
+  languageName: node
+  linkType: hard
+
 "@sideway/address@npm:^4.1.5":
   version: 4.1.5
   resolution: "@sideway/address@npm:4.1.5"
@@ -5464,6 +5474,7 @@ __metadata:
     "@react-navigation/native": ^6.1.17
     "@react-navigation/native-stack": ^6.9.26
     "@shopify/flash-list": ^1.6.4
+    "@shopify/restyle": ^2.4.4
     "@types/axios": ^0.14.0
     "@types/lodash": ^4.17.5
     "@types/react": ^18.3.3
@@ -5490,6 +5501,7 @@ __metadata:
     react-native-reanimated: ^3.12.0
     react-native-safe-area-context: ^4.10.5
     react-native-screens: ^3.32.0
+    react-native-select-dropdown: ^4.0.1
     react-native-svg: ^15.3.0
     react-native-toast-notifications: ^3.4.0
     react-use: ^17.5.0
@@ -7791,6 +7803,13 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: afcb93e9cd48d5071278213bbc4ddc18112dbdbd16c11e3c7129368614396d8aae13fd70bb299f3c84f52a28e34af06ccdc514de1e97a99f4197069301dab136
+  languageName: node
+  linkType: hard
+
+"react-native-select-dropdown@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "react-native-select-dropdown@npm:4.0.1"
+  checksum: 0f841ec81921e4f79959c883a1c83570e60b9fe28bbf075892aec75edf9bfd5506a7d71221fce388bf664a9d863785fc10a87dac3a27a9cdac248da909611ddd
   languageName: node
   linkType: hard
 

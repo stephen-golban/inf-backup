@@ -1,5 +1,5 @@
 import React from 'react';
-import type { IPicker } from '../types';
+import type { IPicker } from '../type';
 
 const usePicker = ({ onConfirm }: Pick<IPicker, 'onConfirm'>) => {
   const [isDatePickerOpen, setIsDatePickerOpen] = React.useState(false);

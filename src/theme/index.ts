@@ -1,8 +1,7 @@
-import { useAppStore } from '@store/app';
 import COLORS, { DARK_THEME_BASE_COLORS } from './colors';
 import TEXT_VARIANTS from './font';
 import { SPACING, RADII, Z_INDICES } from './metrics';
-import { createTheme, useRestyleTheme } from '@library/restyle';
+import { createTheme, useTheme as useShopifyTheme } from '@shopify/restyle';
 import LAYOUT from './layout';
 
 type AppTheme = typeof LIGHT;
@@ -11,7 +10,7 @@ type ThemeType = keyof typeof THEME;
 const LIGHT = createTheme({
   colors: COLORS,
   layout: LAYOUT,
-  metrics: SPACING,
+  spacing: SPACING,
   borderRadii: RADII,
   zIndices: Z_INDICES,
   textVariants: TEXT_VARIANTS,
@@ -24,13 +23,11 @@ const THEME = {
 };
 
 const useTheme = () => {
-  const theme = useRestyleTheme<AppTheme>();
+  const theme = useShopifyTheme<AppTheme>();
 
   return theme;
 };
 
-const currentTheme = THEME[useAppStore.getState().theme];
-
-export { THEME, currentTheme, useTheme };
+export { THEME, useTheme };
 
 export type { AppTheme, ThemeType };

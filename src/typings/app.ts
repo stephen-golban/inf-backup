@@ -1,7 +1,9 @@
+import type { User } from './user';
 import type { ThemeType } from '@theme/index';
 
 export interface IAppState {
-  token: string | undefined;
+  user: User | null;
+  isAuthenticated: boolean;
 
   loadingApp: boolean;
 
