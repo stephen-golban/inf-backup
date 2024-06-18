@@ -1,0 +1,1 @@
+export { DefaultModule } from './default';

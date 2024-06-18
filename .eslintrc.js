@@ -1,4 +1,9 @@
 module.exports = {
   root: true,
-  extends: '@react-native',
+  plugins: ['prettier'],
+  extends: ['@react-native', 'plugin:prettier/prettier'],
+  rules: {
+    'react-hooks/exhaustive-deps': 'off',
+    'react-native/no-inline-styles': 'off',
+  },
 };
