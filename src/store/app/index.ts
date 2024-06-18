@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import i18n from 'translations/i18n';
+import i18n from '@translations/i18n';
 import { SLICE_NAME } from '@library/constants';
 import { localStorage } from '@library/storage';
 import { createJSONStorage, persist, type PersistOptions } from 'zustand/middleware';

@@ -1,13 +1,9 @@
 import { type StyleProp } from 'react-native';
-import type {
-  RNStyle,
-  BaseTheme,
-  RestyleExtendedProps,
-} from '../../../typings';
+import type { RNStyle, BaseTheme, RestyleExtendedProps } from '../../../typings';
 
 import { useMemo } from 'react';
-import { useTheme } from '../../../theme';
 import { extendStyles } from './extend-styles';
+import { useRestyleTheme } from '@library/restyle/theme';
 import { filterRestyleProps } from './filter-restyle-props';
 
 const useRestyle = <
@@ -16,34 +12,24 @@ const useRestyle = <
   TProps extends TRestyleProps & { style?: StyleProp<RNStyle> },
 >(
   composedRestyleFunction: {
-    buildStyle: <TInputProps extends TProps>(
-      props: TInputProps,
-      theme: Theme
-    ) => RNStyle;
+    buildStyle: <TInputProps extends TProps>(props: TInputProps, theme: Theme) => RNStyle;
     properties: (keyof TProps)[];
     propertiesMap: { [key in keyof TProps]?: boolean | undefined };
   },
-  props: TProps
+  props: TProps,
 ) => {
-  const theme = useTheme<Theme>();
+  const theme = useRestyleTheme<Theme>();
 
-  const { cleanProps, restyleProps, serializedRestyleProps } =
-    filterRestyleProps(props, composedRestyleFunction.propertiesMap);
+  const { cleanProps, restyleProps, serializedRestyleProps } = filterRestyleProps(props, composedRestyleFunction.propertiesMap);
   const extendedStyles = extendStyles(cleanProps);
 
   const calculatedStyle: StyleProp<RNStyle> = useMemo(() => {
-    const style = composedRestyleFunction.buildStyle(
-      restyleProps as TProps,
-      theme
-    );
+    const style = composedRestyleFunction.buildStyle(restyleProps as TProps, theme);
     const finalStyle = [style, extendedStyles];
     const styleProp: StyleProp<RNStyle> = props.style;
 
     return typeof styleProp === 'function'
-      ? (((...args: any[]) =>
-          [finalStyle, styleProp(...args)].filter(
-            Boolean
-          )) as StyleProp<RNStyle>)
+      ? (((...args: any[]) => [finalStyle, styleProp(...args)].filter(Boolean)) as StyleProp<RNStyle>)
       : [finalStyle, styleProp].filter(Boolean);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

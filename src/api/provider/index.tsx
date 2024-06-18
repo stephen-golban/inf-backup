@@ -1,5 +1,5 @@
 import React from 'react';
-import { SWRConfig } from 'swr/_internal/dist/index';
+import { SWRConfig } from 'swr';
 import { initFocus, initReconnect, isOnline } from './util';
 import { useNetInfo } from '@react-native-community/netinfo';
 
