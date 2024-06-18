@@ -1,26 +1,38 @@
 import React from 'react';
-import { View } from 'react-native';
 
+import { View } from '../view';
+import { SafeAreaView } from '../safe-area-view';
 import ScreenWithScrolling from './parts/with-scrolling';
+import { ActivityIndicator } from '../activity-indicator';
 import ScreenWithoutScrolling from './parts/without-scrolling';
-import { SafeAreaView, type Edge } from 'react-native-safe-area-context';
 
 import { getEdges } from './util';
 
 import type { ScreenProps } from './type';
+import { type Edge } from 'react-native-safe-area-context';
 
-export const Screen = (props: ScreenProps) => {
+const Screen: React.FC<ScreenProps> = ({ loading, ...props }) => {
   const edges = React.useMemo<Edge[]>(() => {
-    return getEdges(props.excludeEdges, props?.hiddenStatusBar ?? false);
+    return getEdges(props.excludeEdges, props?.hiddenStatusBar || false);
   }, [props.excludeEdges, props.hiddenStatusBar]);
 
   const actualUnsafe = React.useMemo<boolean>(() => props.unsafe || edges.length <= 0, [edges.length, props.unsafe]);
 
   const Wrapper = React.useMemo(() => (actualUnsafe ? View : SafeAreaView), [actualUnsafe]);
 
+  if (loading) {
+    return (
+      <View fill center>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
   if (props.scroll) {
     return ScreenWithScrolling(Wrapper, { ...props, actualUnsafe, edges });
-  } else {
-    return ScreenWithoutScrolling(Wrapper, { ...props, actualUnsafe, edges });
   }
+
+  return ScreenWithoutScrolling(Wrapper, { ...props, actualUnsafe, edges });
 };
+
+export { Screen, type ScreenProps };

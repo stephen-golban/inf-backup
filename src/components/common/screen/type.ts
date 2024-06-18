@@ -1,26 +1,15 @@
-import { Color } from '@theme/colors';
-import React from 'react';
-import { NativeScrollEvent, NativeSyntheticEvent, StyleProp, ViewStyle } from 'react-native';
-
-import { Edge } from 'react-native-safe-area-context';
+import type { ViewProps } from '../view';
+import type { Color } from '@theme/colors';
+import type { SafeAreaViewProps } from '../safe-area-view';
+import type { Edge } from 'react-native-safe-area-context';
+import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 
 export type ScreenProps = {
   /**
-   * Children of Screen
-   */
-  children?: React.ReactNode;
-
-  /**
-   * Overwrite style of screen
+   * Displays a loader if true
    * @default undefined
    */
-  style?: StyleProp<ViewStyle>;
-
-  /**
-   * Color of Screen
-   * @default transparent
-   */
-  bg?: Color;
+  loading?: boolean;
 
   /**
    * Status bar style
@@ -43,7 +32,7 @@ export type ScreenProps = {
   /**
    * Color of status bar for both Android/IOS
    */
-  statusColor?: string;
+  statusColor?: Color;
 
   /**
    * Color of inset bottom
@@ -80,7 +69,8 @@ export type ScreenProps = {
    * @default undefined
    */
   onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
-};
+} & SafeAreaViewProps &
+  ViewProps;
 
 export type InsetComponentProps = Pick<
   ScreenProps,
@@ -90,7 +80,7 @@ export type InsetComponentProps = Pick<
 };
 
 export interface InsetProps {
-  color?: string;
+  color?: Color;
   height: number;
   width: number;
   top?: number;

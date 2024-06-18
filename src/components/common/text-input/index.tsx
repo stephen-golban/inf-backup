@@ -1,35 +1,43 @@
 import React from 'react';
 import { TextInput as RNTextInput } from 'react-native';
 
+import style from './style';
+import useTextInput from './hooks';
+import { useTheme } from '@theme/index';
+import { useStyle } from '@library/hooks';
 import { useTranslation } from 'react-i18next';
+
+import { View } from '../view';
+import { Icon } from '../icon';
+import { Label } from './parts';
+import { Button } from '../button';
 import Animated from 'react-native-reanimated';
 
-import style from './style';
+import { EyeCloseIcon, EyeOpenIcon } from '@components/icons';
+
 import type { TextInputProps } from './type';
-import { useTheme } from '@theme/index';
-import TextInputLabel from './parts/Input.Label';
-import useTextInput from './hooks';
-import { useStyle } from '@library/hooks';
-import TextInputFocusLine from './parts/Input.FocusLine';
-import TextInputErrorLine from './parts/Input.ErrorLine';
+
+const AnimatedInput = Animated.createAnimatedComponent(RNTextInput);
 
 const TextInput = React.forwardRef((props: TextInputProps, ref: React.ForwardedRef<RNTextInput>) => {
   const {
+    icon,
     error,
     label,
+    prefix,
+    sufix,
     required,
     editable,
     rxFormat,
     labelI18n,
     multiline,
+    iconProps,
     placeholder,
-    nameTrigger,
     rightChildren,
     placeholderI18n,
-    placeholderTextColor,
-    placeholderTextColorTheme,
+    style: incomingStyle,
+    placeholderTextColor = 'gray',
     onBlur,
-    trigger,
     onFocus,
     onChangeText,
     ...rest
@@ -38,40 +46,69 @@ const TextInput = React.forwardRef((props: TextInputProps, ref: React.ForwardedR
   const [t] = useTranslation();
   const { colors } = useTheme();
   const styles = useStyle(style);
-  const { fns, vars } = useTextInput({ error, onBlur, trigger, onFocus, onChangeText, rxFormat, nameTrigger, editable });
+  const { fns, vars } = useTextInput({ error, onBlur, onFocus, onChangeText, rxFormat, editable });
+  const [isPasswordInput, setIsPasswordInput] = React.useState(rest.secureTextEntry ?? false);
 
-  const placeholderColor = React.useMemo(() => {
-    if (!editable) {
-      return colors.border;
+  const PWD_ICONS = {
+    false: EyeOpenIcon,
+    true: EyeCloseIcon,
+  };
+
+  const getPasswordIcon = (passwordInput: boolean) => {
+    return PWD_ICONS[String(passwordInput) as keyof typeof PWD_ICONS];
+  };
+
+  const PasswordIcon = getPasswordIcon(isPasswordInput);
+
+  const renderInputPrefix = React.useMemo(() => {
+    if (icon) {
+      return <Icon icon={icon} position="absolute" zIndex="huge" size={18} left={10} {...iconProps} />;
     }
-    return placeholderTextColor || (placeholderTextColorTheme && colors[placeholderTextColorTheme]);
-  }, [editable, placeholderTextColor]);
+    return (
+      <View position="absolute" zIndex="huge" left={10} {...(iconProps as unknown as any)}>
+        {prefix}
+      </View>
+    );
+  }, [prefix, icon, iconProps]);
+
+  const renderStyle = React.useMemo(() => {
+    return [styles.input, vars.inputAnimationStyle, multiline && styles.multiline, (icon || prefix) && styles.withIcon, incomingStyle];
+  }, [styles, vars.inputAnimationStyle, icon, prefix, incomingStyle]);
 
   return (
     <>
-      <TextInputLabel label={label} labelI18n={labelI18n} required={required} />
-      <Animated.View style={[styles.containerInput, vars.containerRestyle]}>
-        <RNTextInput
+      <Label label={label} labelI18n={labelI18n} required={required} />
+      <View direction="row" align="center">
+        {renderInputPrefix}
+        <AnimatedInput
           {...rest}
           ref={ref}
-          editable={editable}
-          autoCorrect={false}
           spellCheck={false}
+          autoCorrect={false}
+          editable={editable}
+          style={renderStyle}
           multiline={multiline}
           onBlur={fns.handleBlur}
           clearButtonMode={'never'}
           onFocus={fns.handleFocus}
-          selectionColor={colors.primary}
+          cursorColor={colors.black}
+          selectionColor={colors.skyBlue}
           onChangeText={fns.handleTextChange}
           underlineColorAndroid={'transparent'}
-          placeholderTextColor={placeholderColor}
-          style={[styles.input, multiline && styles.multiline]}
+          secureTextEntry={isPasswordInput}
+          placeholderTextColor={colors[placeholderTextColor]}
           placeholder={placeholder || (placeholderI18n && t(placeholderI18n))}
         />
-        {rightChildren}
-        <TextInputFocusLine focused={vars.focusedValue} disabled={vars.disabled} />
-        <TextInputErrorLine error={vars.errorValue} disabled={vars.disabled} />
-      </Animated.View>
+        {rest.secureTextEntry ? (
+          <View position="absolute" zIndex="huge" right={10} {...(iconProps as unknown as any)}>
+            <Button onPress={() => setIsPasswordInput(prev => !prev)}>
+              <PasswordIcon color={colors.black} />
+            </Button>
+          </View>
+        ) : (
+          rightChildren
+        )}
+      </View>
     </>
   );
 });

@@ -1,15 +1,15 @@
 import React from 'react';
 
+import usePicker from './hooks';
 import { format } from 'date-fns';
+import { useTheme } from '@theme/index';
 
+import { View } from '../view';
+import { Button } from '../button';
+import PickerButton from './parts/picker-button';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
-import PickerButton from './parts/picker-button';
-import usePicker from './hooks';
-import { BaseButton } from '../button';
-import { View } from '../view';
-import { useTheme } from '@theme/index';
-import { IPicker } from './types';
+import type { IPicker } from './types';
 
 interface IDatePickerProps extends IPicker {
   children?: ((date: Date) => React.ReactNode) | React.ReactNode;
@@ -23,9 +23,9 @@ const DatePicker: React.FC<IDatePickerProps> = props => {
   if (children) {
     return (
       <View fill>
-        <BaseButton onPress={picker.showDatePicker} disabled={disabled}>
+        <Button onPress={picker.showDatePicker} disabled={disabled}>
           {typeof children === 'function' ? children(date || new Date()) : children}
-        </BaseButton>
+        </Button>
 
         <DateTimePickerModal
           //   locale={lang as string}

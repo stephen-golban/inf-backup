@@ -1,11 +1,11 @@
-import { I18nKeys } from 'translations';
+import { I18nKey } from '@translations/locales';
 
 export interface ExtendedTextProps {
   /**
    * Text which is looked up via i18n.
    * @default undefined
    */
-  t18n?: I18nKeys;
+  t18n?: I18nKey;
 
   /**
    * Option of i18n
@@ -30,4 +30,10 @@ export interface ExtendedTextProps {
    * @default undefined
    */
   center?: boolean;
+
+  /**
+   * Set true for reading links
+   * @default undefined
+   */
+  readLinks?: boolean;
 }

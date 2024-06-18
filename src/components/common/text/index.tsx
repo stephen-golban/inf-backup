@@ -1,29 +1,67 @@
 import React from 'react';
-import { Text as RNText, StyleProp, type TextStyle } from 'react-native';
-
-import { createText } from '@shopify/restyle';
+import { Text as RNText, StyleProp, TextStyle, Linking } from 'react-native';
+import { createText } from '@library/restyle';
 import { useTranslation } from 'react-i18next';
 
-import type { AppTheme } from '@theme/index';
 import type { ExtendedTextProps } from './type';
 
-const _Text = createText<AppTheme>(RNText);
+const _Text = createText();
 
 type TextProps = React.ComponentProps<typeof _Text> & ExtendedTextProps;
 
-const Text = ({ t18n, text, flex, center, children, t18nOptions, style, color = 'white', ...rest }: TextProps) => {
+const urlRegex = /https?:\/\/([a-z]+\.)+[a-z]{2,6}(:\d{1,5})?(\/\S*)?/gi;
+const phoneRegex = /\+?[1-9]\d{5,14}/g;
+
+const Text: React.FC<TextProps> = ({
+  t18n,
+  text,
+  flex,
+  center,
+  children,
+  t18nOptions,
+  style,
+  readLinks = true,
+  color = 'black',
+  ...rest
+}) => {
   const [t] = useTranslation();
 
   const i18nText = React.useMemo(() => t18n && t(t18n, t18nOptions), [t18n, t18nOptions, t]);
 
-  const content = React.useMemo(() => (i18nText || text || children) as React.ReactNode, [i18nText, text, children]);
-  const styleComponent = React.useMemo<StyleProp<TextStyle>>(() => {
-    return [flex === true && { flex: 1 }, center && { textAlign: 'center' }];
-  }, [flex, center]);
+  const content = React.useMemo(() => (i18nText || text || children) as string, [i18nText, text, children]);
+
+  const combinedStyle = React.useMemo(() => {
+    const baseStyle: StyleProp<TextStyle> = [];
+    if (flex) baseStyle.push({ flex: 1 });
+    if (center) baseStyle.push({ textAlign: 'center' });
+    if (style) baseStyle.push(style);
+    return baseStyle;
+  }, [flex, center, style]);
+
+  const renderTextWithLinks = (text: string) => {
+    const parts = text.split(/(\s+)/).map((part, index) => {
+      if (urlRegex.test(part)) {
+        return (
+          <RNText key={index} onPress={() => Linking.openURL(part.startsWith('http') ? part : `http://${part}`)}>
+            {part}
+          </RNText>
+        );
+      } else if (phoneRegex.test(part)) {
+        return (
+          <RNText key={index} onPress={() => Linking.openURL(`tel:${part}`)}>
+            {part}
+          </RNText>
+        );
+      } else {
+        return <RNText key={index}>{part}</RNText>;
+      }
+    });
+    return parts;
+  };
 
   return (
-    <_Text allowFontScaling={false} style={[styleComponent, style]} color={color} {...rest}>
-      {content}
+    <_Text allowFontScaling={false} style={combinedStyle} color={color} {...rest}>
+      <RNText>{typeof content === 'string' && readLinks ? renderTextWithLinks(content) : content}</RNText>
     </_Text>
   );
 };

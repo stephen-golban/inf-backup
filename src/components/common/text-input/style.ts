@@ -5,31 +5,21 @@ export default ({ colors }: AppTheme) => {
   return StyleSheet.create({
     input: {
       flex: 1,
-      color: colors.black,
-      padding: 10,
-      borderBottomColor: colors.transparent,
-    },
-    containerInput: {
-      flexDirection: 'row',
+      height: 56,
       borderWidth: 1,
-      borderRadius: 5,
-      alignItems: 'center',
-      overflow: 'hidden',
-    },
-    lineStatus: {
-      height: 1,
-      width: '10%',
-      position: 'absolute',
-      bottom: 0,
+      borderRadius: 8,
+      paddingHorizontal: 16,
+      color: colors.black,
+      borderColor: colors.gray_80,
+      backgroundColor: colors.white,
     },
     multiline: {
-      height: 100,
+      height: 120,
       paddingTop: 10,
+      paddingBottom: 30,
     },
-    rowLabel: {
-      marginBottom: 4,
-      flexDirection: 'row',
-      alignItems: 'center',
+    withIcon: {
+      paddingLeft: 35,
     },
   });
 };

@@ -1,28 +1,21 @@
 import React from 'react';
-import { View } from 'react-native';
 
-import style from '../style';
-import { useTheme } from '@theme/index';
-import { useStyle } from '@library/hooks';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@library/hooks';
 
+import { View } from '@components/common/view';
 import { Text } from '@components/common/text';
 
 import type { LabelProps } from '../type';
 
 const TextInputLabel = ({ label, labelI18n, required }: LabelProps) => {
-  const styles = useStyle(style);
-  const [t] = useTranslation();
-
-  const { colors } = useTheme();
+  const { t } = useTranslation();
 
   const content = React.useMemo(() => label || (labelI18n && t(labelI18n)), [label, labelI18n, t]);
 
-  // render
   return (
-    <View style={styles.rowLabel}>
-      <Text style={{ color: colors.text }}>{content}</Text>
-      {required ? <Text style={{ color: colors.error }}> *</Text> : null}
+    <View mb="xs" direction="row" align="center">
+      <Text variant="12-reg">{content}</Text>
+      {required ? <Text color="error"> *</Text> : null}
     </View>
   );
 };

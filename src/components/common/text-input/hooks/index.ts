@@ -1,14 +1,14 @@
 import { useTheme } from '@theme/index';
 import { execFunc } from '@library/method';
-import { useAnimatedStyle, useDerivedValue, useSharedValue } from 'react-native-reanimated';
+import { Easing, useAnimatedStyle, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import type { TextInputProps } from '../type';
 import type { NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
 
-type Props = Pick<TextInputProps, 'error' | 'editable' | 'rxFormat' | 'trigger' | 'nameTrigger' | 'onFocus' | 'onBlur' | 'onChangeText'>;
+type Props = Pick<TextInputProps, 'error' | 'editable' | 'rxFormat' | 'onFocus' | 'onBlur' | 'onChangeText'>;
 
 export default function useTextInput(props: Props) {
-  const { editable, error, nameTrigger, onBlur, onFocus, rxFormat, trigger, onChangeText } = props;
+  const { editable, error, onBlur, onFocus, rxFormat, onChangeText } = props;
   const { colors } = useTheme();
 
   const focusedValue = useSharedValue(false);
@@ -18,27 +18,21 @@ export default function useTextInput(props: Props) {
   const disabled = useDerivedValue(() => editable === false, [editable]);
 
   const borderColor = useDerivedValue(() => {
-    switch (true) {
-      case disabled.value:
-        return colors.border;
-      case errorValue.value:
-        return colors.error;
-      case focusedValue.value:
-        return colors.primary;
-
-      default:
-        return colors.line;
+    if (errorValue.value) {
+      return colors.error;
+    } else if (focusedValue.value) {
+      return colors.blue;
+    } else if (disabled.value) {
+      return colors.lightGray;
+    } else {
+      return colors.gray_80;
     }
-  }, [colors.primary, colors.error, colors.card, colors.border]);
+  }, [errorValue, focusedValue, disabled]);
 
   function handleTextChange(text: string) {
     const actualText = rxFormat !== undefined ? text.replace(rxFormat, '') : text;
 
     execFunc(onChangeText, actualText);
-
-    if (nameTrigger) {
-      execFunc(trigger, nameTrigger);
-    }
   }
 
   function handleFocus(e: NativeSyntheticEvent<TextInputFocusEventData>) {
@@ -53,11 +47,11 @@ export default function useTextInput(props: Props) {
     execFunc(onBlur, e);
   }
 
-  const containerRestyle = useAnimatedStyle(() => {
+  const inputAnimationStyle = useAnimatedStyle(() => {
     return {
-      borderColor: borderColor.value,
+      borderColor: withTiming(borderColor.value, { duration: 200, easing: Easing.inOut(Easing.cubic) }),
     };
-  }, []);
+  }, [borderColor.value]);
 
   return {
     vars: {
@@ -65,7 +59,7 @@ export default function useTextInput(props: Props) {
       errorValue,
       borderColor,
       focusedValue,
-      containerRestyle,
+      inputAnimationStyle,
     },
     fns: {
       handleBlur,

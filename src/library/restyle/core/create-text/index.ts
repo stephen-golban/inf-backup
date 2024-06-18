@@ -17,6 +17,8 @@ import type { BaseTheme, RestyleFunctionContainer } from '../../typings';
 
 import { Text } from 'react-native';
 import { buildRestyleComponent } from '../build-restyle-component';
+import type { AppTheme } from '@theme/index';
+import { useRestyleTheme } from '@library/restyle/theme';
 
 type TextRestyleProps<Theme extends BaseTheme> = ColorProps<Theme> &
   OpacityProps &
@@ -36,16 +38,11 @@ const textRestyleFunctions = <T extends BaseTheme>(theme: T) => [
   createVariant({ themeKey: 'textVariants' }),
 ];
 
-const createText = <Theme extends BaseTheme>(theme: Theme) => {
-  return buildRestyleComponent<
-    TextRestyleProps<Theme> & React.ComponentProps<typeof Text>,
-    Theme
-  >(
-    textRestyleFunctions(theme) as RestyleFunctionContainer<
-      TextRestyleProps<Theme>,
-      Theme
-    >[],
-    Text
+const createText = () => {
+  const theme = useRestyleTheme<AppTheme>();
+  return buildRestyleComponent<TextRestyleProps<AppTheme> & React.ComponentProps<typeof Text>, AppTheme>(
+    textRestyleFunctions(theme) as RestyleFunctionContainer<TextRestyleProps<AppTheme>, AppTheme>[],
+    Text,
   );
 };
 

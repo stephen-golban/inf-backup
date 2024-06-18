@@ -19,6 +19,7 @@ const palette = {
   softGray: 'rgb(232, 232, 232)',
   mediumGray: 'rgb(223, 223, 223)',
   gray: 'rgb(107, 107, 107)',
+  gray_80: 'rgb(204, 204, 204)', // #cccccc
 
   gold: 'rgb(255, 204, 0)',
 
