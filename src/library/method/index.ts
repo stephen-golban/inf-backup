@@ -1,4 +1,6 @@
+import { Linking } from 'react-native';
 import { Alert, Platform } from 'react-native';
+import InAppBrowser from 'react-native-inappbrowser-reborn';
 
 type TypesBase = 'bigint' | 'boolean' | 'function' | 'number' | 'object' | 'string' | 'symbol' | 'undefined';
 
@@ -49,4 +51,32 @@ export const validatePassword = (password: string, confirmPassword: string) => {
   const isPasswordSame = password !== '' && password === confirmPassword;
 
   return { isUppercase, isNumber, isSpecialChar, isMin8Char, isPasswordSame };
+};
+
+export const openBrowserAsync = async (url: string = 'https://www.google.com') => {
+  try {
+    const isAvailable = await InAppBrowser.isAvailable();
+    if (isAvailable) {
+      InAppBrowser.open(url, {
+        // iOS Properties
+        dismissButtonStyle: 'cancel',
+        preferredBarTintColor: 'gray',
+        preferredControlTintColor: 'white',
+        // Android Properties
+        animated: true,
+        // modalPresentationStyle: 'fullScreen',
+        showTitle: true,
+        modalEnabled: true,
+        toolbarColor: '#6200EE',
+        secondaryToolbarColor: 'black',
+        enableUrlBarHiding: true,
+        enableDefaultShare: true,
+        forceCloseOnRedirection: true,
+      });
+    } else {
+      Linking.openURL(url);
+    }
+  } catch (error: any) {
+    console.log(error.message);
+  }
 };

@@ -7,14 +7,12 @@ import { createJSONStorage, persist, type PersistOptions } from 'zustand/middlew
 import type { IAppState } from '@typings/app';
 import { APP_DISPLAY_NAME } from '@env';
 
-const app_state = (): IAppState => {
-  return {
-    user: null,
-    theme: 'light',
-    loadingApp: false,
-    isAuthenticated: false,
-    locale: i18n.languages[0] as IAppState['locale'],
-  };
+const app_state: IAppState = {
+  user: null,
+  theme: 'light',
+  loadingApp: false,
+  isAuthenticated: false,
+  locale: i18n.languages[0] as IAppState['locale'],
 };
 
 const persist_config: PersistOptions<IAppState> = {
@@ -23,9 +21,7 @@ const persist_config: PersistOptions<IAppState> = {
   name: SLICE_NAME.APP + APP_DISPLAY_NAME + 'STORE',
 };
 
-const persisted = persist(app_state, persist_config);
-
-const useAppStore = create<IAppState>()(persisted);
+const useAppStore = create(persist(() => app_state, persist_config));
 
 function setAppStore<K extends keyof IAppState>(key: K, value: IAppState[K]) {
   useAppStore.setState({ [key]: value });

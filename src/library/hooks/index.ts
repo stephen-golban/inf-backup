@@ -1,3 +1,5 @@
+export * from './useTryCatch';
+
 export { default as useStyle } from './useStyle';
 export { default as useGoBack } from './useGoBack';
 export { default as useTranslation } from './useTranslation';

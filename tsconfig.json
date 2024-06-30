@@ -21,6 +21,7 @@
       "@modules/*": ["modules/*"],
       "@typings/*": ["typings/*"],
       "@library/*": ["library/*"],
+      "@services/*": ["services/*"],
       "@navigation/*": ["navigation/*"],
       "@components/*": ["components/*"],
       "@translations/*": ["translations/*"]

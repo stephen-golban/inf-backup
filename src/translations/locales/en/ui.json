@@ -11,5 +11,14 @@
   "continue": "Continue",
   "back": "Back",
   "request": "Request",
-  "save": "Save"
+  "save": "Save",
+  "read": "Read",
+
+  "placeholders": {
+    "phone_input_country_search_placeholder": "Search for a country",
+    "password_placeholder": "Password",
+    "password_confirm_placeholder": "Confirm password",
+    "first_name_placeholder": "First name",
+    "last_name_placeholder": "Last name"
+  }
 }

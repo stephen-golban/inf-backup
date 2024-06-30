@@ -11,5 +11,14 @@
   "continue": "Continuă",
   "back": "Înapoi",
   "request": "Cerere",
-  "save": "Salvează"
+  "save": "Salvează",
+  "read": "Сitiți",
+
+  "placeholders": {
+    "phone_input_country_search_placeholder": "Căutați o țară",
+    "password_placeholder": "Parolă",
+    "password_confirm_placeholder": "Confirmați parola",
+    "first_name_placeholder": "Premume",
+    "last_name_placeholder": "Nume"
+  }
 }

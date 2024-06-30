@@ -1,7 +1,43 @@
 {
   "welcome": {
+    "language_select": "Vă rugăm să selectați limba aplicației"
+  },
+  "login": {
+    "page_title": "Autentificare",
     "title": "ACCESS INSTANT LA DATE",
     "subtitle": "Verifică-ți rapid scorul și istoria de credit",
-    "language_select": "Vă rugăm să selectați limba aplicației"
+    "terms_conditions_agreement": "Am citit și sunt de acord cu <1>Termenii și condițiile de utilizare</1> și <1>Politica de confidențialitate</1>",
+    "credit_history_report_agreement": "Sunt de acord cu verificarea <1>Raportului istoriei</1> mele de credit la Infodebit și Biroul de credit",
+
+    "questions": {
+      "register": "Nu ai cont? <1>Înregistrează-te</1>",
+      "forgot_password": "Ai uitat parola? <1>Recuperare parolă</1>"
+    }
+  },
+
+  "forgot-password": {
+    "page_title": "Resetează parola",
+
+    "questions": {
+      "authentication": "Ai deja un cont? <1>Autentifică-te</1>"
+    }
+  },
+
+  "otp": {
+    "page_title": "Cod de confirmare",
+    "code_sec": "sec.",
+    "code_valid": "Codul valabil",
+    "code_resend": "Resetează codul",
+    "code_resend_question": "Nu ați primit codul?"
+  },
+
+  "password-create": {
+    "page_title": "Crearea parolei"
+  },
+
+  "register": {
+    "page_title": "Înregistrează-te",
+    "expired_register": "Procesul de activare a contului a expirat.",
+    "expired_register_desc": "Vă rugăm să vă înregistrați din nou."
   }
 }

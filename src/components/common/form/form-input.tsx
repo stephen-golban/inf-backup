@@ -10,8 +10,8 @@ interface IFormInput<T extends Record<string, any>> extends TextInputProps, Reac
   name: Path<T>;
 }
 
-const FormInput = <T extends Record<string, any>>({ name, ...rest }: IFormInput<T>) => {
-  const { control } = useFormContext<T>();
+const FormInput = React.forwardRef<any, IFormInput<any>>(({ name, ...rest }, ref) => {
+  const { control } = useFormContext<any>();
 
   return (
     <Controller
@@ -22,13 +22,15 @@ const FormInput = <T extends Record<string, any>>({ name, ...rest }: IFormInput<
 
         return (
           <>
-            <TextInput {...field} error={error?.message !== undefined} onChangeText={field.onChange} {...rest} />
+            <TextInput {...field} ref={ref} error={error?.message !== undefined} onChangeText={field.onChange} {...rest} />
             <HelperText visible={message !== undefined} msg={message ?? ''} type={'error'} />
           </>
         );
       }}
     />
   );
-};
+});
+
+FormInput.displayName = 'FormInput';
 
 export { FormInput };

@@ -1,5 +1,5 @@
 const palette = {
-  black: 'rgb(0,0,0)',
+  black: '#030303',
   white: 'rgb(255,255,255)',
   transparent: 'transparent',
 

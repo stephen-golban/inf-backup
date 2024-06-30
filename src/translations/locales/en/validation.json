@@ -2,18 +2,23 @@
   "invalid_format": "Invalid field format",
   "min_value": "The minimum value is {{val}}",
   "field_required": "This field is required",
-  "min_chars_length": "Should be at least 2 characters long",
+  "min_chars_length": "Should be at least {{count}} characters long",
 
   "email_required": "Email is required",
   "email_valid_address": "Please provide a valid email address",
   "email_new_differ_old": "The new email must differ from the old one",
   "emails_must_match": "Emails must match",
 
-  "password_required": "Password is required",
-  "passwords_do_not_match": "The passwords do not match",
-  "passwords_new_differ_old": "The new password must differ from the old one",
-  "password_length_error": "Your password should be at least 8 characters long",
-  "success_password": "Your password has been successfully changed",
+  "password": {
+    "_match": "The passwords do not match",
+    "number_error": "At least one number",
+    "length_error": "At least 6 characters",
+    "uppercase_error": "At least one uppercase letter",
+    "do_not_match_error": "The passwords do not match",
+    "special_character_error": "At least one special symbol",
+    "success_password": "Your password has been successfully changed",
+    "new_differ_old": "The new password must differ from the old one"
+  },
 
   "error": {
     "-100": "Connection errors! Please check the connection again.",

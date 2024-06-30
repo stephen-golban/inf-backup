@@ -25,7 +25,7 @@ export default function useTextInput(props: Props) {
     } else if (disabled.value) {
       return colors.lightGray;
     } else {
-      return colors.gray_80;
+      return colors.transparent;
     }
   }, [errorValue, focusedValue, disabled]);
 

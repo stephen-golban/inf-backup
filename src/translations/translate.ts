@@ -1,6 +1,6 @@
 import I18n from './i18n';
-import { I18nKeys } from './locales';
+import type { I18nKey } from './locales';
 
-export function translate(key: I18nKeys, option?: Record<string, unknown>) {
+export function translate(key: I18nKey, option?: Record<string, unknown>) {
   return key ? I18n.t(key, option) : '';
 }

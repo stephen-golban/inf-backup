@@ -62,10 +62,10 @@ const TextInput = React.forwardRef((props: TextInputProps, ref: React.ForwardedR
 
   const renderInputPrefix = React.useMemo(() => {
     if (icon) {
-      return <Icon icon={icon} position="absolute" zIndex="huge" size={18} left={10} {...iconProps} />;
+      return <Icon icon={icon} absolute zIndex="huge" size={18} left={10} {...iconProps} />;
     }
     return (
-      <View position="absolute" zIndex="huge" left={10} {...(iconProps as unknown as any)}>
+      <View absolute zIndex="huge" left={15} {...(iconProps as unknown as any)}>
         {prefix}
       </View>
     );

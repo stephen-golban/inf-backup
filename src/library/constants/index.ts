@@ -18,4 +18,12 @@ enum SLICE_NAME {
   AUTHENTICATION = 'AUTHENTICATION_',
 }
 
-export { MMKV_KEY, API_CONFIG, SLICE_NAME };
+const REGEX = {
+  number: /\d/,
+  uppercase: /[A-Z]/,
+  special_character: /[!@#$%^&*(),.?":{}|<>]/,
+  email:
+    /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+};
+
+export { MMKV_KEY, API_CONFIG, SLICE_NAME, REGEX };

@@ -23,24 +23,17 @@ export const initOptionsI18n = (source: Resource) => {
 
     resources: source,
 
-    ns: ['en'],
-    defaultNS: 'en',
+    defaultNS: 'ui',
+    ns: ['logged-out', 'ui', 'validation'],
     debug: false,
 
     interpolation: {
-      // not needed for react as it does escape per default to prevent xss!
       escapeValue: false,
     },
-    compatibilityJSON: 'v3',
+    compatibilityJSON: 'v3' as any,
   };
 };
 
-/**
- * Config i18n for app
- */
-i18n
-  .use(languageDetector)
-  .use(initReactI18next)
-  .init(initOptionsI18n(resources) as any);
+i18n.use(languageDetector).use(initReactI18next).init(initOptionsI18n(resources));
 
 export default i18n;

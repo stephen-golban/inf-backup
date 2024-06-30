@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useImperativeHandle } from 'react';
 
 import usePicker from './hooks';
 import { format } from 'date-fns';
@@ -15,10 +15,12 @@ interface IDatePickerProps extends IPicker {
   children?: ((date: Date) => React.ReactNode) | React.ReactNode;
 }
 
-const DatePicker: React.FC<IDatePickerProps> = props => {
+const DatePicker = React.forwardRef<any, IDatePickerProps>((props, ref) => {
   const { colors } = useTheme();
   const { children, onConfirm, mode = 'date', date, disabled, max, min, ...rest } = props;
   const picker = usePicker({ onConfirm });
+
+  useImperativeHandle(ref, () => ({ show: picker.showDatePicker }));
 
   if (children) {
     return (
@@ -28,6 +30,7 @@ const DatePicker: React.FC<IDatePickerProps> = props => {
         </BaseButton>
 
         <DateTimePickerModal
+          ref={ref}
           //   locale={lang as string}
           date={date}
           mode={mode}
@@ -60,6 +63,6 @@ const DatePicker: React.FC<IDatePickerProps> = props => {
       />
     </PickerButton>
   );
-};
+});
 
-export default DatePicker;
+export { DatePicker };

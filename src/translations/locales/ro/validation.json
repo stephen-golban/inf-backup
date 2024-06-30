@@ -2,18 +2,23 @@
   "invalid_format": "Formatul câmpului este invalid",
   "min_value": "Valoarea minimă este {{val}}",
   "field_required": "Acest câmp este obligatoriu",
-  "min_chars_length": "Trebuie să aibă cel puțin 2 caractere",
+  "min_chars_length": "Trebuie să aibă cel puțin {{count}} caractere",
 
   "email_required": "Emailul este obligatoriu",
   "email_valid_address": "Vă rugăm să furnizați o adresă de email validă",
   "email_new_differ_old": "Noua adresă de email trebuie să fie diferită de cea veche",
   "emails_must_match": "Adresele de email trebuie să fie identice",
 
-  "password_required": "Parola este obligatorie",
-  "passwords_do_not_match": "Parolele nu se potrivesc",
-  "passwords_new_differ_old": "Noua parolă trebuie să fie diferită de cea veche",
-  "password_length_error": "Parola trebuie să aibă cel puțin 8 caractere",
-  "success_password": "Parola a fost schimbată cu succes",
+  "password": {
+    "_match": "Parolele nu se potrivesc",
+    "number_error": "Parola trebuie să conțină cel puțin un număr",
+    "length_error": "Parola trebuie să aibă cel puțin 8 caractere",
+    "uppercase_error": "Parola trebuie să conțină cel puțin o literă mare",
+    "do_not_match_error": "Parolele nu se potrivesc",
+    "special_character_error": "Parola trebuie să conțină cel puțin un simbol special",
+    "success_password": "Parola a fost schimbată cu succes",
+    "new_differ_old": "Noua parolă trebuie să fie diferită de cea veche"
+  },
 
   "error": {
     "-100": "Erori de conexiune! Vă rugăm să verificați din nou conexiunea.",

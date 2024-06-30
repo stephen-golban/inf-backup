@@ -1,7 +1,43 @@
 {
   "welcome": {
+    "language_select": "Please select the application language"
+  },
+  "login": {
+    "page_title": "Authorization",
     "title": "INSTANT ACCESS TO DATA",
     "subtitle": "Quickly check your score and credit history",
-    "language_select": "Please select the application language"
+    "terms_conditions_agreement": "I have read and agree to the <1>Terms and Conditions</1> and <1>Privacy Policy</1>",
+    "credit_history_report_agreement": "I agree to the verification of my <1>credit report</1> by Infodebit and the Credit Bureau",
+
+    "questions": {
+      "register": "Don’t have an account? <1>Register</1>",
+      "forgot_password": "Forgot your password? <1>Password recovery</1>"
+    }
+  },
+
+  "forgot-password": {
+    "page_title": "Password recovery",
+
+    "questions": {
+      "authentication": "Already have an account? <1>Login</1>"
+    }
+  },
+
+  "otp": {
+    "page_title": "Confirmation code",
+    "code_sec": "sec.",
+    "code_valid": "Code valid",
+    "code_resend": "Resend code",
+    "code_resend_question": "Don't receive the code?"
+  },
+
+  "password-create": {
+    "page_title": "Create password"
+  },
+
+  "register": {
+    "page_title": "Register",
+    "expired_register": "The account activation process has expired.",
+    "expired_register_desc": "Please register again."
   }
 }

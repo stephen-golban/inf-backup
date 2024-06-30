@@ -9,21 +9,21 @@ interface IWelcomeModule {
 }
 
 const WelcomeModule: React.FC<IWelcomeModule> = ({ onPressContinue }) => {
-  const { handleChangeLanguage, languages, selectedLanguage } = useWelcomeModule();
+  const { options, defaultValue, onChange } = useWelcomeModule();
 
   return (
-    <Screen unsafe bg="primary" p="lg">
+    <Screen excludeEdges={['top']} bg="primary" p="lg">
       <View fill center>
         <View w={239} h={190}>
           <Image br="lg" resizeMode="cover" source={require('@assets/images/welcome-logo.jpeg')} />
         </View>
 
-        <Text variant="18-reg" mt="xxl" textAlign="center" mb="lg" color="secondary" t18n="logged_out:welcome:language_select" />
+        <Text variant="18-reg" mt="xl" textAlign="center" mb="lg" color="secondary" t18n="logged_out:welcome:language_select" />
 
-        <Dropdown data={languages} defaultValue={selectedLanguage} onChange={handleChangeLanguage} />
+        <Dropdown data={options} defaultValue={defaultValue} onChange={onChange} />
       </View>
 
-      <FilledButton t18n="ui:continue" onPress={onPressContinue} textColor="white" />
+      <FilledButton t18n="ui:continue" onPress={onPressContinue} />
     </Screen>
   );
 };

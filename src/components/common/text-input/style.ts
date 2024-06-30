@@ -1,17 +1,18 @@
 import { AppTheme } from '@theme/index';
 import { StyleSheet } from 'react-native';
 
-export default ({ colors }: AppTheme) => {
+export default ({ colors, textVariants }: AppTheme) => {
   return StyleSheet.create({
     input: {
       flex: 1,
-      height: 56,
+      height: 48,
       borderWidth: 1,
-      borderRadius: 8,
+      borderRadius: 48,
+      color: colors.blue,
       paddingHorizontal: 16,
-      color: colors.black,
-      borderColor: colors.gray_80,
-      backgroundColor: colors.white,
+      ...textVariants['16-semi'],
+      borderColor: colors.transparent,
+      backgroundColor: colors.lightBlue,
     },
     multiline: {
       height: 120,
@@ -19,7 +20,7 @@ export default ({ colors }: AppTheme) => {
       paddingBottom: 30,
     },
     withIcon: {
-      paddingLeft: 35,
+      paddingLeft: 70,
     },
   });
 };

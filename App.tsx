@@ -24,17 +24,17 @@ const MyApp = () => {
   }, [scheme]);
 
   return (
-    <NativeSWRConfig>
-      <SafeAreaProvider>
-        <ThemeProvider theme={THEME[themeType]}>
-          <I18nextProvider i18n={internationalization}>
+    <SafeAreaProvider>
+      <I18nextProvider i18n={internationalization}>
+        <NativeSWRConfig>
+          <ThemeProvider theme={THEME[themeType]}>
             <GestureHandlerRootView style={{ flex: 1 }}>
               <ApplicationNavigator />
             </GestureHandlerRootView>
-          </I18nextProvider>
-        </ThemeProvider>
-      </SafeAreaProvider>
-    </NativeSWRConfig>
+          </ThemeProvider>
+        </NativeSWRConfig>
+      </I18nextProvider>
+    </SafeAreaProvider>
   );
 };
 
