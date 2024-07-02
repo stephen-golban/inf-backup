@@ -4,10 +4,10 @@ import { useColorScheme } from 'react-native';
 import { setAppTheme, useAppStore } from '@store/app';
 import { internationalization } from '@translations/index';
 
-import NativeSWRConfig from '@api/provider';
 import { I18nextProvider } from 'react-i18next';
 import { ThemeProvider } from '@shopify/restyle';
 import ApplicationNavigator from '@navigation/index';
+import { ToastProvider } from 'react-native-toast-notifications';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
@@ -26,13 +26,13 @@ const MyApp = () => {
   return (
     <SafeAreaProvider>
       <I18nextProvider i18n={internationalization}>
-        <NativeSWRConfig>
-          <ThemeProvider theme={THEME[themeType]}>
+        <ThemeProvider theme={THEME[themeType]}>
+          <ToastProvider placement="top" offsetTop={0} animationType="slide-in">
             <GestureHandlerRootView style={{ flex: 1 }}>
               <ApplicationNavigator />
             </GestureHandlerRootView>
-          </ThemeProvider>
-        </NativeSWRConfig>
+          </ToastProvider>
+        </ThemeProvider>
       </I18nextProvider>
     </SafeAreaProvider>
   );

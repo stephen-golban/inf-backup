@@ -45,5 +45,8 @@ function setAppLocale(locale: IAppState['locale']) {
   i18n.changeLanguage(locale);
   useAppStore.setState({ locale });
 }
+function resetAppStore() {
+  useAppStore.setState(app_state);
+}
 
-export { setAppStore, setAppLoading, setAppLocale, setAppTheme, setAppIsAuthenticated, setAppUser, useAppStore };
+export { setAppStore, resetAppStore, setAppLoading, setAppLocale, setAppTheme, setAppIsAuthenticated, setAppUser, useAppStore };

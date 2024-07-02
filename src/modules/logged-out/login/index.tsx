@@ -1,29 +1,28 @@
 import React from 'react';
 import { TextInput } from 'react-native';
 
-import useLoginModule from './hooks';
-
 import { AuthLayout } from '@components/layouts';
-import { FilledButton, Form, KeyboardAware, View } from '@components/common';
+import { FilledButton, Form, View } from '@components/common';
 import { LoggedOutPasswordInput, LoggedOutPhoneInput, TermsAgreements, TextRow } from '../parts';
 
 import { login_form_schema, type LoginFormFields } from './resolver';
 
+import { DEFAULT_VALUES } from './mock';
+
 interface ILoginModule {
+  loading?: boolean;
   onPressRegister(): void;
   onPressForgotPassword(): void;
   onSubmit(args: LoginFormFields): void;
 }
 
-const LoginModule: React.FC<ILoginModule> = ({ onPressForgotPassword, onPressRegister, onSubmit }) => {
-  const { DEFAULT_VALUES } = useLoginModule();
-
+const LoginModule: React.FC<ILoginModule> = ({ onPressForgotPassword, onPressRegister, loading, onSubmit }) => {
   const passwordRef = React.useRef<TextInput>(null);
 
   return (
     <AuthLayout page_title="logged_out:login:page_title">
       <Form defaultValues={DEFAULT_VALUES} resolver={login_form_schema}>
-        {({ setValue, watch, control, formState }) => {
+        {({ setValue, watch, control, formState, handleSubmit }) => {
           return (
             <View fill>
               <View fill>
@@ -39,7 +38,14 @@ const LoginModule: React.FC<ILoginModule> = ({ onPressForgotPassword, onPressReg
               <View rg="sm" mt="xl">
                 <TextRow title="logged_out:login:questions:register" onPress={onPressRegister} />
                 <TextRow title="logged_out:login:questions:forgot_password" onPress={onPressForgotPassword} />
-                <FilledButton t18n="ui:continue" bg="blue" mt="xl" disabled={!formState.isValid} />
+                <FilledButton
+                  mt="xl"
+                  bg="blue"
+                  t18n="ui:continue"
+                  loading={loading}
+                  disabled={!formState.isValid}
+                  onPress={handleSubmit(onSubmit)}
+                />
               </View>
             </View>
           );

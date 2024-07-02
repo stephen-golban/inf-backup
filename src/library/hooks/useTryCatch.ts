@@ -23,6 +23,7 @@ function useTryCatch<T extends (...args: any[]) => any>(callback: T): T {
       }
       return result;
     } catch (error: any) {
+      console.log(error);
       toast.show(error.message, { type: 'danger' });
       throw error;
     }
