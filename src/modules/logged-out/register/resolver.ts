@@ -3,7 +3,6 @@ import { stringifyObjectValidate } from '@library/string';
 
 import { type InferType, object, string, date } from 'yup';
 
-import { subYears } from 'date-fns';
 import { REGEX } from '@library/constants';
 import { yupTermsAndAgreements } from '@library/yup-validate';
 
@@ -12,9 +11,7 @@ const shape = object({
     .matches(REGEX.email, stringifyObjectValidate({ keyT: 'validation:email_valid_address' }))
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' })),
 
-  birthDate: date()
-    .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))
-    .min(subYears(new Date(), 18)),
+  birthDate: date(),
 
   identityNumber: string()
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))

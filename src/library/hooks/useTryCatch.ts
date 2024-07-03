@@ -18,6 +18,7 @@ function useTryCatch<T extends (...args: any[]) => any>(callback: T): T {
       const result = callback(...args);
       if (result instanceof Promise) {
         return result.catch((error: any) => {
+          console.log('error', error);
           toast.show(error.message, { type: 'danger' });
         });
       }

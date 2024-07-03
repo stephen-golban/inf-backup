@@ -19,7 +19,7 @@ export interface Config<Data> extends AxiosRequestConfig {
 }
 
 export type Props<Data> = RequestState<Data> & RequestFunctions;
-export type BaseAxios<Data> = [(lazyData?: Config<Data>['data']) => Promise<void>, Props<Data>];
+export type BaseAxios<Data> = [(lazyData?: Config<Data>['data'], lazyConfig?: Config<Data>) => Promise<Data | undefined>, Props<Data>];
 
 function useBaseAxios<Data>(url: string): BaseAxios<Data>;
 function useBaseAxios<Data>(config: Config<Data>): BaseAxios<Data>;
@@ -34,9 +34,10 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
     if (typeof param1 === 'string') {
       const { axiosInstance = base_api, ...config } = param2;
 
-      return (lazyData: Config<Data>['data']) =>
+      return (lazyData: Config<Data>['data'], lazyConfig?: Config<Data>) =>
         axiosInstance(param1, {
           ...config,
+          ...lazyConfig,
           data: lazyData || param2.data,
           cancelToken,
         });
@@ -44,9 +45,10 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
 
     const { axiosInstance = base_api, ...config } = param1;
 
-    return (lazyData: Config<Data>['data']) =>
+    return (lazyData: Config<Data>['data'], lazyConfig?: Config<Data>) =>
       axiosInstance({
         ...config,
+        ...lazyConfig,
         data: lazyData || param1.data,
         cancelToken,
       });
@@ -55,19 +57,20 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
   const invokeAxios = createAxiosInvoker();
 
   const getData = useCallback(
-    async (lazyData: Config<Data>['data']) => {
+    async (lazyData: Config<Data>['data'], lazyConfig?: Config<Data>) => {
       dispatch({ type: 'REQUEST_INIT' });
 
       try {
-        const res = (await invokeAxios(lazyData)) as AxiosResponse<Data>;
+        const res = (await invokeAxios(lazyData, lazyConfig)) as AxiosResponse<Data>;
 
         if (isMounted.current) {
-          return dispatch({ type: 'REQUEST_SUCCESS', payload: res.data });
+          dispatch({ type: 'REQUEST_SUCCESS', payload: res.data });
+          return res.data;
         }
       } catch (e) {
         if (isMounted.current) {
           toast.show((e as any).response.data.message, { type: 'danger' });
-          return dispatch({ type: 'REQUEST_FAILED', payload: e as Error });
+          dispatch({ type: 'REQUEST_FAILED', payload: e as Error });
         }
       }
     },

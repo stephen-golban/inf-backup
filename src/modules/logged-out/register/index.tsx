@@ -12,22 +12,23 @@ import { Controller } from 'react-hook-form';
 import { register_form_schema, type RegisterFormFields } from './resolver';
 
 interface IRegisterModule {
+  loading: boolean;
   onPressLogin(): void;
   onSubmit(args: RegisterFormFields): void;
 }
 
-const RegisterModule: React.FC<IRegisterModule> = ({ onPressLogin, onSubmit }) => {
+const RegisterModule: React.FC<IRegisterModule> = ({ loading, onPressLogin, onSubmit }) => {
   const { DEFAULT_VALUES } = useRegisterModule();
 
+  const phoneRef = React.useRef<TextInput>(null);
+  const emailRef = React.useRef<TextInput>(null);
   const firstNameRef = React.useRef<TextInput>(null);
   const lastNameRef = React.useRef<TextInput>(null);
-  const emailRef = React.useRef<TextInput>(null);
-  const phoneRef = React.useRef<TextInput>(null);
 
   return (
     <AuthLayout page_title="logged_out:register:page_title" isLongSheet>
       <Form defaultValues={DEFAULT_VALUES} resolver={register_form_schema}>
-        {({ setValue, watch, control, formState }) => {
+        {({ setValue, watch, control, formState, handleSubmit }) => {
           return (
             <View fill>
               <View fill>
@@ -95,7 +96,7 @@ const RegisterModule: React.FC<IRegisterModule> = ({ onPressLogin, onSubmit }) =
                             <View row align="center">
                               <Icon icon="CalendarIcon" mr="sm" />
                               <Text color="secondary" variant="14-mid">
-                                {format(watch('birthDate'), 'yyyy-MM-dd')}
+                                {format(watch('birthDate') || subYears(new Date(), 18), 'yyyy-MM-dd')}
                               </Text>
                             </View>
                           </View>
@@ -109,7 +110,14 @@ const RegisterModule: React.FC<IRegisterModule> = ({ onPressLogin, onSubmit }) =
               </View>
               <View rg="sm" mt="xl">
                 <TextRow title="logged_out:forgot-password:questions:authentication" onPress={onPressLogin} />
-                <FilledButton t18n="ui:continue" bg="blue" mt="xl" disabled={!formState.isValid} />
+                <FilledButton
+                  t18n="ui:continue"
+                  bg="blue"
+                  mt="xl"
+                  loading={loading}
+                  disabled={!formState.isValid}
+                  onPress={handleSubmit(onSubmit)}
+                />
               </View>
             </View>
           );

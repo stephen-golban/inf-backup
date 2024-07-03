@@ -7,10 +7,10 @@ import { ActivityIndicator, Text } from '@components/common';
 interface IResendBlock {
   seconds: number;
   canResend?: boolean;
-  onPressResned(): void;
+  onPressResend(): void;
 }
 
-const ResendBlock: React.FC<IResendBlock> = ({ canResend, seconds, onPressResned }) => {
+const ResendBlock: React.FC<IResendBlock> = ({ canResend, seconds, onPressResend }) => {
   const { t } = useTranslation();
   return (
     <Text flex variant="18-bold">
@@ -21,7 +21,7 @@ const ResendBlock: React.FC<IResendBlock> = ({ canResend, seconds, onPressResned
         variant="18-bold"
         disabled={!canResend}
         color={canResend ? 'blue' : 'black'}
-        onPress={canResend ? onPressResned : undefined}>
+        onPress={canResend ? onPressResend : undefined}>
         {canResend ? (
           t('logged_out:otp:code_resend')
         ) : (

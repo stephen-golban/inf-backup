@@ -1,6 +1,7 @@
 import { APP_SCREEN, RootStackScreenProps } from '../index';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { TokensApiResponse } from '@typings/responses/tokens';
 
 enum LOGGED_OUT_SCREENS {
   Welcome = 'Welcome',
@@ -31,7 +32,7 @@ type LoggedOutStackParamList = {
 
   [LOGGED_OUT_SCREENS.ExpiredRegister]: undefined;
 
-  [LOGGED_OUT_SCREENS.CreatePassword]: undefined;
+  [LOGGED_OUT_SCREENS.CreatePassword]: { token: TokensApiResponse };
 
   [LOGGED_OUT_SCREENS.ForgotPassword]: undefined;
 

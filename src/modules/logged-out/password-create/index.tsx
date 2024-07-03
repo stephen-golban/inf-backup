@@ -10,10 +10,11 @@ import { FilledButton, Form, View } from '@components/common';
 import { password_create_form_schema, type PasswordCreateFormFields } from './resolver';
 
 interface IOneTimePasswordModule {
+  loading: boolean;
   onSubmit(args: PasswordCreateFormFields): void;
 }
 
-const PasswordCreateModule: React.FC<IOneTimePasswordModule> = ({ onSubmit }) => {
+const PasswordCreateModule: React.FC<IOneTimePasswordModule> = ({ loading, onSubmit }) => {
   const { DEFAULT_VALUES } = usePasswordCreateModule();
 
   const passwordConfirmRef = React.useRef<TextInput>(null);
@@ -33,7 +34,14 @@ const PasswordCreateModule: React.FC<IOneTimePasswordModule> = ({ onSubmit }) =>
                 />
               </View>
               <View rg="sm" mt="xl">
-                <FilledButton t18n="ui:continue" bg="blue" mt="xl" disabled={!formState.isValid} onPress={handleSubmit(onSubmit)} />
+                <FilledButton
+                  mt="xl"
+                  bg="blue"
+                  t18n="ui:continue"
+                  loading={loading}
+                  disabled={!formState.isValid}
+                  onPress={handleSubmit(onSubmit)}
+                />
               </View>
             </View>
           );

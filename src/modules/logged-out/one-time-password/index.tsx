@@ -11,10 +11,12 @@ import { FilledButton, Form, OneTimePasswordInput, View } from '@components/comm
 import { one_time_password_form_schema, type OneTimePasswordFormFields } from './resolver';
 
 interface IOneTimePasswordModule {
+  loading: boolean;
+  onResendCode(): void;
   onSubmit(args: OneTimePasswordFormFields): void;
 }
 
-const OneTimePasswordModule: React.FC<IOneTimePasswordModule> = ({ onSubmit }) => {
+const OneTimePasswordModule: React.FC<IOneTimePasswordModule> = ({ loading, onSubmit, onResendCode }) => {
   const { DEFAULT_VALUES } = useOneTimePasswordModule();
   const { canResend, resetTimer, seconds } = useResendTimer();
 
@@ -34,9 +36,16 @@ const OneTimePasswordModule: React.FC<IOneTimePasswordModule> = ({ onSubmit }) =
                 />
               </View>
               <View rg="sm" mt="xl">
-                <ResendBlock canResend={canResend} seconds={seconds} onPressResned={noop} />
+                <ResendBlock canResend={canResend} seconds={seconds} onPressResend={onResendCode} />
 
-                <FilledButton t18n="ui:continue" bg="blue" mt="xl" disabled={!formState.isValid} onPress={handleSubmit(onSubmit)} />
+                <FilledButton
+                  mt="xl"
+                  bg="blue"
+                  t18n="ui:continue"
+                  loading={loading}
+                  disabled={!formState.isValid}
+                  onPress={handleSubmit(onSubmit)}
+                />
               </View>
             </View>
           );
