@@ -7,11 +7,9 @@ import * as Keychain from 'react-native-keychain';
 
 import type { LoginFormFields } from '@modules/logged-out/login/resolver';
 import type { LoginApiResponse } from '@typings/responses/login';
-import { useMe } from '@services/me';
 
 export default function useLoginScreen() {
-  const { getMe, loading: loadingMe } = useMe(false);
-  const [call, { loading: loadingLogin }] = useLazyAxios<LoginApiResponse>({
+  const [call, { loading }] = useLazyAxios<LoginApiResponse>({
     method: 'post',
     axiosInstance: auth_api,
     url: '/auth/oauth/token',
@@ -29,10 +27,8 @@ export default function useLoginScreen() {
       await Keychain.setInternetCredentials('accessToken', 'user', access_token);
       await Keychain.setInternetCredentials('refreshToken', 'user', refresh_token);
       setAppIsAuthenticated(true);
-    }).then(getMe);
+    });
   });
-
-  const loading = loadingLogin || loadingMe;
 
   return { loading, onSubmit };
 }

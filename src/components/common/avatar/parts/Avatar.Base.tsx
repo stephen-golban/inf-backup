@@ -1,16 +1,21 @@
 import React from 'react';
 
 import { Badge } from '@components/ui';
+import { BaseButton, ButtonProps } from '@components/common/button';
 import { View, type ViewProps } from '@components/common/view';
 
 import type { BaseAvatarProps } from '../type';
 
-const AvatarBase: React.FC<BaseAvatarProps & ViewProps> = ({ size = 50, badgeProps, children, ...rest }) => {
+interface IAvatarBase extends BaseAvatarProps, ViewProps, Pick<ButtonProps, 'onPress'> {}
+
+const AvatarBase: React.FC<IAvatarBase> = ({ size = 50, badgeProps, children, onPress, ...rest }) => {
+  const Wrapper = onPress ? BaseButton : View;
+
   return (
-    <View w={size} h={size} {...rest}>
+    <Wrapper w={size} h={size} onPress={onPress} {...rest}>
       {children}
       {badgeProps && <Badge {...badgeProps} />}
-    </View>
+    </Wrapper>
   );
 };
 

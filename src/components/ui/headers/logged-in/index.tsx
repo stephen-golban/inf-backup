@@ -18,6 +18,13 @@ const Header: React.FC<NativeStackHeaderProps> = ({ navigation }) => {
 
   const photoUri = user?.photo ? `data:image/jpeg;base64,${user.photo}` : undefined;
 
+  const onPressAvatar = () => {
+    navigation.navigate(LOGGED_IN_STACK.SCREENS, {
+      screen: LOGGED_IN_SCREENS.PROFILE,
+      params: { screen: PROFILE_SCREENS.SECTIONS },
+    });
+  };
+
   return (
     <View px="md" py="xs" bg="white" row between align="center">
       {isBackButtonVisible && <Icon icon="ChevronLeft" color="black" onPress={goBack} />}
@@ -28,17 +35,8 @@ const Header: React.FC<NativeStackHeaderProps> = ({ navigation }) => {
           {user?.firstName}!
         </Text>
       )}
-      {photoUri && (
-        <BaseButton
-          onPress={() =>
-            navigation.navigate(LOGGED_IN_STACK.SCREENS, {
-              screen: LOGGED_IN_SCREENS.PROFILE,
-              params: { screen: PROFILE_SCREENS.SECTIONS },
-            })
-          }>
-          <Avatar.Image source={{ uri: photoUri }} size={35} />
-        </BaseButton>
-      )}
+
+      <Avatar.Image source={{ uri: photoUri }} size={35} onPress={onPressAvatar} />
     </View>
   );
 };

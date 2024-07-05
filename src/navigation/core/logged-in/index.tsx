@@ -15,10 +15,10 @@ const Stack = createNativeStackNavigator<LoggedInStackParams>();
 const renderHeader = (props: NativeStackHeaderProps) => <Header {...props} />;
 
 const LoggedInStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_IN>> = () => {
-  useMe(true);
+  const { loading } = useMe(true);
 
   return (
-    <Screen bg="primary" excludeEdges={['bottom']}>
+    <Screen bg="primary" excludeEdges={['bottom']} loading={loading}>
       <Stack.Navigator initialRouteName={LOGGED_IN_STACK.TABS} screenOptions={{ header: props => renderHeader(props) }}>
         <Stack.Screen name={LOGGED_IN_STACK.TABS} component={Tabs} />
         <Stack.Screen name={LOGGED_IN_STACK.SCREENS} component={Screens} />
