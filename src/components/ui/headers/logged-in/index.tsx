@@ -27,7 +27,7 @@ const Header: React.FC<NativeStackHeaderProps> = ({ navigation }) => {
 
   return (
     <View px="md" py="xs" bg="white" row between align="center">
-      {isBackButtonVisible && <Icon icon="ChevronLeft" color="black" onPress={goBack} />}
+      {isBackButtonVisible && <Icon icon="ArrowNarrowLeft" color="black" onPress={goBack} />}
       {isBackButtonVisible ? (
         <Image source={require('@assets/images/infodebit.png')} h={35} resizeMode="contain" />
       ) : (
