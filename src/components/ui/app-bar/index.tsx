@@ -8,13 +8,13 @@ import { IconType, View } from '@components/common';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 const TAB_ICONS = {
-  HomeTabStack: 'HomeIcon',
-  CircularPlus: 'CircularPlusIcon',
+  HOME: 'HomeIcon',
+  Plus: 'PlusIcon',
   Like: 'LikeIcon',
 };
 
 const HEIGHT_APP_BAR = isIos ? 70 : 60;
-const PADDING_BOTTOM_APP_BAR = isIos ? 'sm' : 'zero';
+const PADDING_BOTTOM_APP_BAR = isIos ? 'md' : 'xs';
 
 const AppBar: React.FC<BottomTabBarProps> = props => {
   const { state, navigation } = props;

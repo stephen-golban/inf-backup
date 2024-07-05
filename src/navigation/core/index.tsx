@@ -3,8 +3,8 @@ import React from 'react';
 import { useAppStore } from '@store/app';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import LoggedInStack from './logged-in';
 import LoggedOutStack from './logged-out';
+import LoggedInStack from './logged-in';
 
 import { APP_SCREEN, type RootStackParamList } from '@typings/navigation';
 

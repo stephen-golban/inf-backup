@@ -1,6 +1,8 @@
 import { auth_api } from '@api/base';
 import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
+import { setAppIsAuthenticated } from '@store/app';
+
 import * as Keychain from 'react-native-keychain';
 
 import type { LoginFormFields } from '@modules/logged-out/login/resolver';
@@ -25,6 +27,7 @@ export default function useLoginScreen() {
       const { access_token, refresh_token } = data;
       await Keychain.setInternetCredentials('accessToken', 'user', access_token);
       await Keychain.setInternetCredentials('refreshToken', 'user', refresh_token);
+      setAppIsAuthenticated(true);
     }
   });
 

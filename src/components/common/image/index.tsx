@@ -1,23 +1,19 @@
 import React from 'react';
-
 import { useTheme } from '@theme/index';
 
+import { View } from '../view';
 import FastImage from 'react-native-fast-image';
-import { ActivityIndicator, View } from '@components/common';
+import { ActivityIndicator } from '../activity-indicator';
 
 import type { ImageProps } from './type';
 
-export const Image: React.FC<ImageProps> = props => {
-  const { source, resizeMode = FastImage.resizeMode.cover, loading, loaderSize = 'large', ...rest } = props;
+const noImgAvailable = require('@assets/images/no-img-available.jpeg');
 
+const Image: React.FC<ImageProps> = props => {
+  const { source, resizeMode = FastImage.resizeMode.cover, loading, loaderSize = 'large', ...rest } = props;
   const { layout } = useTheme();
   const [isLoading, setLoading] = React.useState(true);
-  const [errOccured, setErrOccured] = React.useState<null | boolean>(null);
-
-  const handleLoadStart = () => {
-    setLoading(true);
-    setErrOccured(null);
-  };
+  const [errOccured, setErrOccured] = React.useState(false);
 
   const handleLoadEnd = () => {
     setLoading(false);
@@ -28,39 +24,32 @@ export const Image: React.FC<ImageProps> = props => {
     setErrOccured(true);
   };
 
-  const SOURCE = React.useMemo(() => {
+  const getSource = () => {
     if (errOccured) {
-      return require('@assets/images/no-img-available.jpeg');
+      return noImgAvailable;
     }
     if (source) {
       if (typeof source === 'object') {
-        if (source.uri) {
-          return { uri: source.uri, priority: FastImage.priority.high };
-        }
-        return require('@assets/images/no-img-available.jpeg');
+        const uri = source.uri ? source.uri : noImgAvailable;
+        return { uri: uri.toString(), priority: FastImage.priority.high };
       }
       return source;
     }
-    return require('@assets/images/no-img-available.jpeg');
-  }, [errOccured, source]);
+    return { uri: noImgAvailable, priority: FastImage.priority.high };
+  };
+
+  const SOURCE = getSource();
 
   return (
-    <View overflow="hidden" fill {...rest}>
-      <FastImage
-        source={SOURCE}
-        onError={handleError}
-        resizeMode={resizeMode}
-        style={[layout.fullSize]}
-        onLoadEnd={handleLoadEnd}
-        onLoadStart={handleLoadStart}
-      />
+    <View overflow="hidden" flex={1} {...rest}>
+      <FastImage onError={handleError} resizeMode={resizeMode} style={[layout.fullSize]} onLoadEnd={handleLoadEnd} source={SOURCE} />
       {(isLoading || loading) && (
-        <View center absoluteFill fullSize bg="black_50">
-          <ActivityIndicator size="large" />
+        <View center absoluteFill fullSize>
+          <ActivityIndicator size={loaderSize} color="black" />
         </View>
       )}
     </View>
   );
 };
 
-export type { ImageProps };
+export { Image, type ImageProps };

@@ -1,26 +1,23 @@
 import React from 'react';
-
 import { useAppStore } from '@store/app';
 import { useGoBack } from '@library/hooks';
-
 import { Avatar } from '@components/common/avatar';
-import { Icon, Image, View } from '@components/common';
+import { Icon, Text, View } from '@components/common';
+import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 
-import type { BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
-
-const Header: React.FC<BottomTabHeaderProps> = ({ navigation }) => {
+const Header: React.FC<NativeStackHeaderProps> = ({ navigation }) => {
   const { showGoBack = true, goBack = navigation.goBack } = useGoBack();
-
   const user = useAppStore(state => state.user);
 
   const isBackButtonVisible = showGoBack && navigation.canGoBack();
 
-  return (
-    <View px="md" bg="lightGray" row between align="center">
-      {isBackButtonVisible && <Icon icon="ChevronLeft" color="black" onPress={goBack} />}
+  const photoUri = user?.photo ? `data:image/jpeg;base64,${user.photo}` : undefined;
 
-      <Image resizeMode="contain" style={{ height: 70, aspectRatio: 2 / 1.3 }} source={require('@assets/images/infodebit.png')} />
-      <Avatar.Image source={{ uri: user?.photo }} size={35} />
+  return (
+    <View px="md" py="xs" bg="white" row between align="center">
+      {isBackButtonVisible && <Icon icon="ChevronLeft" color="black" onPress={goBack} />}
+      <Text variant="14-reg">Bine ai venit, {user?.firstName}!</Text>
+      {photoUri && <Avatar.Image source={{ uri: photoUri }} size={35} />}
     </View>
   );
 };

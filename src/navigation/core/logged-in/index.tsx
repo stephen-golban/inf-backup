@@ -1,22 +1,22 @@
 import React from 'react';
-
-import { BottomTabHeaderProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import { NativeStackHeaderProps, createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Header } from '@components/ui';
+import { Tabs } from '@screens/logged-in';
+import { Screen } from '@components/common';
+import { APP_SCREEN, LOGGED_IN_STACK, LoggedInStackParams, type RootStackScreenProps } from '@typings/navigation';
 
-import * as SCREENS from '@screens/logged-in';
+const Stack = createNativeStackNavigator<LoggedInStackParams>();
 
-import { APP_SCREEN, LOGGED_IN_TABS, LoggedInTabsParamList, type RootStackScreenProps } from '@typings/navigation';
-
-const Tab = createBottomTabNavigator<LoggedInTabsParamList>();
-
-const renderHeader = (props: BottomTabHeaderProps) => <Header {...props} />;
+const renderHeader = (props: NativeStackHeaderProps) => <Header {...props} />;
 
 const LoggedInStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_IN>> = () => {
   return (
-    <Tab.Navigator initialRouteName={LOGGED_IN_TABS.HOME} screenOptions={{ header: renderHeader }}>
-      <Tab.Screen name={LOGGED_IN_TABS.HOME} component={SCREENS.Home} />
-    </Tab.Navigator>
+    <Screen bg="primary" excludeEdges={['bottom']}>
+      <Stack.Navigator initialRouteName={LOGGED_IN_STACK.TABS} screenOptions={{ header: props => renderHeader(props) }}>
+        <Stack.Screen name={LOGGED_IN_STACK.TABS} component={Tabs} />
+        {/* <Stack.Screen name={LOGGED_IN_STACK.SCREENS} component={Screens} /> */}
+      </Stack.Navigator>
+    </Screen>
   );
 };
 
