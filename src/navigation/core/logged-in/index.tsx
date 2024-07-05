@@ -3,6 +3,7 @@ import { NativeStackHeaderProps, createNativeStackNavigator } from '@react-navig
 import { Header } from '@components/ui';
 import { Tabs } from '@screens/logged-in';
 import { Screen } from '@components/common';
+import { Screens } from '@screens/logged-in';
 import { APP_SCREEN, LOGGED_IN_STACK, LoggedInStackParams, type RootStackScreenProps } from '@typings/navigation';
 
 const Stack = createNativeStackNavigator<LoggedInStackParams>();
@@ -14,7 +15,7 @@ const LoggedInStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_IN>> = () =
     <Screen bg="primary" excludeEdges={['bottom']}>
       <Stack.Navigator initialRouteName={LOGGED_IN_STACK.TABS} screenOptions={{ header: props => renderHeader(props) }}>
         <Stack.Screen name={LOGGED_IN_STACK.TABS} component={Tabs} />
-        {/* <Stack.Screen name={LOGGED_IN_STACK.SCREENS} component={Screens} /> */}
+        <Stack.Screen name={LOGGED_IN_STACK.SCREENS} component={Screens} />
       </Stack.Navigator>
     </Screen>
   );

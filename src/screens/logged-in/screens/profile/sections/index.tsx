@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native';
 import React from 'react';
 
-const ProfileSections = () => {
+const SectionsScreen = () => {
   return (
     <View>
-      <Text>ProfileSections</Text>
+      <Text>SectionsScreen</Text>
     </View>
   );
 };
 
-export { ProfileSections };
+export { SectionsScreen };
