@@ -18,8 +18,16 @@ export interface Config<Data> extends AxiosRequestConfig {
   method?: RequestMethod;
 }
 
+export type OnSuccess<Data> = (arg: Data) => void;
+
+export type GetData<Data> = (
+  lazyData?: Config<Data>['data'],
+  onSuccess?: OnSuccess<Data>,
+  lazyConfig?: Config<Data>,
+) => Promise<Data | undefined>;
+
 export type Props<Data> = RequestState<Data> & RequestFunctions;
-export type BaseAxios<Data> = [(lazyData?: Config<Data>['data'], lazyConfig?: Config<Data>) => Promise<Data | undefined>, Props<Data>];
+export type BaseAxios<Data> = [GetData<Data>, Props<Data>];
 
 function useBaseAxios<Data>(url: string): BaseAxios<Data>;
 function useBaseAxios<Data>(config: Config<Data>): BaseAxios<Data>;
@@ -57,7 +65,7 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
   const invokeAxios = createAxiosInvoker();
 
   const getData = useCallback(
-    async (lazyData: Config<Data>['data'], lazyConfig?: Config<Data>) => {
+    async (lazyData: Config<Data>['data'], onSuccess?: OnSuccess<Data>, lazyConfig?: Config<Data>) => {
       dispatch({ type: 'REQUEST_INIT' });
 
       try {
@@ -65,6 +73,9 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
 
         if (isMounted.current) {
           dispatch({ type: 'REQUEST_SUCCESS', payload: res.data });
+          if (onSuccess && res.data) {
+            onSuccess(res.data);
+          }
           return res.data;
         }
       } catch (e) {

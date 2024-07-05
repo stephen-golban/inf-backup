@@ -1,23 +1,21 @@
 import React from 'react';
 
 import { HomeModule } from '@modules/logged-in';
-import { ActivityIndicator, View } from '@components/common';
 
-import { LOGGED_IN_TABS, type LoggedInTabsScreenProps } from '@typings/navigation';
-import useHomeScreen from './hooks';
+import { Button } from 'react-native';
+import { useLogoutService } from '@services/logout';
 
-const Home: React.FC<LoggedInTabsScreenProps<LOGGED_IN_TABS.HOME>> = ({}) => {
-  const { data, loading } = useHomeScreen();
+import { LOGGED_IN_TABS, type LoggedInTabsProps } from '@typings/navigation';
 
-  if (loading) {
-    return (
-      <View fill justify="center">
-        <ActivityIndicator />
-      </View>
-    );
-  }
+const Home: React.FC<LoggedInTabsProps<LOGGED_IN_TABS.HOME>> = ({}) => {
+  const logout = useLogoutService();
 
-  return <HomeModule />;
+  return (
+    <>
+      <Button title="logout" onPress={logout} />
+      <HomeModule />
+    </>
+  );
 };
 
 export { Home };

@@ -46,7 +46,10 @@ function setAppLocale(locale: IAppState['locale']) {
   useAppStore.setState({ locale });
 }
 function resetAppStore() {
-  useAppStore.setState(app_state);
+  useAppStore.setState({
+    user: null,
+    isAuthenticated: false,
+  });
 }
 
 export { setAppStore, resetAppStore, setAppLoading, setAppLocale, setAppTheme, setAppIsAuthenticated, setAppUser, useAppStore };
