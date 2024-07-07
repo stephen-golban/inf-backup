@@ -12,11 +12,13 @@
     "change_subscription": "Изменить подписку",
     "current_subscription": "Текущая подписка",
     "other_available_options": "Другие доступные опции",
-    "choose_subscription": "Выбрать подписку {duration}",
+    "choose_subscription": "Выбрать подписку {{duration}}",
     "cancel_subscription": "Отменить подписку",
     "equivalent_to": "Эквивалент {{amount}}/месяц."
   },
   "change_password_section": {
+    "current_password":"Текущий пароль",
+    "new_password":"Новый пароль",
     "min_8_chars": "Минимум 8 символов",
     "min_1_uppercase": "Минимум 1 заглавная буква",
     "min_1_symbol": "Минимум 1 символ"

@@ -12,11 +12,13 @@
     "change_subscription": "Change subscription",
     "current_subscription": "Current Subscription",
     "other_available_options": "Other available options",
-    "choose_subscription": "Choose subscription {duration}",
+    "choose_subscription": "Choose subscription {{duration}}",
     "cancel_subscription": "Cancel subscription",
     "equivalent_to": "Equivalent to {{amount}}/month."
   },
   "change_password_section": {
+    "current_password":"Current password",
+    "new_password":"New password",
     "min_8_chars": "Minimum 8 characters",
     "min_1_uppercase": "Minimum 1 uppercase letter",
     "min_1_symbol": "Minimum 1 symbol"

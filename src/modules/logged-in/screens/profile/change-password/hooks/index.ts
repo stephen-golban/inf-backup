@@ -1,6 +1,6 @@
 export const DEFAULT_VALUES = {
+  current_password: '',
   new_password: '',
-  confirm_password: '',
 };
 
 const useChangePasswordModule = () => {

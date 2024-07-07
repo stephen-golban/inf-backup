@@ -12,11 +12,13 @@
     "change_subscription": "Schimbă abonamentul",
     "current_subscription": "Abonament curent",
     "other_available_options": "Alte opțiuni disponibile",
-    "choose_subscription": "Alege abonamentul {duration}",
+    "choose_subscription": "Alege abonamentul {{duration}}",
     "cancel_subscription": "Anulează abonamentul",
     "equivalent_to": "Echivalentul a {{amount}}/lună."
   },
   "change_password_section": {
+    "current_password":"Parola curentă",
+    "new_password":"Parolă nouă",
     "min_8_chars": "Minim 8 caractere",
     "min_1_uppercase": "Minim 1 literă mare",
     "min_1_symbol": "Minim 1 simbol"

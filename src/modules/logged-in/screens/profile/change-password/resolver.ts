@@ -12,14 +12,12 @@ const newPasswordValidationMessage = {
 };
 
 const shape = object({
+  current_password: string().required(passwordValidationMessage),
   new_password: string()
     .required(newPasswordValidationMessage.required)
     .min(8, newPasswordValidationMessage.minLength)
     .matches(/[A-Z]/, newPasswordValidationMessage.uppercase)
     .matches(/[\W_]/, newPasswordValidationMessage.specialChar),
-  confirm_password: string()
-    .oneOf([ref('new_password')], newPasswordValidationMessage.match)
-    .required(passwordValidationMessage),
 });
 
 const change_password_form_schema = yupResolver(shape);

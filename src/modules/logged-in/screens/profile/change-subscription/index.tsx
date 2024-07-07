@@ -89,7 +89,7 @@ const ChangeSubscriptionModule: React.FC<IChangeSubscription> = ({ allSubscripti
               )}
               <OutlinedButton
                 text={t('profile:my_account:subscription_details:choose_subscription', {
-                  duration: getSubscriptionDurationText(subscription.subscriptionDuration as SubscriptionDuration, t),
+                  duration: getSubscriptionDurationText(subscription.title as SubscriptionDuration, t),
                 })}
                 textProps={{ variant: '14-reg' }}
               />
