@@ -3,6 +3,7 @@ import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
 import { useTokenService } from '@services/tokens';
 
+import { noop } from 'lodash';
 import { createQueryParams } from './util';
 
 import type { RegisterApiResponse } from '@typings/responses/register';
@@ -13,8 +14,8 @@ export default function useRegisterScreen(navigation: LoggedOutStackScreenProps<
   const service = useTokenService();
   const locale = useAppStore(state => state.locale);
   const [call, { loading: registerLoading }] = useLazyAxios<RegisterApiResponse>({
-    method: 'post',
     url: '/admin-api/persons',
+    method: 'post',
   });
 
   const onSubmit = useTryCatch(async (values: RegisterFormFields) => {
@@ -25,7 +26,7 @@ export default function useRegisterScreen(navigation: LoggedOutStackScreenProps<
         Authorization: `Bearer ${tokenRes.access_token}`,
       };
       const queryParams = createQueryParams(values, locale);
-      const res = await call(queryParams, { headers });
+      const res = await call(queryParams, noop, { headers });
       if (res) {
         navigation.navigate(LOGGED_OUT_SCREENS.OneTimePassword);
       }

@@ -1,3 +1,4 @@
+import { SubscriptionDuration } from '@typings/responses/subscriptions/all-subscriptions';
 import { Linking } from 'react-native';
 import { Alert, Platform } from 'react-native';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
@@ -51,6 +52,25 @@ export const validatePassword = (password: string, confirmPassword: string) => {
   const isPasswordSame = password !== '' && password === confirmPassword;
 
   return { isUppercase, isNumber, isSpecialChar, isMin8Char, isPasswordSame };
+};
+
+export const formatPhoneNumber = (phoneNumber: string, isMasked: boolean = true): string => {
+  const prefix = phoneNumber.slice(0, 4);
+  const firstDigit = phoneNumber.slice(4, 5);
+
+  if (isMasked) {
+    const maskedPart = 'x xxx xxx';
+    return `${prefix} ${firstDigit}${maskedPart}`;
+  } else {
+    const firstPart = phoneNumber.slice(5, 8);
+    const secondPart = phoneNumber.slice(8, 11);
+    return `${prefix} ${firstDigit} ${firstPart} ${secondPart}`;
+  }
+};
+
+export const currencyFormat = (price: number | string) => {
+  const numberPrice = typeof price === 'string' ? parseFloat(price.replace(',', '.')) : price;
+  return numberPrice?.toFixed(2).replace('.', ',') + ' LEI';
 };
 
 export const openBrowserAsync = async (url: string = 'https://www.google.com') => {

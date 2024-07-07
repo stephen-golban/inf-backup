@@ -1,0 +1,43 @@
+{
+  "account_details": {
+    "title": "Детали аккаунта",
+    "email": "Электронная почта",
+    "phone": "Телефон",
+    "change_password": "Изменить пароль"
+  },
+  "subscription_details": {
+    "title": "Детали подписки",
+    "next_payment": "Следующий платеж",
+    "unlimited_access": "У вас неограниченный доступ к услугам приложения и 50% скидка на покупку кредитного отчета. Подписка автоматически обновляется каждый месяц.",
+    "change_subscription": "Изменить подписку",
+    "current_subscription": "Текущая подписка",
+    "other_available_options": "Другие доступные опции",
+    "choose_subscription": "Выбрать подписку {duration}",
+    "cancel_subscription": "Отменить подписку",
+    "equivalent_to": "Эквивалент {{amount}}/месяц."
+  },
+  "change_password_section": {
+    "min_8_chars": "Минимум 8 символов",
+    "min_1_uppercase": "Минимум 1 заглавная буква",
+    "min_1_symbol": "Минимум 1 символ"
+  },
+  "subscription_duration": {
+    "week_1": "Еженедельно",
+    "week_2": "Раз в две недели",
+    "month_1": "Ежемесячно",
+    "month_3": "Ежеквартально",
+    "month_6": "Полугодно",
+    "month_9": "Три раза в год",
+    "month_12": "Ежегодно"
+  },
+  "payment_frequency": {
+    "weekly": "Еженедельный платеж",
+    "monthly": "Ежемесячный платеж",
+    "quarterly": "Ежеквартальный платеж",
+    "semi_annually": "Полугодовой платеж",
+    "three_times_a_year": "Три раза в год",
+    "annually": "Годовой платеж",
+    "unknown": "Неизвестный платеж"
+  },
+  "remove_account": "Удалить аккаунт"
+}

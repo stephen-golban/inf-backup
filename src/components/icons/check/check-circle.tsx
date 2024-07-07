@@ -1,15 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-const CheckCircleIcon: React.FC<SvgProps> = ({ color = '#2F384C', strokeWidth = 1.5, ...props }) => {
+const CheckCircleIcon: React.FC<SvgProps> = ({ color = '#3B444D', ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={22} height={23} viewBox="0 0 22 23" fill="none" {...props}>
       <Path
-        d="M8.5 12.5L11 15l5.5-5.5M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10z"
-        stroke={color}
-        strokeWidth={1.5}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M22 11.5c0 6.072-4.928 11-11 11s-11-4.928-11-11S4.928.5 11 .5s11 4.928 11 11zm-16.867-.271L9.944 17l7.487-8.837L16.177 7.1l-6.226 7.333-3.556-4.26-1.262 1.056z"
+        fill={color}
       />
     </Svg>
   );

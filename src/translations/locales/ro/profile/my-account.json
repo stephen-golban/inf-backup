@@ -1,0 +1,43 @@
+{
+  "account_details": {
+    "title": "Detalii cont",
+    "email": "Email",
+    "phone": "Telefon",
+    "change_password": "Schimbă parola"
+  },
+  "subscription_details": {
+    "title": "Detalii abonament",
+    "next_payment": "Următoarea plată",
+    "unlimited_access": "Ai acces nelimitat la serviciile aplicației și o reducere de 50% la achiziția Raportului de Credit. Abonamentul se reînnoiește automat în fiecare lună.",
+    "change_subscription": "Schimbă abonamentul",
+    "current_subscription": "Abonament curent",
+    "other_available_options": "Alte opțiuni disponibile",
+    "choose_subscription": "Alege abonamentul {duration}",
+    "cancel_subscription": "Anulează abonamentul",
+    "equivalent_to": "Echivalentul a {{amount}}/lună."
+  },
+  "change_password_section": {
+    "min_8_chars": "Minim 8 caractere",
+    "min_1_uppercase": "Minim 1 literă mare",
+    "min_1_symbol": "Minim 1 simbol"
+  },
+  "subscription_duration": {
+    "week_1": "Săptămânal",
+    "week_2": "O dată la două săptămâni",
+    "month_1": "Lunar",
+    "month_3": "Trimestrial",
+    "month_6": "Semestrial",
+    "month_9": "De trei ori pe an",
+    "month_12": "Anual"
+  },
+  "payment_frequency": {
+    "weekly": "Achitare săptămânală",
+    "monthly": "Achitare lunară",
+    "quarterly": "Achitare trimestrială",
+    "semi_annually": "Achitare semestrială",
+    "three_times_a_year": "Achitare de trei ori pe an",
+    "annually": "Achitare anuală",
+    "unknown": "Achitare necunoscută"
+  },
+  "remove_account": "Șterge contul"
+}

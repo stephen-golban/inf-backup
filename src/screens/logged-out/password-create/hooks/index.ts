@@ -1,6 +1,7 @@
 import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
 import { useTokenService } from '@services/tokens';
+import { noop } from 'lodash';
 
 import { LOGGED_OUT_SCREENS, LoggedOutStackScreenProps } from '@typings/navigation';
 import { PasswordCreateFormFields } from '@modules/logged-out/password-create/resolver';
@@ -14,7 +15,7 @@ export default function usePasswordCreate(
   const service = useTokenService();
 
   const [call, { loading: registerLoading }] = useLazyAxios<any>({
-    method: 'post',
+    method: 'patch',
     url: '/password-reset',
   });
 
@@ -29,7 +30,7 @@ export default function usePasswordCreate(
         token,
         newPassword: values.password,
       };
-      const res = await call(queryParams, { headers });
+      const res = await call(queryParams, noop, { headers });
       if (res) {
         navigation.navigate(LOGGED_OUT_SCREENS.Login);
       }

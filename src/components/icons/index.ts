@@ -8,6 +8,7 @@ export * from './edit';
 export * from './close';
 export * from './check';
 export * from './arrow';
+export * from './circle';
 export * from './logout';
 export * from './chevron';
 export * from './contact';

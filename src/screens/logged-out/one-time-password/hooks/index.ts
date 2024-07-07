@@ -1,6 +1,7 @@
 import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
 import { useTokenService } from '@services/tokens';
+import { noop } from 'lodash';
 
 import { OneTimePasswordFormFields } from '@modules/logged-out/one-time-password/resolver';
 
@@ -26,7 +27,7 @@ export default function useOneTimePassword(navigation: LoggedOutStackScreenProps
       const queryParams = {
         code: values.code,
       };
-      const res = await call(queryParams, { headers });
+      const res = await call(queryParams, noop, { headers });
       if (res) {
         navigation.navigate(LOGGED_OUT_SCREENS.CreatePassword, { token: res });
       }

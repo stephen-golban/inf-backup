@@ -7,6 +7,7 @@ import { internationalization } from '@translations/index';
 import { I18nextProvider } from 'react-i18next';
 import { ThemeProvider } from '@shopify/restyle';
 import ApplicationNavigator from '@navigation/index';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ToastProvider } from 'react-native-toast-notifications';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -29,7 +30,9 @@ const MyApp = () => {
         <ThemeProvider theme={THEME[themeType]}>
           <ToastProvider placement="top" offsetTop={0} animationType="slide-in">
             <GestureHandlerRootView style={{ flex: 1 }}>
-              <ApplicationNavigator />
+              <BottomSheetModalProvider>
+                <ApplicationNavigator />
+              </BottomSheetModalProvider>
             </GestureHandlerRootView>
           </ToastProvider>
         </ThemeProvider>

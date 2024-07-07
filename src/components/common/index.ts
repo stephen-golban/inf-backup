@@ -13,6 +13,7 @@ export * from './dropdown';
 export * from './text-input';
 export * from './date-picker';
 export * from './scroll-view';
+export * from './bottom-sheet';
 export * from './keyboard-aware';
 export * from './safe-area-view';
 export * from './activity-indicator';
