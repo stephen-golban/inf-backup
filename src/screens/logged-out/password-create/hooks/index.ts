@@ -3,12 +3,11 @@ import { useTryCatch } from '@library/hooks';
 import { useTokenService } from '@services/tokens';
 import { noop } from 'lodash';
 
+import { MMKV_KEY } from '@library/constants';
 import { LOGGED_OUT_SCREENS, LoggedOutStackScreenProps } from '@typings/navigation';
 import { PasswordCreateFormFields } from '@modules/logged-out/password-create/resolver';
 
-import { TokensApiResponse } from '@typings/responses/tokens';
 import { loadString, remove } from '@library/storage';
-import { MMKV_KEY } from '@library/constants';
 
 export default function usePasswordCreate(
   navigation: LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.CreatePassword>['navigation'],
@@ -36,6 +35,7 @@ export default function usePasswordCreate(
       };
       const res = await call(queryParams, noop, { headers });
       if (res) {
+        remove(MMKV_KEY.INSERT_OTP);
         navigation.navigate(LOGGED_OUT_SCREENS.Login);
       }
     }
