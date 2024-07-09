@@ -32,11 +32,11 @@ type LoggedOutStackParamList = {
 
   [LOGGED_OUT_SCREENS.ExpiredRegister]: undefined;
 
-  [LOGGED_OUT_SCREENS.CreatePassword]: { token: TokensApiResponse };
+  [LOGGED_OUT_SCREENS.CreatePassword]: { token: TokensApiResponse; otp: string; phoneNr: string };
 
   [LOGGED_OUT_SCREENS.ForgotPassword]: undefined;
 
-  [LOGGED_OUT_SCREENS.OneTimePassword]: undefined;
+  [LOGGED_OUT_SCREENS.OneTimePassword]: { sentTo?: string } | undefined;
 };
 
 type LoggedOutStackScreenProps<T extends keyof LoggedOutStackParamList> = CompositeScreenProps<

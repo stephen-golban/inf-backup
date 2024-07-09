@@ -7,12 +7,14 @@ import { LOGGED_OUT_SCREENS, LoggedOutStackScreenProps } from '@typings/navigati
 import { PasswordCreateFormFields } from '@modules/logged-out/password-create/resolver';
 
 import { TokensApiResponse } from '@typings/responses/tokens';
+import { loadString, remove } from '@library/storage';
+import { MMKV_KEY } from '@library/constants';
 
 export default function usePasswordCreate(
   navigation: LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.CreatePassword>['navigation'],
-  token: TokensApiResponse,
+  otp: string,
 ) {
-  const service = useTokenService();
+  const service = useTokenService(true);
 
   const [call, { loading: registerLoading }] = useLazyAxios<any>({
     method: 'patch',
@@ -27,7 +29,9 @@ export default function usePasswordCreate(
         Authorization: `Bearer ${tokenRes.access_token}`,
       };
       const queryParams = {
-        token,
+        token: null,
+        otp,
+        phoneNr: '+373' + loadString(MMKV_KEY.SEND_TO),
         newPassword: values.password,
       };
       const res = await call(queryParams, noop, { headers });

@@ -11,12 +11,11 @@ import { SubscriptionInfo } from '@typings/responses/subscriptions/purchased-sub
 
 interface ISubscriptionDetails {
   subscriptionInfo: SubscriptionInfo;
-  onRemoveAccount(): void;
   onChangeSubscription(): void;
 }
 
 const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
-  const { subscriptionInfo, onRemoveAccount, onChangeSubscription } = props;
+  const { subscriptionInfo, onChangeSubscription } = props;
   const { locale } = useAppStore();
   const processedLocale = locale === 'ro' ? ro : locale === 'ru' ? ru : enGB;
   return (
@@ -40,14 +39,6 @@ const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
         mx="xxl"
         textProps={{ variant: '14-reg' }}
         onPress={onChangeSubscription}
-      />
-      <Divider isHorizontal bg="blue" h={1.2} mt="xxxl" />
-      <OutlinedButton
-        mt="xl"
-        t18n="profile:my_account:remove_account"
-        mx="xxl"
-        textProps={{ variant: '14-reg' }}
-        onPress={onRemoveAccount}
       />
     </View>
   );

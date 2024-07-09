@@ -6,13 +6,13 @@ import { OneTimePasswordModule } from '@modules/logged-out';
 import { LOGGED_OUT_SCREENS, type LoggedOutStackScreenProps } from '@typings/navigation';
 
 const OneTimePassword: React.FC<LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.OneTimePassword>> = props => {
-  const { navigation } = props;
+  const { navigation, route } = props;
 
-  const { loading, onSubmit } = useOneTimePassword(navigation);
+  const { loading, onSubmit, onResendPassword, resendCodeLoading } = useOneTimePassword(navigation, route.params?.sentTo);
 
-  const onPressQuestion = () => navigation.navigate(LOGGED_OUT_SCREENS.Login);
-
-  return <OneTimePasswordModule loading={loading} onResendCode={onPressQuestion} onSubmit={onSubmit} />;
+  return (
+    <OneTimePasswordModule loading={loading} resendCodeLoading={resendCodeLoading} onResendCode={onResendPassword} onSubmit={onSubmit} />
+  );
 };
 
 export { OneTimePassword };

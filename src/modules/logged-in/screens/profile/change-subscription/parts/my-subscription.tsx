@@ -1,5 +1,6 @@
 import React from 'react';
 import { Paper } from '@components/ui';
+import { useTranslation } from '@library/hooks';
 import { Divider } from '@components/ui/divider';
 import { currencyFormat } from '@library/method';
 import { OutlinedButton, Text, View } from '@components/common';
@@ -13,6 +14,7 @@ interface IMySubscription {
 }
 
 const MySubscription: React.FC<IMySubscription> = ({ showHeader = false, subscriptionInfo, cancelSubscription }) => {
+  const { t } = useTranslation();
   return (
     <View>
       {showHeader && (
@@ -24,11 +26,11 @@ const MySubscription: React.FC<IMySubscription> = ({ showHeader = false, subscri
       <View px={showHeader ? 'lg' : 'zero'}>
         <Text variant="14-reg" color="gray" my="md" t18n="profile:my_account:subscription_details:current_subscription" />
         <Paper br="md" rg="sm" shadowOpacity={0.1}>
-          <Text color="gray">{getSubscriptionDurationText(subscriptionInfo.subscriptionDuration!)}</Text>
+          <Text color="gray">{getSubscriptionDurationText(subscriptionInfo.subscriptionDuration!, t)}</Text>
           <Text variant="20-semi">
-            {currencyFormat(subscriptionInfo.price || '')}/{getSubscriptionDurationText(subscriptionInfo.subscriptionDuration!)}
+            {currencyFormat(subscriptionInfo.price || '')}/{getSubscriptionDurationText(subscriptionInfo.subscriptionDuration!, t)}
           </Text>
-          <Text color="gray">{getPaymentFrequencyText(subscriptionInfo.subscriptionDuration!)}</Text>
+          <Text color="gray">{getPaymentFrequencyText(subscriptionInfo.subscriptionDuration!, t)}</Text>
           <OutlinedButton
             t18n="profile:my_account:subscription_details:cancel_subscription"
             textProps={{ variant: '14-reg' }}

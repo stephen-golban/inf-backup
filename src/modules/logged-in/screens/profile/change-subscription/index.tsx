@@ -1,10 +1,11 @@
 import React from 'react';
-import { OutlinedButton, ScrollView, Text, View } from '@components/common';
+import { useTranslation } from '@library/hooks';
+
 import { Paper } from '@components/ui';
+import { MySubscription } from './parts';
 import { Divider } from '@components/ui/divider';
 import { currencyFormat } from '@library/method';
-import { SubscriptionInfo } from '@typings/responses/subscriptions/purchased-subscriptions';
-import { IAllSubscriptionsResponse, SubscriptionDuration } from '@typings/responses/subscriptions/all-subscriptions';
+import { OutlinedButton, ScrollView, Text, View } from '@components/common';
 import {
   calculateDiscountedPrice,
   calculateMonthlyEquivalent,
@@ -12,7 +13,9 @@ import {
   getSubscriptionDurationText,
   sortSubscriptions,
 } from './method';
-import { useTranslation } from '@library/hooks';
+
+import { SubscriptionInfo } from '@typings/responses/subscriptions/purchased-subscriptions';
+import { IAllSubscriptionsResponse, SubscriptionDuration } from '@typings/responses/subscriptions/all-subscriptions';
 
 interface IChangeSubscription {
   subscriptionInfo: SubscriptionInfo;
@@ -22,22 +25,7 @@ interface IChangeSubscription {
 const ChangeSubscriptionModule: React.FC<IChangeSubscription> = ({ allSubscriptions, subscriptionInfo }) => {
   const { t } = useTranslation();
   if (!allSubscriptions) {
-    return (
-      <View>
-        <Text textAlign="center" t18n="profile:my_account:subscription_details:change_subscription" />
-        <Divider isHorizontal my="md" bg="gray" />
-        <View px="lg">
-          <Text variant="14-reg" color="gray" my="md">
-            {t('profile:my_account:subscription_details:current_subscription')}
-          </Text>
-          <Paper br="md" rg="md" shadowOpacity={0.1}>
-            <Text color="gray">{getSubscriptionDurationText(subscriptionInfo.subscriptionDuration!, t)}</Text>
-            <Text>{currencyFormat(subscriptionInfo.price || '')}</Text>
-            <Text color="gray">{getPaymentFrequencyText(subscriptionInfo.subscriptionDuration!, t)}</Text>
-          </Paper>
-        </View>
-      </View>
-    );
+    return <MySubscription subscriptionInfo={subscriptionInfo} cancelSubscription={() => {}} />;
   }
 
   const { entityModelList } = allSubscriptions._embedded;
@@ -48,21 +36,12 @@ const ChangeSubscriptionModule: React.FC<IChangeSubscription> = ({ allSubscripti
       <Text textAlign="center" t18n="profile:my_account:subscription_details:change_subscription" />
       <Divider isHorizontal my="md" bg="gray" />
       <View px="lg">
-        <Text variant="14-reg" color="gray" my="md">
-          {t('profile:my_account:subscription_details:current_subscription')}
-        </Text>
-        <Paper br="md" rg="sm" shadowOpacity={0.1} mb="md">
-          <Text color="gray">{getSubscriptionDurationText(subscriptionInfo.subscriptionDuration!, t)}</Text>
-          <Text variant="20-semi">
-            {currencyFormat(subscriptionInfo.price || '')}/
-            {getSubscriptionDurationText(subscriptionInfo.subscriptionDuration!, t).toLowerCase()}
+        {subscriptionInfo.subscriptionId && <MySubscription subscriptionInfo={subscriptionInfo} cancelSubscription={() => {}} />}
+        {subscriptionInfo.subscriptionId && (
+          <Text variant="14-reg" color="gray" my="md">
+            {t('profile:my_account:subscription_details:other_available_options')}
           </Text>
-          <Text color="gray">{getPaymentFrequencyText(subscriptionInfo.subscriptionDuration!, t)}</Text>
-          <OutlinedButton text={t('profile:my_account:subscription_details:cancel_subscription')} textProps={{ variant: '14-reg' }} />
-        </Paper>
-        <Text variant="14-reg" color="gray" my="md">
-          {t('profile:my_account:subscription_details:other_available_options')}
-        </Text>
+        )}
         {sortedEntityModelList.map(subscription => {
           const discountedPrice = calculateDiscountedPrice(
             subscription.price,
@@ -94,18 +73,7 @@ const ChangeSubscriptionModule: React.FC<IChangeSubscription> = ({ allSubscripti
                 textProps={{ variant: '14-reg' }}
               />
               {subscription.discountData.discount && (
-                <View
-                  style={{
-                    position: 'absolute',
-                    right: -10,
-                    top: -10,
-                    backgroundColor: 'gold',
-                    borderWidth: 1,
-                    borderColor: 'white',
-                    borderRadius: 999,
-                    paddingHorizontal: 16,
-                    paddingVertical: 4,
-                  }}>
+                <View top={-10} absolute bg="gold" right={-10} bw={1} bc="white" br={999} px="md" py="xs">
                   <Text style={{ fontSize: 16, fontWeight: '600', textDecorationLine: 'line-through', textDecorationColor: 'red' }}>
                     {currencyFormat(subscription.price)}
                   </Text>

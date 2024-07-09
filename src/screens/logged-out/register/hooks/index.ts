@@ -6,8 +6,11 @@ import { useTokenService } from '@services/tokens';
 import { noop } from 'lodash';
 import { createQueryParams } from './util';
 
-import type { RegisterApiResponse } from '@typings/responses/register';
+import { saveString } from '@library/storage';
+import { MMKV_KEY } from '@library/constants';
 import type { RegisterFormFields } from '@modules/logged-out/register/resolver';
+
+import type { RegisterApiResponse } from '@typings/responses/register';
 import { LOGGED_OUT_SCREENS, LoggedOutStackScreenProps } from '@typings/navigation';
 
 export default function useRegisterScreen(navigation: LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.Register>['navigation']) {
@@ -28,7 +31,9 @@ export default function useRegisterScreen(navigation: LoggedOutStackScreenProps<
       const queryParams = createQueryParams(values, locale);
       const res = await call(queryParams, noop, { headers });
       if (res) {
-        navigation.navigate(LOGGED_OUT_SCREENS.OneTimePassword);
+        saveString(MMKV_KEY.INSERT_OTP, '1');
+        saveString(MMKV_KEY.SEND_TO, values.phone);
+        navigation.navigate(LOGGED_OUT_SCREENS.OneTimePassword, { sentTo: values.phone });
       }
     }
   });

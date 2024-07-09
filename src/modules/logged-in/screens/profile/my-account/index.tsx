@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { useTheme } from '@theme/index';
-import { BottomSheet, ScrollView } from '@components/common';
+import { Divider } from '@components/ui/divider';
 import ChangeSubscriptionModule from '../change-subscription';
 import { AccountDetails, SubscriptionDetails } from './parts';
+import { BottomSheet, OutlinedButton, ScrollView } from '@components/common';
 
 import { formatPhoneNumber } from '@library/method';
 
@@ -31,11 +32,9 @@ const MyAccountModule: React.FC<IMyAccountModule> = props => {
   return (
     <ScrollView mt="lg">
       <AccountDetails email={email} phone={formattedPhone} onChangePassword={onChangePassword} />
-      <SubscriptionDetails
-        onRemoveAccount={onRemoveAccount}
-        subscriptionInfo={subscriptionInfo}
-        onChangeSubscription={() => setToggleModal(prev => !prev)}
-      />
+      {subscriptionInfo.subscriptionId && (
+        <SubscriptionDetails subscriptionInfo={subscriptionInfo} onChangeSubscription={() => setToggleModal(prev => !prev)} />
+      )}
       <BottomSheet
         snapPoints={['80%']}
         isVisible={toggleModal}
@@ -43,6 +42,14 @@ const MyAccountModule: React.FC<IMyAccountModule> = props => {
         backgroundStyle={{ backgroundColor: colors.lightBlue }}>
         <ChangeSubscriptionModule allSubscriptions={allSubscriptions} subscriptionInfo={subscriptionInfo} />
       </BottomSheet>
+      <Divider isHorizontal bg="blue" h={1.2} mt="xxxl" />
+      <OutlinedButton
+        mt="xl"
+        t18n="profile:my_account:remove_account"
+        mx="xxl"
+        textProps={{ variant: '14-reg' }}
+        onPress={onRemoveAccount}
+      />
     </ScrollView>
   );
 };

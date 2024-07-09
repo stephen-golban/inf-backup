@@ -8,9 +8,9 @@ import { LOGGED_OUT_SCREENS, type LoggedOutStackScreenProps } from '@typings/nav
 
 const PasswordCreate: React.FC<LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.CreatePassword>> = props => {
   const { navigation, route } = props;
-  const { token } = route.params;
+  const { otp } = route.params;
 
-  const { loading, onSubmit } = usePasswordCreate(navigation, token);
+  const { loading, onSubmit } = usePasswordCreate(navigation, otp);
 
   return <PasswordCreateModule loading={loading} onSubmit={onSubmit} />;
 };

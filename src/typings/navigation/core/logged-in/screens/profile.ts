@@ -5,12 +5,14 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 export enum PROFILE_SCREENS {
   'SECTIONS' = 'SECTIONS',
   'MY_ACCOUNT' = 'MY_ACCOUNT',
+  'DELETE_ACCOUNT' = 'DELETE_ACCOUNT',
   'CHANGE_PASSWORD' = 'CHANGE_PASSWORD',
 }
 
 export type ProfileStackParams = {
   [PROFILE_SCREENS.SECTIONS]: undefined;
   [PROFILE_SCREENS.MY_ACCOUNT]: undefined;
+  [PROFILE_SCREENS.DELETE_ACCOUNT]: undefined;
   [PROFILE_SCREENS.CHANGE_PASSWORD]: undefined;
 };
 
