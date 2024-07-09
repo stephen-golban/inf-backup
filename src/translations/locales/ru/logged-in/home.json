@@ -1,0 +1,39 @@
+{
+  "welcome": "Добро пожаловать, {{firstName}}!",
+
+  "your_credit_score": "Кредитная история",
+  "your_scoring_details": "Детали\nскоринга",
+
+  "active_debt_amount": "Сумма долга",
+  "obligations_history": "История обязательств",
+
+  "info": {
+    "title": "Какую информацию вы хотите узнать?",
+    "credit_report": "Кредитный отчет",
+    "who_checked_credit": "Кто проверил мою кредитную историю?",
+    "new_credit": "Новый кредит? Узнайте, имеете ли вы право"
+  },
+
+  "own_data_check": {
+    "who_checked": {
+      "unique_checks_count_singular": "{{count}} уникальная проверка",
+      "unique_checks_count_plural": "{{count}} уникальных проверок",
+      "unique_checks_days_singular": "за последний {{days}} день",
+      "unique_checks_days_plural": "за последние {{days}} дней",
+      "unique_checks_companies_singular": "от {{companies}} компании",
+      "unique_checks_companies_plural": "от {{companies}} компаний",
+      "no_checks_message": "Список запросов пуст. Мы уведомим вас, когда появятся новые проверки."
+    },
+    "new_credit": {
+      "button": "Заказать Отчет",
+      "success": {
+        "title": "Поздравляем!",
+        "message": "Согласно данным Infodebit, у вас есть все шансы получить кредит. Чтобы узнать больше деталей о вашей кредитной истории, закажите сейчас Отчет"
+      },
+      "fail": {
+        "title": "Ох, нет!",
+        "message": "Согласно данным Infodebit, у вас нет шансов получить кредит. Чтобы узнать причину, проверьте сейчас Отчет о вашей кредитной истории"
+      }
+    }
+  }
+}

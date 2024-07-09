@@ -11,10 +11,11 @@ type FinalProps = Omit<RestyleProps, 'alignItems' | 'flexDirection' | 'justifyCo
 
 export const createStyled = <E extends ElementType>(Component: E) => {
   return forwardRef<any, FinalProps & ComponentPropsWithRef<E>>((props, ref) => {
-    const { fill, absoluteFill, fullSize, center, col, row, around, between, absolute, relative, ...restyleProps } = props;
+    const { fill, absoluteFill, fullSize, center, col, row, around, between, absolute, relative, shadow, ...restyleProps } = props;
 
     const extendedStyles = transformExtendedPropsToStyles({
       fill,
+      shadow,
       absoluteFill,
       fullSize,
       center,

@@ -1,0 +1,38 @@
+{
+  "welcome": "Welcome, {{firstName}}!",
+
+  "your_credit_score": "Your credit score",
+  "your_scoring_details": "Scoring details",
+
+  "active_debt_amount": "Amount of active debt",
+  "obligations_history": "History of obligations",
+
+  "info": {
+    "title": "What information would you like to find out?",
+    "credit_report": "Credit report",
+    "who_checked_credit": "Who checked my credit history?",
+    "new_credit": "New credit? Find out if you're eligible"
+  },
+  "own_data_check": {
+    "who_checked": {
+      "unique_checks_count_singular": "{{count}} unique check",
+      "unique_checks_count_plural": "{{count}} unique checks",
+      "unique_checks_days_singular": "in the last {{days}} day",
+      "unique_checks_days_plural": "in the last {{days}} days",
+      "unique_checks_companies_singular": "by {{companies}} company",
+      "unique_checks_companies_plural": "by {{companies}} companies",
+      "no_checks_message": "The inquiry list is empty. We will notify you when new checks appear."
+    },
+    "new_credit": {
+      "button": "Order Report",
+      "success": {
+        "title": "Congratulations!",
+        "message": "According to Infodebit data, you have a good chance of getting a loan. To find out more details about your credit history, order the Report now"
+      },
+      "fail": {
+        "title": "Oh no!",
+        "message": "According to Infodebit data, you have zero chance of getting a loan. To find out the reason, check your credit history report now"
+      }
+    }
+  }
+}

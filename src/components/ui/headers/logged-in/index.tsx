@@ -1,13 +1,12 @@
 import React from 'react';
+
 import { useAppStore } from '@store/app';
 import { useGoBack, useTranslation } from '@library/hooks';
-import { Avatar } from '@components/common/avatar';
-import { BaseButton, Icon, Image, Text, View } from '@components/common';
+
+import { Icon, Avatar, Image, Text, View } from '@components/common';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 
-import { LOGGED_IN_SCREENS } from '@typings/navigation/core/logged-in/screens';
-import { PROFILE_SCREENS } from '@typings/navigation/core/logged-in/screens/profile';
-import { LOGGED_IN_STACK } from '@typings/navigation';
+import { LOGGED_IN_SCREENS, LOGGED_IN_STACK, PROFILE_SCREENS } from '@typings/navigation';
 
 const Header: React.FC<NativeStackHeaderProps> = ({ navigation }) => {
   const { t } = useTranslation();
@@ -31,12 +30,12 @@ const Header: React.FC<NativeStackHeaderProps> = ({ navigation }) => {
       {isBackButtonVisible ? (
         <Image source={require('@assets/images/infodebit.png')} h={35} resizeMode="contain" />
       ) : (
-        <Text variant="14-reg" text={t('logged_in:welcome', { firstName: user?.firstName })}>
+        <Text variant="14-reg" text={t('logged_in:home:welcome', { firstName: user?.firstName })}>
           {user?.firstName}!
         </Text>
       )}
 
-      <Avatar.Image source={{ uri: photoUri }} size={35} onPress={onPressAvatar} />
+      <Avatar.Image source={{ uri: photoUri }} size={35} onPress={onPressAvatar} bc="black" bw={1} />
     </View>
   );
 };

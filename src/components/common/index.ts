@@ -6,6 +6,7 @@ export * from './image';
 export * from './modal';
 export * from './view';
 export * from './tabs';
+export * from './avatar';
 export * from './screen';
 export * from './button';
 export * from './checkbox';

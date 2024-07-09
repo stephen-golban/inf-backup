@@ -100,3 +100,29 @@ export const openBrowserAsync = async (url: string = 'https://www.google.com') =
     console.log(error.message);
   }
 };
+
+export type Currency = 'MDL' | 'EUR' | 'USD' | 'RON' | 'RUB' | 'UAH' | 'KZT';
+
+type CurrencyMap = { [key in Currency]: string };
+
+const currencyMap: CurrencyMap = {
+  MDL: 'lei',
+  EUR: '€',
+  USD: '$',
+  RON: 'lei',
+  RUB: '₽',
+  UAH: '₴',
+  KZT: '₸',
+};
+
+export const formatToCurrency = (value: number | string, currency: Currency = 'MDL'): [string, string] => {
+  const converted = typeof value === 'string' ? Math.ceil(Number(value)) : Math.ceil(value);
+
+  const formattedValue = new Intl.NumberFormat('en-US', {
+    style: 'decimal',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(converted);
+
+  return [currencyMap[currency], formattedValue];
+};

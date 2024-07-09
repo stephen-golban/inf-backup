@@ -2,6 +2,7 @@ import type { RestyleExtendedProps } from './type';
 import type { RNStyleProperty } from '@shopify/restyle';
 
 import LAYOUT from '@theme/layout';
+import { SHADOWS } from '@theme/shadows';
 
 export const getKeys = <T extends { [key: string]: any }>(object: T) => Object.keys(object) as (keyof T)[];
 
@@ -14,6 +15,7 @@ export const transformExtendedPropsToStyles = (props: RestyleExtendedProps) => {
     props.fullSize && LAYOUT.fullSize,
     props.relative && LAYOUT.relative,
     props.absolute && LAYOUT.absolute,
+    props.shadow && SHADOWS[props.shadow],
     props.absoluteFill && LAYOUT.absoluteFill,
     props.around && LAYOUT.justifyContentAround,
     props.between && LAYOUT.justifyContentBetween,

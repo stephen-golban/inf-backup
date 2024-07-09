@@ -18,7 +18,6 @@ function useTryCatch<T extends (...args: any[]) => any>(callback: T): T {
       const result = callback(...args);
       if (result instanceof Promise) {
         return result.catch((error: any) => {
-          console.log('error', error);
           toast.show(error.message, { type: 'danger' });
         });
       }
@@ -42,7 +41,7 @@ function useTryCatch<T extends (...args: any[]) => any>(callback: T): T {
  * @returns {T} The memoized and wrapped function with error handling.
  */
 function useTryCatchWithCallback<T extends (...args: any[]) => any>(callback: T, deps: DependencyList): T {
-  // const toast = useToast();
+  const toast = useToast();
 
   return useCallback(
     (...args: any[]) => {
@@ -50,16 +49,18 @@ function useTryCatchWithCallback<T extends (...args: any[]) => any>(callback: T,
         const result = callback(...args);
         if (result instanceof Promise) {
           return result.catch((error: any) => {
-            // toast.show(error.message, { type: 'danger' });
+            toast.show(error.message, { type: 'danger' });
+            throw error;
           });
         }
         return result;
       } catch (error: any) {
-        // toast.show(error.message, { type: 'danger' });
+        toast.show(error.message, { type: 'danger' });
         throw error;
       }
     },
-    [callback, ...deps],
+    // Including toast in dependency array to avoid stale closure issues
+    [callback, toast, ...deps],
   ) as T;
 }
 

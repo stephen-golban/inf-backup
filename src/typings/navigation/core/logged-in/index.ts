@@ -45,5 +45,7 @@ export type LoggedInStackProps<T extends keyof LoggedInStackParams> = CompositeS
   RootStackScreenProps<APP_SCREEN.LOGGED_OUT>
 >;
 
-export * from './screens';
 export * from './tabs';
+export * from './screens';
+export * from './screens/profile';
+export * from './screens/own-data-check';

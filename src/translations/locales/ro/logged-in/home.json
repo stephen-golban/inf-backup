@@ -1,0 +1,38 @@
+{
+  "welcome": "Bine ai venit, {{firstName}}!",
+
+  "your_credit_score": "Scorul tău de credit",
+  "your_scoring_details": "Detalii scoring",
+
+  "active_debt_amount": "Suma datoriilor active",
+  "obligations_history": "Istoric angajamente",
+
+  "info": {
+    "title": "Ce informații ai vrea să afli?",
+    "credit_report": "Raport de credit",
+    "who_checked_credit": "Cine mi-a verificat istoricul creditor?",
+    "new_credit": "Credit nou? Află dacă ești eligibil"
+  },
+  "own_data_check": {
+    "who_checked": {
+      "unique_checks_count_singular": "{{count}} verificare unică",
+      "unique_checks_count_plural": "{{count}} verificări unice",
+      "unique_checks_days_singular": "în ultima {{days}} zi",
+      "unique_checks_days_plural": "în ultimele {{days}} zile",
+      "unique_checks_companies_singular": "de către {{companies}} companie",
+      "unique_checks_companies_plural": "de către {{companies}} companii",
+      "no_checks_message": "Lista interpelărilor este goală. Te vom anunța printr-o notificare când apar verificări noi."
+    },
+    "new_credit": {
+      "button": "Comandă Raportul",
+      "success": {
+        "title": "Felicitări!",
+        "message": "Conform datelor Infodebit, ai toate șansele să obții un credit. Pentru a afla mai multe detalii despre istoria ta creditară, comandă acum Raportul"
+      },
+      "fail": {
+        "title": "Ohhhh, nu!",
+        "message": "Conform datelor Infodebit, ai zero șansele să obții un credit. Pentru a afla motivul, verifică acum Raportul istoriei tale de credit"
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ import { ScrollView } from '@components/common/scroll-view';
 import type { ScreenComponentProps } from '../../type';
 import type { ViewProps } from '@components/common/view';
 import type { SafeAreaViewProps } from '@components/common/safe-area-view';
+import { RefreshControl } from 'react-native';
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
@@ -16,6 +17,7 @@ function ScreenWithScrolling(Wrapper: React.ComponentType<ViewProps | SafeAreaVi
     style,
     onScroll,
     children,
+    onRefresh,
     actualUnsafe,
     statusBarStyle,
     bg = 'transparent',
@@ -38,6 +40,7 @@ function ScreenWithScrolling(Wrapper: React.ComponentType<ViewProps | SafeAreaVi
           children={children}
           overScrollMode="never"
           keyboardShouldPersistTaps="handled"
+          refreshControl={<RefreshControl refreshing={false} onRefresh={onRefresh} />}
           contentContainerStyle={[{ paddingHorizontal: 16, paddingVertical: 24 }, style]}
         />
       </Wrapper>

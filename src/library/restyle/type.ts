@@ -1,6 +1,8 @@
+import { Shadow } from '@theme/shadows';
 import { FlexStyle } from 'react-native';
 
 export type RestyleExtendedProps = {
+  shadow?: Shadow;
   /**
    * Enable to using {flex:1}
    * @default undefined

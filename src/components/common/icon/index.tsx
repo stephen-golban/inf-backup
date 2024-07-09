@@ -17,8 +17,8 @@ type IconProps = Pick<SvgProps, 'strokeWidth'> &
   ButtonProps & {
     color?: Color;
     icon: IconType;
-    iconProps?: SvgProps;
     size?: number | Spacing;
+    iconProps?: React.ComponentProps<(typeof ICONS)[IconType]>;
   };
 
 const Icon = React.forwardRef<any, IconProps>(({ icon, size, onPress, color, strokeWidth, iconProps, loading, ...props }, ref) => {

@@ -69,6 +69,8 @@ export type ScreenProps = {
    * @default undefined
    */
   onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+
+  onRefresh?: (() => void) | undefined;
 } & SafeAreaViewProps &
   ViewProps;
 

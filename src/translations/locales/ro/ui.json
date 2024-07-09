@@ -20,5 +20,12 @@
     "password_confirm_placeholder": "Confirmați parola",
     "first_name_placeholder": "Prenume",
     "last_name_placeholder": "Nume"
+  },
+
+  "toasts": {
+    "limit_was_exceeded": "Limita a fost depășită",
+    "subscription_expired": "Abonament expirat!",
+    "no_subscription_purchased": "Nu aveți niciun abonament procurat",
+    "user_subscription_no_access": "Serviciul nu este inclus în abonament"
   }
 }

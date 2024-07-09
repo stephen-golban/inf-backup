@@ -1,6 +1,6 @@
 import ui from './ui.json';
 import { profile } from './profile';
-import logged_in from './logged_in.json';
+import { logged_in } from './logged-in';
 import validation from './validation.json';
 import logged_out from './logged-out.json';
 

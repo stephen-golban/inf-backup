@@ -20,5 +20,12 @@
     "password_confirm_placeholder": "Confirm password",
     "first_name_placeholder": "First name",
     "last_name_placeholder": "Last name"
+  },
+
+  "toasts": {
+    "limit_was_exceeded": "The limit has been exceeded",
+    "subscription_expired": "The subscription was expired",
+    "no_subscription_purchased": "No subscription purchased",
+    "user_subscription_no_access": "Service not included in subscription"
   }
 }

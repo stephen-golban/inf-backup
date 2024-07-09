@@ -1,5 +1,6 @@
 import * as Keychain from 'react-native-keychain';
 import type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { auth_api } from '@api/base';
 
 type Token = {
   access_token: string;
@@ -8,9 +9,15 @@ type Token = {
 
 export const onResponseInterceptor = (response: AxiosResponse) => response;
 
-export async function refreshTokens(instance: AxiosInstance) {
+export async function refreshTokens() {
   const refreshToken = ((await Keychain.getInternetCredentials('refreshToken')) as Keychain.SharedWebCredentials)?.password;
-  const response = await instance.post<Token>('/auth/oauth/token', { grant_type: 'refresh_token', refresh_token: refreshToken });
+  const queryParams = {
+    key: 'refresh_token',
+    grant_type: 'refresh_token',
+    refresh_token: refreshToken,
+  };
+
+  const response = await auth_api.post<Token>('/auth/oauth/token', queryParams);
 
   const { access_token, refresh_token } = response.data;
 
@@ -25,7 +32,7 @@ export const onResponseError = async (error: AxiosError, instance: AxiosInstance
 
   const isLoggedIn = !!(await Keychain.getInternetCredentials('refreshToken'));
   if (error.response?.status === 401 && originalRequest.url !== '/auth/oauth/token' && isLoggedIn) {
-    const res = await refreshTokens(instance);
+    const res = await refreshTokens();
     if (res) {
       originalRequest.headers['Authorization'] = `Bearer ${res.access_token}`;
       return instance(originalRequest);

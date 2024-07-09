@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useMe } from '@services/me';
+import { useGetSubscription } from '@services/subscription';
 import { NativeStackHeaderProps, createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Header } from '@components/ui';
@@ -17,8 +18,10 @@ const renderHeader = (props: NativeStackHeaderProps) => <Header {...props} />;
 const LoggedInStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_IN>> = () => {
   const { loading } = useMe(true);
 
+  const { loading: loadingSubscription } = useGetSubscription(true);
+
   return (
-    <Screen bg="primary" excludeEdges={['bottom']} loading={loading}>
+    <Screen bg="primary" excludeEdges={['bottom']} loading={loading || loadingSubscription}>
       <Stack.Navigator initialRouteName={LOGGED_IN_STACK.TABS} screenOptions={{ header: props => renderHeader(props) }}>
         <Stack.Screen name={LOGGED_IN_STACK.TABS} component={Tabs} />
         <Stack.Screen name={LOGGED_IN_STACK.SCREENS} component={Screens} />

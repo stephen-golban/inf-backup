@@ -3,6 +3,7 @@ import TEXT_VARIANTS from './font';
 import { SPACING, RADII, Z_INDICES } from './metrics';
 import { createTheme, useTheme as useShopifyTheme } from '@shopify/restyle';
 import LAYOUT from './layout';
+import { SHADOWS } from './shadows';
 
 type AppTheme = typeof LIGHT;
 type ThemeType = keyof typeof THEME;
@@ -10,6 +11,7 @@ type ThemeType = keyof typeof THEME;
 const LIGHT = createTheme({
   colors: COLORS,
   layout: LAYOUT,
+  shadows: SHADOWS,
   spacing: SPACING,
   borderRadii: RADII,
   zIndices: Z_INDICES,

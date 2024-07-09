@@ -1,2 +1,2 @@
-export { HomeModule } from './tabs';
-export { SectionsModule } from './screens';
+export * from './tabs';
+export * from './screens';
