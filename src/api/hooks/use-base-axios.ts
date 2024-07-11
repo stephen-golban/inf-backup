@@ -80,7 +80,14 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
         }
       } catch (e) {
         if (isMounted.current) {
-          toast.show((e as any).response.data.message, { type: 'danger' });
+          const errResMessage = (e as any).response.data.message;
+          if (errResMessage) {
+            toast.show((e as any).response.data.message, { type: 'danger' });
+          } else {
+            if (__DEV__) {
+              toast.show((e as any).message, { type: 'danger' });
+            }
+          }
           dispatch({ type: 'REQUEST_FAILED', payload: e as Error });
         }
       }

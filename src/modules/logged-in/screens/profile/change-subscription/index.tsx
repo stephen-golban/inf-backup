@@ -1,11 +1,14 @@
 import React from 'react';
+
+import { useTheme } from '@theme/index';
 import { useTranslation } from '@library/hooks';
 
 import { Paper } from '@components/ui';
 import { MySubscription } from './parts';
 import { Divider } from '@components/ui/divider';
 import { currencyFormat } from '@library/method';
-import { OutlinedButton, ScrollView, Text, View } from '@components/common';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { OutlinedButton, Text, View } from '@components/common';
 import {
   calculateDiscountedPrice,
   calculateMonthlyEquivalent,
@@ -14,16 +17,17 @@ import {
   sortSubscriptions,
 } from './method';
 
-import { SubscriptionInfo } from '@typings/responses/subscriptions/purchased-subscriptions';
-import { IAllSubscriptionsResponse, SubscriptionDuration } from '@typings/responses/subscriptions/all-subscriptions';
+import { type IAllSubscriptionsResponse, SubscriptionDuration, type SubscriptionInfo } from '@typings/responses';
 
 interface IChangeSubscription {
   subscriptionInfo: SubscriptionInfo;
-  allSubscriptions: IAllSubscriptionsResponse | null;
+  allSubscriptions: IAllSubscriptionsResponse | undefined;
 }
 
 const ChangeSubscriptionModule: React.FC<IChangeSubscription> = ({ allSubscriptions, subscriptionInfo }) => {
+  const { spacing } = useTheme();
   const { t } = useTranslation();
+
   if (!allSubscriptions) {
     return <MySubscription subscriptionInfo={subscriptionInfo} cancelSubscription={() => {}} />;
   }
@@ -32,7 +36,7 @@ const ChangeSubscriptionModule: React.FC<IChangeSubscription> = ({ allSubscripti
   const sortedEntityModelList = entityModelList.sort(sortSubscriptions);
 
   return (
-    <ScrollView>
+    <BottomSheetScrollView contentContainerStyle={{ paddingBottom: spacing.lg }}>
       <Text textAlign="center" t18n="profile:my_account:subscription_details:change_subscription" />
       <Divider isHorizontal my="md" bg="gray" />
       <View px="lg">
@@ -83,7 +87,7 @@ const ChangeSubscriptionModule: React.FC<IChangeSubscription> = ({ allSubscripti
           );
         })}
       </View>
-    </ScrollView>
+    </BottomSheetScrollView>
   );
 };
 

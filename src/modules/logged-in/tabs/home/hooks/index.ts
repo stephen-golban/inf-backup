@@ -6,8 +6,7 @@ function useHomeModule() {
   const report = useCreditReport();
 
   async function refetch() {
-    await score.refetch();
-    await report.refetch();
+    await Promise.all([score.refetch(), report.refetch()]);
   }
 
   return {

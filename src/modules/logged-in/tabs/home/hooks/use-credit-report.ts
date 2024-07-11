@@ -21,27 +21,24 @@ function useCreditReport() {
 
   const [data, setData] = useState<ICreditReportSummaryResponse>();
 
-  const [callReport, { loading, refetch }] = useLazyAxios<ICreditReportSummaryResponse>('/credit-report', {
+  const [callReport, { loading }] = useLazyAxios<ICreditReportSummaryResponse>('/credit-report', {
     method: 'post',
     headers: {
       'Subscription-Id': subscription?.id,
     },
   });
 
-  const handleResponseError = useCallback(
-    (message: string | undefined) => {
-      if (message === 'User with subscription does not has access') {
-        toast.show(t('ui:toasts:user_subscription_no_access'), { type: 'danger' });
-        return true;
-      }
-      if (message === 'The limit was exceeded') {
-        toast.show(t('ui:toasts:limit_was_exceeded'), { type: 'danger' });
-        return true;
-      }
-      return false;
-    },
-    [toast, t],
-  );
+  const handleResponseError = (message: string | undefined) => {
+    if (message === 'User with subscription does not has access') {
+      toast.show(t('ui:toasts:user_subscription_no_access'), { type: 'danger' });
+      return true;
+    }
+    if (message === 'The limit was exceeded') {
+      toast.show(t('ui:toasts:limit_was_exceeded'), { type: 'danger' });
+      return true;
+    }
+    return false;
+  };
 
   const fetchCreditReport = useTryCatch(async () => {
     return await callReport(CREDIT_REPORT_QUERY_PARAMS, response => {
@@ -66,9 +63,9 @@ function useCreditReport() {
   return {
     data,
     loading,
-    refetch,
     badgeCount,
     formattedCount,
+    refetch: fetchCreditReport,
   };
 }
 

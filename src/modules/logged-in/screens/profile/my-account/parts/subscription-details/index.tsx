@@ -1,13 +1,14 @@
 import React from 'react';
+
 import { format } from 'date-fns';
 import { useAppStore } from '@store/app';
 
 import { ro, ru, enGB } from 'date-fns/locale';
 
 import { currencyFormat } from '@library/method';
-import { Divider } from '@components/ui/divider';
 import { OutlinedButton, Text, View } from '@components/common';
-import { SubscriptionInfo } from '@typings/responses/subscriptions/purchased-subscriptions';
+
+import type { SubscriptionInfo } from '@typings/responses';
 
 interface ISubscriptionDetails {
   subscriptionInfo: SubscriptionInfo;
@@ -16,8 +17,10 @@ interface ISubscriptionDetails {
 
 const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
   const { subscriptionInfo, onChangeSubscription } = props;
-  const { locale } = useAppStore();
+
+  const locale = useAppStore(state => state.locale);
   const processedLocale = locale === 'ro' ? ro : locale === 'ru' ? ru : enGB;
+
   return (
     <View my="sm">
       <Text px="md" variant="16-reg" t18n="profile:my_account:subscription_details:title" />
