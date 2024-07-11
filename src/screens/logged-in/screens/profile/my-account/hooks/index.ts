@@ -1,35 +1,23 @@
-import { useState } from 'react';
-import { useMount } from 'react-use';
-import { useLazyAxios } from '@api/hooks';
-import { PurchasedSubscriptionsResponse } from '@typings/responses/subscriptions/purchased-subscriptions';
+import { useAxios } from '@api/hooks';
+import { useGetSubscription } from '@services/subscription';
+
+import type { PurchasedSubscriptionsResponse } from '@typings/responses';
 
 const useMyAccountScreen = () => {
-  const [mySubscription, setMySubscription] = useState<PurchasedSubscriptionsResponse | null>(null);
-  const [allSubscriptions, setAllSubscriptions] = useState<PurchasedSubscriptionsResponse | null>(null);
+  const mySubscription = useGetSubscription();
 
-  const [call, { loading: loadPurchased }] = useLazyAxios({
-    method: 'get',
-    url: '/admin-api/subscriptions/purchased',
-  });
-
-  const [getAllSubscriptions, { loading: loadPayments }] = useLazyAxios({
+  const allSubscriptions = useAxios<PurchasedSubscriptionsResponse>({
     method: 'get',
     url: '/admin-api/subscriptions',
   });
 
-  const loading = loadPayments || loadPurchased;
+  const loading = allSubscriptions.loading || mySubscription.loading;
 
-  useMount(() => {
-    call(undefined, res => setMySubscription(res as PurchasedSubscriptionsResponse));
-    getAllSubscriptions(undefined, res => setAllSubscriptions(res as PurchasedSubscriptionsResponse));
-  });
-
-  const subscriptionDetails = mySubscription?._embedded?.entityModelList?.[0];
-  const nextPaymentDate = subscriptionDetails?.subscriptionAccounts?.[0]?.termDateTime;
-  const subscriptionName = subscriptionDetails?.title;
-  const subscriptionPrice = subscriptionDetails?.price;
-  const subscriptionDuration = subscriptionDetails?.subscriptionDuration;
-  const subscriptionId = subscriptionDetails?.id;
+  const nextPaymentDate = mySubscription.subscription?.subscriptionAccounts?.[0]?.termDateTime;
+  const subscriptionName = mySubscription.subscription?.title;
+  const subscriptionPrice = mySubscription.subscription?.price;
+  const subscriptionDuration = mySubscription.subscription?.subscriptionDuration;
+  const subscriptionId = mySubscription.subscription?.id;
 
   const subscriptionInfo = {
     name: subscriptionName,
@@ -39,10 +27,15 @@ const useMyAccountScreen = () => {
     subscriptionId,
   };
 
+  async function refetch() {
+    await Promise.all([mySubscription.getSubscription(), allSubscriptions.refetch()]);
+  }
+
   return {
     loading,
-    allSubscriptions,
+    refetch,
     subscriptionInfo,
+    allSubscriptions: allSubscriptions.data,
   };
 };
 

@@ -5,8 +5,8 @@ import { MyAccountScreen } from './my-account';
 import ChangePassword from './change-password';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { LOGGED_IN_SCREENS, LoggedInScreensProps } from '@typings/navigation/core/logged-in/screens';
-import { PROFILE_SCREENS, ProfileStackParams } from '@typings/navigation/core/logged-in/screens/profile';
+
+import { LOGGED_IN_SCREENS, type LoggedInScreensProps, PROFILE_SCREENS, type ProfileStackParams } from '@typings/navigation';
 
 const Stack = createNativeStackNavigator<ProfileStackParams>();
 

@@ -47,7 +47,12 @@ const BottomSheet: React.FC<IBottomSheet> = ({ children, snapPoints, hideCloseIc
     return <BottomSheetBackdrop {...props} pressBehavior="close" onPress={closeBottomSheet} disappearsOnIndex={-1} appearsOnIndex={0} />;
   }, []);
 
-  const activeOffsetProps = handleActiveOffsets ? { activeOffsetY: [-1, 1], failOffsetX: [-5, 5] } : {};
+  const activeOffsetProps = React.useMemo(() => {
+    if (handleActiveOffsets) {
+      return { activeOffsetY: [-1, 1] as [number, number], failOffsetX: [-5, 5] as [number, number] };
+    }
+    return {};
+  }, [handleActiveOffsets]);
 
   return (
     <BottomSheetModal

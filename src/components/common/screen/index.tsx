@@ -23,7 +23,7 @@ const Screen: React.FC<ScreenProps> = ({ loading, ...props }) => {
   if (loading) {
     return (
       <View fill center>
-        <ActivityIndicator />
+        <ActivityIndicator color="blue" />
       </View>
     );
   }

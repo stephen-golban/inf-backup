@@ -14,21 +14,21 @@ interface ICreditScore {
 
 const CreditScore: React.FC<ICreditScore> = ({ data, loading, onPress }) => {
   return (
-    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={150}>
+    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={180}>
       {loading ? (
         <Loader />
       ) : !data ? (
-        <View p="lg" px="md" rg="md" w="100%" h="100%">
+        <View p="lg" px="md" rg="sm" w="100%" h="100%">
           <Image source={require('@assets/images/x-fail.png')} />
         </View>
       ) : (
-        <View p="lg" px="md" rg="md">
+        <View p="lg" px="md" rg="sm">
           <Text t18n="logged_in:home:your_credit_score" variant="12-reg" />
-          <Text mt="sm" color="error" variant="40-semi" text={(data?.scoreValue || 0).toString()} />
+          <Text mt="sm" color="error" variant="32-semi" text={(data?.scoreValue || 0).toString()} />
 
           <View>
             <View h={StyleSheet.hairlineWidth} bg="gray_c8" />
-            <View row between align="center" mt="md" fill>
+            <View row between align="center" mt="md">
               <Text t18n="logged_in:home:your_scoring_details" flex />
               <Icon icon="ChevronRight" size={12} ml="sm" />
             </View>

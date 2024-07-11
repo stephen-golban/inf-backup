@@ -12,7 +12,6 @@ const noImgAvailable = require('@assets/images/no-img-available.jpeg');
 const Image: React.FC<ImageProps> = props => {
   const { source, resizeMode = FastImage.resizeMode.cover, loading, loaderSize = 'large', ...rest } = props;
   const { layout } = useTheme();
-  const [SOURCE, setSource] = React.useState({});
   const [isLoading, setLoading] = React.useState(true);
   const [errOccured, setErrOccured] = React.useState(false);
 
@@ -39,13 +38,9 @@ const Image: React.FC<ImageProps> = props => {
     return { uri: noImgAvailable, priority: FastImage.priority.high };
   };
 
-  React.useEffect(() => {
-    setSource(getSource());
-  }, [source]);
-
   return (
     <View overflow="hidden" flex={1} {...rest}>
-      <FastImage onError={handleError} resizeMode={resizeMode} style={[layout.fullSize]} onLoadEnd={handleLoadEnd} source={SOURCE} />
+      <FastImage onError={handleError} resizeMode={resizeMode} style={[layout.fullSize]} onLoadEnd={handleLoadEnd} source={getSource()} />
       {(isLoading || loading) && (
         <View center absoluteFill fullSize>
           <ActivityIndicator size={loaderSize} color="black" />

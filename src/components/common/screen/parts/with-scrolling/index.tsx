@@ -1,4 +1,5 @@
 import React from 'react';
+import { RefreshControl } from 'react-native';
 
 import ScreenInset from '../inset';
 import Animated from 'react-native-reanimated';
@@ -7,7 +8,6 @@ import { ScrollView } from '@components/common/scroll-view';
 import type { ScreenComponentProps } from '../../type';
 import type { ViewProps } from '@components/common/view';
 import type { SafeAreaViewProps } from '@components/common/safe-area-view';
-import { RefreshControl } from 'react-native';
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
@@ -40,8 +40,8 @@ function ScreenWithScrolling(Wrapper: React.ComponentType<ViewProps | SafeAreaVi
           children={children}
           overScrollMode="never"
           keyboardShouldPersistTaps="handled"
-          refreshControl={<RefreshControl refreshing={false} onRefresh={onRefresh} />}
           contentContainerStyle={[{ paddingHorizontal: 16, paddingVertical: 24 }, style]}
+          refreshControl={onRefresh ? <RefreshControl refreshing={false} onRefresh={onRefresh} /> : undefined}
         />
       </Wrapper>
       <ScreenInset

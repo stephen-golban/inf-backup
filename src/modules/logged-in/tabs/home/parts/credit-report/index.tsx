@@ -14,7 +14,7 @@ interface ICreditReport extends Report {
 
 const CreditReport: React.FC<ICreditReport> = ({ badgeCount, data, formattedCount, loading, onPress }) => {
   return (
-    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={150}>
+    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={180}>
       {loading ? (
         <Loader />
       ) : !data ? (
@@ -28,7 +28,7 @@ const CreditReport: React.FC<ICreditReport> = ({ badgeCount, data, formattedCoun
 
           <View>
             <View h={StyleSheet.hairlineWidth} bg="gray_c8" />
-            <View row between align="center" mt="md" fill>
+            <View row between align="center" mt="md">
               <Text t18n="logged_in:home:obligations_history" flex />
               <Icon icon="ChevronRight" size={12} ml="sm" />
               {(badgeCount || 0) > 0 && (
