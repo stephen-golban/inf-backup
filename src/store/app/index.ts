@@ -11,6 +11,7 @@ const app_state: IAppState = {
   user: null,
   theme: 'light',
   loadingApp: false,
+  nomenclature: null,
   isAuthenticated: false,
   subscription: undefined,
   locale: i18n.languages[0] as IAppState['locale'],
@@ -45,6 +46,9 @@ function setAppLoading(loadingApp: IAppState['loadingApp']) {
 function setAppSubscription(subscription: IAppState['subscription']) {
   useAppStore.setState({ subscription });
 }
+function setAppNomenclature(nomenclature: IAppState['nomenclature']) {
+  useAppStore.setState({ nomenclature });
+}
 function setAppLocale(locale: IAppState['locale']) {
   i18n.changeLanguage(locale);
   useAppStore.setState({ locale });
@@ -57,13 +61,14 @@ function resetAppStore() {
 }
 
 export {
-  setAppStore,
-  resetAppStore,
-  setAppSubscription,
-  setAppLoading,
-  setAppLocale,
-  setAppTheme,
-  setAppIsAuthenticated,
   setAppUser,
+  setAppTheme,
+  setAppStore,
+  setAppLocale,
+  resetAppStore,
+  setAppLoading,
+  setAppNomenclature,
+  setAppSubscription,
+  setAppIsAuthenticated,
   useAppStore,
 };

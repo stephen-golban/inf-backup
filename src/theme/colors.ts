@@ -26,6 +26,8 @@ const palette = {
 
   error: 'rgb(220, 20, 60)',
   success: 'rgb(58, 181, 75)',
+  forestGreen: 'rgba(107,196,60, 1)',
+  crimsonRed: 'rgba(252,54,50, 1)',
 };
 
 export const LIGHT_THEME_BASE_COLORS = {

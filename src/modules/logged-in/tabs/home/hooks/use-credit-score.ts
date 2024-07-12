@@ -1,5 +1,8 @@
-import { useAxios } from '@api/hooks';
+import { useState } from 'react';
+
 import { useAppStore } from '@store/app';
+import { useLazyAxios } from '@api/hooks';
+import { useTryCatch } from '@library/hooks';
 
 import type { ICreditScoreResponse } from '@typings/responses/credit-score';
 
@@ -10,14 +13,22 @@ const CREDIT_SCORE_QUERY_PARAMS = {
 
 function useCreditScore() {
   const subscription = useAppStore(state => state.subscription);
+  const [score, setScore] = useState<ICreditScoreResponse | null>(null);
 
-  const score = useAxios<ICreditScoreResponse>('/credit-score', {
+  const [callScore, { loading }] = useLazyAxios<ICreditScoreResponse>('/credit-score', {
     method: 'post',
-    data: CREDIT_SCORE_QUERY_PARAMS,
     headers: { 'Subscription-Id': subscription?.id || 60 },
   });
 
-  return score;
+  const fetchScore = useTryCatch(async () => {
+    return await callScore(CREDIT_SCORE_QUERY_PARAMS, response => {
+      if (response) {
+        return setScore(response);
+      }
+    });
+  });
+
+  return { score, fetchScore, loading };
 }
 
 export default useCreditScore;

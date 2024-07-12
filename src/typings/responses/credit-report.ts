@@ -30,7 +30,7 @@ interface Commitments {
   pasivePositiveCommitments: IvePositiveCommitment[];
 }
 
-interface IvePositiveCommitment {
+export interface IvePositiveCommitment {
   balance: number;
   roleType: string;
   sourceType: string;
@@ -57,7 +57,7 @@ interface Individual {
   employmentStatus: string;
 }
 
-interface PrimaryIndicators {
+export interface PrimaryIndicators {
   totalBalance: number;
   totalDebtService: number;
   monthMaxAmount24: number;

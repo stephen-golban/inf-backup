@@ -9,7 +9,6 @@ export const createQueryParams = (values: RegisterFormFields, locale: IAppState[
     firstName,
     lastName,
     language: locale.toUpperCase(),
-    photo: 'string',
     birthDate: format(birthDate || new Date(), 'yyyy-MM-dd'),
     contactData: [
       {

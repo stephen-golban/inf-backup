@@ -1,4 +1,5 @@
 import { PurchasedSubscriptionsResponse } from './responses';
+import { StageNomenclatureResponse } from './responses/nomenclatures';
 import type { User } from './user';
 import type { ThemeType } from '@theme/index';
 
@@ -14,4 +15,6 @@ export interface IAppState {
   theme: ThemeType;
 
   locale: 'en' | 'ru' | 'ro';
+
+  nomenclature: StageNomenclatureResponse[] | any;
 }

@@ -70,7 +70,13 @@ export const formatPhoneNumber = (phoneNumber: string, isMasked: boolean = true)
 
 export const currencyFormat = (price: number | string) => {
   const numberPrice = typeof price === 'string' ? parseFloat(price.replace(',', '.')) : price;
-  return numberPrice?.toFixed(2).replace('.', ',') + ' LEI';
+
+  const formattedPrice = new Intl.NumberFormat('ro-RO', {
+    minimumFractionDigits: numberPrice % 1 === 0 ? 0 : 2,
+    maximumFractionDigits: 2,
+  }).format(numberPrice);
+
+  return `${formattedPrice} LEI`;
 };
 
 export const openBrowserAsync = async (url: string = 'https://www.google.com') => {
