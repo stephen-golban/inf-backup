@@ -29,7 +29,7 @@ const InfoBox: React.FC<IInfoBox> = props => {
       </View>
       <View bg="white" row between p="md" shadow="card">
         <View row center g="sm">
-          <Icon icon="CalendarIcon" />
+          <Icon icon="SyncProblem" />
           <Text variant="14-bold" g="md" t18n="logged_in:home:info:payment_behavior" />
         </View>
         <Text>{format(new Date(), 'dd/MM/yyyy')}</Text>
@@ -37,7 +37,7 @@ const InfoBox: React.FC<IInfoBox> = props => {
       <View my="sm" />
       <View bg="white" row between p="md" shadow="card">
         <View row center g="sm">
-          <Icon icon="CalendarIcon" />
+          <Icon icon="SwitchAccount" />
           <Text variant="14-bold" g="md" t18n="logged_in:home:info:personal_data" />
         </View>
         <Text>{format(new Date(), 'dd/MM/yyyy')}</Text>

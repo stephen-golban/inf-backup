@@ -18,5 +18,7 @@ export * from './contact';
 export * from './settings';
 export * from './calendar';
 export * from './question';
+export * from './sync-problem';
 export * from './person-search';
 export * from './notifications';
+export * from './switch-account';
