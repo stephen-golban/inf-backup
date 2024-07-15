@@ -12,8 +12,9 @@ interface ICommitmentCount {
 const CommitmentCount: React.FC<ICommitmentCount> = props => {
   const { activePositiveCommitments, activeNegativeCommitments, onOrderReport } = props;
   return (
-    <View>
-      <View bg="lightGray" px="md" py="sm" shadow="card" row center>
+    <View bg="white">
+      <Divider isHorizontal />
+      <View px="md" py="sm" row center>
         <Text color="forestGreen" variant="12-reg">
           {`${activePositiveCommitments} `}
         </Text>
@@ -21,7 +22,8 @@ const CommitmentCount: React.FC<ICommitmentCount> = props => {
         <Text> </Text>
         <Text color="forestGreen" variant="12-reg" t18n="logged_in:credit_report_summary:positive_history" />
       </View>
-      <View bg="lightGray" px="md" py="sm" shadow="card" row center>
+      <Divider isHorizontal />
+      <View px="md" py="sm" row center>
         <Text color="forestGreen" variant="12-reg">
           {`${activeNegativeCommitments} `}
         </Text>

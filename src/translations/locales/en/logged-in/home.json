@@ -12,7 +12,10 @@
     "title": "What information would you like to find out?",
     "credit_report": "Credit report",
     "who_checked_credit": "Who checked my credit history?",
-    "new_credit": "New credit? Find out if you're eligible"
+    "new_credit": "New credit? Find out if you're eligible",
+    "credit_history_updates": "Latest credit history updates",
+    "payment_behavior": "Payment behavior",
+    "personal_data": "Personal data"
   },
   "own_data_check": {
     "who_checked": {

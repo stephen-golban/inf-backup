@@ -45,7 +45,7 @@ const CommitmentItem: React.FC<ICommitmentItem> = props => {
   };
 
   return (
-    <View bg="lightGray" px="md" py="lg" br={24} shadow="card">
+    <View bg="lightGray" px="md" py="lg" br={24}>
       <View row between center>
         {renderStatusLabel()}
         <View flex={1} mx="xs">

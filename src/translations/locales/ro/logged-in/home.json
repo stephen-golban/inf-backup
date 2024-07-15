@@ -12,7 +12,10 @@
     "title": "Ce informații ai vrea să afli?",
     "credit_report": "Raport de credit",
     "who_checked_credit": "Cine mi-a verificat istoricul creditor?",
-    "new_credit": "Credit nou? Află dacă ești eligibil"
+    "new_credit": "Credit nou? Află dacă ești eligibil",
+    "credit_history_updates": "Ultimele actualizări ale istoricului creditar",
+    "payment_behavior": "Comportament de plată",
+    "personal_data": "Date personale"
   },
   "own_data_check": {
     "who_checked": {

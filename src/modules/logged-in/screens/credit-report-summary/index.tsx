@@ -47,7 +47,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
   const isData = data || !isEmpty(commitments);
 
   return (
-    <View fill>
+    <View fill bg="white">
       <Screen pt="zero" scroll unsafe>
         <Header totalBalance={data?.creditReport?.primaryIndicators?.totalBalance || 0} />
         <View rg="sm" mt="lg">
