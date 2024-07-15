@@ -1,8 +1,7 @@
-import { useMount } from 'react-use';
 import { useAppStore } from '@store/app';
 import { useLazyAxios } from '@api/hooks';
 import { formatToCurrency } from '@library/method';
-import { useMemo, useCallback, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useToast } from 'react-native-toast-notifications';
 import { useTranslation, useTryCatch } from '@library/hooks';
 
@@ -50,8 +49,6 @@ function useCreditReport() {
       }
     });
   });
-
-  useMount(fetchCreditReport);
 
   const totalBalance = data?.creditReport.primaryIndicators.totalBalance ?? 0;
   const badgeCount = data?.creditReport.primaryIndicators.activeCommitmentsNr ?? 0;

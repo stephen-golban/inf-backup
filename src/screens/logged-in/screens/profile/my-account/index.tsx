@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { noop } from 'lodash';
+
 import useMyAccountScreen from './hooks';
 
 import { MyAccountModule } from '@modules/logged-in/screens';

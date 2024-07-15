@@ -8,18 +8,26 @@ import type { ICreditScoreResponse } from '@typings/responses';
 
 interface ICreditScore {
   onPress(): void;
+  fetchScore(): void;
   loading?: boolean;
   data: ICreditScoreResponse | undefined;
 }
 
-const CreditScore: React.FC<ICreditScore> = ({ data, loading, onPress }) => {
+const CreditScore: React.FC<ICreditScore> = ({ data, loading, onPress, fetchScore }) => {
   return (
-    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={180}>
+    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={data ? 180 : 120}>
       {loading ? (
         <Loader />
       ) : !data ? (
-        <View p="lg" px="md" rg="sm" w="100%" h="100%">
-          <Image source={require('@assets/images/x-fail.png')} />
+        <View p="lg" px="md" rg="sm" w="100%" h="100%" center>
+          <Text
+            textAlign="center"
+            onPress={fetchScore}
+            color="blue"
+            textDecorationLine="underline"
+            t18n="logged_in:home:check_credit_report"
+            variant="16-semi"
+          />
         </View>
       ) : (
         <View p="lg" px="md" rg="sm">

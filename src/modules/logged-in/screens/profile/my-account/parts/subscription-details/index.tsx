@@ -28,7 +28,7 @@ const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
       <View my="md" bg="lightBlue" btw={1.2} bbw={1.2} bc="blue">
         <View p="md" bbw={1.2} bc="blue" row between>
           <Text variant="14-reg"> {subscriptionInfo.name}</Text>
-          <Text variant="14-reg">{currencyFormat(subscriptionInfo.price!)}</Text>
+          <Text variant="14-reg">{subscriptionInfo?.price! > 0 && currencyFormat(subscriptionInfo.price!)}</Text>
         </View>
         <View p="md" row between>
           <Text variant="14-reg" t18n="profile:my_account:subscription_details:next_payment" />

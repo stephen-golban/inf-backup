@@ -6,16 +6,18 @@ import { FormInput, Text } from '@components/common';
 
 interface ILoggedOutPhoneInput {
   value: string;
+  autoFocus?: boolean;
   onSubmitEditing?(): void;
   onChange(value: string): void;
 }
 
-const LoggedOutPhoneInput = React.forwardRef<any, ILoggedOutPhoneInput>(({ onChange, onSubmitEditing, value }, ref) => {
+const LoggedOutPhoneInput = React.forwardRef<any, ILoggedOutPhoneInput>(({ onChange, onSubmitEditing, value, autoFocus = false }, ref) => {
   const { removeWhiteSpaces, validatePhoneNumberValue, validatedPhoneNumberPlaceholder } = usePhoneNumberService();
 
   return (
     <FormInput
       ref={ref}
+      autoFocus={autoFocus}
       name="phone"
       maxLength={10}
       autoComplete="tel"

@@ -6,12 +6,16 @@
 
   "active_debt_amount": "Сумма долга",
   "obligations_history": "История обязательств",
+  "check_credit_report":"Проверить кредитный отчет",
 
   "info": {
     "title": "Какую информацию вы хотите узнать?",
     "credit_report": "Кредитный отчет",
     "who_checked_credit": "Кто проверил мою кредитную историю?",
-    "new_credit": "Новый кредит? Узнайте, имеете ли вы право"
+    "new_credit": "Новый кредит? Узнайте, имеете ли вы право",
+    "credit_history_updates": "Последние обновления кредитной истории",
+    "payment_behavior": "Платежное поведение",
+    "personal_data": "Персональные данные"
   },
 
   "own_data_check": {

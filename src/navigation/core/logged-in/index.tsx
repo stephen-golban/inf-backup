@@ -10,6 +10,7 @@ import { Screen } from '@components/common';
 import { Screens } from '@screens/logged-in';
 
 import { APP_SCREEN, LOGGED_IN_STACK, type LoggedInStackParams, type RootStackScreenProps } from '@typings/navigation';
+import { useGetNomenclatures } from '@services/nomenclatures';
 
 const Stack = createNativeStackNavigator<LoggedInStackParams>();
 
@@ -20,8 +21,10 @@ const LoggedInStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_IN>> = () =
 
   const { loading: loadingSubscription } = useGetSubscription(true);
 
+  const { loading: loadingNomenclatures } = useGetNomenclatures('STAGES');
+
   return (
-    <Screen bg="primary" excludeEdges={['bottom']} loading={loading || loadingSubscription}>
+    <Screen bg="primary" excludeEdges={['bottom']} loading={loading || loadingSubscription || loadingNomenclatures}>
       <Stack.Navigator initialRouteName={LOGGED_IN_STACK.TABS} screenOptions={{ header: props => renderHeader(props) }}>
         <Stack.Screen name={LOGGED_IN_STACK.TABS} component={Tabs} />
         <Stack.Screen name={LOGGED_IN_STACK.SCREENS} component={Screens} />

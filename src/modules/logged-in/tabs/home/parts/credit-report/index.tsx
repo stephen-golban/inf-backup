@@ -12,14 +12,22 @@ interface ICreditReport extends Report {
   onPress(): void;
 }
 
-const CreditReport: React.FC<ICreditReport> = ({ badgeCount, data, formattedCount, loading, onPress }) => {
+const CreditReport: React.FC<ICreditReport> = ({ badgeCount, data, formattedCount, loading, refetch, onPress }) => {
   return (
-    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={180}>
+    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={data ? 180 : 120}>
       {loading ? (
         <Loader />
       ) : !data ? (
         <View p="lg" px="md" rg="md" w="100%" h="100%">
-          <Image source={require('@assets/images/x-fail.png')} />
+          <BaseButton onPress={refetch} fill br="md" center>
+            <Text
+              textAlign="center"
+              color="blue"
+              textDecorationLine="underline"
+              t18n="logged_in:home:check_credit_report"
+              variant="16-semi"
+            />
+          </BaseButton>
         </View>
       ) : (
         <View p="lg" px="md" rg="md">
