@@ -14,9 +14,10 @@ const SectionsScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.SECTIONS>
 
   return (
     <SectionsModule
+      onOpenFaq={() => navigation.navigate(PROFILE_SCREENS.FAQ)}
       onEdit={noop}
       onLogout={logout}
-      onOpenContacts={noop}
+      onOpenContacts={() => navigation.navigate(PROFILE_SCREENS.CONTACTS)}
       onOpenSettings={noop}
       onInviteFriends={noop}
       onOpenMyNotitications={noop}

@@ -25,7 +25,7 @@ const InfoBox: React.FC<IInfoBox> = props => {
       </View>
       <View my="sm">
         <Text px="lg" variant="16-bold" textAlign="center" t18n="logged_in:home:info:credit_history_updates" my="md" />
-        <Icon icon="CalendarIcon" absolute right={10} />
+        <Icon icon="InfoIcon" absolute right={10} />
       </View>
       <View bg="white" row between p="md" shadow="card">
         <View row center g="sm">

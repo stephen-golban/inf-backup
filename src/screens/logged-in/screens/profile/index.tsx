@@ -1,6 +1,8 @@
 import React from 'react';
 
+import FaqScreen from './faq';
 import { SectionsScreen } from './sections';
+import { ContactsScreen } from './contacts';
 import { MyAccountScreen } from './my-account';
 import ChangePassword from './change-password';
 
@@ -14,8 +16,10 @@ const ProfileStack: React.FC<LoggedInScreensProps<LOGGED_IN_SCREENS.PROFILE>> = 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={PROFILE_SCREENS.SECTIONS} component={SectionsScreen} />
+      <Stack.Screen name={PROFILE_SCREENS.CONTACTS} component={ContactsScreen} />
       <Stack.Screen name={PROFILE_SCREENS.MY_ACCOUNT} component={MyAccountScreen} />
       <Stack.Screen name={PROFILE_SCREENS.CHANGE_PASSWORD} component={ChangePassword} />
+      <Stack.Screen name={PROFILE_SCREENS.FAQ} component={FaqScreen} />
     </Stack.Navigator>
   );
 };

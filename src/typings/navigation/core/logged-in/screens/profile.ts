@@ -3,6 +3,8 @@ import { LOGGED_IN_SCREENS, LoggedInScreensProps } from './index';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export enum PROFILE_SCREENS {
+  'FAQ' = 'FAQ',
+  'CONTACTS' = 'CONTACTS',
   'SECTIONS' = 'SECTIONS',
   'MY_ACCOUNT' = 'MY_ACCOUNT',
   'DELETE_ACCOUNT' = 'DELETE_ACCOUNT',
@@ -10,6 +12,8 @@ export enum PROFILE_SCREENS {
 }
 
 export type ProfileStackParams = {
+  [PROFILE_SCREENS.FAQ]: undefined;
+  [PROFILE_SCREENS.CONTACTS]: undefined;
   [PROFILE_SCREENS.SECTIONS]: undefined;
   [PROFILE_SCREENS.MY_ACCOUNT]: undefined;
   [PROFILE_SCREENS.DELETE_ACCOUNT]: undefined;
