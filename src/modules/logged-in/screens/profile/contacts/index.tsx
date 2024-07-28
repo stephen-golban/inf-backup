@@ -1,13 +1,14 @@
 import React from 'react';
 
+import { Linking } from 'react-native';
+
 import { useTheme } from '@theme/index';
 
+import { Divider } from '@components/ui/divider';
 import { BaseButton, Icon, Screen, Text, View } from '@components/common';
 
 import { IContactsResponse } from '@typings/responses/contacts';
-import { Divider } from '@components/ui/divider';
 import { fullPhoneNumberFormatter } from '@services/phone-number';
-import { Linking } from 'react-native';
 
 interface IContactsModule {
   contacts?: IContactsResponse;
@@ -24,7 +25,7 @@ const ContactsModule: React.FC<IContactsModule> = ({ contacts }) => {
         </View>
         <Divider isHorizontal mt="sm" mb="md" />
         {contacts?.contactData.phones.map(phone => (
-          <Text my="sm" variant="14-reg">
+          <Text my="sm" variant="14-reg" key={'contacts-phone-number' + phone}>
             {fullPhoneNumberFormatter(phone)}
           </Text>
         ))}
@@ -36,7 +37,7 @@ const ContactsModule: React.FC<IContactsModule> = ({ contacts }) => {
         </View>
         <Divider isHorizontal mt="sm" mb="md" />
         {contacts?.contactData.emails.map(email => (
-          <BaseButton onPress={() => Linking.openURL(`mailto:${email}`)}>
+          <BaseButton key={'contacts-email' + email} onPress={() => Linking.openURL(`mailto:${email}`)}>
             <Text my="sm" variant="14-reg" textDecorationLine="underline">
               {email}
             </Text>
@@ -50,7 +51,7 @@ const ContactsModule: React.FC<IContactsModule> = ({ contacts }) => {
         </View>
         <Divider isHorizontal mt="sm" mb="md" />
         {contacts?.contactData.webSites.map(webPage => (
-          <Text my="sm" variant="14-reg" textDecorationLine="underline">
+          <Text key={'contacts-webpage' + webPage} my="sm" variant="14-reg" textDecorationLine="underline">
             {webPage}
           </Text>
         ))}

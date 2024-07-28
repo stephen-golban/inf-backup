@@ -1,17 +1,23 @@
 import React from 'react';
-
+import { ActivityIndicator } from 'react-native';
 import RowBox from './Row.Box';
-import { Icon, Text, View } from '@components/common';
 import { format } from 'date-fns';
+import { Icon, Text, View } from '@components/common';
 
 interface IInfoBox {
+  loading: boolean;
+  subjectDate: Date;
+  maxUpdateDate?: string;
+
+  fetchReport(): void;
   onPressNewCredit(): void;
   onPressCreditReport(): void;
   onPressWhoCheckedCredit(): void;
 }
 
 const InfoBox: React.FC<IInfoBox> = props => {
-  const { onPressCreditReport, onPressNewCredit, onPressWhoCheckedCredit } = props;
+  const { loading, subjectDate, maxUpdateDate, fetchReport, onPressCreditReport, onPressNewCredit, onPressWhoCheckedCredit } = props;
+
   return (
     <View fill py="lg" bg="lightGray" br="xl" bblr={0} bbrr={0} mt="lg">
       <View px="md">
@@ -32,7 +38,13 @@ const InfoBox: React.FC<IInfoBox> = props => {
           <Icon icon="SyncProblem" />
           <Text variant="14-bold" g="md" t18n="logged_in:home:info:payment_behavior" />
         </View>
-        <Text>{format(new Date(), 'dd/MM/yyyy')}</Text>
+        {subjectDate ? (
+          <Text>{format(subjectDate, 'dd/MM/yyyy')}</Text>
+        ) : loading ? (
+          <ActivityIndicator size="small" color="#0000ff" />
+        ) : (
+          <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="14-semi" color="blue" />
+        )}
       </View>
       <View my="sm" />
       <View bg="white" row between p="md" shadow="card">
@@ -40,7 +52,13 @@ const InfoBox: React.FC<IInfoBox> = props => {
           <Icon icon="SwitchAccount" />
           <Text variant="14-bold" g="md" t18n="logged_in:home:info:personal_data" />
         </View>
-        <Text>{format(new Date(), 'dd/MM/yyyy')}</Text>
+        {maxUpdateDate ? (
+          <Text>{format(maxUpdateDate, 'dd/MM/yyyy')}</Text>
+        ) : loading ? (
+          <ActivityIndicator size="small" color="#0000ff" />
+        ) : (
+          <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="14-semi" color="blue" />
+        )}
       </View>
     </View>
   );
