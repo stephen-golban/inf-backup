@@ -15,7 +15,8 @@
     "new_credit": "New credit? Find out if you're eligible",
     "credit_history_updates": "Latest credit history updates",
     "payment_behavior": "Payment behavior",
-    "personal_data": "Personal data"
+    "personal_data": "Personal data",
+    "update": "Update"
   },
   "own_data_check": {
     "who_checked": {
@@ -25,7 +26,10 @@
       "unique_checks_days_plural": "in the last {{days}} days",
       "unique_checks_companies_singular": "by {{companies}} company",
       "unique_checks_companies_plural": "by {{companies}} companies",
-      "no_checks_message": "The inquiry list is empty. We will notify you when new checks appear."
+      "no_checks_message": "The inquiry list is empty. We will notify you when new checks appear.",
+      "who_checked_me": "Who checked me?",
+      "order_report": "Order the report",
+      "financial_health": "Financial health"
     },
     "new_credit": {
       "button": "Order Report",

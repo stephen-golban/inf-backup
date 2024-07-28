@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-native'; // Importăm butonul din React Native
 
 import useHomeModule from './hooks';
 
@@ -21,13 +20,27 @@ interface IHomeModule {
 const HomeModule: React.FC<IHomeModule> = ({ onPressCreditReport, onPressCreditScore, infoBox }) => {
   const { refetch, report, fetchScore, score, scoreLoading } = useHomeModule();
 
+  const maxUpdateDate = Object.values(report?.data?.creditReport.commitments || [])
+    .filter(commitments => commitments.length > 0)
+    .flat()
+    .reduce<string | null>(
+      (maxDate, { updateDate }) => (!maxDate || new Date(updateDate) > new Date(maxDate) ? updateDate : maxDate),
+      null,
+    );
+
   return (
-    <Screen unsafe scroll bg="white" onRefresh={refetch} style={{ paddingHorizontal: 0, flex: 1, paddingBottom: 0 }}>
+    <Screen unsafe scroll bg="white" onRefresh={refetch} style={{ paddingHorizontal: 0, paddingBottom: 0 }}>
       <View row cg="md" px="md">
         <CreditScore fetchScore={fetchScore} data={score!} loading={scoreLoading} onPress={() => onPressCreditScore(score!)} />
         <CreditReport {...report} onPress={() => (report.data ? onPressCreditReport(report.data!) : null)} />
       </View>
-      <InfoBox {...infoBox} />
+      <InfoBox
+        loading={report.loading}
+        fetchReport={report.refetch}
+        maxUpdateDate={maxUpdateDate!}
+        subjectDate={report.data?.creditReport.subjectUpdateDate!}
+        {...infoBox}
+      />
     </Screen>
   );
 };

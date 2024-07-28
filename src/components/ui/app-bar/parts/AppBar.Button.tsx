@@ -34,7 +34,7 @@ const AppBarButton: React.FC<IAppBarButton> = props => {
   return (
     <BaseButton onPress={onPress} center>
       <View w={40} h={40} center bbw={focused ? 1 : 0} bbc={focused ? 'white' : 'transparent'}>
-        <Icon icon={icon} size={28} />
+        <Icon icon={icon} size={22} />
       </View>
     </BaseButton>
   );

@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import useHomeModule from '../../hooks';
 
 import { Loader } from '@components/ui';
-import { BaseButton, Icon, Image, Text, View } from '@components/common';
+import { BaseButton, Icon, Text, View } from '@components/common';
 
 type Report = ReturnType<typeof useHomeModule>['report'];
 

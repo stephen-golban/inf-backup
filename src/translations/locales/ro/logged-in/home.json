@@ -15,7 +15,8 @@
     "new_credit": "Credit nou? Află dacă ești eligibil",
     "credit_history_updates": "Ultimele actualizări ale istoricului creditar",
     "payment_behavior": "Comportament de plată",
-    "personal_data": "Date personale"
+    "personal_data": "Date personale",
+    "update": "Verifică"
   },
   "own_data_check": {
     "who_checked": {
@@ -25,7 +26,10 @@
       "unique_checks_days_plural": "în ultimele {{days}} zile",
       "unique_checks_companies_singular": "de către {{companies}} companie",
       "unique_checks_companies_plural": "de către {{companies}} companii",
-      "no_checks_message": "Lista interpelărilor este goală. Te vom anunța printr-o notificare când apar verificări noi."
+      "no_checks_message": "Lista interpelărilor este goală. Te vom anunța printr-o notificare când apar verificări noi.",
+      "who_checked_me": "Cine m-a verificat?",
+      "order_report": "Comandă raportul",
+      "financial_health": "Bonitate financiară"
     },
     "new_credit": {
       "button": "Comandă Raportul",

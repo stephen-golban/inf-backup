@@ -19,7 +19,7 @@ const validatePhoneNumberValue = (val: string) => {
   return phoneFormatter(PHONE_UTILS.phonePattern, validatePhone(val));
 };
 
-const fullPhoneNumberFormatter = (val: string): string => {
+export const fullPhoneNumberFormatter = (val: string): string => {
   return phoneFormatter(PHONE_UTILS.fullPhonePattern, val);
 };
 

@@ -15,7 +15,8 @@
     "new_credit": "Новый кредит? Узнайте, имеете ли вы право",
     "credit_history_updates": "Последние обновления кредитной истории",
     "payment_behavior": "Платежное поведение",
-    "personal_data": "Персональные данные"
+    "personal_data": "Персональные данные",
+    "update": "Проверить"
   },
 
   "own_data_check": {
@@ -26,7 +27,10 @@
       "unique_checks_days_plural": "за последние {{days}} дней",
       "unique_checks_companies_singular": "от {{companies}} компании",
       "unique_checks_companies_plural": "от {{companies}} компаний",
-      "no_checks_message": "Список запросов пуст. Мы уведомим вас, когда появятся новые проверки."
+      "no_checks_message": "Список запросов пуст. Мы уведомим вас, когда появятся новые проверки.",
+      "who_checked_me": "Кто меня проверил?",
+      "order_report": "Заказать отчет",
+      "financial_health": "Финансовое состояние"
     },
     "new_credit": {
       "button": "Заказать Отчет",
