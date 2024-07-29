@@ -19,7 +19,10 @@
     "password_placeholder": "Parolă",
     "password_confirm_placeholder": "Confirmați parola",
     "first_name_placeholder": "Prenume",
-    "last_name_placeholder": "Nume"
+    "last_name_placeholder": "Nume",
+    "negative_feedback": "Ce nu-ți place la aplicația MyInfoDebit?",
+    "neutral_feedback": "Vrem să aflăm părerea dvs. despre aplicație",
+    "positive_feedback": "Excelent, spuneți-ne de ce vă place aplicația"
   },
 
   "toasts": {

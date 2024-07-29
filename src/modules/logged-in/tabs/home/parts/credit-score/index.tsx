@@ -25,7 +25,7 @@ const CreditScore: React.FC<ICreditScore> = ({ data, loading, onPress, fetchScor
             onPress={fetchScore}
             color="blue"
             textDecorationLine="underline"
-            t18n="logged_in:home:check_credit_report"
+            t18n="logged_in:home:check_your_credit_score"
             variant="16-semi"
           />
         </View>

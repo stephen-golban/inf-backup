@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { isIos } from '@library/method';
 
 import { StarRating } from '@components/ui';
-import { Controller } from 'react-hook-form';
+import { Controller, useWatch } from 'react-hook-form';
 import { ratings_form_schema } from './resolver';
 import { Platform, KeyboardAvoidingView, useWindowDimensions } from 'react-native';
 import { BottomSheet, FilledButton, Form, FormInput, Text, View } from '@components/common';
@@ -64,45 +64,59 @@ const RatingModal: React.FC<IRatingModal> = props => {
               t18n="logged_in:home:own_data_check:who_checked:app_satisfied_overall"
             />
             <Form defaultValues={DEFAULT_VALUES} resolver={ratings_form_schema}>
-              {({ control, formState, handleSubmit }) => (
-                <View style={{ paddingBottom: keyboardHeight + insets.bottom + 50 }}>
-                  <Controller
-                    control={control}
-                    name="rating"
-                    render={({ field }) => (
-                      <View center>
-                        <StarRating
-                          rating={field.value}
-                          enableHalfStar={false}
-                          onChange={(newRating: number) => field.onChange(newRating || 1)}
-                        />
-                      </View>
-                    )}
-                  />
-                  <FormInput
-                    autoFocus
-                    style={{ backgroundColor: colors.white, borderRadius: spacing.xs }}
-                    multiline
-                    maxLength={300}
-                    name="comment"
-                    autoCorrect={false}
-                    autoCapitalize="none"
-                  />
-                  <FilledButton
-                    br="xs"
-                    mt="md"
-                    bg="blue"
-                    loading={loading}
-                    disabled={!formState.isValid}
-                    t18n="logged_in:home:info:send"
-                    onPress={handleSubmit(async ({ rating, comment }) => {
-                      await call({ stars: rating, message: comment });
-                      onDismiss();
-                      toast.show(t('ui:toasts:rating_submitted_successfully'), { type: 'success' });
-                    })}
-                  />
-                </View>
-              )}
+              {({ control, formState, handleSubmit }) => {
+                const rating = useWatch({ control, name: 'rating' });
+                let placeholder = t('ui:placeholders:neutral_feedback');
+
+                if (rating >= 1 && rating <= 2) {
+                  placeholder = t('ui:placeholders:negative_feedback');
+                } else if (rating >= 3 && rating <= 4) {
+                  placeholder = t('ui:placeholders:neutral_feedback');
+                } else if (rating === 5) {
+                  placeholder = t('ui:placeholders:positive_feedback');
+                }
+
+                return (
+                  <View style={{ paddingBottom: keyboardHeight + insets.bottom + 50 }}>
+                    <Controller
+                      control={control}
+                      name="rating"
+                      render={({ field }) => (
+                        <View center>
+                          <StarRating
+                            rating={field.value}
+                            enableHalfStar={false}
+                            onChange={(newRating: number) => field.onChange(newRating || 1)}
+                          />
+                        </View>
+                      )}
+                    />
+                    <FormInput
+                      autoFocus
+                      style={{ backgroundColor: colors.white, borderRadius: spacing.xs }}
+                      multiline
+                      maxLength={300}
+                      name="comment"
+                      autoCorrect={false}
+                      autoCapitalize="none"
+                      placeholder={placeholder}
+                    />
+                    <FilledButton
+                      br="xs"
+                      mt="md"
+                      bg="blue"
+                      loading={loading}
+                      disabled={!formState.isValid}
+                      t18n="logged_in:home:info:send"
+                      onPress={handleSubmit(async ({ rating, comment }) => {
+                        await call({ stars: rating, message: comment });
+                        onDismiss();
+                        toast.show(t('ui:toasts:rating_submitted_successfully'), { type: 'success' });
+                      })}
+                    />
+                  </View>
+                );
+              }}
             </Form>
           </View>
         </View>
