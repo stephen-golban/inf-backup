@@ -1,7 +1,8 @@
 import React from 'react';
 import { isIos } from '@library/method';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AppBarButton from './parts/AppBar.Button';
-import { InformationModal } from '@modules/modals';
+import { InformationModal, RatingModal } from '@modules/modals';
 import { BaseButton, Icon, IconType, View } from '@components/common';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { LOGGED_IN_SCREENS, LOGGED_IN_STACK, OWN_DATA_CHECK_SCREENS } from '@typings/navigation';
@@ -12,11 +13,12 @@ const TAB_ICONS = {
   Like: 'LikeIcon',
 };
 
-const HEIGHT_APP_BAR = isIos ? 70 : 60;
-const PADDING_BOTTOM_APP_BAR = isIos ? 'md' : 'xs';
-
 const AppBar: React.FC<BottomTabBarProps> = props => {
   const { state, navigation } = props;
+  const insets = useSafeAreaInsets();
+
+  const HEIGHT_APP_BAR = isIos && insets.bottom > 0 ? 70 : 60;
+  const PADDING_BOTTOM_APP_BAR = isIos && insets.bottom > 0 ? 'md' : 'xs';
 
   const [toggleInfoModal, setToggleInfoModal] = React.useState<boolean>(false);
   const [toggleRatingModal, setToggleRatingModal] = React.useState<boolean>(false);
@@ -61,6 +63,8 @@ const AppBar: React.FC<BottomTabBarProps> = props => {
           navigate(OWN_DATA_CHECK_SCREENS.WhoCheckCredit);
         }}
       />
+
+      <RatingModal isVisible={toggleRatingModal} onDismiss={() => setToggleRatingModal(false)} />
     </View>
   );
 };

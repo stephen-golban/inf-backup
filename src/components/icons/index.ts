@@ -10,6 +10,7 @@ export * from './file';
 export * from './edit';
 export * from './info';
 export * from './mail';
+export * from './stars';
 export * from './badge';
 export * from './phone';
 export * from './close';

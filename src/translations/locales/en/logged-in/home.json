@@ -16,7 +16,8 @@
     "credit_history_updates": "Latest credit history updates",
     "payment_behavior": "Payment behavior",
     "personal_data": "Personal data",
-    "update": "Update"
+    "update": "Update",
+    "send": "Send"
   },
   "own_data_check": {
     "who_checked": {
@@ -29,7 +30,8 @@
       "no_checks_message": "The inquiry list is empty. We will notify you when new checks appear.",
       "who_checked_me": "Who checked me?",
       "order_report": "Order the report",
-      "financial_health": "Financial health"
+      "financial_health": "Financial health",
+      "app_satisfied_overall": "How satisfied are you with the MyInfoDebit app overall?"
     },
     "new_credit": {
       "button": "Order Report",

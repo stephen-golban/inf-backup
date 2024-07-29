@@ -26,6 +26,7 @@
     "limit_was_exceeded": "Лимит был превышен",
     "subscription_expired": "Срок действия подписки истек!",
     "no_subscription_purchased": "Нет купленной подписки",
+    "rating_submitted_successfully": "Оценка успешно отправлена",
     "user_subscription_no_access": "Услуга не включена в подписку"
   }
 }

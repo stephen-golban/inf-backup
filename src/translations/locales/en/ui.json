@@ -26,6 +26,7 @@
     "limit_was_exceeded": "The limit has been exceeded",
     "subscription_expired": "The subscription was expired",
     "no_subscription_purchased": "No subscription purchased",
+    "rating_submitted_successfully": "Rating submitted successfully",
     "user_subscription_no_access": "Service not included in subscription"
   }
 }

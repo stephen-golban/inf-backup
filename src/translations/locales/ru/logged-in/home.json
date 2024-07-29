@@ -16,7 +16,8 @@
     "credit_history_updates": "Последние обновления кредитной истории",
     "payment_behavior": "Платежное поведение",
     "personal_data": "Персональные данные",
-    "update": "Проверить"
+    "update": "Проверить",
+    "send": "Отправить"
   },
 
   "own_data_check": {
@@ -30,7 +31,8 @@
       "no_checks_message": "Список запросов пуст. Мы уведомим вас, когда появятся новые проверки.",
       "who_checked_me": "Кто меня проверил?",
       "order_report": "Заказать отчет",
-      "financial_health": "Финансовое состояние"
+      "financial_health": "Финансовое состояние",
+      "app_satisfied_overall": "Насколько вы довольны приложением MyInfoDebit в целом?"
     },
     "new_credit": {
       "button": "Заказать Отчет",

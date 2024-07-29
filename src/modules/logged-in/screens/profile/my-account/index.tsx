@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useTheme } from '@theme/index';
+import { useAppStore } from '@store/app';
 import { Divider } from '@components/ui/divider';
 import ChangeSubscriptionModule from '../change-subscription';
 import { AccountDetails, SubscriptionDetails } from './parts';
@@ -8,9 +9,7 @@ import { BottomSheet, OutlinedButton, Screen } from '@components/common';
 
 import { formatPhoneNumber } from '@library/method';
 
-import { User } from '@typings/user';
 import { IAllSubscriptionsResponse, SubscriptionInfo } from '@typings/responses';
-import { useAppStore } from '@store/app';
 
 interface IMyAccountModule {
   loading?: boolean;

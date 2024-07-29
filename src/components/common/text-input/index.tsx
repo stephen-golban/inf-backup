@@ -88,6 +88,7 @@ const TextInput = React.forwardRef((props: TextInputProps, ref: React.ForwardedR
           editable={editable}
           style={renderStyle}
           multiline={multiline}
+          textAlignVertical="top"
           onBlur={fns.handleBlur}
           clearButtonMode={'never'}
           onFocus={fns.handleFocus}

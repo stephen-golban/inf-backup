@@ -48,7 +48,7 @@ export const LIGHT_THEME_BASE_COLORS = {
 export const DARK_THEME_BASE_COLORS = {
   ...palette,
 
-  primary: palette.richBlue,
+  primary: palette.white,
   secondary: palette.white,
 
   lightGray_to_lightBlue: palette.lightBlue,
