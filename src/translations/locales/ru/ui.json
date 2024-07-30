@@ -19,13 +19,17 @@
     "password_placeholder": "Пароль",
     "password_confirm_placeholder": "Подтвердите пароль",
     "first_name_placeholder": "Имя",
-    "last_name_placeholder": "Фамилия"
+    "last_name_placeholder": "Фамилия",
+    "negative_feedback": "Что вам не нравится в приложении MyInfoDebit?",
+    "neutral_feedback": "Мы хотим услышать ваше мнение о приложении",
+    "positive_feedback": "Отлично, расскажите нам, почему вам нравится приложение"
   },
 
   "toasts": {
     "limit_was_exceeded": "Лимит был превышен",
     "subscription_expired": "Срок действия подписки истек!",
     "no_subscription_purchased": "Нет купленной подписки",
+    "rating_submitted_successfully": "Оценка успешно отправлена",
     "user_subscription_no_access": "Услуга не включена в подписку"
   }
 }

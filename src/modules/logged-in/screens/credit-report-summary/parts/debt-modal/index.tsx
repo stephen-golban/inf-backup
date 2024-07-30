@@ -1,4 +1,10 @@
 import React from 'react';
+import { isIos } from '@library/method';
+
+import { useWindowDimensions } from 'react-native';
+import useKeyboardHeight from '@api/hooks/use-keyboard-height';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { LoggedOutPhoneInput } from '@modules/logged-out/parts';
 import { BottomSheet, FilledButton, Form, Text, View } from '@components/common';
 
@@ -9,31 +15,23 @@ interface IDebtModal {
   onPressYes(args: DebtModalPhone): void;
 }
 
-const DEFAULT_VALUES = {
-  phone: '',
-};
-
-import { yupResolver } from '@hookform/resolvers/yup';
-import { stringifyObjectValidate } from '@library/string';
-
-import { type InferType, object, string } from 'yup';
-
-const shape = object({
-  phone: string()
-    .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))
-    .min(8, stringifyObjectValidate({ keyT: 'validation:min_chars_length', options: { count: 8 } })),
-});
-
-const debt_modal_phone = yupResolver(shape);
-
-type DebtModalPhone = InferType<typeof shape>;
-
-export { debt_modal_phone, type DebtModalPhone };
+import { DEFAULT_VALUES, DebtModalPhone, debt_modal_phone } from './resolver';
 
 const DebtModal: React.FC<IDebtModal> = props => {
   const { isVisible, onPressYes, onPressNo } = props;
+
+  const insets = useSafeAreaInsets();
+  const { height } = useWindowDimensions();
+  const keyboardHeight = useKeyboardHeight();
+  const snapPoints = [
+    keyboardHeight
+      ? isIos
+        ? height - keyboardHeight - insets.bottom + 100
+        : height - keyboardHeight - insets.bottom - 100
+      : height * 0.85,
+  ];
   return (
-    <BottomSheet isVisible={isVisible} snapPoints={['80%']}>
+    <BottomSheet isVisible={isVisible} snapPoints={snapPoints}>
       <View px="lg">
         <Text my="sm" textAlign="center" variant="18-bold" t18n="logged_in:credit_report_summary:bottom_modal:get_out_of_debt_easier" />
         <Text

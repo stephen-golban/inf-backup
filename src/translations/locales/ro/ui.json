@@ -19,13 +19,17 @@
     "password_placeholder": "Parolă",
     "password_confirm_placeholder": "Confirmați parola",
     "first_name_placeholder": "Prenume",
-    "last_name_placeholder": "Nume"
+    "last_name_placeholder": "Nume",
+    "negative_feedback": "Ce nu-ți place la aplicația MyInfoDebit?",
+    "neutral_feedback": "Vrem să aflăm părerea dvs. despre aplicație",
+    "positive_feedback": "Excelent, spuneți-ne de ce vă place aplicația"
   },
 
   "toasts": {
     "limit_was_exceeded": "Limita a fost depășită",
     "subscription_expired": "Abonament expirat!",
     "no_subscription_purchased": "Nu aveți niciun abonament procurat",
+    "rating_submitted_successfully": "Evaluarea a fost trimisă cu succes",
     "user_subscription_no_access": "Serviciul nu este inclus în abonament"
   }
 }
