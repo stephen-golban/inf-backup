@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { isEmpty } from 'lodash';
+import { format } from 'date-fns';
 
 import { CheckItem, Header } from './parts';
 import { Screen, Text, View } from '@components/common';
@@ -15,7 +16,7 @@ interface IWhoCheckedCreditModule {
 
 const WhoCheckedCreditModule: React.FC<IWhoCheckedCreditModule> = ({ data, onRefresh, loading }) => {
   return (
-    <Screen loading={loading} pt="zero" scroll unsafe onRefresh={onRefresh}>
+    <Screen loading={loading} pt="zero" pb='lg' scroll unsafe onRefresh={onRefresh}>
       <View bg="lightBlue" br="xl" p="lg">
         <Header days={data?.checksPeriod || 0} count={data?.checksNumber || 0} companies={data?.requestorsNumber || 0} />
       </View>
@@ -25,7 +26,11 @@ const WhoCheckedCreditModule: React.FC<IWhoCheckedCreditModule> = ({ data, onRef
             <Text textAlign="center" t18n="logged_in:home:own_data_check:who_checked:no_checks_message" />
           </View>
         ) : (
-          data.checksData.map((item, idx) => <CheckItem orgName={item.orgName} checkId={item.checkId} checkDateTime={item.checkDateTime} />)
+          data.checksData.map((item, idx) => {
+            const checkDate = format(new Date(item.checkDateTime), 'yyyy-MM-dd');
+
+            return <CheckItem key={checkDate + item.checkId + idx} orgName={item.orgName} checkDateTime={item.checkDateTime} />;
+          })
         )}
       </View>
     </Screen>
