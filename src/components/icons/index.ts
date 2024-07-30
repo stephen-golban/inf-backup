@@ -25,6 +25,7 @@ export * from './settings';
 export * from './calendar';
 export * from './question';
 export * from './not-found';
+export * from './back-space';
 export * from './sync-problem';
 export * from './person-search';
 export * from './notifications';

@@ -3,10 +3,16 @@ import { StyleSheet } from 'react-native';
 
 import { ActivityIndicator, View, ViewProps } from '@components/common';
 
-const Loader: React.FC<ViewProps> = props => {
+import type { Color } from '@theme/colors';
+
+interface ILoader extends ViewProps {
+  color?: Color
+}
+
+const Loader: React.FC<ILoader> = ({ color = 'blue', ...props }) => {
   return (
     <View style={StyleSheet.absoluteFillObject} center zIndex="huge" {...props}>
-      <ActivityIndicator color="blue" />
+      <ActivityIndicator color={color} />
     </View>
   );
 };
