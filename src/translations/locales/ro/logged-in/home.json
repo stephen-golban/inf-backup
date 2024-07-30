@@ -7,6 +7,7 @@
   "active_debt_amount": "Suma datoriilor active",
   "obligations_history": "Istoric angajamente",
   "check_credit_report":"Verifică raportul de credit",
+  "check_your_credit_score": "Verifică scorul de credit",
 
   "info": {
     "title": "Ce informații ai vrea să afli?",
@@ -16,7 +17,8 @@
     "credit_history_updates": "Ultimele actualizări ale istoricului creditar",
     "payment_behavior": "Comportament de plată",
     "personal_data": "Date personale",
-    "update": "Verifică"
+    "update": "Verifică",
+    "send": "Trimite"
   },
   "own_data_check": {
     "who_checked": {
@@ -29,7 +31,8 @@
       "no_checks_message": "Lista interpelărilor este goală. Te vom anunța printr-o notificare când apar verificări noi.",
       "who_checked_me": "Cine m-a verificat?",
       "order_report": "Comandă raportul",
-      "financial_health": "Bonitate financiară"
+      "financial_health": "Bonitate financiară",
+      "app_satisfied_overall": "Cât de mulțumit ești de aplicația MyInfoDebit în general?"
     },
     "new_credit": {
       "button": "Comandă Raportul",
