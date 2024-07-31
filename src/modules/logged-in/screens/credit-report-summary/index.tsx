@@ -1,8 +1,9 @@
 import React from 'react';
 import { useAppStore } from '@store/app';
 import { isEmpty } from 'lodash';
+import { DebtModalPhone } from './parts/debt-modal/resolver';
 import { OutlinedButton, Screen, Text, View } from '@components/common';
-import { CommitmentCount, CommitmentItem, DebtModal, DebtModalPhone, EmptyState, GridItems, Header } from './parts';
+import { CommitmentCount, CommitmentItem, DebtModal, EmptyState, GridItems, Header } from './parts';
 import { StageNomenclatureResponse } from '@typings/responses/nomenclatures';
 import { ICreditReportSummaryResponse, IvePositiveCommitment } from '@typings/responses';
 

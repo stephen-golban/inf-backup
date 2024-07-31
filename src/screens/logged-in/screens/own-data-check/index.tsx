@@ -12,6 +12,7 @@ import {
   type LoggedInScreensProps,
   type OwnDataCheckScreensParamList,
 } from '@typings/navigation';
+import { ScoringDetailsScreen } from './scoring-details';
 
 const Stack = createNativeStackNavigator<OwnDataCheckScreensParamList>();
 
@@ -19,6 +20,7 @@ const OwnDataCheckStack: React.FC<LoggedInScreensProps<LOGGED_IN_SCREENS.OWN_DAT
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen component={NewCredit} name={OWN_DATA_CHECK_SCREENS.NewCredit} />
     <Stack.Screen component={WhoCheckedCredit} name={OWN_DATA_CHECK_SCREENS.WhoCheckCredit} />
+    <Stack.Screen component={ScoringDetailsScreen} name={OWN_DATA_CHECK_SCREENS.ScoringDetails} />
     <Stack.Screen component={CreditReportSummaryScreen} name={OWN_DATA_CHECK_SCREENS.CreditReportSummary} />
   </Stack.Navigator>
 );

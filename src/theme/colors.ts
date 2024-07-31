@@ -23,6 +23,9 @@ const palette = {
   gray_c8: 'rgb(200, 200, 200)', // #c8c8c8
 
   gold: 'rgb(255, 204, 0)',
+  tangerineOrange: 'rgba(253,108,0, 1)',
+  goldenYellow: 'rgba(254,194,0, 1)',
+  limeGreen: 'rgba(200,221,20, 1)',
 
   error: 'rgb(220, 20, 60)',
   success: 'rgb(58, 181, 75)',
