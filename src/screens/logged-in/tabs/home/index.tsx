@@ -26,7 +26,7 @@ const Home: React.FC<LoggedInTabsProps<LOGGED_IN_TABS.HOME>> = ({ navigation }) 
       onPressCreditScore={onPressCreditScore}
       infoBox={{
         onPressNewCredit: () => navigate(OWN_DATA_CHECK_SCREENS.NewCredit),
-        onPressCreditReport: () => navigate(OWN_DATA_CHECK_SCREENS.WhoCheckCredit),
+        onPressCreditReport: () => navigate(OWN_DATA_CHECK_SCREENS.CreditReportSummary),
         onPressWhoCheckedCredit: () => navigate(OWN_DATA_CHECK_SCREENS.WhoCheckCredit),
       }}
     />

@@ -21,6 +21,10 @@ enum SLICE_NAME {
   AUTHENTICATION = 'AUTHENTICATION_',
 }
 
+const PIN_CODE = {
+  pin: '@pin',
+};
+
 const REGEX = {
   number: /\d/,
   uppercase: /[A-Z]/,
@@ -29,4 +33,4 @@ const REGEX = {
     /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 };
 
-export { MMKV_KEY, API_CONFIG, SLICE_NAME, REGEX };
+export { MMKV_KEY, PIN_CODE, API_CONFIG, SLICE_NAME, REGEX };

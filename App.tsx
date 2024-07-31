@@ -4,6 +4,7 @@ import { useColorScheme } from 'react-native';
 import { setAppTheme, useAppStore } from '@store/app';
 import { internationalization } from '@translations/index';
 
+import { PinScreen } from '@screens/pin-screen';
 import { I18nextProvider } from 'react-i18next';
 import { ThemeProvider } from '@shopify/restyle';
 import ApplicationNavigator from '@navigation/index';
@@ -32,6 +33,7 @@ const MyApp = () => {
             <GestureHandlerRootView style={{ flex: 1 }}>
               <BottomSheetModalProvider>
                 <ApplicationNavigator />
+                <PinScreen />
               </BottomSheetModalProvider>
             </GestureHandlerRootView>
           </ToastProvider>
