@@ -18,42 +18,34 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
 
       <ScoringOptions
         image={require('@assets/images/scoring/grown.png')}
-        title="logged_in:home:own_data_check:credit_scoring:scoring:grown"
+        title="logged_in:home:own_data_check:credit_scoring:scoring_negative"
         color="crimsonRed"
         minValue={0}
-        maxValue={600}
+        maxValue={550}
         value={20}
       />
       <ScoringOptions
-        image={require('@assets/images/scoring/grown.png')}
-        title="logged_in:home:own_data_check:credit_scoring:scoring:medium"
-        color="tangerineOrange"
-        maxValue={601}
-        minValue={650}
-        value={40}
-      />
-      <ScoringOptions
         image={require('@assets/images/scoring/fair.png')}
-        title="logged_in:home:own_data_check:credit_scoring:scoring:fair"
+        title="logged_in:home:own_data_check:credit_scoring:scoring_neutral"
         color="goldenYellow"
-        maxValue={651}
-        minValue={700}
+        minValue={551}
+        maxValue={600}
         value={60}
       />
       <ScoringOptions
         image={require('@assets/images/scoring/lucky.png')}
-        title="logged_in:home:own_data_check:credit_scoring:scoring:lucky"
+        title="logged_in:home:own_data_check:credit_scoring:scoring_positive"
         color="limeGreen"
-        maxValue={701}
-        minValue={750}
+        minValue={601}
+        maxValue={650}
         value={80}
       />
       <ScoringOptions
         image={require('@assets/images/scoring/best.png')}
-        title="logged_in:home:own_data_check:credit_scoring:scoring:best"
+        title="logged_in:home:own_data_check:credit_scoring:scoring_excelent"
         color="forestGreen"
-        maxValue={751}
-        minValue={1000}
+        minValue={651}
+        maxValue={1000}
         value={100}
         hasDivider={false}
       />

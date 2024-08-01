@@ -1,37 +1,32 @@
-import { segmentColors, segmentThresholds } from '../constants';
-
+import { segmentColors } from '../constants';
 import type { ArrowLength } from '../typings';
 
 export const segmentTextPositions = [
   { x: 0, y: 68, angle: -73 },
-  { x: 37, y: 15, angle: -37 },
-  { x: 100, y: -5, angle: 0 },
-  { x: 160, y: 15, angle: 37 },
-  { x: 200, y: 68, angle: 73 },
+  { x: 60, y: 2, angle: -25 },
+  { x: 140, y: 2, angle: 20 },
+  { x: 198, y: 60, angle: 73 },
 ];
 
 export const segmentImagePositions = [
   { x: 16, y: 65, angle: 0 },
-  { x: 45, y: 30, angle: 0 },
-  { x: 88, y: 15, angle: 0 },
-  { x: 130, y: 30, angle: 0 },
-  { x: 160, y: 65, angle: 0 },
+  { x: 60, y: 25, angle: 0 },
+  { x: 115, y: 25, angle: 0 },
+  { x: 160, y: 60, angle: 0 },
 ];
 
 const ratingColors = [
-  { max: segmentThresholds[0], color: segmentColors.crimsonRed },
-  { max: segmentThresholds[1], color: segmentColors.tangerineOrange },
-  { max: segmentThresholds[2], color: segmentColors.goldenYellow },
-  { max: segmentThresholds[3], color: segmentColors.limeGreen },
-  { max: segmentThresholds[4], color: segmentColors.forestGreen },
+  { max: 550, color: segmentColors.crimsonRed },
+  { max: 600, color: segmentColors.goldenYellow },
+  { max: 650, color: segmentColors.limeGreen },
+  { max: 1000, color: segmentColors.forestGreen },
 ];
 
 export const creditScoringTexts = [
-  { max: segmentThresholds[0], key: 'grown' },
-  { max: segmentThresholds[1], key: 'medium' },
-  { max: segmentThresholds[2], key: 'fair' },
-  { max: segmentThresholds[3], key: 'lucky' },
-  { max: segmentThresholds[4], key: 'best' },
+  { max: 550, key: 'grown' },
+  { max: 600, key: 'fair' },
+  { max: 650, key: 'lucky' },
+  { max: 1000, key: 'best' },
 ];
 
 export const getRatingColor = (rating: number = 0): string => {
@@ -40,7 +35,6 @@ export const getRatingColor = (rating: number = 0): string => {
       return color;
     }
   }
-
   return segmentColors.crimsonRed;
 };
 
@@ -54,21 +48,29 @@ export const getArrowLength = (length: ArrowLength = 'small'): string => {
   return arrowPaths[length] || arrowPaths.small;
 };
 
-const arrowAngles = [
-  { max: segmentThresholds[0], angle: -81 },
-  { max: segmentThresholds[1], angle: -43 },
-  { max: segmentThresholds[2], angle: 0 },
-  { max: segmentThresholds[3], angle: 43 },
-  { max: segmentThresholds[4], angle: 81 },
+const segments = [
+  { min: 0, max: 550, angleRange: [-100, -55] },
+  { min: 551, max: 600, angleRange: [-50, -2] },
+  { min: 601, max: 650, angleRange: [2, 50] },
+  { min: 651, max: 1000, angleRange: [55, 100] },
 ];
 
 export const calculateArrowAngleDegree = (rating: number): number => {
-  for (const { max, angle } of arrowAngles) {
-    if (rating <= max) {
-      return angle;
+  for (const segment of segments) {
+    if (rating >= segment.min && rating <= segment.max) {
+      const [startAngle, endAngle] = segment.angleRange;
+      const normalizedRating = (rating - segment.min) / (segment.max - segment.min);
+      return startAngle + normalizedRating * (endAngle - startAngle);
     }
   }
-  return 0;
+
+  if (rating < segments[0].min) {
+    return segments[0].angleRange[0];
+  } else if (rating > segments[segments.length - 1].max) {
+    return segments[segments.length - 1].angleRange[1];
+  }
+
+  return -90;
 };
 
 export const calculateTopSegmentPathBorder = (index: number, total: number): string => {
