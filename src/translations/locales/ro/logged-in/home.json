@@ -44,6 +44,21 @@
         "title": "Ohhhh, nu!",
         "message": "Conform datelor Infodebit, ai zero șansele să obții un credit. Pentru a afla motivul, verifică acum Raportul istoriei tale de credit"
       }
+    },
+    "credit_scoring": {
+      "credit_score": "Scor de credit",
+        "grown": "Nu te descuraja, orice scor poate fi îmbunătățit!",
+        "medium": "Nu contează cât de încet mergi, nu te opri!",
+        "fair": "Ai încredere în tine și vei fi de neoprit.",
+        "lucky": "Ești capabil/ă de lucruri extraordinare.",
+        "best": "Felicitări, ești un exemplu demn de urmat!",
+      "scoring": {
+          "grown": "RISC SPORIT",
+          "medium": "RISC MEDIU",
+          "fair": "ECHITABIL",
+          "lucky": "OPORTUN",
+          "best": "EXCELENT"
+      }
     }
   }
 }

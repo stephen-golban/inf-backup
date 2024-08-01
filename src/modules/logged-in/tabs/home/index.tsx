@@ -31,7 +31,12 @@ const HomeModule: React.FC<IHomeModule> = ({ onPressCreditReport, onPressCreditS
   return (
     <Screen unsafe scroll bg="white" onRefresh={refetch} style={{ paddingHorizontal: 0, paddingBottom: 0 }}>
       <View row cg="md" px="md">
-        <CreditScore fetchScore={fetchScore} data={score!} loading={scoreLoading} onPress={() => onPressCreditScore(score!)} />
+        <CreditScore
+          fetchScore={fetchScore}
+          data={score!}
+          loading={scoreLoading}
+          onPress={() => (score ? onPressCreditScore(score!) : null)}
+        />
         <CreditReport {...report} onPress={() => (report.data ? onPressCreditReport(report.data!) : null)} />
       </View>
       <InfoBox

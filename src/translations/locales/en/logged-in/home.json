@@ -44,6 +44,21 @@
         "title": "Oh no!",
         "message": "According to Infodebit data, you have zero chance of getting a loan. To find out the reason, check your credit history report now"
       }
+    },
+    "credit_scoring": {
+      "credit_score": "Credit score",
+        "grown": "Don't be discouraged, any score can be improved!",
+        "medium": "No matter how slow you go, don't stop!",
+        "fair": "Trust yourself and you'll be unstoppable.",
+        "lucky": "You are capable of extraordinary things.",
+        "best": "Congratulations, you're an example worth following!",
+      "rating_meter": {
+          "grown": "GROWN",
+          "medium": "MEDIUM",
+          "fair": "FAIR",
+          "lucky": "LUCKY",
+          "best": "BEST"
+      }
     }
   }
 }
