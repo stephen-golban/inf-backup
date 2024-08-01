@@ -14,6 +14,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { THEME } from '@theme/index';
+import SplashScreen from 'react-native-splash-screen';
 
 const MyApp = () => {
   const scheme = useColorScheme();
@@ -24,6 +25,10 @@ const MyApp = () => {
       setAppTheme(scheme);
     }
   }, [scheme]);
+
+  React.useEffect(() => {
+    SplashScreen?.hide();
+  }, []);
 
   return (
     <SafeAreaProvider>
