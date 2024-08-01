@@ -100,7 +100,7 @@ const Scoring: React.FC<ScoringProps> = props => {
           {data.map((segment, index) => (
             <SvgText
               key={index}
-              fontSize="8"
+              fontSize="7"
               fontWeight="900"
               textAnchor="middle"
               fill={commonColors.ashGray}

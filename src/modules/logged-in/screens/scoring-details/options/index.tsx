@@ -23,13 +23,18 @@ const ScoringOptions: React.FC<IScoringOptionsProps> = props => {
   const { image, color, title, value, minValue, maxValue, hasDivider = true } = props;
   return (
     <View py="sm">
-      <View row my="md">
-        <Image source={image} w={36} h={36} resizeMode="contain" />
-        <View>
-          <Text color="black" variant="12-mid" t18n={title} />
-          <ProgressBar w={150} progress={value || 0} color={color} />
+      <View row my="md" justify="space-between">
+        <View row>
+          <View>
+            <Image source={image} w={36} h={36} />
+          </View>
+          <View ml="sm">
+            <Text color="black" variant="12-mid" t18n={title} />
+            <ProgressBar w={150} progress={value || 0} color={color} />
+          </View>
         </View>
-        <View ml="xxxl">
+
+        <View>
           <Text variant="12-reg">{t('logged_in:home:own_data_check:credit_scoring:credit_score')}</Text>
           <View row justify="flex-end">
             <Text color={color}>{minValue}</Text>

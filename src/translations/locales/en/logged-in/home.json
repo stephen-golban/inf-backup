@@ -52,13 +52,16 @@
         "fair": "Trust yourself and you'll be unstoppable.",
         "lucky": "You are capable of extraordinary things.",
         "best": "Congratulations, you're an example worth following!",
-      "rating_meter": {
-          "grown": "GROWN",
-          "medium": "MEDIUM",
-          "fair": "FAIR",
-          "lucky": "LUCKY",
-          "best": "BEST"
-      }
+        "scoring_negative": "Negative scoring",
+        "scoring_neutral": "Neutral scoring",
+        "scoring_positive": "Positive scoring",
+        "scoring_excelent": "Excellent scoring",
+        "scoring": {
+          "negative": "NEGATIVE",
+          "neutral": "NEUTRAL",
+          "positive": "POSITIVE",
+          "excelent": "EXCELLENT"
+        }
     }
   }
 }
