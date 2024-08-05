@@ -1,0 +1,30 @@
+{
+  "account_settings": "Setările contului",
+  "my_infodebit": "MyInfodebit",
+  "payment_history": "Istoricul achitărilor",
+  "newsletter": "Newsletter",
+  "sms": "SMS",
+  "notification_permissions": "Permisiuni pentru notificări",
+  "technical_feedback": "Feedback probleme tehnice",
+  "others": "Altele",
+  "privacy_policy": "Politica de securitate",
+  "terms_conditions": "Termeni și condiții",
+  "refund_cancellation_policy": "Condițiile și termenii de returnare a banilor sau anulării tranzacției",
+  "app_version": "Versiunea aplicației: 12.01.1",
+  "made_with_love": "Făcut cu ❤️ în Moldova",
+
+  "payment_history_screen": {
+    "my_card": "Cardul meu",
+    "no_cards_to_display": "Nu există carduri de afișat.",
+    "card_number": "1234 5678 9101 1121",
+    "cardholder_name": "Maricica V",
+    "pay_now": "Achită acum",
+    "due_date": "Data scadentă achitare: {{date}}",
+    "payment_history": "Istoric achitări",
+    "subscription": "Abonament lunar nelimitat",
+    "date": "12.01.2024",
+    "amount": "{{amount}} MDL/lună",
+    "date_2": "12.02.2024",
+    "no_payment_history": "Nu există istoric de plăți."
+  }
+}

@@ -1,6 +1,7 @@
 import * as Keychain from 'react-native-keychain';
 import type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { auth_api } from '@api/base';
+import { logout } from '@services/logout';
 
 type Token = {
   access_token: string;
@@ -31,12 +32,16 @@ export const onResponseError = async (error: AxiosError, instance: AxiosInstance
   const originalRequest: InternalAxiosRequestConfig = error.config!;
 
   const isLoggedIn = !!(await Keychain.getInternetCredentials('refreshToken'));
-  if (error.response?.status === 401 && originalRequest.url !== '/auth/oauth/token' && isLoggedIn) {
-    const res = await refreshTokens();
-    if (res) {
-      originalRequest.headers['Authorization'] = `Bearer ${res.access_token}`;
-      return instance(originalRequest);
+  if (error.response?.status === 401 && originalRequest.url !== '/auth/oauth/token') {
+    if (isLoggedIn) {
+      const res = await refreshTokens();
+      if (res) {
+        originalRequest.headers['Authorization'] = `Bearer ${res.access_token}`;
+        return instance(originalRequest);
+      }
+      return Promise.reject(error);
     }
+    logout();
     return Promise.reject(error);
   }
   return Promise.reject(error);

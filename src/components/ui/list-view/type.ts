@@ -2,11 +2,11 @@ import type { FlatListProps } from 'react-native';
 
 import type { FlashListProps } from '@shopify/flash-list';
 
-export type ListViewProps = (
+export type ListViewProps<T> = (
   | ({
       type: 'flatlist';
-    } & CustomOmit<FlatListProps<any>, 'onRefresh' | 'refreshControl' | 'refreshing'>)
-  | ({ type?: 'flashlist' | undefined } & CustomOmit<FlashListProps<any>, 'onRefresh' | 'refreshControl' | 'refreshing'>)
+    } & CustomOmit<FlatListProps<T>, 'onRefresh' | 'refreshControl' | 'refreshing'>)
+  | ({ type?: 'flashlist' | undefined } & CustomOmit<FlashListProps<T>, 'onRefresh' | 'refreshControl' | 'refreshing'>)
 ) & {
   /**
    * Function when refreshing
