@@ -24,6 +24,7 @@ const RegisterModule: React.FC<IRegisterModule> = ({ loading, onPressLogin, onSu
   const emailRef = React.useRef<TextInput>(null);
   const firstNameRef = React.useRef<TextInput>(null);
   const lastNameRef = React.useRef<TextInput>(null);
+  const promoCodeRef = React.useRef<TextInput>(null);
 
   return (
     <AuthLayout page_title="logged_out:register:page_title" isLongSheet>
@@ -105,6 +106,17 @@ const RegisterModule: React.FC<IRegisterModule> = ({ loading, onPressLogin, onSu
                     }}
                   />
                 </View>
+
+                <FormInput
+                  name="promoCode"
+                  ref={promoCodeRef}
+                  autoCorrect={false}
+                  returnKeyType="next"
+                  maxLength={13}
+                  autoCapitalize="words"
+                  onSubmitEditing={() => promoCodeRef.current?.focus()}
+                  placeholderI18n={'ui:placeholders:promo_code'}
+                />
 
                 <TermsAgreements control={control} />
               </View>

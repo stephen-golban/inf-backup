@@ -8,20 +8,26 @@ import { StageNomenclatureResponse } from '@typings/responses/nomenclatures';
 import { ICreditReportSummaryResponse, IvePositiveCommitment } from '@typings/responses';
 
 interface ICreditReportSummaryModule {
+  loading: boolean;
   onOrderReport(): void;
-  onSubmit(arg: DebtModalPhone): void;
+  onSubmit(arg: {
+    phone: string;
+    commitments: ICommitment[];
+    reportRequestDateTime: Date | undefined;
+    reportResponseDateTime: Date | undefined;
+  }): void;
   data?: ICreditReportSummaryResponse;
 }
 
 interface ICommitment extends IvePositiveCommitment {
   type: string;
   description: string;
-  activityType: string;
   qualityType: string;
+  activityType: string;
 }
 
 const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props => {
-  const { data, onOrderReport, onSubmit } = props;
+  const { data, loading, onOrderReport, onSubmit } = props;
   const { nomenclature, locale } = useAppStore();
 
   const [isVisible, setIsVisible] = React.useState(false);
@@ -38,6 +44,10 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
 
   const sourceIdnos = commitments.map(commitment => commitment.sourceIdno);
   const searchSourceIdno = '1009600029036';
+
+  const incassoComitments = commitments.filter(commitment => commitment.sourceIdno === searchSourceIdno);
+  const reportRequestDateTime = data?.requestDateTime;
+  const reportResponseDateTime = data?.responseDateTime;
 
   React.useEffect(() => {
     if (sourceIdnos.includes(searchSourceIdno)) {
@@ -85,10 +95,11 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
         activePositiveCommitments={data?.creditReport.commitments.activePositiveCommitments.length}
       />
       <DebtModal
+        loading={loading}
         isVisible={isVisible}
-        onPressYes={data => {
-          onSubmit(data);
-          setIsVisible(false);
+        onPressYes={async ({ phone }) => {
+          await onSubmit({ phone: '+373' + phone, commitments: incassoComitments, reportRequestDateTime, reportResponseDateTime });
+          await setIsVisible(false);
         }}
         onPressNo={() => setIsVisible(false)}
       />

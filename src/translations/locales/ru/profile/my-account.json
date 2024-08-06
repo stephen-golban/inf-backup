@@ -11,6 +11,8 @@
     "unlimited_access": "У вас неограниченный доступ к услугам приложения и 50% скидка на покупку кредитного отчета. Подписка автоматически обновляется каждый месяц.",
     "change_subscription": "Изменить подписку",
     "current_subscription": "Текущая подписка",
+    "inactive_subscription": "У вас нет активной подписки",
+    "purchase_subscription": "Приобретите подписку",
     "other_available_options": "Другие доступные опции",
     "choose_subscription": "Выбрать подписку {{duration}}",
     "cancel_subscription": "Отменить подписку",

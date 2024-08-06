@@ -33,7 +33,7 @@ const useGetSubscription = (runOnMount = false) => {
         toast.show(t('ui:toasts:no_subscription_purchased'), {
           type: 'danger',
         });
-        return;
+        return setAppSubscription(undefined);
       }
       if (currentDate > termDate) {
         toast.show(t('ui:toasts:subscription_expired'), {
@@ -41,6 +41,7 @@ const useGetSubscription = (runOnMount = false) => {
         });
         return;
       }
+
       return lastPurchasedSubscription;
     }
   };
