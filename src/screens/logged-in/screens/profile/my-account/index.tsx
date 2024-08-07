@@ -13,8 +13,6 @@ import { LOGGED_IN_SCREENS, PROFILE_SCREENS, type ProfileStackScreenProps } from
 const MyAccountScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.MY_ACCOUNT>> = ({ navigation }) => {
   const { loading, subscriptionInfo, allSubscriptions, refetch } = useMyAccountScreen();
 
-  useMount(refetch);
-
   return (
     <MyAccountModule
       loading={loading}
