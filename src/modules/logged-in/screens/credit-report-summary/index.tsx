@@ -1,30 +1,13 @@
 import React from 'react';
 import { useAppStore } from '@store/app';
 import { isEmpty } from 'lodash';
-import { DebtModalPhone } from './parts/debt-modal/resolver';
+import { MMKV_KEY } from '@library/constants';
+import { loadString, saveString } from '@library/storage';
 import { OutlinedButton, Screen, Text, View } from '@components/common';
 import { CommitmentCount, CommitmentItem, DebtModal, EmptyState, GridItems, Header } from './parts';
+
+import { ICommitment, ICreditReportSummaryModule } from './typings';
 import { StageNomenclatureResponse } from '@typings/responses/nomenclatures';
-import { ICreditReportSummaryResponse, IvePositiveCommitment } from '@typings/responses';
-
-interface ICreditReportSummaryModule {
-  loading: boolean;
-  onOrderReport(): void;
-  onSubmit(arg: {
-    phone: string;
-    commitments: ICommitment[];
-    reportRequestDateTime: Date | undefined;
-    reportResponseDateTime: Date | undefined;
-  }): void;
-  data?: ICreditReportSummaryResponse;
-}
-
-interface ICommitment extends IvePositiveCommitment {
-  type: string;
-  description: string;
-  qualityType: string;
-  activityType: string;
-}
 
 const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props => {
   const { data, loading, onOrderReport, onSubmit } = props;
@@ -45,17 +28,32 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
   const sourceIdnos = commitments.map(commitment => commitment.sourceIdno);
   const searchSourceIdno = '1009600029036';
 
-  const incassoComitments = commitments.filter(commitment => commitment.sourceIdno === searchSourceIdno);
+  const incassoCommitments = commitments.filter(
+    commitment => commitment.sourceIdno === searchSourceIdno && commitment.type === 'activeNegativeCommitments',
+  );
+
   const reportRequestDateTime = data?.requestDateTime;
   const reportResponseDateTime = data?.responseDateTime;
 
   React.useEffect(() => {
+    const lastShownTimestamp = loadString(MMKV_KEY.INCASSO_REMIND);
+    const currentTimestamp = Date.now();
+
     if (sourceIdnos.includes(searchSourceIdno)) {
-      setIsVisible(true);
+      if (!lastShownTimestamp || currentTimestamp - parseInt(lastShownTimestamp) > 60000) {
+        setIsVisible(true);
+      }
     }
   }, [sourceIdnos]);
 
   const isData = data || !isEmpty(commitments);
+
+  const formatCommitmentsForBackend = (commitments: ICommitment[]) => {
+    return commitments.map(({ sourceIdno, ...commitment }) => ({
+      ...commitment,
+      sourceIdentityNumber: sourceIdno,
+    }));
+  };
 
   return (
     <View fill bg="white">
@@ -65,7 +63,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
           {!isData ? (
             <EmptyState />
           ) : (
-            commitments.map((item: ICommitment, idx) => (
+            incassoCommitments.map((item: ICommitment, idx) => (
               <CommitmentItem
                 type={item?.type}
                 balance={item?.balance}
@@ -98,8 +96,11 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
         loading={loading}
         isVisible={isVisible}
         onPressYes={async ({ phone }) => {
-          await onSubmit({ phone: '+373' + phone, commitments: incassoComitments, reportRequestDateTime, reportResponseDateTime });
-          await setIsVisible(false);
+          const formattedCommitments = formatCommitmentsForBackend(incassoCommitments);
+          await onSubmit({ phone: '+373' + phone, commitments: formattedCommitments, reportRequestDateTime, reportResponseDateTime });
+          const currentTimestamp = Date.now();
+          saveString(MMKV_KEY.INCASSO_REMIND, currentTimestamp.toString());
+          setIsVisible(false);
         }}
         onPressNo={() => setIsVisible(false)}
       />
