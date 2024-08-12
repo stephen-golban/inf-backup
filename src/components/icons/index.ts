@@ -17,6 +17,7 @@ export * from './close';
 export * from './check';
 export * from './flaky';
 export * from './arrow';
+export * from './trash';
 export * from './score';
 export * from './circle';
 export * from './logout';

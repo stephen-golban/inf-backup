@@ -30,6 +30,8 @@
     "subscription_expired": "The subscription was expired",
     "no_subscription_purchased": "No subscription purchased",
     "rating_submitted_successfully": "Rating submitted successfully",
-    "user_subscription_no_access": "Service not included in subscription"
+    "user_subscription_no_access": "Service not included in subscription",
+    "no_response_from_server": "No response from the server",
+    "no_valid_term_date": "No valid term date available"
   }
 }

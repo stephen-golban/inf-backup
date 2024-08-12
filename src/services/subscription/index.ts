@@ -1,13 +1,13 @@
 import { isEmpty } from 'lodash';
+import { parseISO } from 'date-fns';
 import { useMount } from 'react-use';
 import { useLazyAxios } from '@api/hooks';
+import { useTranslation, useTryCatchWithCallback } from '@library/hooks';
 import { getMaxTermDateTimeEntity } from './util';
 import { useToast } from 'react-native-toast-notifications';
 import { setAppSubscription, useAppStore } from '@store/app';
 
 import type { PurchasedSubscriptionsResponse } from '@typings/responses';
-import { parseISO } from 'date-fns';
-import { useTranslation } from '@library/hooks';
 
 const useGetSubscription = (runOnMount = false) => {
   const toast = useToast();
@@ -18,32 +18,41 @@ const useGetSubscription = (runOnMount = false) => {
     method: 'get',
   });
 
-  const getSubscription = async () => {
+  const getSubscription = useTryCatchWithCallback(async () => {
     const response = await call();
 
-    if (response) {
-      const currentSubscriptionList = response._embedded?.entityModelList ?? [];
-      const lastPurchasedSubscription = getMaxTermDateTimeEntity(currentSubscriptionList);
-
-      const termDateTime = lastPurchasedSubscription?.subscriptionAccounts[0].termDateTime ?? '';
-      const currentDate = new Date();
-      const termDate = termDateTime !== '' ? parseISO(termDateTime) : '';
-
-      if (isEmpty(lastPurchasedSubscription)) {
-        toast.show(t('ui:toasts:no_subscription_purchased'), {
-          type: 'danger',
-        });
-        return;
-      }
-      if (currentDate > termDate) {
-        toast.show(t('ui:toasts:subscription_expired'), {
-          type: 'danger',
-        });
-        return;
-      }
-      return lastPurchasedSubscription;
+    if (!response) {
+      throw new Error(t('ui:toasts:no_response_from_server'));
     }
-  };
+
+    const currentSubscriptionList = response._embedded?.entityModelList ?? [];
+    const lastPurchasedSubscription = getMaxTermDateTimeEntity(currentSubscriptionList);
+
+    if (isEmpty(lastPurchasedSubscription)) {
+      toast.show(t('ui:toasts:no_subscription_purchased'), {
+        type: 'danger',
+      });
+      return;
+    }
+
+    const termDateTime = lastPurchasedSubscription?.subscriptionAccounts[0].termDateTime ?? '';
+
+    if (!termDateTime) {
+      throw new Error(t('ui:toasts:no_valid_term_date'));
+    }
+
+    const termDate = parseISO(termDateTime);
+    const currentDate = new Date();
+
+    if (currentDate > termDate) {
+      toast.show(t('ui:toasts:subscription_expired'), {
+        type: 'danger',
+      });
+      return;
+    }
+
+    return lastPurchasedSubscription;
+  }, [call, t, toast]);
 
   if (runOnMount) {
     useMount(async () => {

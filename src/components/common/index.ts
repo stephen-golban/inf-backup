@@ -11,6 +11,7 @@ export * from './screen';
 export * from './button';
 export * from './checkbox';
 export * from './dropdown';
+export * from './card-stack';
 export * from './text-input';
 export * from './date-picker';
 export * from './scroll-view';

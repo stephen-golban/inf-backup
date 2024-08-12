@@ -24,3 +24,12 @@ export type RegisterCardApiResponse = {
   };
   ok: boolean;
 };
+
+export type GetAllCardsApiResponse = {
+  id: number;
+  billerId: string;
+  cardNr: string;
+  createdAt: string;
+  main: boolean;
+  cardType: string;
+}[];

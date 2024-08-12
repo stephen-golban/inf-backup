@@ -1,57 +1,60 @@
 import React from 'react';
 
-import { ListView } from '@components/ui';
-import { Icon, Text, View } from '@components/common';
 import { isEmpty } from 'lodash';
+import { useAxios, useLazyAxios } from '@api/hooks';
 
-interface IHistoryCards {
-  data: any[];
-}
+import { Loader } from '@components/ui';
+import { Icon, Text, View, CardStack, Screen } from '@components/common';
 
-const HistoryCards: React.FC<IHistoryCards> = ({ data }) => {
-  console.log(data);
+import type { GetAllCardsApiResponse } from '@typings/responses';
 
-  if (isEmpty(data)) {
-    return (
-      <View center my="md">
-        <Text t18n="profile:settings:payment_history_screen:no_cards_to_display" />
-      </View>
+const HistoryCards: React.FC = () => {
+  const stackRef = React.useRef<any>(null);
+  const [call, { loading }] = useLazyAxios('/bank-card-accounts', { method: 'delete' });
+  const { data, ...cards } = useAxios<GetAllCardsApiResponse>('/bank-card-accounts', { method: 'get' });
+
+  async function onDeleteCard(id: number) {
+    await call(
+      undefined,
+      async () => {
+        stackRef.current?.swipe(-1);
+        await cards.refetch();
+      },
+      { additionalUrl: `/${id}` },
     );
   }
 
-  return (
-    <ListView
-      type="flatlist"
-      horizontal
-      data={data}
-      keyExtractor={(_, idx) => 'card-item' + idx}
-      renderItem={({ item }) => {
-        return (
-          <View bg="softGray" br={24} p="lg" w={279} h={144} between>
-            <View>
-              <Text variant="12-reg" t18n="profile:settings:payment_history_screen:my_card" />
-              <Text variant="14-semi" t18n="profile:settings:payment_history_screen:card_number" mt="xs" />
-            </View>
-            <View row between align="center">
-              <Text variant="14-reg" t18n="profile:settings:payment_history_screen:cardholder_name" />
-              <Icon icon="MasterCardIcon" size={30} />
-            </View>
+  const _renderItem = React.useCallback(
+    (item: GetAllCardsApiResponse[number], isFirst: boolean) => {
+      const isLoading = loading && isFirst;
+      return (
+        <View bg="softGray" br={24} p="lg" w={279} h={144} between shadow="credit_card">
+          {isFirst && <Icon icon="TrashIcon" color="error" absolute top={15} right={10} size={20} onPress={() => onDeleteCard(item.id)} />}
+          {isLoading && <Loader bg="lightBlue" opacity={0.5} br={24} />}
+          <View>
+            <Text variant="12-reg" t18n="profile:settings:payment_history_screen:my_card" />
+            <Text variant="14-semi" text={item.cardNr} mt="xs" />
           </View>
-        );
-      }}
-    />
-    // <View px="xxl" w="100%" mt="lg">
-    //   <View bg="softGray" br={24} p="lg" h={144} w="100%" between>
-    //     <View>
-    //       <Text variant="12-reg" t18n="profile:settings:payment_history_screen:my_card" />
-    //       <Text variant="14-semi" t18n="profile:settings:payment_history_screen:card_number" mt="xs" />
-    //     </View>
-    //     <View row between align="center">
-    //       <Text variant="14-reg" t18n="profile:settings:payment_history_screen:cardholder_name" />
-    //       <Icon icon="MasterCardIcon" size={30} />
-    //     </View>
-    //   </View>
-    // </View>
+          <View row between align="center">
+            <Text variant="14-reg" text={item.cardType} />
+            <Icon icon="MasterCardIcon" size={30} />
+          </View>
+        </View>
+      );
+    },
+    [loading, data],
+  );
+
+  return (
+    <Screen fill maxh="30%" unsafe onRefresh={cards.refetch} loading={cards.loading}>
+      {isEmpty(data) ? (
+        <View center my="md">
+          <Text t18n="profile:settings:payment_history_screen:no_cards_to_display" />
+        </View>
+      ) : (
+        <CardStack ref={stackRef} data={data!} renderItem={_renderItem} />
+      )}
+    </Screen>
   );
 };
 

@@ -31,20 +31,20 @@ const MyApp = () => {
   }, []);
 
   return (
-    <SafeAreaProvider>
-      <I18nextProvider i18n={internationalization}>
-        <ThemeProvider theme={THEME[themeType]}>
-          <ToastProvider placement="top" offsetTop={0} animationType="slide-in">
+    <ToastProvider placement="top" offsetTop={0} animationType="slide-in">
+      <SafeAreaProvider>
+        <I18nextProvider i18n={internationalization}>
+          <ThemeProvider theme={THEME[themeType]}>
             <GestureHandlerRootView style={{ flex: 1 }}>
               <BottomSheetModalProvider>
                 <ApplicationNavigator />
                 <PinScreen />
               </BottomSheetModalProvider>
             </GestureHandlerRootView>
-          </ToastProvider>
-        </ThemeProvider>
-      </I18nextProvider>
-    </SafeAreaProvider>
+          </ThemeProvider>
+        </I18nextProvider>
+      </SafeAreaProvider>
+    </ToastProvider>
   );
 };
 

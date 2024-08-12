@@ -27,9 +27,11 @@
 
   "toasts": {
     "limit_was_exceeded": "Лимит был превышен",
-    "subscription_expired": "Срок действия подписки истек!",
-    "no_subscription_purchased": "Нет купленной подписки",
-    "rating_submitted_successfully": "Оценка успешно отправлена",
-    "user_subscription_no_access": "Услуга не включена в подписку"
+    "subscription_expired": "Подписка истекла",
+    "no_subscription_purchased": "Подписка не была приобретена",
+    "rating_submitted_successfully": "Рейтинг успешно отправлен",
+    "user_subscription_no_access": "Услуга не включена в подписку",
+    "no_response_from_server": "Нет ответа от сервера",
+    "no_valid_term_date": "Нет действительной даты истечения срока"
   }
 }
