@@ -18,11 +18,12 @@ interface IMyAccountModule {
   subscriptionInfo: SubscriptionInfo;
   onRemoveAccount(): void;
   onChangePassword(): void;
+  onCancelSubscription(id: string): void;
   onChangeSubscription(): void;
 }
 
 const MyAccountModule: React.FC<IMyAccountModule> = props => {
-  const { subscriptionInfo, allSubscriptions, onRemoveAccount, onChangePassword, loading, onRefresh } = props;
+  const { subscriptionInfo, allSubscriptions, onRemoveAccount, onChangePassword, loading, onRefresh, onCancelSubscription } = props;
 
   const { colors } = useTheme();
   const user = useAppStore(state => state.user);
@@ -36,15 +37,20 @@ const MyAccountModule: React.FC<IMyAccountModule> = props => {
   return (
     <Screen scroll unsafe loading={loading} onRefresh={onRefresh} style={{ paddingHorizontal: 0 }}>
       <AccountDetails email={email} phone={formattedPhone} onChangePassword={onChangePassword} />
-      {subscriptionInfo.subscriptionId && (
-        <SubscriptionDetails subscriptionInfo={subscriptionInfo} onChangeSubscription={() => setToggleModal(prev => !prev)} />
-      )}
+      <SubscriptionDetails subscriptionInfo={subscriptionInfo} onChangeSubscription={() => setToggleModal(prev => !prev)} />
       <BottomSheet
         snapPoints={['80%']}
         isVisible={toggleModal}
         onDismiss={() => setToggleModal(false)}
         backgroundStyle={{ backgroundColor: colors.lightBlue }}>
-        <ChangeSubscriptionModule allSubscriptions={allSubscriptions} subscriptionInfo={subscriptionInfo} />
+        <ChangeSubscriptionModule
+          allSubscriptions={allSubscriptions}
+          onCancelSubscription={id => {
+            setToggleModal(false);
+            onCancelSubscription(id);
+          }}
+          subscriptionInfo={subscriptionInfo}
+        />
       </BottomSheet>
       <Divider isHorizontal bg="blue" h={1.2} mt="xxxl" />
       <OutlinedButton

@@ -3,6 +3,8 @@ export * from './sections';
 export * from './contacts';
 export * from './settings';
 export * from './my-account';
+export * from './invite-friends';
 export * from './delete-account';
 export * from './change-password';
 export * from './change-subscription';
+export * from './invite-friends-form';

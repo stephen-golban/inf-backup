@@ -9,6 +9,7 @@ import { LoggedOutPhoneInput } from '@modules/logged-out/parts';
 import { BottomSheet, FilledButton, Form, Text, View } from '@components/common';
 
 interface IDebtModal {
+  loading: boolean;
   isVisible: boolean;
 
   onPressNo(): void;
@@ -18,7 +19,7 @@ interface IDebtModal {
 import { DEFAULT_VALUES, DebtModalPhone, debt_modal_phone } from './resolver';
 
 const DebtModal: React.FC<IDebtModal> = props => {
-  const { isVisible, onPressYes, onPressNo } = props;
+  const { isVisible, loading, onPressYes, onPressNo } = props;
 
   const insets = useSafeAreaInsets();
   const { height } = useWindowDimensions();
@@ -46,7 +47,12 @@ const DebtModal: React.FC<IDebtModal> = props => {
             return (
               <View>
                 <LoggedOutPhoneInput autoFocus value={watch('phone')} onChange={txt => setValue('phone', txt, { shouldValidate: true })} />
-                <FilledButton t18n="logged_in:credit_report_summary:bottom_modal:yes" my="sm" onPress={handleSubmit(onPressYes)} />
+                <FilledButton
+                  t18n="logged_in:credit_report_summary:bottom_modal:yes"
+                  my="sm"
+                  onPress={handleSubmit(onPressYes)}
+                  loading={loading}
+                />
                 <FilledButton t18n="logged_in:credit_report_summary:bottom_modal:no" bg="lightBlue" textColor="blue" onPress={onPressNo} />
               </View>
             );

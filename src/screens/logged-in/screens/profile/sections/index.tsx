@@ -19,7 +19,7 @@ const SectionsScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.SECTIONS>
       onLogout={logout}
       onOpenContacts={() => navigation.navigate(PROFILE_SCREENS.CONTACTS)}
       onOpenSettings={() => navigation.navigate(PROFILE_SCREENS.SETTINGS, { screen: SETTINGS_SCREENS.SECTIONS })}
-      onInviteFriends={noop}
+      onInviteFriends={() => navigation.navigate(PROFILE_SCREENS.INVITE_FRIENDS)}
       onOpenMyNotitications={noop}
       onOpenMyAccount={() => navigation.navigate(PROFILE_SCREENS.MY_ACCOUNT)}
     />

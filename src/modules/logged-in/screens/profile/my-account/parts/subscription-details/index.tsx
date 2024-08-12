@@ -24,21 +24,34 @@ const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
   return (
     <View my="sm">
       <Text px="md" variant="16-reg" t18n="profile:my_account:subscription_details:title" />
-
-      <View my="md" bg="lightBlue" btw={1.2} bbw={1.2} bc="blue">
-        <View p="md" bbw={1.2} bc="blue" row between>
-          <Text variant="14-reg"> {subscriptionInfo.name}</Text>
-          <Text variant="14-reg">{subscriptionInfo?.price! > 0 && currencyFormat(subscriptionInfo.price!)}</Text>
+      {subscriptionInfo.subscriptionId ? (
+        <View>
+          <View my="md" bg="lightBlue" btw={1.2} bbw={1.2} bc="blue">
+            <View p="md" bbw={1.2} bc="blue" row between>
+              <Text variant="14-reg"> {subscriptionInfo.name}</Text>
+              <Text variant="14-reg">{subscriptionInfo?.price! > 0 && currencyFormat(subscriptionInfo.price!)}</Text>
+            </View>
+            <View p="md" row between>
+              <Text variant="14-reg" t18n="profile:my_account:subscription_details:next_payment" />
+              <Text variant="14-reg">
+                {format(subscriptionInfo.nextPayment || new Date(), 'dd MMMM yyyy', { locale: processedLocale })}
+              </Text>
+            </View>
+          </View>
+          <Text px="lg" mb="md" variant="12-reg" t18n="profile:my_account:subscription_details:unlimited_access" center />
         </View>
-        <View p="md" row between>
-          <Text variant="14-reg" t18n="profile:my_account:subscription_details:next_payment" />
-          <Text variant="14-reg">{format(subscriptionInfo.nextPayment || new Date(), 'dd MMMM yyyy', { locale: processedLocale })}</Text>
+      ) : (
+        <View btw={1} bbw={1} my="md" bg="lightBlue">
+          <Text variant="14-mid" center my="md" t18n="profile:my_account:subscription_details:inactive_subscription" />
         </View>
-      </View>
-      <Text px="lg" mb="md" variant="12-reg" t18n="profile:my_account:subscription_details:unlimited_access" center />
+      )}
 
       <OutlinedButton
-        t18n="profile:my_account:subscription_details:change_subscription"
+        t18n={
+          subscriptionInfo.subscriptionId
+            ? 'profile:my_account:subscription_details:change_subscription'
+            : 'profile:my_account:subscription_details:purchase_subscription'
+        }
         mx="xxl"
         textProps={{ variant: '14-reg' }}
         onPress={onChangeSubscription}

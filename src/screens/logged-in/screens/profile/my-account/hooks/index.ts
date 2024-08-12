@@ -4,7 +4,7 @@ import { useGetSubscription } from '@services/subscription';
 import type { PurchasedSubscriptionsResponse } from '@typings/responses';
 
 const useMyAccountScreen = () => {
-  const mySubscription = useGetSubscription();
+  const mySubscription = useGetSubscription(true);
 
   const allSubscriptions = useAxios<PurchasedSubscriptionsResponse>({
     method: 'get',

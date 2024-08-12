@@ -10,6 +10,8 @@
     "next_payment": "Next payment",
     "unlimited_access": "You have unlimited access to the app's services and a 50% discount on the Credit Report purchase. The subscription renews automatically every month.",
     "change_subscription": "Change subscription",
+    "inactive_subscription": "You don't have an active subscription",
+    "purchase_subscription": "Purchase subscription",
     "current_subscription": "Current Subscription",
     "other_available_options": "Other available options",
     "choose_subscription": "Choose subscription {{duration}}",
