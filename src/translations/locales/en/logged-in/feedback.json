@@ -1,0 +1,19 @@
+{
+    "no_relevant_info": "I couldn't find relevant information",
+    "subscription_too_expensive": "The subscription price is too high",
+    "not_understandable_info": "I don't know how to understand the information",
+    "dislike_app": "I don't like the app",
+    "technical_issues": "I had technical issues with the app",
+    "other_reason": "Other reason",
+    "cancellation_reason_prompt": "We're sorry to see you go. Why did you decide to cancel your MyInfodebit subscription?",
+    "change_mind": "I've changed my mind, I'm staying",
+    "proceed_to_cancel": "Proceed to cancel",
+    "tell_us_more": "Tell us more (optional)",
+    "stay_with_us_offer": "Stay with the Infodebit team, and we'll reward you with a unique offer",
+    "discount_offer": "47% discount for 3 months, an exclusive offer that provides access to scoring services, information on inquiries, financial commitments, and creditworthiness",
+    "activate_offer": "Activate the offer now",
+    "delete_account_warning": "By deleting the account, all data associated with your account will be deleted and you will lose access to all information related to your financial health, including the possibility of benefiting from offers and discounts in MyInfodebit",
+    "action_final": "This action is final and cannot be undone",
+    "cancel_before_delete": "To delete the account, first cancel the subscription"
+}
+  

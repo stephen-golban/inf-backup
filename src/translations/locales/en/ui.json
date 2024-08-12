@@ -20,6 +20,7 @@
     "password_confirm_placeholder": "Confirm password",
     "first_name_placeholder": "First name",
     "last_name_placeholder": "Last name",
+    "promo_code":"Promo code",
     "negative_feedback": "What don't you like about the MyInfoDebit app?",
     "neutral_feedback": "We want to hear your opinion about the app",
     "positive_feedback": "Excellent, tell us why you like the app"
@@ -30,6 +31,7 @@
     "subscription_expired": "The subscription was expired",
     "no_subscription_purchased": "No subscription purchased",
     "rating_submitted_successfully": "Rating submitted successfully",
+    "invitation_submitted_successfully": "Invitation submitted successfully",
     "user_subscription_no_access": "Service not included in subscription"
   }
 }

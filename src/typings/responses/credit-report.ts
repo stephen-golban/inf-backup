@@ -34,10 +34,11 @@ export interface IvePositiveCommitment {
   balance: number;
   roleType: string;
   sourceType: string;
-  sourceIdno: string;
+  sourceIdno?: string;
   contractNr: string;
   currentStage: number;
   sourceShortName: string;
+  sourceIdentityNumber?: string;
 }
 
 interface Individual {

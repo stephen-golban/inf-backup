@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useLazyAxios } from '@api/hooks';
+
 import { noop } from 'lodash';
 
 import { CreditReportSummaryModule } from '@modules/logged-in';
@@ -8,7 +10,13 @@ import { OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/naviga
 
 const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.CreditReportSummary>> = ({ route }) => {
   const report = route.params?.data;
-  return <CreditReportSummaryModule onSubmit={noop} data={report} onOrderReport={noop} />;
+
+  const [call, { loading }] = useLazyAxios({
+    method: 'post',
+    url: `/feedback/credit-report`,
+  });
+
+  return <CreditReportSummaryModule onSubmit={data => call({ ...data })} data={report} loading={loading} onOrderReport={noop} />;
 };
 
 export { CreditReportSummaryScreen };
