@@ -3,6 +3,10 @@ const palette = {
   white: 'rgb(255,255,255)',
   transparent: 'transparent',
 
+  white_50: 'rgb(255,255,255, 0.5)',
+
+  black_20: 'rgba(0,0,0,0.2)',
+  black_30: 'rgba(0,0,0,0.3)',
   black_40: 'rgba(0,0,0,0.4)',
   black_50: 'rgba(0,0,0,0.5)',
   black_60: 'rgba(0,0,0,0.6)',

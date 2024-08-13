@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FaqScreen from './faq';
+import { SettingsStack } from './settings';
 import { SectionsScreen } from './sections';
 import { ContactsScreen } from './contacts';
 import { MyAccountScreen } from './my-account';
@@ -24,6 +25,7 @@ const ProfileStack: React.FC<LoggedInScreensProps<LOGGED_IN_SCREENS.PROFILE>> = 
       <Stack.Screen name={PROFILE_SCREENS.INVITE_FRIENDS} component={InviteFriends} />
       <Stack.Screen name={PROFILE_SCREENS.INVITE_FRIENDS_FORM} component={InviteFriendsFormScreen} />
       <Stack.Screen name={PROFILE_SCREENS.FAQ} component={FaqScreen} />
+      <Stack.Screen name={PROFILE_SCREENS.SETTINGS} component={SettingsStack} />
     </Stack.Navigator>
   );
 };

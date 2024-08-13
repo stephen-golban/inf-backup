@@ -5,3 +5,4 @@ export * from './credit-score';
 export * from './credit-report';
 export * from './subscriptions';
 export * from './own-data-check';
+export * from './payments-history';

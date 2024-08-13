@@ -1,8 +1,9 @@
 import { base_api } from '../base';
 import useAxiosCancel from './use-axios-cancel';
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useToast } from 'react-native-toast-notifications';
 import useAxiosReducer, { type RequestState } from './use-axios-reducer';
+import { useMountedState } from 'react-use';
 
 import type { RequestMethod } from './type';
 import type { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
@@ -16,6 +17,7 @@ export interface Config<Data> extends AxiosRequestConfig {
   axiosInstance?: AxiosInstance;
   ssrData?: Data;
   method?: RequestMethod;
+  additionalUrl?: string;
 }
 
 export type OnSuccess<Data> = (arg: Data) => void;
@@ -34,16 +36,16 @@ function useBaseAxios<Data>(config: Config<Data>): BaseAxios<Data>;
 function useBaseAxios<Data>(url: string, config: Config<Data>): BaseAxios<Data>;
 function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> = {}) {
   const toast = useToast();
-  const isMounted = useRef(true);
+  const isMounted = useMountedState();
   const [{ data, error, loading }, dispatch] = useAxiosReducer<Data>(typeof param1 === 'string' ? param2.ssrData : param1.ssrData);
   const { cancel, cancelToken } = useAxiosCancel();
 
   const createAxiosInvoker = () => {
     if (typeof param1 === 'string') {
-      const { axiosInstance = base_api, ...config } = param2;
+      const { axiosInstance = base_api, additionalUrl = '', ...config } = param2;
 
       return (lazyData: Config<Data>['data'], lazyConfig?: Config<Data>) =>
-        axiosInstance(param1, {
+        axiosInstance(param1 + (lazyConfig?.additionalUrl || additionalUrl), {
           ...config,
           ...lazyConfig,
           data: lazyData || param2.data,
@@ -51,12 +53,13 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
         });
     }
 
-    const { axiosInstance = base_api, ...config } = param1;
+    const { axiosInstance = base_api, additionalUrl = '', ...config } = param1;
 
     return (lazyData: Config<Data>['data'], lazyConfig?: Config<Data>) =>
       axiosInstance({
         ...config,
         ...lazyConfig,
+        url: (config.url || lazyConfig?.url || '') + (lazyConfig?.additionalUrl || additionalUrl),
         data: lazyData || param1.data,
         cancelToken,
       });
@@ -71,7 +74,7 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
       try {
         const res = (await invokeAxios(lazyData, lazyConfig)) as AxiosResponse<Data>;
 
-        if (isMounted.current) {
+        if (isMounted()) {
           dispatch({ type: 'REQUEST_SUCCESS', payload: res.data });
           if (onSuccess && res.data) {
             onSuccess(res.data);
@@ -79,10 +82,10 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
           return res.data;
         }
       } catch (e) {
-        if (isMounted.current) {
-          const errResMessage = (e as any).response.data.message;
+        if (isMounted()) {
+          const errResMessage = (e as any).response?.data?.message;
           if (errResMessage) {
-            toast.show((e as any).response.data.message, { type: 'danger' });
+            toast.show(errResMessage, { type: 'danger' });
           } else {
             if (__DEV__) {
               toast.show((e as any).message, { type: 'danger' });
@@ -98,7 +101,6 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
   useEffect(() => {
     return () => {
       cancel();
-      isMounted.current = false;
     };
   }, []);
 
