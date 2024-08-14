@@ -11,7 +11,7 @@ import { Dropdown as EDropdown } from 'react-native-element-dropdown';
 import type { IDropdown } from './type';
 
 const Dropdown: React.FC<IDropdown> = props => {
-  const { data, bg = 'lightGray_to_lightBlue', placeholder = 'Select...' } = props;
+  const { data, bg = 'lightGray', placeholder = 'Select...' } = props;
 
   const styles = useStyles(bg);
   const { colors, value, isFocused, handleOnChange, isLastItem, setIsFocused } = useDropdown(props);

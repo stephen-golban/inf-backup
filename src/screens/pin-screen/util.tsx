@@ -1,16 +1,17 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
+import React from 'react';
+import { StyleSheet } from 'react-native';
 
-import { Icon } from '@components/common'
+import { Icon } from '@components/common';
 
-import { PinCodeT } from '@anhnch/react-native-pincode'
+import { DEFAULT, PinCodeT } from '@anhnch/react-native-pincode';
+import { AppTheme } from '@theme/index';
 
 export const PinCodeOptions: PinCodeT.Options = {
   pinLength: 5,
   maxAttempt: 3,
   allowReset: true,
   backSpace: <Icon icon="BackSpaceIcon" size={30} color="white" />,
-}
+};
 
 const PinCodeCustomTextesEN: PinCodeT.TextOptions = {
   enter: {
@@ -38,7 +39,7 @@ const PinCodeCustomTextesEN: PinCodeT.TextOptions = {
     confirmButton: 'Confirm',
     footerText: 'Back',
   },
-}
+};
 
 const PinCodeCustomTextesRO: PinCodeT.TextOptions = {
   enter: {
@@ -56,8 +57,7 @@ const PinCodeCustomTextesRO: PinCodeT.TextOptions = {
   },
   locked: {
     title: 'Blocată',
-    subTitle:
-      'PIN greșit de {{maxAttempt}} ori.\nBlocată temporar pentru {{lockDuration}}.',
+    subTitle: 'PIN greșit de {{maxAttempt}} ori.\nBlocată temporar pentru {{lockDuration}}.',
   },
   reset: {
     title: 'Ați uitat PIN-ul?',
@@ -67,7 +67,7 @@ const PinCodeCustomTextesRO: PinCodeT.TextOptions = {
     confirmButton: 'Confirmați',
     footerText: 'Înapoi',
   },
-}
+};
 
 const PinCodeCustomTextesRU: PinCodeT.TextOptions = {
   enter: {
@@ -85,8 +85,7 @@ const PinCodeCustomTextesRU: PinCodeT.TextOptions = {
   },
   locked: {
     title: 'Заблокировано',
-    subTitle:
-      'Неправильный PIN {{maxAttempt}} раз.\nВременно заблокировано на {{lockDuration}}.',
+    subTitle: 'Неправильный PIN {{maxAttempt}} раз.\nВременно заблокировано на {{lockDuration}}.',
   },
   reset: {
     title: 'Забыли PIN?',
@@ -96,24 +95,53 @@ const PinCodeCustomTextesRU: PinCodeT.TextOptions = {
     confirmButton: 'Подтвердить',
     footerText: 'Назад',
   },
-}
+};
 
 export const PinCodeCustomTextes = (language: string) => {
   switch (language) {
     case 'ro':
-      return PinCodeCustomTextesRO
+      return PinCodeCustomTextesRO;
     case 'ru':
-      return PinCodeCustomTextesRU
+      return PinCodeCustomTextesRU;
     case 'en':
     default:
-      return PinCodeCustomTextesEN
+      return PinCodeCustomTextesEN;
   }
-}
+};
 
-export const PinCodeStyles: PinCodeT.PinCodeStyles = StyleSheet.create({
-  main: {
-    zIndex: 99,
-    backgroundColor: 'black',
-    ...StyleSheet.absoluteFillObject,
-  },
-})
+export const PinCodeStyles = (theme: AppTheme) => {
+  return {
+    main: {
+      zIndex: 99,
+      backgroundColor: theme.colors.blue,
+      ...StyleSheet.absoluteFillObject,
+    },
+    enter: {
+      ...DEFAULT.Styles.enter,
+      buttonText: {
+        color: theme.colors.black,
+      },
+    },
+    set: {
+      ...DEFAULT.Styles.set,
+      buttonText: {
+        color: theme.colors.black,
+      },
+    },
+    locked: {
+      ...DEFAULT.Styles.locked,
+      buttonText: {
+        color: theme.colors.black,
+      },
+    },
+    reset: {
+      ...DEFAULT.Styles.reset,
+      resetButton: {
+        color: theme.colors.black,
+      },
+      buttonText: {
+        color: theme.colors.black,
+      },
+    },
+  } as PinCodeT.PinCodeStyles;
+};

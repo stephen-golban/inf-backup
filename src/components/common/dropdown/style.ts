@@ -7,7 +7,7 @@ export default (bg: Color) => {
   const { colors } = useTheme();
   return StyleSheet.create({
     shadow: {
-      elevation: 5,
+      elevation: 1,
       shadowOpacity: 0.1,
       shadowRadius: 3.84,
       shadowColor: colors.black,
@@ -25,6 +25,7 @@ export default (bg: Color) => {
     },
     selectedTextStyle: {
       paddingLeft: 24,
+      color: colors.black,
       paddingVertical: 14,
     },
     itemContainerStyle: { borderRadius: 8 },
