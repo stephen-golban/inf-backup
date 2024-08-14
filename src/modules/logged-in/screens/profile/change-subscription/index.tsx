@@ -20,16 +20,17 @@ import {
 import { type IAllSubscriptionsResponse, SubscriptionDuration, type SubscriptionInfo } from '@typings/responses';
 
 interface IChangeSubscription {
+  onCancelSubscription(id: string): void;
   subscriptionInfo: SubscriptionInfo;
   allSubscriptions: IAllSubscriptionsResponse | undefined;
 }
 
-const ChangeSubscriptionModule: React.FC<IChangeSubscription> = ({ allSubscriptions, subscriptionInfo }) => {
+const ChangeSubscriptionModule: React.FC<IChangeSubscription> = ({ allSubscriptions, subscriptionInfo, onCancelSubscription }) => {
   const { spacing } = useTheme();
   const { t } = useTranslation();
 
   if (!allSubscriptions) {
-    return <MySubscription subscriptionInfo={subscriptionInfo} cancelSubscription={() => {}} />;
+    return <MySubscription subscriptionInfo={subscriptionInfo} cancelSubscription={onCancelSubscription} />;
   }
 
   const { entityModelList } = allSubscriptions._embedded;
@@ -37,10 +38,19 @@ const ChangeSubscriptionModule: React.FC<IChangeSubscription> = ({ allSubscripti
 
   return (
     <BottomSheetScrollView contentContainerStyle={{ paddingBottom: spacing.lg }}>
-      <Text textAlign="center" t18n="profile:my_account:subscription_details:change_subscription" />
+      <Text
+        textAlign="center"
+        t18n={
+          subscriptionInfo.subscriptionId
+            ? 'profile:my_account:subscription_details:change_subscription'
+            : 'profile:my_account:subscription_details:purchase_subscription'
+        }
+      />
       <Divider isHorizontal my="md" bg="gray" />
       <View px="lg">
-        {subscriptionInfo.subscriptionId && <MySubscription subscriptionInfo={subscriptionInfo} cancelSubscription={() => {}} />}
+        {subscriptionInfo.subscriptionId && (
+          <MySubscription subscriptionInfo={subscriptionInfo} cancelSubscription={onCancelSubscription} />
+        )}
         {subscriptionInfo.subscriptionId && (
           <Text variant="14-reg" color="gray" my="md">
             {t('profile:my_account:subscription_details:other_available_options')}

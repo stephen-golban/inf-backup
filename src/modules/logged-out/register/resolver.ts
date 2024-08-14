@@ -27,6 +27,17 @@ const shape = object({
     .matches(/^[A-Z][a-z]+$/, stringifyObjectValidate({ keyT: 'validation:invalid_format' }))
     .min(3, stringifyObjectValidate({ keyT: 'validation:min_chars_length', options: { count: 3 } })),
 
+  promoCode: string()
+    .notRequired()
+    .matches(/^[A-Z0-9]{13}$/, {
+      message: stringifyObjectValidate({ keyT: 'validation:invalid_format' }),
+      excludeEmptyString: true,
+    })
+    .matches(/[0-9]/, {
+      message: stringifyObjectValidate({ keyT: 'validation:invalid_format' }),
+      excludeEmptyString: true,
+    }),
+
   phone: string()
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))
     .min(8, stringifyObjectValidate({ keyT: 'validation:min_chars_length', options: { count: 8 } })),

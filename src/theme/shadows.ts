@@ -9,6 +9,16 @@ export const SHADOWS = {
     shadowRadius: 8,
     elevation: 4,
   },
+  credit_card: {
+    shadowColor: 'black',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 8,
+  },
 };
 
 export type Shadow = keyof typeof SHADOWS;

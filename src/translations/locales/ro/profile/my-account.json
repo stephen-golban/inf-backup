@@ -10,6 +10,8 @@
     "next_payment": "Următoarea plată",
     "unlimited_access": "Ai acces nelimitat la serviciile aplicației și o reducere de 50% la achiziția Raportului de Credit. Abonamentul se reînnoiește automat în fiecare lună.",
     "change_subscription": "Schimbă abonamentul",
+    "inactive_subscription": "Nu aveți un abonament activ",
+    "purchase_subscription": "Procurați un abonament",
     "current_subscription": "Abonament curent",
     "other_available_options": "Alte opțiuni disponibile",
     "choose_subscription": "Alege abonamentul {{duration}}",

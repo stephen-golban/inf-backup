@@ -7,7 +7,7 @@ import { FlashList } from '@shopify/flash-list';
 
 import type { ListViewProps } from './type';
 
-export const ListView = (props: ListViewProps) => {
+export const ListView = <T,>(props: ListViewProps<T>) => {
   const { type = 'flashlist', onRefresh, onLoadMore, canRefresh = false, canLoadMore = false, refreshing = false } = props;
 
   function loadMore() {

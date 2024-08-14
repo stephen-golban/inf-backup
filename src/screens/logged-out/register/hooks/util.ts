@@ -3,11 +3,12 @@ import type { RegisterFormFields } from '@modules/logged-out/register/resolver';
 import { format } from 'date-fns';
 
 export const createQueryParams = (values: RegisterFormFields, locale: IAppState['locale']) => {
-  const { identityNumber, firstName, lastName, birthDate, email, phone } = values;
+  const { identityNumber, firstName, lastName, birthDate, email, phone, promoCode } = values;
   return {
     identityNumber,
     firstName,
     lastName,
+    promoCode,
     language: locale.toUpperCase(),
     birthDate: format(birthDate || new Date(), 'yyyy-MM-dd'),
     contactData: [

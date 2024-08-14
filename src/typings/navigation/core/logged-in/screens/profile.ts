@@ -1,6 +1,6 @@
-import { CompositeScreenProps } from '@react-navigation/native';
 import { LOGGED_IN_SCREENS, LoggedInScreensProps } from './index';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 
 export enum PROFILE_SCREENS {
   'FAQ' = 'FAQ',
@@ -8,7 +8,10 @@ export enum PROFILE_SCREENS {
   'SECTIONS' = 'SECTIONS',
   'MY_ACCOUNT' = 'MY_ACCOUNT',
   'DELETE_ACCOUNT' = 'DELETE_ACCOUNT',
+  'INVITE_FRIENDS' = 'INVITE_FRIENDS',
   'CHANGE_PASSWORD' = 'CHANGE_PASSWORD',
+  'SETTINGS' = 'SETTINGS',
+  'INVITE_FRIENDS_FORM' = 'INVITE_FRIENDS_FORM',
 }
 
 export type ProfileStackParams = {
@@ -16,11 +19,29 @@ export type ProfileStackParams = {
   [PROFILE_SCREENS.CONTACTS]: undefined;
   [PROFILE_SCREENS.SECTIONS]: undefined;
   [PROFILE_SCREENS.MY_ACCOUNT]: undefined;
+  [PROFILE_SCREENS.INVITE_FRIENDS]: undefined;
   [PROFILE_SCREENS.DELETE_ACCOUNT]: undefined;
   [PROFILE_SCREENS.CHANGE_PASSWORD]: undefined;
+  [PROFILE_SCREENS.SETTINGS]: NavigatorScreenParams<SettingsStackParams>;
+  [PROFILE_SCREENS.INVITE_FRIENDS_FORM]: undefined;
 };
 
 export type ProfileStackScreenProps<T extends keyof ProfileStackParams> = CompositeScreenProps<
   NativeStackScreenProps<ProfileStackParams, T>,
   LoggedInScreensProps<LOGGED_IN_SCREENS.PROFILE>
+>;
+
+export enum SETTINGS_SCREENS {
+  SECTIONS = 'SECTIONS',
+  PAYMENTS_HISTORY = 'PAYMENTS_HISTORY',
+}
+
+export type SettingsStackParams = {
+  [SETTINGS_SCREENS.SECTIONS]: undefined;
+  [SETTINGS_SCREENS.PAYMENTS_HISTORY]: undefined;
+};
+
+export type SettingsStackScreenProps<T extends keyof SettingsStackParams> = CompositeScreenProps<
+  NativeStackScreenProps<SettingsStackParams, T>,
+  ProfileStackScreenProps<PROFILE_SCREENS.SETTINGS>
 >;

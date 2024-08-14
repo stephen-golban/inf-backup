@@ -1,0 +1,30 @@
+{
+  "account_settings": "Account Settings",
+  "my_infodebit": "MyInfodebit",
+  "payment_history": "Payment History",
+  "newsletter": "Newsletter",
+  "sms": "SMS",
+  "notification_permissions": "Notification Permissions",
+  "technical_feedback": "Technical Feedback",
+  "others": "Others",
+  "privacy_policy": "Privacy Policy",
+  "terms_conditions": "Terms and Conditions",
+  "refund_cancellation_policy": "Refund and Cancellation Policy",
+  "app_version": "App Version: 12.01.1",
+  "made_with_love": "Made with ❤️ in Moldova",
+
+  "payment_history_screen": {
+    "my_card": "My Card",
+    "no_cards_to_display": "No cards to display.",
+    "card_number": "1234 5678 9101 1121",
+    "cardholder_name": "Maricica V",
+    "pay_now": "Pay Now",
+    "due_date": "Due Date: {{date}}",
+    "payment_history": "Payment History",
+    "subscription": "Unlimited Monthly Subscription",
+    "date": "12.01.2024",
+    "amount": "{{amount}} MDL/month",
+    "date_2": "12.02.2024",
+    "no_payment_history": "No payment history."
+  }
+}

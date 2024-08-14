@@ -4,14 +4,17 @@ import { APP_SCREEN, RootStackScreenProps } from '../../index';
 import { OwnDataCheckScreensParamList } from './own-data-check';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
+import { FeedbackStackParams } from './feedback';
 
 export enum LOGGED_IN_SCREENS {
   PROFILE = 'PROFILE',
+  FEEDBACK = 'FEEDBACK',
   OWN_DATA_CHECK = 'OWN_DATA_CHECK',
 }
 
 export type LoggedInScreensParams = {
   [LOGGED_IN_SCREENS.PROFILE]: NavigatorScreenParams<ProfileStackParams>;
+  [LOGGED_IN_SCREENS.FEEDBACK]: NavigatorScreenParams<FeedbackStackParams>;
   [LOGGED_IN_SCREENS.OWN_DATA_CHECK]: NavigatorScreenParams<OwnDataCheckScreensParamList>;
 };
 
