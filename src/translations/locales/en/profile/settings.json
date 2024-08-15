@@ -26,5 +26,10 @@
     "amount": "{{amount}} MDL/month",
     "date_2": "12.02.2024",
     "no_payment_history": "No payment history."
+  },
+
+  "feedback": {
+    "message": "Message",
+    "placeholder": "Write your message here..."
   }
 }

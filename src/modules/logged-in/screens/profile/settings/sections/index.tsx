@@ -6,11 +6,16 @@ import { StyleSheet, Switch } from 'react-native';
 import { BaseButton, Icon, Screen, Text, View } from '@components/common';
 
 interface ISettingsSectionsModule {
+  onPressFeedback(): void;
   onPressPaymentHistory(): void;
+  onPressPrivacyPolicy(): void;
+  onPressTermsAndConditions(): void;
+  onPressRefundCancellationPolicy(): void;
 }
 
 const SettingsSectionsModule: React.FC<ISettingsSectionsModule> = props => {
-  const { onPressPaymentHistory } = props;
+  const { onPressPaymentHistory, onPressPrivacyPolicy, onPressFeedback, onPressRefundCancellationPolicy, onPressTermsAndConditions } =
+    props;
   const { spacing } = useTheme();
 
   return (
@@ -39,7 +44,7 @@ const SettingsSectionsModule: React.FC<ISettingsSectionsModule> = props => {
         <Switch />
       </View>
 
-      <BaseButton row between align="center" py={20} bbw={StyleSheet.hairlineWidth} bbc="gray_80">
+      <BaseButton row between align="center" py={20} bbw={StyleSheet.hairlineWidth} bbc="gray_80" onPress={onPressFeedback}>
         <Text variant="16-reg" t18n="profile:settings:technical_feedback" />
         <Icon icon="ChevronRight" size={16} />
       </BaseButton>
@@ -48,17 +53,17 @@ const SettingsSectionsModule: React.FC<ISettingsSectionsModule> = props => {
         <Text variant="18-semi" color="blue" t18n="profile:settings:others" />
       </BaseButton>
 
-      <BaseButton row between align="center" py={20} bbw={StyleSheet.hairlineWidth} bbc="gray_80">
+      <BaseButton row between align="center" py={20} bbw={StyleSheet.hairlineWidth} bbc="gray_80" onPress={onPressPrivacyPolicy}>
         <Text variant="16-reg" t18n="profile:settings:privacy_policy" />
         <Icon icon="ChevronRight" size={16} />
       </BaseButton>
 
-      <BaseButton row between align="center" py={20} bbw={StyleSheet.hairlineWidth} bbc="gray_80">
+      <BaseButton row between align="center" py={20} bbw={StyleSheet.hairlineWidth} bbc="gray_80" onPress={onPressTermsAndConditions}>
         <Text variant="16-reg" t18n="profile:settings:terms_conditions" />
         <Icon icon="ChevronRight" size={16} />
       </BaseButton>
 
-      <BaseButton row between align="center" py={20} bbw={StyleSheet.hairlineWidth} bbc="gray_80">
+      <BaseButton row between align="center" py={20} bbw={StyleSheet.hairlineWidth} bbc="gray_80" onPress={onPressRefundCancellationPolicy}>
         <Text variant="16-reg" t18n="profile:settings:refund_cancellation_policy" flex />
         <Icon icon="ChevronRight" size={16} />
       </BaseButton>

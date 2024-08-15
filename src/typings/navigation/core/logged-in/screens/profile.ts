@@ -34,11 +34,13 @@ export type ProfileStackScreenProps<T extends keyof ProfileStackParams> = Compos
 export enum SETTINGS_SCREENS {
   SECTIONS = 'SECTIONS',
   PAYMENTS_HISTORY = 'PAYMENTS_HISTORY',
+  TECHNICAL_FEEDBACK = 'TECHNICAL_FEEDBACK',
 }
 
 export type SettingsStackParams = {
   [SETTINGS_SCREENS.SECTIONS]: undefined;
   [SETTINGS_SCREENS.PAYMENTS_HISTORY]: undefined;
+  [SETTINGS_SCREENS.TECHNICAL_FEEDBACK]: undefined;
 };
 
 export type SettingsStackScreenProps<T extends keyof SettingsStackParams> = CompositeScreenProps<
