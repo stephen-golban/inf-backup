@@ -32,6 +32,7 @@
     "react-native": "0.74.3",
     "react-native-base64": "^0.2.1",
     "react-native-confirmation-code-field": "^7.4.0",
+    "react-native-device-info": "^11.1.0",
     "react-native-dotenv": "^3.4.11",
     "react-native-element-dropdown": "^2.12.1",
     "react-native-fast-image": "^8.6.3",

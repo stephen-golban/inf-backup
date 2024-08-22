@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useTheme } from '@theme/index';
 import { useTranslation } from '@library/hooks';
 
 import { FilledButton, Form, FormInput, Screen, View } from '@components/common';
