@@ -6,3 +6,4 @@ export * from './credit-report';
 export * from './subscriptions';
 export * from './own-data-check';
 export * from './payments-history';
+export * from './notifications-settings';

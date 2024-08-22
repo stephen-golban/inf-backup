@@ -26,5 +26,10 @@
     "amount": "{{amount}} MDL/lună",
     "date_2": "12.02.2024",
     "no_payment_history": "Nu există istoric de plăți."
+  },
+
+  "feedback": {
+    "message": "Mesaj",
+    "placeholder": "Scrie mesajul tău aici..."
   }
 }
