@@ -5,7 +5,7 @@ import { useEffect, useCallback, useMemo } from 'react';
 
 import type { NotificationSettingsApiResponse, NotificationSettingsContactData } from '@typings/responses';
 
-export default function useSettingsModule() {
+export default function useSectionsModule() {
   const [smsEnabled, toggleSms] = useToggle(false);
   const [newsletterEnabled, toggleNewsletter] = useToggle(false);
   const [sendPushNotifications, togglePushNotifications] = useToggle(false);
