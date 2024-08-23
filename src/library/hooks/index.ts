@@ -8,4 +8,5 @@ export { default as useEventCallback } from './useEventCallback';
 export { default as useDismissKeyboard } from './useDismissKeyboard';
 export { default as useExpandAnimation } from './useExpandAnimation';
 export { default as useDisableBackHandler } from './useDisableBackHandler';
+export { default as useFirebaseNotifications } from './useFirebaseNotifications';
 export { default as useErrorMessageTranslation } from './useErrorMessageTranslation';

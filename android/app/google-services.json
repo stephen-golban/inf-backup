@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1050194977595",
+    "project_id": "infodebitmobileapi",
+    "storage_bucket": "infodebitmobileapi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050194977595:android:d45ee6a2d1078450c90d1e",
+        "android_client_info": {
+          "package_name": "com.infodebit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPrzrYJ32_6uSRARiug0Pc0J2MNyLcygA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
