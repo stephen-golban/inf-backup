@@ -7,7 +7,7 @@ import { type SettingFeedbackFormFields, settings_feedback_form_schema } from '.
 
 interface ITechnicalFeedbackModule {
   loading?: boolean;
-  onSubmit(args: SettingFeedbackFormFields): void;
+  onSubmit(args: SettingFeedbackFormFields): Promise<void>;
 }
 
 const TechnicalFeedbackModule: React.FC<ITechnicalFeedbackModule> = ({ onSubmit, loading }) => {
@@ -16,7 +16,10 @@ const TechnicalFeedbackModule: React.FC<ITechnicalFeedbackModule> = ({ onSubmit,
   return (
     <Screen unsafe p="lg" pb="xl">
       <Form resolver={settings_feedback_form_schema} defaultValues={{ message: '' }}>
-        {({ handleSubmit, formState }) => {
+        {({ handleSubmit, formState, reset }) => {
+          const customSubmit = async (input: SettingFeedbackFormFields) => {
+            await onSubmit(input).then(() => reset());
+          };
           return (
             <View fill between>
               <View>
@@ -30,7 +33,7 @@ const TechnicalFeedbackModule: React.FC<ITechnicalFeedbackModule> = ({ onSubmit,
                   placeholderI18n="profile:settings:feedback:placeholder"
                 />
               </View>
-              <FilledButton onPress={handleSubmit(onSubmit)} loading={loading} t18n="ui:submit" disabled={!formState.isValid} />
+              <FilledButton onPress={handleSubmit(customSubmit)} loading={loading} t18n="ui:submit" disabled={!formState.isValid} />
             </View>
           );
         }}
