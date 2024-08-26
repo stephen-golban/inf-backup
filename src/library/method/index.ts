@@ -1,6 +1,7 @@
 import { SubscriptionDuration } from '@typings/responses/subscriptions/all-subscriptions';
 import { Linking } from 'react-native';
 import { Alert, Platform } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 
 type TypesBase = 'bigint' | 'boolean' | 'function' | 'number' | 'object' | 'string' | 'symbol' | 'undefined';
@@ -26,6 +27,8 @@ export const execFunc = <Fn extends (...args: any[]) => any>(func?: Fn | null, .
     func(...args);
   }
 };
+
+export const isEmulator = async () => await DeviceInfo.isEmulator();
 
 export function isJSON(string: string) {
   try {

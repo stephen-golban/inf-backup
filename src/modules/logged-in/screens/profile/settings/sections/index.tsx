@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useTheme } from '@theme/index';
-import useSettingsModule from './hooks';
+import useSectionsModule from './hooks';
 
 import { StyleSheet, Switch } from 'react-native';
 import { BaseButton, Icon, Screen, Text, View } from '@components/common';
@@ -29,7 +29,7 @@ const SettingsSectionsModule: React.FC<ISettingsSectionsModule> = props => {
     handleToggleNewsletter,
     sendPushNotifications,
     handleTogglePushNotifications,
-  } = useSettingsModule();
+  } = useSectionsModule();
 
   return (
     <Screen scroll loading={loading} unsafe style={{ paddingHorizontal: spacing.md, paddingVertical: spacing.md }} onRefresh={refetch}>
