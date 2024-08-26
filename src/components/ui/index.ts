@@ -4,6 +4,7 @@ export * from './loader';
 export * from './headers';
 export * from './app-bar';
 export * from './scoring';
+export * from './divider';
 export * from './progress';
 export * from './list-view';
 export * from './helper-text';

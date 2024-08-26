@@ -1,27 +1,35 @@
 {
-    "total_of_active_commitments": "Сумма активных обязательств",
-    "remaining_amount": "Оставшаяся сумма",
-    "not_have_credit_history": "Данные для отображения не найдены...Похоже, что у вас еще нет кредитной истории в Infodebit",
-    "follow_us_for_more_information": "Следите за нами для информации #хорошознать",
-    "last_24_months": "Последние 24 месяца",
-    "new_commitments": "Новые обязательства",
-    "closed_credits": "Закрытые кредиты",
-    "outstanding_debts": "Просроченные задолженности",
-    "updated_debts": "Обновленные задолженности",
-    "total_to_pay": "Всего к оплате",
-    "total_without_penalties": "Всего без штрафов",
-    "active_commitments_with": "Активные обязательства с",
-    "positive_history": "положительная история",
-    "negative_history": "отрицательная история",
-    "order_report_for_details": "Закажите Отчет для получения деталей",
-    "no_credit_history": "Нет кредитной истории. Как начать?",
-    "bottom_modal": {
-        "get_out_of_debt_easier": "Избавьтесь от долгов легче",
-        "noticed_debts_at_incaso": "Мы заметили, что у вас есть долги в INCASO, хотите получить скидку и/или меньшие платежи по рассрочке? Введите номер телефона и нажмите ДА, если хотите удобные способы оплаты.",
-        "enter_number": "Введите номер",
-        "no": "НЕТ",
-        "yes": "ДА"
-    }
-    
+  "total_of_active_commitments": "Сумма активных обязательств",
+  "remaining_amount": "Оставшаяся сумма",
+  "not_have_credit_history": "Данные для отображения не найдены...Похоже, что у вас еще нет кредитной истории в Infodebit",
+  "follow_us_for_more_information": "Следите за нами для информации #хорошознать",
+  "last_24_months": "Последние 24 месяца",
+  "new_commitments": "Новые обязательства",
+  "closed_credits": "Закрытые кредиты",
+  "outstanding_debts": "Просроченные задолженности",
+  "updated_debts": "Обновленные задолженности",
+  "total_to_pay": "Всего к оплате",
+  "total_without_penalties": "Всего без штрафов",
+  "active_commitments_with": "Активные обязательства с",
+  "positive_history": "положительная история",
+  "negative_history": "отрицательная история",
+  "order_report_for_details": "Закажите Отчет для получения деталей",
+  "no_credit_history": "Нет кредитной истории. Как начать?",
+  "bottom_modal": {
+    "get_out_of_debt_easier": "Избавьтесь от долгов легче",
+    "noticed_debts_at_incaso": "Мы заметили, что у вас есть долги в INCASO, хотите получить скидку и/или меньшие платежи по рассрочке? Введите номер телефона и нажмите ДА, если хотите удобные способы оплаты.",
+    "enter_number": "Введите номер",
+    "no": "НЕТ",
+    "yes": "ДА"
+  },
+
+  "credit_report_order": {
+    "title": "Заказать кредитный отчет",
+    "choose_credit_bureau": "Выберите кредитное бюро",
+    "bic_infodebit_credit_report": "BIC INFODEBIT CREDIT REPORT",
+    "choose_service_type": "Выберите тип услуги",
+    "credit_report": "Кредитный отчет",
+    "email_copy": "Я хочу получить копию отчета по электронной почте",
+    "select_language": "Выберите язык отчета"
+  }
 }
-  
