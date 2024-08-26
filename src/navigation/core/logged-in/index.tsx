@@ -16,7 +16,6 @@ const Stack = createNativeStackNavigator<LoggedInStackParams>();
 const renderHeader = (props: NativeStackHeaderProps) => <Header {...props} />;
 
 const LoggedInStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_IN>> = () => {
-
   const { loading: loadingSubscription } = useGetSubscription(true);
 
   const { loading: loadingNomenclatures } = useGetNomenclatures('STAGES');

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { FilledButton, Text, View } from '@components/common';
-
 interface IFrequentlyQuestions {
   onPress(): void;
 }

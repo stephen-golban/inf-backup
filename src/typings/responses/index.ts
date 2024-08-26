@@ -1,3 +1,4 @@
+export * from './faq';
 export * from './login';
 export * from './tokens';
 export * from './register';

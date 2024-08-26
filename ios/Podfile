@@ -1,5 +1,4 @@
-# Definește platforma iOS minimă
-platform :ios, '12.4'
+platform :ios, '13.4'
 
 # Resolve react_native_pods.rb with node to allow for hoisting
 require Pod::Executable.execute_command('node', ['-p',

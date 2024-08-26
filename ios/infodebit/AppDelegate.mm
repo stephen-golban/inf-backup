@@ -1,11 +1,14 @@
 #import "AppDelegate.h"
 #import "RNSplashScreen.h"
 #import <React/RCTBundleURLProvider.h>
+#import <Firebase.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [FIRApp configure];
+  
   self.moduleName = @"infodebit";
   self.initialProps = @{};
 

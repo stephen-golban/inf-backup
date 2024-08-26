@@ -15,6 +15,7 @@
 		77DBA1092CC67DE4CF050657 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 68E1B6B7017665CFBA5A1831 /* PrivacyInfo.xcprivacy */; };
 		9F3FF0E92C5B9AB40074D663 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0E82C5B9AB40074D663 /* Images.xcassets */; };
 		9F3FF0EB2C5BA0300074D663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */; };
+		9FE7BCCA2C7CE208007F297B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FE7BCC92C7CE208007F297B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		89C6BE57DB24E9ADA2F236DE /* Pods-infodebit-infodebitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit-infodebitTests.release.xcconfig"; path = "Target Support Files/Pods-infodebit-infodebitTests/Pods-infodebit-infodebitTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F3FF0E82C5B9AB40074D663 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = infodebit/Images.xcassets; sourceTree = "<group>"; };
 		9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9FE7BCC92C7CE208007F297B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 		13B07FAE1A68108700A75B9A /* infodebit */ = {
 			isa = PBXGroup;
 			children = (
+				9FE7BCC92C7CE208007F297B /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -165,6 +168,7 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				67F61CCCEDC44A37B0FCD4FB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -187,6 +191,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
 				73CF00914F40ADE06C5457B8 /* [CP-User] [RNFB] Core Configuration */,
+				A7A4463FAFFB0250E94B0964 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -246,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F3FF0EB2C5BA0300074D663 /* LaunchScreen.storyboard in Resources */,
+				9FE7BCCA2C7CE208007F297B /* GoogleService-Info.plist in Resources */,
 				9F3FF0E92C5B9AB40074D663 /* Images.xcassets in Resources */,
 				77DBA1092CC67DE4CF050657 /* PrivacyInfo.xcprivacy in Resources */,
 			);
@@ -269,6 +275,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+		};
+		67F61CCCEDC44A37B0FCD4FB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitTests/Pods-infodebit-infodebitTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitTests/Pods-infodebit-infodebitTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitTests/Pods-infodebit-infodebitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		73CF00914F40ADE06C5457B8 /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -303,6 +326,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7A4463FAFFB0250E94B0964 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit/Pods-infodebit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit/Pods-infodebit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-infodebit/Pods-infodebit-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
