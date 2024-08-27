@@ -1,35 +1,58 @@
 import React from 'react';
 
-import { useFaq } from './hooks';
-
-import { ScrollView } from '@components/common';
-import { CorrectionProcedure, CreditHistory, ExcludedInformations, FrequentlyQuestions } from './parts';
 import { Loader } from '@components/ui';
+import { ScrollView } from '@components/common';
+import { FrequentlyQuestions, FaqList } from './parts';
+import { IFaqResponse } from '@typings/responses';
+import { openBrowserAsync } from '@library/method';
+import { useTheme } from '@theme/index';
+import { Color } from '@theme/colors';
 
 interface IFaqModule {
-  onPressInfo(): void;
-  onPressQuestions(): void;
-  onPressProcedure(): void;
-  onPressCreditHistory(): void;
+  loading: boolean;
+  faq: IFaqResponse | null;
 }
 
-const FaqModule: React.FC<IFaqModule> = props => {
-  const { onPressInfo, onPressQuestions, onPressProcedure, onPressCreditHistory } = props;
-
-  const { faq, loading } = useFaq();
-
+const FaqModule: React.FC<IFaqModule> = ({ faq, loading }) => {
   if (loading) {
     return <Loader center />;
   }
 
-  console.log('faq', JSON.stringify(faq));
+  const { colors } = useTheme();
+
+  const faqItems = faq?._embedded.entityModelList[0];
+
+  const backgroundColors = ['lightBlue', 'white', 'white', 'blue', 'white'];
+
+  const enhancedItems = faqItems?.items
+    ?.sort((a, b) => a.id - b.id)
+    .map((item, index) => ({
+      ...item,
+      styles: {
+        background: backgroundColors[index],
+        id: index,
+      },
+    }));
 
   return (
     <ScrollView>
-      <FrequentlyQuestions onPress={onPressQuestions} />
-      <CreditHistory onPress={onPressCreditHistory} />
-      <ExcludedInformations onPress={onPressInfo} />
-      <CorrectionProcedure onPress={onPressProcedure} />
+      {faqItems && (
+        <>
+          {enhancedItems?.map(item => (
+            <FaqList
+              id={item.id}
+              key={item.id}
+              text={item.text!}
+              image={item.image}
+              title={item.title}
+              subTitle={item.subtitle}
+              viewOptions={item.styles}
+              btnTitle={item.buttonTitle}
+              onPress={() => openBrowserAsync(item.buttonUrl)}
+            />
+          ))}
+        </>
+      )}
     </ScrollView>
   );
 };
