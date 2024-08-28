@@ -23,7 +23,7 @@ const CreditReportOrderModule: React.FC<ICreditReportOrderModule> = ({ onSubmit,
   const defaultValues: CreditReportOrderFormFields = {
     language: locale,
     email_copy: true,
-    service_type: SERVICE_TYPE_MOCK[0].value,
+    purchasedServiceName: SERVICE_TYPE_MOCK[0].value,
     credit_bureau: CREDIT_BUREAU_MOCK[0].value,
   };
 
@@ -73,7 +73,7 @@ const CreditReportOrderModule: React.FC<ICreditReportOrderModule> = ({ onSubmit,
                 <View mt="sm">
                   <Controller
                     control={control}
-                    name="service_type"
+                    name="purchasedServiceName"
                     render={({ field }) => {
                       const defaultValue = SERVICE_TYPE_MOCK.find(item => item.value === field.value);
                       return (

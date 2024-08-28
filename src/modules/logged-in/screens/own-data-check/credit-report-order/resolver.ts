@@ -6,7 +6,7 @@ import { boolean, type InferType, object, string } from 'yup';
 const shape = object({
   language: string().required(stringifyObjectValidate({ keyT: 'validation:field_required' })),
   credit_bureau: string().required(stringifyObjectValidate({ keyT: 'validation:field_required' })),
-  service_type: string().required(stringifyObjectValidate({ keyT: 'validation:field_required' })),
+  purchasedServiceName: string().required(stringifyObjectValidate({ keyT: 'validation:field_required' })),
   email_copy: boolean()
     .oneOf([false, true], stringifyObjectValidate({ keyT: 'validation:field_required' }))
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' })),
