@@ -1,7 +1,7 @@
 {
   "account_settings": "Настройки аккаунта",
   "my_infodebit": "MyInfodebit",
-  "payment_history": "История платежей",
+  "payment_management": "Управление платежами",
   "newsletter": "Рассылка",
   "sms": "СМС",
   "notification_permissions": "Разрешения на уведомления",
@@ -25,7 +25,9 @@
     "date": "12.01.2024",
     "amount": "{{amount}} леев/месяц",
     "date_2": "12.02.2024",
-    "no_payment_history": "Нет истории платежей."
+    "no_payment_history": "Нет истории платежей.",
+    "successfully_registered_new_card": "Новая карта успешно зарегистрирована",
+    "register_new_card": "Зарегистрировать новую карту"
   },
 
   "feedback": {
