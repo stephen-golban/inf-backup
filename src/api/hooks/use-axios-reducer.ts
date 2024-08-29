@@ -1,12 +1,6 @@
 import { useReducer } from 'react';
 
-export interface RequestState<Data> {
-  data: Data | undefined;
-  loading: boolean;
-  error: Error | undefined;
-}
-
-type Action<Data> = { type: 'REQUEST_INIT' } | { type: 'REQUEST_SUCCESS'; payload: Data } | { type: 'REQUEST_FAILED'; payload: Error };
+import type { Action, RequestState } from './type';
 
 export const createInitialState = <Data>(data?: Data) => ({
   data: typeof data === 'undefined' ? undefined : data,

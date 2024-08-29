@@ -36,5 +36,7 @@
     "no_response_from_server": "Нет ответа от сервера",
     "no_valid_term_date": "Нет действительной даты истечения срока",
     "invitation_submitted_successfully": "Пригашение успешно отправлено"
-  }
+  },
+
+  "empty_state": "Данные для отображения не найдены..."
 }

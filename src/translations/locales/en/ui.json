@@ -36,5 +36,7 @@
     "no_valid_term_date": "No valid term date available",
     "invitation_submitted_successfully": "Invitation submitted successfully",
     "user_subscription_no_access": "Service not included in subscription"
-  }
+  },
+
+  "empty_state": "No data found to display..."
 }

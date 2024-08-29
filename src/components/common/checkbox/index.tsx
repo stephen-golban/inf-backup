@@ -12,7 +12,17 @@ import { BaseButton } from '../button';
 import type { CheckboxProps } from './type';
 
 const Checkbox: React.FC<CheckboxProps> = props => {
-  const { children, value = false, reverse = false, onToggle, size = 24, checkIconSize = 16, disabled = false } = props;
+  const {
+    children,
+    value = false,
+    reverse = false,
+    onToggle,
+    size = 24,
+    checkIconSize = 16,
+    disabled = false,
+    round = false,
+    ...rest
+  } = props;
 
   const { colors } = useTheme();
   const [localValue, setLocalValue] = React.useState(value);
@@ -44,8 +54,8 @@ const Checkbox: React.FC<CheckboxProps> = props => {
   });
 
   return (
-    <BaseButton disabled={disabled} onPress={onPress} direction={reverse ? 'row-reverse' : 'row'} align="center">
-      <AnimatedView style={[containerStyle]} center w={size} h={size} br="xs" bw={1}>
+    <BaseButton disabled={disabled} onPress={onPress} direction={reverse ? 'row-reverse' : 'row'} align="center" {...rest}>
+      <AnimatedView style={[containerStyle]} center w={size} h={size} br={round ? 'huge' : 'xs'} bw={1}>
         {localValue && <Icon size={checkIconSize} icon="CheckIcon" color="white" strokeWidth={3} />}
       </AnimatedView>
       {children}

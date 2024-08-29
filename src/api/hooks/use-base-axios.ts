@@ -1,35 +1,12 @@
 import { base_api } from '../base';
-import useAxiosCancel from './use-axios-cancel';
-import { useEffect, useCallback } from 'react';
-import { useToast } from 'react-native-toast-notifications';
-import useAxiosReducer, { type RequestState } from './use-axios-reducer';
 import { useMountedState } from 'react-use';
+import { useEffect, useCallback } from 'react';
+import useAxiosCancel from './use-axios-cancel';
+import useAxiosReducer from './use-axios-reducer';
+import { useToast } from 'react-native-toast-notifications';
 
-import type { RequestMethod } from './type';
-import type { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
-
-interface RequestFunctions {
-  cancel: () => void;
-  refetch: () => Promise<void>;
-}
-
-export interface Config<Data> extends AxiosRequestConfig {
-  axiosInstance?: AxiosInstance;
-  ssrData?: Data;
-  method?: RequestMethod;
-  additionalUrl?: string;
-}
-
-export type OnSuccess<Data> = (arg: Data) => void;
-
-export type GetData<Data> = (
-  lazyData?: Config<Data>['data'],
-  onSuccess?: OnSuccess<Data>,
-  lazyConfig?: Config<Data>,
-) => Promise<Data | undefined>;
-
-export type Props<Data> = RequestState<Data> & RequestFunctions;
-export type BaseAxios<Data> = [GetData<Data>, Props<Data>];
+import type { AxiosResponse } from 'axios';
+import type { BaseAxios, Config, OnSuccess } from './type';
 
 function useBaseAxios<Data>(url: string): BaseAxios<Data>;
 function useBaseAxios<Data>(config: Config<Data>): BaseAxios<Data>;
