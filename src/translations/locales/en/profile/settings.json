@@ -1,7 +1,7 @@
 {
   "account_settings": "Account Settings",
   "my_infodebit": "MyInfodebit",
-  "payment_history": "Payment History",
+  "payment_management": "Payments Management",
   "newsletter": "Newsletter",
   "sms": "SMS",
   "notification_permissions": "Notification Permissions",
@@ -25,7 +25,9 @@
     "date": "12.01.2024",
     "amount": "{{amount}} MDL/month",
     "date_2": "12.02.2024",
-    "no_payment_history": "No payment history."
+    "no_payment_history": "No payment history.",
+    "successfully_registered_new_card": "Successfully registered a new card",
+    "register_new_card": "Register a new card"
   },
 
   "feedback": {

@@ -1,6 +1,7 @@
 import { SubscriptionDuration } from '@typings/responses/subscriptions/all-subscriptions';
 import { Linking } from 'react-native';
 import { Alert, Platform } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 
 type TypesBase = 'bigint' | 'boolean' | 'function' | 'number' | 'object' | 'string' | 'symbol' | 'undefined';
@@ -26,6 +27,8 @@ export const execFunc = <Fn extends (...args: any[]) => any>(func?: Fn | null, .
     func(...args);
   }
 };
+
+export const isEmulator = async () => await DeviceInfo.isEmulator();
 
 export function isJSON(string: string) {
   try {
@@ -105,6 +108,30 @@ export const openBrowserAsync = async (url: string = 'https://www.google.com') =
   } catch (error: any) {
     console.log(error.message);
   }
+};
+
+export const openBrowserAuthAsync = async (url: string, redirectUrl: string) => {
+  const isAvailable = await InAppBrowser.isAvailable();
+  if (isAvailable) {
+    return InAppBrowser.openAuth(url, redirectUrl, {
+      // iOS Properties
+      dismissButtonStyle: 'cancel',
+      preferredBarTintColor: 'gray',
+      preferredControlTintColor: 'white',
+      // Android Properties
+      animated: true,
+      // modalPresentationStyle: 'fullScreen',
+      showTitle: true,
+      modalEnabled: true,
+      toolbarColor: '#6200EE',
+      secondaryToolbarColor: 'black',
+      enableUrlBarHiding: true,
+      ephemeralWebSession: true,
+      enableDefaultShare: true,
+      forceCloseOnRedirection: true,
+    });
+  }
+  return;
 };
 
 export type Currency = 'MDL' | 'EUR' | 'USD' | 'RON' | 'RUB' | 'UAH' | 'KZT';

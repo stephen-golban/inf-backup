@@ -41,6 +41,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>LSApplicationQueriesSchemes</key>
+    <string/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
