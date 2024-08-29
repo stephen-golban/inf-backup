@@ -11,7 +11,7 @@ const Sections: React.FC<SettingsStackScreenProps<SETTINGS_SCREENS.SECTIONS>> = 
   useGoBack(true, navigation.goBack);
 
   const onPressFeedback = () => navigation.navigate(SETTINGS_SCREENS.TECHNICAL_FEEDBACK);
-  const onPressPaymentHistory = () => navigation.navigate(SETTINGS_SCREENS.PAYMENTS_HISTORY);
+  const onPressPaymentHistory = () => navigation.navigate(SETTINGS_SCREENS.PAYMENTS_MANAGEMENT);
 
   const onPressPrivacyPolicy = () => openBrowserAsync('https://infodebit.md/articol/24');
   const onPressTermsAndConditions = () => openBrowserAsync('https://infodebit.md/articol/23');

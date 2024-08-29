@@ -1,5 +1,6 @@
 export * from './login';
 export * from './tokens';
+export * from './payments';
 export * from './register';
 export * from './credit-score';
 export * from './credit-report';

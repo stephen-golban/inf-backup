@@ -110,6 +110,30 @@ export const openBrowserAsync = async (url: string = 'https://www.google.com') =
   }
 };
 
+export const openBrowserAuthAsync = async (url: string, redirectUrl: string) => {
+  const isAvailable = await InAppBrowser.isAvailable();
+  if (isAvailable) {
+    return InAppBrowser.openAuth(url, redirectUrl, {
+      // iOS Properties
+      dismissButtonStyle: 'cancel',
+      preferredBarTintColor: 'gray',
+      preferredControlTintColor: 'white',
+      // Android Properties
+      animated: true,
+      // modalPresentationStyle: 'fullScreen',
+      showTitle: true,
+      modalEnabled: true,
+      toolbarColor: '#6200EE',
+      secondaryToolbarColor: 'black',
+      enableUrlBarHiding: true,
+      ephemeralWebSession: true,
+      enableDefaultShare: true,
+      forceCloseOnRedirection: true,
+    });
+  }
+  return;
+};
+
 export type Currency = 'MDL' | 'EUR' | 'USD' | 'RON' | 'RUB' | 'UAH' | 'KZT';
 
 type CurrencyMap = { [key in Currency]: string };

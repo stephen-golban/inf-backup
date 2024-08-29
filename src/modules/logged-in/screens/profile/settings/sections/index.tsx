@@ -38,7 +38,7 @@ const SettingsSectionsModule: React.FC<ISettingsSectionsModule> = props => {
       </View>
 
       <BaseButton row between align="center" py={20} bbw={StyleSheet.hairlineWidth} bbc="gray_80" onPress={onPressPaymentHistory}>
-        <Text variant="16-reg" t18n="profile:settings:payment_history" />
+        <Text variant="16-reg" t18n="profile:settings:payment_management" />
         <Icon icon="ChevronRight" size={16} />
       </BaseButton>
 

@@ -18,3 +18,5 @@ export interface IAppState {
 
   nomenclature: StageNomenclatureResponse[] | any;
 }
+
+export type Locale = IAppState['locale'];

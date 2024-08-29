@@ -2,6 +2,11 @@ import { ViewProps } from '../view';
 
 export type CheckboxProps = Pick<ViewProps, 'children'> & {
   /**
+   * horizontal flex-directions
+   * @default false
+   */
+  reverse?: boolean;
+  /**
    * Default state of checkbox
    * @default false
    */
