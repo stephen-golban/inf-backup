@@ -60,7 +60,7 @@ const AppBar: React.FC<BottomTabBarProps> = props => {
         }}
         onOrderReportNavigate={() => {
           setToggleInfoModal(false);
-          navigate(OWN_DATA_CHECK_SCREENS.WhoCheckCredit);
+          navigate(OWN_DATA_CHECK_SCREENS.CreditReportSummary);
         }}
       />
 

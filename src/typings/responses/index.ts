@@ -4,6 +4,7 @@ export * from './tokens';
 export * from './payments';
 export * from './register';
 export * from './credit-score';
+export * from './notifications';
 export * from './credit-report';
 export * from './subscriptions';
 export * from './own-data-check';

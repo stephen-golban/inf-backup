@@ -14,14 +14,14 @@ const SectionsScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.SECTIONS>
 
   return (
     <SectionsModule
-      onOpenFaq={() => navigation.navigate(PROFILE_SCREENS.FAQ)}
       onEdit={noop}
       onLogout={logout}
+      onOpenFaq={() => navigation.navigate(PROFILE_SCREENS.FAQ)}
       onOpenContacts={() => navigation.navigate(PROFILE_SCREENS.CONTACTS)}
-      onOpenSettings={() => navigation.navigate(PROFILE_SCREENS.SETTINGS, { screen: SETTINGS_SCREENS.SECTIONS })}
-      onInviteFriends={() => navigation.navigate(PROFILE_SCREENS.INVITE_FRIENDS)}
-      onOpenMyNotitications={noop}
       onOpenMyAccount={() => navigation.navigate(PROFILE_SCREENS.MY_ACCOUNT)}
+      onInviteFriends={() => navigation.navigate(PROFILE_SCREENS.INVITE_FRIENDS)}
+      onOpenMyNotitications={() => navigation.navigate(PROFILE_SCREENS.NOTIFICATIONS)}
+      onOpenSettings={() => navigation.navigate(PROFILE_SCREENS.SETTINGS, { screen: SETTINGS_SCREENS.SECTIONS })}
     />
   );
 };
