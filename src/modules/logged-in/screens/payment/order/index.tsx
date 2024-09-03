@@ -23,13 +23,13 @@ const PaymentOrderModule: React.FC<IPaymentOrderModule> = ({ onSubmit, loading }
 
   const defaultValues: CreditReportOrderFormFields = {
     language: locale,
-    email_copy: true,
-    purchasedServiceName: SERVICE_TYPE_MOCK[0].value,
+    sendEmail: true,
+    internServiceType: SERVICE_TYPE_MOCK[0].value,
     credit_bureau: CREDIT_BUREAU_MOCK[0].value,
   };
 
   return (
-    <Screen unsafe pb="lg" scroll>
+    <Screen unsafe scroll>
       <Form resolver={credit_report_order_form_schema} defaultValues={defaultValues}>
         {({ control, handleSubmit }) => {
           return (
@@ -75,7 +75,7 @@ const PaymentOrderModule: React.FC<IPaymentOrderModule> = ({ onSubmit, loading }
                   <View mt="sm">
                     <Controller
                       control={control}
-                      name="purchasedServiceName"
+                      name="internServiceType"
                       render={({ field }) => {
                         const defaultValue = SERVICE_TYPE_MOCK.find(item => item.value === field.value);
                         return (
@@ -98,7 +98,7 @@ const PaymentOrderModule: React.FC<IPaymentOrderModule> = ({ onSubmit, loading }
                 <View>
                   <Controller
                     control={control}
-                    name="email_copy"
+                    name="sendEmail"
                     render={({ field }) => {
                       return (
                         <Checkbox size={20} checkIconSize={14} reverse onToggle={option => field.onChange(option)} value={field.value}>

@@ -1,39 +1,65 @@
-import { useState } from 'react';
+import { noop } from 'lodash';
+import { useAppStore } from '@store/app';
 import { useLazyAxios } from '@api/hooks';
 import { createPaymentBody } from './util';
-import { useTryCatch, useTryCatchWithCallback } from '@library/hooks';
+import { useTryCatch } from '@library/hooks';
+import { getQueryParams, openBrowserAuthAsync } from '@library/method';
+import { useCreateCreditReportService } from '@services/use-create-credit-report';
 
 import type { ExecutePaymentApiResponse, ExecutePaymentBodyArgs } from '@typings/responses';
+import type { CreditReportOrderFormFields } from '@modules/logged-in/screens/payment/order/resolver';
 
-function useExecutePaymentService() {
-  const [payUrl, setPayUrl] = useState<string | null>(null);
-  const [billerId, setBillerId] = useState<string | null>(null);
+type Props = {
+  billerId: string;
+  onFail?: () => void;
+};
+type OnSuccess = (params: { payId: string; orderId: string }) => Promise<void>;
 
+function useExecutePaymentService({ billerId, onFail }: Props) {
+  const user = useAppStore(state => state.user);
+  const emails = user?.contactData.filter(item => item.type === 'EMAIL').map(item => item.value);
+
+  const { onCreateCreditReport, loading: createReportLoading } = useCreateCreditReportService();
+  const [callback, callbackUtils] = useLazyAxios('/payment-purchases/call-back-payment', { method: 'get' });
   const [initiatePayment, initiatePaymentUtils] = useLazyAxios<ExecutePaymentApiResponse>('/payment-purchases', { method: 'post' });
 
-  const onPaymentSuccess = useTryCatch(async (payId: string, orderId: string) => {});
+  const onSuccessfulCallback = useTryCatch(async (params: { payId: string; orderId: string }, input: CreditReportOrderFormFields) => {
+    const body = {
+      ...input,
+      emails: emails?.join(','),
+      language: input.language.toUpperCase(),
+    };
 
-  const onPaymentFailure = useTryCatch(() => {
-    setPayUrl(null);
-    initiatePaymentUtils.cancel();
+    return await onCreateCreditReport(body, params.orderId);
+
+    // toast.show(t('profile:settings:payment_history_screen:successfully_registered_new_card'), { type: 'success' });
   });
 
-  const onPressPay = useTryCatchWithCallback(
-    async (args: Omit<ExecutePaymentBodyArgs, 'billerId'>) => {
-      if (billerId) {
-        const body = createPaymentBody({ ...args, billerId });
+  const onPaymentFailure = useTryCatch(() => {
+    callbackUtils.cancel();
+    initiatePaymentUtils.cancel();
+    onFail?.();
+  });
 
-        await initiatePayment(body, async ({ result }) => {
-          setPayUrl(result.payUrl);
-        });
-      }
-    },
-    [billerId],
-  );
+  const onPressPayCallback = useTryCatch(async ({ result }: ExecutePaymentApiResponse, onSuccess: OnSuccess) => {
+    const response = await openBrowserAuthAsync(result.payUrl, 'infodebit://payment-purchases/call-back-payment');
 
-  const loading = initiatePaymentUtils.loading;
+    if (response && response.type === 'success') {
+      const params = getQueryParams<{ payId: string; orderId: string }>(response.url);
+      await callback(undefined, noop, { params });
+      return await onSuccess(params);
+    }
+    return onPaymentFailure();
+  });
 
-  return { loading, onPressPay, payUrl, onPaymentFailure, onPaymentSuccess, setBillerId };
+  const onPressPay = useTryCatch(async (bodyArgs: Omit<ExecutePaymentBodyArgs, 'billerId'>, onSuccess: OnSuccess) => {
+    const body = createPaymentBody({ ...bodyArgs, billerId });
+    return await initiatePayment(body, res => onPressPayCallback(res, onSuccess));
+  });
+
+  const loading = initiatePaymentUtils.loading || createReportLoading;
+
+  return { loading, onPressPay };
 }
 
 export { useExecutePaymentService };

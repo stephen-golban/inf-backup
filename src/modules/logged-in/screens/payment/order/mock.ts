@@ -4,6 +4,10 @@ export const CREDIT_BUREAU_MOCK = [{ label: 'BIC INFODEBIT CREDIT REPORT', value
 export const SERVICE_TYPE_MOCK = [
   {
     label: translate('logged_in:credit_report_summary:credit_report_order:credit_report'),
-    value: 'credit-report',
+    value: 'CREDIT_REPORT_SUMMARY',
+  },
+  {
+    label: translate('logged_in:credit_report_summary:credit_report_order:credit_report'),
+    value: 'CLIENT_REQUEST',
   },
 ];

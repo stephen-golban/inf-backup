@@ -6,6 +6,7 @@ import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { FeedbackStackParams } from './feedback';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ExecutePaymentBodyArgs } from '@typings/responses';
 
 export enum LOGGED_IN_SCREENS {
   PROFILE = 'PROFILE',
@@ -20,8 +21,8 @@ export enum PAYMENT_SCREENS {
 }
 
 export type PaymentStackParamList = {
-  [PAYMENT_SCREENS.CARDS]: undefined;
-  [PAYMENT_SCREENS.ORDER]: { billerId: string };
+  [PAYMENT_SCREENS.CARDS]: Omit<ExecutePaymentBodyArgs, 'billerId'>;
+  [PAYMENT_SCREENS.ORDER]: ExecutePaymentBodyArgs;
 };
 
 export type PaymentStackScreenProps<T extends keyof PaymentStackParamList> = CompositeScreenProps<
