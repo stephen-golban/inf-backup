@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { EmptyList } from './parts';
 import { FlatList } from 'react-native';
 import { Loader } from '@components/ui';
-import { Text, View } from '@components/common';
+import { Icon, IconType, Text, View } from '@components/common';
 
 import { Notification } from '@typings/responses';
+import { useTranslation } from '@library/hooks';
 
 interface INotificationModule {
   hasMore: boolean;
@@ -16,6 +17,8 @@ interface INotificationModule {
 const NotificationModule: React.FC<INotificationModule> = props => {
   const { notifications, hasMore, loading, onLoadMore } = props;
   const [initialLoading, setInitialLoading] = useState(true);
+
+  const { t } = useTranslation();
 
   const handleInitialLoad = () => {
     if (initialLoading) {
@@ -35,17 +38,17 @@ const NotificationModule: React.FC<INotificationModule> = props => {
   const getMessage = (notificationType: string) => {
     switch (notificationType) {
       case 'OWN_DATA_CHECK':
-        return 'Cineva ti-a verificat istoria de credit recent';
+        return { message: t('ui:notifications:own_data_check'), icon: 'FindPersonIcon' };
       case 'CREDIT_REPORT_EVENT':
-        return 'Am inregistrat modificari majore in istoria ta creditara';
+        return { message: t('ui:notifications:credit_report_event'), icon: 'SettingsRefreshIcon' };
       case 'USER_INACTIVITY':
-        return 'Salut! Observat inactivitate de lunga durata pe cont';
+        return { message: t('ui:notifications:user_inactivity'), icon: 'EyeBlueIcon' };
       case 'SUBSCRITION_EXPIRING_INFO':
-        return 'Abonamentul expira in 15 zile';
+        return { message: t('ui:notifications:subscription_expiring_info'), icon: 'TimePersonIcon' };
       case 'NEW_BASIC_SERVICE':
-        return 'Serviciu NOU';
+        return { message: t('ui:notifications:new_basic_service'), icon: 'YellowPlusIcon' };
       default:
-        return 'Notificare necunoscută';
+        return { message: t('ui:notifications:unknown_notification'), icon: 'SettingsRefreshIcon' };
     }
   };
 
@@ -60,11 +63,18 @@ const NotificationModule: React.FC<INotificationModule> = props => {
         ListEmptyComponent={() => (!loading && notifications.length === 0 ? <EmptyList /> : null)}
         data={notifications}
         keyExtractor={(item: Notification, index) => `${item.notificationAddress}_${index}`}
-        renderItem={({ item }) => (
-          <View bg="lightGray" px="md" py="md" m="sm" br={24} shadow="card">
-            <Text>{getMessage(item.notificationType)}</Text>
-          </View>
-        )}
+        renderItem={({ item }) => {
+          const IconComponent = getMessage(item?.notificationType)?.icon || Icon;
+
+          return (
+            <View bg="lightGray" px="md" py="md" m="sm" br={24} shadow="card">
+              <View row maxw="80%" align="center">
+                <Icon mr="sm" icon={IconComponent as IconType} size={40} />
+                <Text>{getMessage(item.notificationType)?.message}</Text>
+              </View>
+            </View>
+          );
+        }}
         ListFooterComponent={() => (loading ? <Loader center p="md" /> : null)}
         onEndReached={() => {
           if (hasMore && !loading) {
