@@ -24,7 +24,8 @@
     "promo_code": "Promo code",
     "negative_feedback": "What don't you like about the MyInfoDebit app?",
     "neutral_feedback": "We want to hear your opinion about the app",
-    "positive_feedback": "Excellent, tell us why you like the app"
+    "positive_feedback": "Excellent, tell us why you like the app",
+    "custom_email_placeholder": "Custom email address"
   },
 
   "toasts": {

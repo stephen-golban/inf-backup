@@ -19,8 +19,9 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
 
   function onOrderReport() {
     navigation.navigate(LOGGED_IN_SCREENS.PAYMENT, {
-      screen: PAYMENT_SCREENS.CARDS,
-      params: { paymentType: 'ONE_CLICK', purchasedServiceName: 'CREDIT_REPORT' },
+      screen: PAYMENT_SCREENS.ORDER,
+      // screen: PAYMENT_SCREENS.CARDS,
+      // params: { paymentType: 'ONE_CLICK', purchasedServiceName: 'CREDIT_REPORT' },
     });
   }
 

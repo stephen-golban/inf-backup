@@ -1,8 +1,7 @@
-import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 
-import { isAndroid, isIos } from '@library/method';
+import { isIos } from '@library/method';
 
 import type { ToastType } from 'react-native-toast-notifications';
 import { MMKV_KEY } from '@library/constants';

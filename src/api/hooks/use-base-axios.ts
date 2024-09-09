@@ -53,7 +53,7 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
 
         if (isMounted()) {
           dispatch({ type: 'REQUEST_SUCCESS', payload: res.data });
-          if (onSuccess && res.data) {
+          if (onSuccess && res && res.data) {
             onSuccess(res.data);
           }
           return res.data;

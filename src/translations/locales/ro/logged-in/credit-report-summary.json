@@ -22,15 +22,5 @@
     "enter_number": "Introdu numărul",
     "no": "NU",
     "yes": "DA"
-  },
-
-  "credit_report_order": {
-    "title": "Comandă Raportul de Credit",
-    "choose_credit_bureau": "Alege Biroul de Credit",
-    "bic_infodebit_credit_report": "BIC INFODEBIT CREDIT REPORT",
-    "choose_service_type": "Alege tipul serviciului",
-    "credit_report": "Raport de credit",
-    "email_copy": "Vreau copia Raportului pe e-mail",
-    "select_language": "Alege limba raportului"
   }
 }

@@ -21,15 +21,5 @@
     "enter_number": "Enter the number",
     "no": "NO",
     "yes": "YES"
-  },
-
-  "credit_report_order": {
-    "title": "Order Credit Report",
-    "choose_credit_bureau": "Choose Credit Bureau",
-    "bic_infodebit_credit_report": "BIC INFODEBIT CREDIT REPORT",
-    "choose_service_type": "Choose Service Type",
-    "credit_report": "Credit Report",
-    "email_copy": "I want a copy of the Report via e-mail",
-    "select_language": "Select report language"
   }
 }

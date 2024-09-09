@@ -1,14 +1,14 @@
 import React from 'react';
-
-import { useMount, useUpdateEffect } from 'react-use';
+import { isEmpty } from 'lodash';
 import { useAxios } from '@api/hooks';
+import { useUpdateEffect } from 'react-use';
 import { useTryCatch } from '@library/hooks';
+import { useRegisterCardService } from '@services/register-card';
 
 import CardList from './Card.List';
-import { BaseButton, FilledButton, Icon, OutlinedButton, Screen, Text, View } from '@components/common';
+import { FilledButton, Icon, OutlinedButton, Screen, Text, View } from '@components/common';
 
 import type { GetAllCardsApiResponse } from '@typings/responses';
-import { useRegisterCardService } from '@services/register-card';
 
 interface IPaymentCardsModule {
   onPressContinue(billerId: string): void;
@@ -25,7 +25,7 @@ const PaymentCardsModule: React.FC<IPaymentCardsModule> = ({ onPressContinue }) 
   });
 
   useUpdateEffect(() => {
-    if (data) {
+    if (data && !isEmpty(data)) {
       setBillerId(data[0].billerId);
     }
   }, [data]);
@@ -33,15 +33,15 @@ const PaymentCardsModule: React.FC<IPaymentCardsModule> = ({ onPressContinue }) 
   const cardAddingLoading = loadingRegister || callbackLoading;
 
   return (
-    <Screen unsafe loading={loading} onRefresh={onRefresh} style={{ flex: 1 }} scroll>
+    <Screen unsafe loading={loading} onRefresh={onRefresh} style={{ flex: 1 }} p="lg" pb="xl">
       <View fill rg="md">
-        <CardList onSelect={setBillerId} selected={billerId} data={data} />
+        {!isEmpty(data) && <CardList onSelect={setBillerId} selected={billerId} data={data} />}
         <OutlinedButton row align="center" onPress={() => onRegisterCard(refetch)} loading={cardAddingLoading}>
           <Text variant="16-bold" t18n="logged_in:payment:new_card" />
           <Icon icon="PlusIcon" color="blue" size={20} ml="sm" />
         </OutlinedButton>
       </View>
-      <FilledButton onPress={() => onPressContinue(billerId)} t18n="ui:continue" />
+      {!isEmpty(data) && <FilledButton onPress={() => onPressContinue(billerId)} t18n="ui:continue" />}
     </Screen>
   );
 };

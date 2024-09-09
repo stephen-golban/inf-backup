@@ -1,9 +1,15 @@
 export type AllPaymentsApiResponse = {
   count: number;
+  pageDetails: PageDetails;
+  payments: PaymentDetail[];
   totalAmount: number;
-  paymentDetailsResponseList: PaymentDetail[];
-  pageDetails: { number: number; size: number; totalElements: number; totalPages: number };
 };
+interface PageDetails {
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+}
 
 export type PaymentDetail = {
   amount: number;
@@ -11,10 +17,11 @@ export type PaymentDetail = {
   payId: string;
   paymentDateTime: string;
   paymentServiceName: string;
+  personData: string[];
   purchasedServiceName: string;
+  reimbursable: boolean;
   status: string;
   transactionId: string;
-  userIdentityNumber: string;
 };
 
 export type RegisterCardApiResponse = {
