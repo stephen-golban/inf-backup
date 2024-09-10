@@ -24,7 +24,8 @@
     "promo_code": "Cod promoțional",
     "negative_feedback": "Ce nu-ți place la aplicația MyInfoDebit?",
     "neutral_feedback": "Vrem să aflăm părerea dvs. despre aplicație",
-    "positive_feedback": "Excelent, spuneți-ne de ce vă place aplicația"
+    "positive_feedback": "Excelent, spuneți-ne de ce vă place aplicația",
+    "custom_email_placeholder": "Adresă de email personalizată"
   },
 
   "toasts": {
@@ -36,5 +37,7 @@
     "no_valid_term_date": "Nu există o dată validă de expirare",
     "invitation_submitted_successfully": "Invitația a fost trimisă cu succes",
     "user_subscription_no_access": "Serviciul nu este inclus în abonament"
-  }
+  },
+
+  "empty_state": "Nu am găsit date de afișat..."
 }

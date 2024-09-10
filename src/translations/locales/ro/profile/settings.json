@@ -27,7 +27,8 @@
     "date_2": "12.02.2024",
     "no_payment_history": "Nu există istoric de plăți.",
     "successfully_registered_new_card": "Noul card a fost înregistrat cu succes",
-    "register_new_card": "Înregistrează un card nou"
+    "register_new_card": "Înregistrează un card nou",
+    "reimbursable": "Rambursabil"
   },
 
   "feedback": {

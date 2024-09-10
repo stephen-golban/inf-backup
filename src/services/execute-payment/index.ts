@@ -1,39 +1,41 @@
-import { useState } from 'react';
+import { noop } from 'lodash';
 import { useLazyAxios } from '@api/hooks';
 import { createPaymentBody } from './util';
-import { useTryCatch, useTryCatchWithCallback } from '@library/hooks';
+import { useTryCatch } from '@library/hooks';
+import { getQueryParams, openBrowserAuthAsync } from '@library/method';
 
 import type { ExecutePaymentApiResponse, ExecutePaymentBodyArgs } from '@typings/responses';
 
-function useExecutePaymentService() {
-  const [payUrl, setPayUrl] = useState<string | null>(null);
-  const [billerId, setBillerId] = useState<string | null>(null);
+type OnSuccess = (params: { payId: string; orderId: string }) => Promise<void>;
 
+function useExecutePaymentService() {
+  const [callback, callbackUtils] = useLazyAxios('/payment-purchases/call-back-payment', { method: 'get' });
   const [initiatePayment, initiatePaymentUtils] = useLazyAxios<ExecutePaymentApiResponse>('/payment-purchases', { method: 'post' });
 
-  const onPaymentSuccess = useTryCatch(async (payId: string, orderId: string) => {});
-
   const onPaymentFailure = useTryCatch(() => {
-    setPayUrl(null);
+    callbackUtils.cancel();
     initiatePaymentUtils.cancel();
   });
 
-  const onPressPay = useTryCatchWithCallback(
-    async (args: Omit<ExecutePaymentBodyArgs, 'billerId'>) => {
-      if (billerId) {
-        const body = createPaymentBody({ ...args, billerId });
+  const onPressPayCallback = useTryCatch(async ({ result }: ExecutePaymentApiResponse, onSuccess: OnSuccess) => {
+    const response = await openBrowserAuthAsync(result.payUrl, 'infodebit://payment-purchases/call-back-payment');
 
-        await initiatePayment(body, async ({ result }) => {
-          setPayUrl(result.payUrl);
-        });
-      }
-    },
-    [billerId],
-  );
+    if (response && response.type === 'success') {
+      const params = getQueryParams<{ payId: string; orderId: string }>(response.url);
+      await callback(undefined, noop, { params });
+      return await onSuccess(params);
+    }
+    return onPaymentFailure();
+  });
 
-  const loading = initiatePaymentUtils.loading;
+  const onPressPay = useTryCatch(async (bodyArgs: ExecutePaymentBodyArgs, onSuccess: OnSuccess) => {
+    const body = createPaymentBody(bodyArgs);
+    return await initiatePayment(body, res => onPressPayCallback(res, onSuccess));
+  });
 
-  return { loading, onPressPay, payUrl, onPaymentFailure, onPaymentSuccess, setBillerId };
+  const loading = initiatePaymentUtils.loading || callbackUtils.loading;
+
+  return { loading, onPressPay };
 }
 
 export { useExecutePaymentService };

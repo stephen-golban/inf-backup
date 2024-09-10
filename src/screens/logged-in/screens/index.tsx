@@ -3,6 +3,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ProfileStack } from './profile';
+import { PaymentStack } from './payment';
 import { FeedbackStack } from './feedback';
 import { OwnDataCheckStack } from './own-data-check';
 
@@ -17,6 +18,7 @@ const Screens: React.FC<LoggedInStackProps<LOGGED_IN_STACK.SCREENS>> = () => {
       <Stack.Screen name={LOGGED_IN_SCREENS.PROFILE} component={ProfileStack} />
       <Stack.Screen name={LOGGED_IN_SCREENS.FEEDBACK} component={FeedbackStack} />
       <Stack.Screen name={LOGGED_IN_SCREENS.OWN_DATA_CHECK} component={OwnDataCheckStack} />
+      <Stack.Screen name={LOGGED_IN_SCREENS.PAYMENT} component={PaymentStack} />
     </Stack.Navigator>
   );
 };

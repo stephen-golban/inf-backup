@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react';
-import useBaseAxios, { Props, Config } from './use-base-axios';
+import useBaseAxios from './use-base-axios';
 
-function useAxios<Data>(url: string): Props<Data>;
-function useAxios<Data>(config: Config<Data>): Props<Data>;
-function useAxios<Data>(url: string, config: Config<Data>): Props<Data>;
+import type { BaseAxiosProps, Config } from './type';
+
+function useAxios<Data>(url: string): BaseAxiosProps<Data>;
+function useAxios<Data>(config: Config<Data>): BaseAxiosProps<Data>;
+function useAxios<Data>(url: string, config: Config<Data>): BaseAxiosProps<Data>;
 function useAxios<Data>(param1: string | Config<Data>, param2: Config<Data> = {}) {
   const invokeUseBaseAxios = typeof param1 === 'string' ? () => useBaseAxios<Data>(param1, param2) : () => useBaseAxios<Data>(param1);
 

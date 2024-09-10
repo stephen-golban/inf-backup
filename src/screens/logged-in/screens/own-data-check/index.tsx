@@ -5,7 +5,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NewCredit } from './new-credit';
 import { WhoCheckedCredit } from './who-checked-credit';
 import { ScoringDetailsScreen } from './scoring-details';
-import { CreditReportOrderScreen } from './credit-report-order';
 import { CreditReportSummaryScreen } from './credit-report-summary';
 
 import {
@@ -23,7 +22,6 @@ const OwnDataCheckStack: React.FC<LoggedInScreensProps<LOGGED_IN_SCREENS.OWN_DAT
     <Stack.Screen component={WhoCheckedCredit} name={OWN_DATA_CHECK_SCREENS.WhoCheckCredit} />
     <Stack.Screen component={ScoringDetailsScreen} name={OWN_DATA_CHECK_SCREENS.ScoringDetails} />
     <Stack.Screen component={CreditReportSummaryScreen} name={OWN_DATA_CHECK_SCREENS.CreditReportSummary} />
-    <Stack.Screen component={CreditReportOrderScreen} name={OWN_DATA_CHECK_SCREENS.CreditReportOrder} />
   </Stack.Navigator>
 );
 
