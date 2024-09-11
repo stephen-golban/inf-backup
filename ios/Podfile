@@ -17,8 +17,6 @@ end
 
 target 'infodebit' do
   config = use_native_modules!
-  use_frameworks! :linkage => :static
-  $RNFirebaseAsStaticFramework = true
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -26,10 +24,6 @@ target 'infodebit' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  pod 'Firebase', :modular_headers => true
-  pod 'FirebaseCoreInternal', :modular_headers => true
-  pod 'GoogleUtilities', :modular_headers => true
-  pod 'FirebaseCore', :modular_headers => true
 
   target 'infodebitTests' do
     inherit! :complete
@@ -45,4 +39,8 @@ target 'infodebit' do
       # :ccache_enabled => true
     )
   end
+end
+
+target 'OneSignalNotificationServiceExtension' do
+  pod 'OneSignalXCFramework', '>= 5.0.0', '< 6.0'
 end
