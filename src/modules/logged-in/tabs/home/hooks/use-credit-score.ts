@@ -1,8 +1,8 @@
 import { useState } from 'react';
-
+import { useUpdateEffect } from 'react-use';
 import { useAppStore } from '@store/app';
-import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
+import { useAxios, useLazyAxios } from '@api/hooks';
 
 import type { ICreditScoreResponse } from '@typings/responses/credit-score';
 
@@ -12,10 +12,19 @@ const CREDIT_SCORE_QUERY_PARAMS = {
 };
 
 function useCreditScore() {
-  const subscription = useAppStore(state => state.subscription);
+  const { subscription, inquiry } = useAppStore(state => state);
+  const scoreId = inquiry?.basicServices.creditScoreId;
   const [score, setScore] = useState<ICreditScoreResponse | null>(null);
+  const initialScore = useAxios<string>(`/credit-score/${scoreId}/files/JSON`, { method: 'get' });
 
-  const [callScore, { loading }] = useLazyAxios<ICreditScoreResponse>('/credit-score', {
+  useUpdateEffect(() => {
+    if (initialScore.data) {
+      const decoded = JSON.parse(atob(initialScore.data));
+      setScore(decoded);
+    }
+  }, [initialScore.data]);
+
+  const [callScore, utils] = useLazyAxios<ICreditScoreResponse>('/credit-score', {
     method: 'post',
     headers: { 'Subscription-Id': subscription?.id || 60 },
   });
@@ -27,6 +36,8 @@ function useCreditScore() {
       }
     });
   });
+
+  const loading = utils.loading || initialScore.loading;
 
   return { score, fetchScore, loading };
 }

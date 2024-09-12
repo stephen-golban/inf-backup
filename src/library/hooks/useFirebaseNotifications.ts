@@ -7,7 +7,7 @@ const NAVIGATION_IDS = ['home', 'settings'];
 function buildDeepLinkFromNotificationData(data: any): string | null {
   const navigationId = data?.navigationId;
   if (!NAVIGATION_IDS.includes(navigationId)) {
-    console.warn('Unverified navigationId', navigationId);
+    // console.warn('Unverified navigationId', navigationId);
     return null;
   }
   if (navigationId === 'home') {
@@ -67,21 +67,21 @@ const useFirebaseNotifications = () => {
     },
   };
 
-  useEffect(() => {
-    const requestUserPermission = async () => {
-      await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
-      const authStatus = await messaging().requestPermission();
-      const enabled = authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+  // useEffect(() => {
+  //   const requestUserPermission = async () => {
+  //     await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
+  //     const authStatus = await messaging().requestPermission();
+  //     const enabled = authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL;
 
-      if (enabled) {
-        console.log('Authorization status:', authStatus);
-        const token = await messaging().getToken();
-        console.log('FCM token:', token);
-      }
-    };
+  //     if (enabled) {
+  //       console.log('Authorization status:', authStatus);
+  //       const token = await messaging().getToken();
+  //       console.log('FCM token:', token);
+  //     }
+  //   };
 
-    requestUserPermission();
-  }, []);
+  //   requestUserPermission();
+  // }, []);
 
   return { linking };
 };

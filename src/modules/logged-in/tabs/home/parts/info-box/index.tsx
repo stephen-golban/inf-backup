@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import RowBox from './Row.Box';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { Icon, Text, View } from '@components/common';
 
 interface IInfoBox {
@@ -13,6 +13,18 @@ interface IInfoBox {
   onPressNewCredit(): void;
   onPressCreditReport(): void;
   onPressWhoCheckedCredit(): void;
+}
+
+function formatDate(subjectDate: string | Record<string, any>) {
+  if (typeof subjectDate === 'string') {
+    const parsedDate = parseISO(subjectDate);
+    return format(parsedDate, 'dd/MM/yyyy');
+  } else if (subjectDate && typeof subjectDate === 'object') {
+    const date = new Date(subjectDate.year, subjectDate.monthValue - 1, subjectDate.dayOfMonth);
+    return format(date, 'dd/MM/yyyy');
+  }
+
+  return '';
 }
 
 const InfoBox: React.FC<IInfoBox> = props => {
@@ -39,7 +51,7 @@ const InfoBox: React.FC<IInfoBox> = props => {
           <Text variant="14-bold" g="md" t18n="logged_in:home:info:payment_behavior" />
         </View>
         {subjectDate ? (
-          <Text>{format(subjectDate, 'dd/MM/yyyy')}</Text>
+          <Text>{formatDate(subjectDate)}</Text>
         ) : loading ? (
           <ActivityIndicator size="small" color="#0000ff" />
         ) : (
@@ -53,7 +65,7 @@ const InfoBox: React.FC<IInfoBox> = props => {
           <Text variant="14-bold" g="md" t18n="logged_in:home:info:personal_data" />
         </View>
         {maxUpdateDate ? (
-          <Text>{format(maxUpdateDate, 'dd/MM/yyyy')}</Text>
+          <Text>{formatDate(maxUpdateDate)}</Text>
         ) : loading ? (
           <ActivityIndicator size="small" color="#0000ff" />
         ) : (

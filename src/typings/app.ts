@@ -1,7 +1,7 @@
 import type { User } from './user';
 import type { ThemeType } from '@theme/index';
-import type { PurchasedSubscription } from './responses';
 import type { StageNomenclatureResponse } from './responses/nomenclatures';
+import type { LastInquiryApiResponse, PurchasedSubscription } from './responses';
 
 export interface IAppState {
   user: User | null;
@@ -15,6 +15,8 @@ export interface IAppState {
   theme: ThemeType;
 
   locale: 'en' | 'ru' | 'ro';
+
+  inquiry: LastInquiryApiResponse | undefined;
 
   nomenclature: StageNomenclatureResponse[] | any;
 }

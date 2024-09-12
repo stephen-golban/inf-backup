@@ -1,7 +1,8 @@
+import { useMount, useUpdateEffect } from 'react-use';
 import { useAppStore } from '@store/app';
-import { useLazyAxios } from '@api/hooks';
-import { formatToCurrency } from '@library/method';
 import { useMemo, useState } from 'react';
+import { formatToCurrency } from '@library/method';
+import { useAxios, useLazyAxios } from '@api/hooks';
 import { useToast } from 'react-native-toast-notifications';
 import { useTranslation, useTryCatch } from '@library/hooks';
 
@@ -16,16 +17,28 @@ const CREDIT_REPORT_QUERY_PARAMS = {
 function useCreditReport() {
   const toast = useToast();
   const { t } = useTranslation();
-  const subscription = useAppStore(state => state.subscription);
+  const { subscription, inquiry } = useAppStore(state => state);
 
   const [data, setData] = useState<ICreditReportSummaryResponse>();
 
-  const [callReport, { loading }] = useLazyAxios<ICreditReportSummaryResponse>('/credit-report', {
+  const reportId = inquiry?.basicServices.creditReportSummaryId;
+
+  const initialReport = useAxios<string>(`/credit-report/${reportId}/files/JSON`, { method: 'get' });
+
+  const [callReport, utils] = useLazyAxios<ICreditReportSummaryResponse>('/credit-report', {
     method: 'post',
     headers: {
       'Subscription-Id': subscription?.id,
     },
   });
+
+  useUpdateEffect(() => {
+    if (initialReport.data) {
+      const decodedData = JSON.parse(atob(initialReport.data));
+      // console.log(decodedData);
+      setData(decodedData);
+    }
+  }, [initialReport.data]);
 
   const handleResponseError = (message: string | undefined) => {
     if (message === 'User with subscription does not has access') {
@@ -56,6 +69,8 @@ function useCreditReport() {
   const [currencyLabel, balance] = useMemo(() => formatToCurrency(totalBalance), [totalBalance]);
 
   const formattedCount = `${balance} ${currencyLabel}`;
+
+  const loading = utils.loading || initialReport.loading;
 
   return {
     data,

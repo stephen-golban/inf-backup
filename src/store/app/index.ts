@@ -12,6 +12,7 @@ const app_state: IAppState = {
   theme: 'light',
   loadingApp: false,
   nomenclature: null,
+  inquiry: undefined,
   isAuthenticated: false,
   subscription: undefined,
   locale: i18n.languages[0] as IAppState['locale'],
@@ -43,6 +44,10 @@ function setAppTheme(theme: IAppState['theme']) {
 function setAppLoading(loadingApp: IAppState['loadingApp']) {
   useAppStore.setState({ loadingApp });
 }
+
+function setAppInquiry(inquiry: IAppState['inquiry']) {
+  useAppStore.setState({ inquiry });
+}
 function setAppSubscription(subscription: IAppState['subscription']) {
   useAppStore.setState({ subscription });
 }
@@ -56,7 +61,10 @@ function setAppLocale(locale: IAppState['locale']) {
 function resetAppStore() {
   useAppStore.setState({
     user: null,
+    nomenclature: null,
+    inquiry: undefined,
     isAuthenticated: false,
+    subscription: undefined,
   });
 }
 
@@ -67,6 +75,7 @@ export {
   setAppLocale,
   resetAppStore,
   setAppLoading,
+  setAppInquiry,
   setAppNomenclature,
   setAppSubscription,
   setAppIsAuthenticated,

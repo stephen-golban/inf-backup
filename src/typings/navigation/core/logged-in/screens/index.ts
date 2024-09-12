@@ -22,7 +22,7 @@ export enum PAYMENT_SCREENS {
 
 export type PaymentStackParamList = {
   [PAYMENT_SCREENS.CARDS]: Omit<ExecutePaymentBodyArgs, 'billerId'>;
-  [PAYMENT_SCREENS.ORDER]: ExecutePaymentBodyArgs | undefined;
+  [PAYMENT_SCREENS.ORDER]: (Partial<ExecutePaymentBodyArgs> & { isReport?: boolean }) | undefined;
 };
 
 export type PaymentStackScreenProps<T extends keyof PaymentStackParamList> = CompositeScreenProps<

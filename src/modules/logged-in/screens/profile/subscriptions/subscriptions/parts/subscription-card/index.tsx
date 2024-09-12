@@ -1,6 +1,7 @@
 import { BaseButton, Checkbox, FilledButton, Switch, Text, View } from '@components/common';
 import { Paper } from '@components/ui';
 import { useTranslation } from '@library/hooks';
+import { useAppStore } from '@store/app';
 import { I18nKey } from '@translations/locales';
 import { translate } from '@translations/translate';
 import React from 'react';
@@ -18,6 +19,9 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({ plan, price, discount =
   const [isChecked, setIsChecked] = React.useState(false);
   const [calculatedPrice, setCalculatedPrice] = React.useState(price);
 
+  const subscription = useAppStore(state => state.subscription);
+
+  // console.log(subscription);
   const handleToggle = (checked: boolean) => {
     setIsChecked(checked);
     if (checked) {

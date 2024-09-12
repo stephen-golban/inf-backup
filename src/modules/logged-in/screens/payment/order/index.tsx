@@ -11,10 +11,11 @@ import { credit_report_order_form_schema, type CreditReportOrderFormFields } fro
 
 interface IPaymentOrderModule {
   loading?: boolean;
+  isReportOnly?: boolean;
   onSubmit(input: CreditReportOrderFormFields): void;
 }
 
-const PaymentOrderModule: React.FC<IPaymentOrderModule> = ({ onSubmit, loading }) => {
+const PaymentOrderModule: React.FC<IPaymentOrderModule> = ({ onSubmit, loading, isReportOnly }) => {
   const locale = useAppStore(state => state.locale);
 
   const defaultValues: CreditReportOrderFormFields = {
@@ -38,7 +39,7 @@ const PaymentOrderModule: React.FC<IPaymentOrderModule> = ({ onSubmit, loading }
 
                 <CreditBureau control={control} />
 
-                <InternServiceType control={control} />
+                <InternServiceType control={control} isReportOnly={isReportOnly} />
               </View>
 
               <Divider isHorizontal my="lg" />

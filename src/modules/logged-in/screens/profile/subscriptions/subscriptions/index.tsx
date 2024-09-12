@@ -17,6 +17,8 @@ interface ISubscriptionsModule {
 const SubscriptionsModule: React.FC<ISubscriptionsModule> = ({ all, purschased, loading, onRefresh }) => {
   const [selectedPlan, setSelectedPlan] = React.useState<string>('smart');
 
+  console.log(all?._embedded.entityModelList);
+
   return (
     <Screen scroll unsafe style={{ padding: 16 }} bg="white" loading={loading} onRefresh={onRefresh}>
       <Text t18n="profile:subscriptions:index:title" variant="24-bold" color="blue" textAlign="center" />
