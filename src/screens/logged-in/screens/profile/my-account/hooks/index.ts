@@ -1,12 +1,12 @@
 import { useAxios } from '@api/hooks';
 import { useGetSubscription } from '@services/subscription';
 
-import type { PurchasedSubscriptionsResponse } from '@typings/responses';
+import type { IAllSubscriptionsResponse } from '@typings/responses';
 
 const useMyAccountScreen = () => {
   const mySubscription = useGetSubscription(true);
 
-  const allSubscriptions = useAxios<PurchasedSubscriptionsResponse>({
+  const allSubscriptions = useAxios<IAllSubscriptionsResponse>({
     method: 'get',
     url: '/admin-api/subscriptions',
   });

@@ -1,0 +1,105 @@
+{
+  "index": {
+    "title": "ACCES INSTANT LA DATE",
+    "subtitle": "Activează un abonament. Anulezi oricând.",
+    "pay_now_with": "Plătește acum cu",
+    "pay_annually_with": "Plătește anual cu",
+
+    "card": {
+      "paid_monthly": "(plătit lunar)",
+      "paid_annually": "(plătit anual)",
+      "price_m": "{{price}} lei/lună",
+      "price_y": "{{price}} lei/an"
+    },
+
+    "smart_plan": {
+      "name": "ABONAMENT SMART",
+      "benefits": [
+        "Beneficiază de actualizări lunare de date",
+        "Descarcă 1 raport complet de credit pe lună",
+        "Anulează abonamentul oricând",
+        "Acces la cea mai mare bază de date de istoric de credit"
+      ],
+      "button": "VREAU ABONAMENT SMART"
+    },
+
+    "genius_plan": {
+      "name": "ABONAMENT GENIUS",
+      "benefits": [
+        "Beneficiază de actualizări săptămânale de date",
+        "Descarcă 2 rapoarte complete de credit pe lună",
+        "Acces la serviciul de monitorizare antifraudă",
+        "Solicită actualizări de date contra cost",
+        "Anulează abonamentul oricând",
+        "Acces la cea mai mare bază de date de istoric de credit"
+      ],
+      "button": "VREAU ABONAMENT GENIUS"
+    },
+
+    "premium_plan": {
+      "name": "ABONAMENT PREMIUM NELIMITAT",
+      "benefits": [
+        "Beneficiază de actualizări săptămânale de date",
+        "Descărcări nelimitate de rapoarte de credit",
+        "Acces la serviciul de monitorizare antifraudă",
+        "Solicită actualizări de date gratuit",
+        "35% reducere și posibilități nelimitate",
+        "Acces la cea mai mare bază de date de istoric de credit"
+      ],
+      "button": "VREAU ABONAMENT PREMIUM"
+    },
+
+    "discount_note": "Profitați de prețurile mici la lansarea aplicației și optați pentru plata anuală. Garantăm aceleași prețuri timp de 12 luni.",
+
+    "comparison": {
+      "plans": {
+        "smart_plan": "Smart",
+        "genius_plan": "Genius",
+        "premium_plan": "Nelimitat"
+      },
+      "features": {
+        "1": "Scor de credit",
+        "2": "Informații despre datorii/angajamente",
+        "3": "Descărcare raport PDF",
+        "4": "Informații de verificare IDNP",
+        "5": "Actualizări de date în timp real",
+        "6": "Monitorizare instantanee și notificări",
+        "7": "Verificare solvabilitate",
+        "8": "Interogări în baza de date",
+        "9": "Reducere oferită"
+      },
+      "interval": {
+        "monthly": "Lunar",
+        "weekly": "Săptămânal",
+        "unlimited": "Nelimitat"
+      },
+      "continue_to_activation": "Continuă spre activare"
+    },
+
+    "faq": {
+      "title": "Întrebări frecvente",
+      "questions": [
+        {
+          "q": "Pot să îmi anulez abonamentul?",
+          "a": "Da, puteți anula abonamentul lunar și alege un abonament mai mare sau mai mic oricând. Chiar și abonamentele anuale pot fi anulate în anumite condiții."
+        },
+        {
+          "q": "Ce metode de plată acceptați?",
+          "a": "Acceptăm diverse metode de plată, inclusiv carduri de credit, carduri de debit și PayPal."
+        },
+        {
+          "q": "Oferiți o perioadă de probă gratuită?",
+          "a": "Da, oferim o perioadă de probă gratuită de 7 zile pentru noii utilizatori pentru a explora serviciile noastre."
+        },
+        {
+          "q": "Voi fi taxat când adaug cardul meu?",
+          "a": "Nu, nu veți fi taxat când adăugați cardul. Taxele vor fi aplicate doar atunci când faceți o achiziție."
+        },
+        {
+          "q": "Care abonament este potrivit pentru mine?",
+          "a": "Abonamentul potrivit depinde de nevoile dumneavoastră. Planul nostru Smart este excelent pentru utilizare de bază, planul Genius oferă mai multe funcții, iar planul Premium oferă acces nelimitat."
+        }
+      ]
+    }
+  }
+}

@@ -5,7 +5,7 @@ export type PurchasedSubscriptionsResponse = {
 };
 
 type Embedded = {
-  entityModelList: EntityModelList[];
+  entityModelList: PurchasedSubscription[];
 };
 
 export type SubscriptionInfo = {
@@ -26,7 +26,7 @@ enum SubscriptionDuration {
   MONTH_12 = 'MONTH_12',
 }
 
-type EntityModelList = {
+export type PurchasedSubscription = {
   id: number;
   type: string;
   title: string;

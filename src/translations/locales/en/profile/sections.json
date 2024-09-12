@@ -1,10 +1,11 @@
 {
-    "last_login": "Last login {{date}}",
-    "my_account": "My account",
-    "my_notifications": "My notifications",
-    "frequently_asked_questions": "Frequently asked questions",
-    "invite_your_friends": "Invite your friends",
-    "contacts": "Contacts",
-    "account_settings": "Account settings",
-    "log_out": "Log out"
+  "last_login": "Last login {{date}}",
+  "my_account": "My account",
+  "my_notifications": "My notifications",
+  "frequently_asked_questions": "Frequently asked questions",
+  "invite_your_friends": "Invite your friends",
+  "contacts": "Contacts",
+  "account_settings": "Account settings",
+  "log_out": "Log out",
+  "my_subscriptions": "My subscriptions"
 }

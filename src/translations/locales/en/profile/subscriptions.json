@@ -1,0 +1,105 @@
+{
+  "index": {
+    "title": "INSTANT ACCESS TO DATA",
+    "subtitle": "Activate a subscription. Cancel anytime.",
+    "pay_now_with": "Pay now with",
+    "pay_annually_with": "Pay annually with",
+
+    "card": {
+      "paid_monthly": "(paid monthly)",
+      "paid_annually": "(paid annually)",
+      "price_m": "{{price}} lei/month",
+      "price_y": "{{price}} lei/year"
+    },
+
+    "smart_plan": {
+      "name": "SMART PLAN",
+      "benefits": [
+        "Benefit from monthly data updates",
+        "Download 1 full credit report per month",
+        "Cancel subscription anytime",
+        "Access to the largest credit history database"
+      ],
+      "button": "I WANT SMART PLAN"
+    },
+
+    "genius_plan": {
+      "name": "GENIUS PLAN",
+      "benefits": [
+        "Benefit from weekly data updates",
+        "Download 2 full credit reports per month",
+        "Access to anti-fraud monitoring service",
+        "Request data updates for an additional fee",
+        "Cancel subscription anytime",
+        "Access to the largest credit history database"
+      ],
+      "button": "I WANT GENIUS PLAN"
+    },
+
+    "premium_plan": {
+      "name": "PREMIUM UNLIMITED PLAN",
+      "benefits": [
+        "Benefit from weekly data updates",
+        "Unlimited credit report downloads",
+        "Access to anti-fraud monitoring service",
+        "Request data updates for free",
+        "35% discount and unlimited possibilities",
+        "Access to the largest credit history database"
+      ],
+      "button": "I WANT PREMIUM PLAN"
+    },
+
+    "discount_note": "Take advantage of the low prices at the launch of the app and opt for annual payment. We guarantee the same prices for 12 months.",
+
+    "comparison": {
+      "plans": {
+        "smart_plan": "Smart",
+        "genius_plan": "Genius",
+        "premium_plan": "Premium"
+      },
+      "features": {
+        "1": "Credit score",
+        "2": "Debt/commitment information",
+        "3": "PDF Report download",
+        "4": "IDNP verification information",
+        "5": "Real-time data updates",
+        "6": "Instant monitoring & notifications",
+        "7": "Creditworthiness check",
+        "8": "Database queries",
+        "9": "Offered discount"
+      },
+      "interval": {
+        "monthly": "Monthly",
+        "weekly": "Weekly",
+        "unlimited": "Unlimited"
+      },
+      "continue_to_activation": "Continue to activation"
+    },
+
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": [
+        {
+          "q": "Can I cancel my subscription?",
+          "a": "Yes, you can cancel your monthly subscription and choose a higher or lower subscription anytime. Even annual subscriptions can be canceled under certain conditions."
+        },
+        {
+          "q": "What payment methods do you accept?",
+          "a": "We accept various payment methods including credit cards, debit cards, and PayPal."
+        },
+        {
+          "q": "Do you offer a free trial period?",
+          "a": "Yes, we offer a 7-day free trial period for new users to explore our services."
+        },
+        {
+          "q": "Will I be charged when I add my card?",
+          "a": "No, you will not be charged when you add your card. Charges will only be applied when you make a purchase."
+        },
+        {
+          "q": "Which subscription is right for me?",
+          "a": "The right subscription depends on your needs. Our Smart plan is great for basic use, Genius plan offers more features, and Premium plan provides unlimited access."
+        }
+      ]
+    }
+  }
+}

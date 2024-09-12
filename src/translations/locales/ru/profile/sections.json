@@ -1,10 +1,11 @@
 {
-    "last_login": "Последний вход {{date}}",
-    "my_account": "Мой счет",
-    "my_notifications": "Мои уведомления",
-    "frequently_asked_questions": "Часто задаваемые вопросы",
-    "invite_your_friends": "Пригласите своих друзей",
-    "contacts": "Контакты",
-    "account_settings": "Настройки аккаунта",
-    "log_out": "Выйти"
+  "last_login": "Последний вход {{date}}",
+  "my_account": "Мой счет",
+  "my_notifications": "Мои уведомления",
+  "frequently_asked_questions": "Часто задаваемые вопросы",
+  "invite_your_friends": "Пригласите своих друзей",
+  "contacts": "Контакты",
+  "account_settings": "Настройки аккаунта",
+  "log_out": "Выйти",
+  "my_subscriptions": "Мои подписки"
 }

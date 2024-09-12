@@ -1,14 +1,14 @@
-import { PurchasedSubscriptionsResponse } from './responses';
-import { StageNomenclatureResponse } from './responses/nomenclatures';
 import type { User } from './user';
 import type { ThemeType } from '@theme/index';
+import type { PurchasedSubscription } from './responses';
+import type { StageNomenclatureResponse } from './responses/nomenclatures';
 
 export interface IAppState {
   user: User | null;
 
   isAuthenticated: boolean;
 
-  subscription: PurchasedSubscriptionsResponse['_embedded']['entityModelList'][number] | undefined;
+  subscription: PurchasedSubscription | undefined;
 
   loadingApp: boolean;
 
