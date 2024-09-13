@@ -1,0 +1,20 @@
+{
+  "my_saved_cards": "My saved cards",
+  "new_card": "New card",
+
+  "credit_report_order": {
+    "title": "Order Credit Report",
+    "choose_credit_bureau": "Choose Credit Bureau",
+    "bic_infodebit_credit_report": "BIC INFODEBIT CREDIT REPORT",
+    "choose_service_type": "Choose Service Type",
+    "credit_report": "Credit Report Infodebit",
+    "credit_report_summary": "Credit Report Summary",
+    "own_data_checks": "Own Data Checks",
+    "credit_report_events": "Credit Report Events",
+    "credit_report_quality": "Credit Report Quality",
+    "credit_score": "Credit Score",
+    "subscription": "Subscription",
+    "email_send": "I want a copy of the Report via e-mail",
+    "select_language": "Select report language"
+  }
+}

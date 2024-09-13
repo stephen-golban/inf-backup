@@ -21,15 +21,5 @@
     "enter_number": "Введите номер",
     "no": "НЕТ",
     "yes": "ДА"
-  },
-
-  "credit_report_order": {
-    "title": "Заказать кредитный отчет",
-    "choose_credit_bureau": "Выберите кредитное бюро",
-    "bic_infodebit_credit_report": "BIC INFODEBIT CREDIT REPORT",
-    "choose_service_type": "Выберите тип услуги",
-    "credit_report": "Кредитный отчет",
-    "email_copy": "Я хочу получить копию отчета по электронной почте",
-    "select_language": "Выберите язык отчета"
   }
 }

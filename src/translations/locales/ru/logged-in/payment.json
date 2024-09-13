@@ -1,0 +1,20 @@
+{
+  "my_saved_cards": "Мои сохраненные карты",
+  "new_card": "Новая карта",
+
+  "credit_report_order": {
+    "title": "Заказать кредитный отчет",
+    "choose_credit_bureau": "Выберите кредитное бюро",
+    "bic_infodebit_credit_report": "BIC INFODEBIT CREDIT REPORT",
+    "choose_service_type": "Выберите тип услуги",
+    "credit_report": "Кредитный Отчет Инфодевит",
+    "credit_report_summary": "Сводка кредитного отчета",
+    "own_data_checks": "Проверка собственных данных",
+    "credit_report_events": "События кредитного отчета",
+    "credit_report_quality": "Качество кредитного отчета",
+    "credit_score": "Кредитный рейтинг",
+    "subscription": "Подписка",
+    "email_send": "Я хочу получить копию отчета по электронной почте",
+    "select_language": "Выберите язык отчета"
+  }
+}

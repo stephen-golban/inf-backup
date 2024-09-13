@@ -26,7 +26,7 @@ const PaymentsCards: React.FC = () => {
       )}
       <View px="md">
         <OutlinedButton
-          onPress={onRegisterCard}
+          onPress={() => onRegisterCard(cards.refetch)}
           loading={loadingRegister || callbackLoading}
           t18n="profile:settings:payment_history_screen:register_new_card"
         />

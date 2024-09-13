@@ -134,6 +134,27 @@ export const openBrowserAuthAsync = async (url: string, redirectUrl: string) => 
   return;
 };
 
+export const getQueryParams = <T>(url: string) => {
+  const params: { [key: string]: string } = {};
+
+  const queryStringIndex = url.indexOf('?');
+
+  if (queryStringIndex !== -1) {
+    const queryString = url.substring(queryStringIndex + 1);
+
+    const pairs = queryString.split('&');
+
+    pairs.forEach(pair => {
+      const [key, value] = pair.split('=');
+      if (key && value) {
+        params[decodeURIComponent(key)] = decodeURIComponent(value);
+      }
+    });
+  }
+
+  return params as T;
+};
+
 export type Currency = 'MDL' | 'EUR' | 'USD' | 'RON' | 'RUB' | 'UAH' | 'KZT';
 
 type CurrencyMap = { [key in Currency]: string };

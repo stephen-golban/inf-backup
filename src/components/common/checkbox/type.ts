@@ -1,6 +1,6 @@
-import { ViewProps } from '../view';
+import { ButtonProps } from '../button';
 
-export type CheckboxProps = Pick<ViewProps, 'children'> & {
+export type CheckboxProps = ButtonProps & {
   /**
    * horizontal flex-directions
    * @default false
@@ -36,8 +36,8 @@ export type CheckboxProps = Pick<ViewProps, 'children'> & {
   onToggle?: (value: boolean) => void;
 
   /**
-   * checkbox button is disabled
+   * checkbox button is rounded
    * @default false
    */
-  disabled?: boolean;
+  round?: boolean;
 };

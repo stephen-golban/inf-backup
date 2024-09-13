@@ -27,7 +27,8 @@
     "date_2": "12.02.2024",
     "no_payment_history": "Нет истории платежей.",
     "successfully_registered_new_card": "Новая карта успешно зарегистрирована",
-    "register_new_card": "Зарегистрировать новую карту"
+    "register_new_card": "Зарегистрировать новую карту",
+    "reimbursable": "Возмещаемый"
   },
 
   "feedback": {
