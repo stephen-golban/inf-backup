@@ -57,9 +57,7 @@ const useGetSubscription = (runOnMount = false) => {
   if (runOnMount) {
     useMount(async () => {
       const res = await getSubscription();
-      if (res) {
-        setAppSubscription(res);
-      }
+      setAppSubscription(res);
     });
   }
 
