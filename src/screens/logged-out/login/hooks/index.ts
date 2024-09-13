@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { auth_api } from '@api/base';
 import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
@@ -5,7 +6,7 @@ import { useMMKVString } from 'react-native-mmkv';
 import { usePinCodeStore } from '@store/pin-code';
 import { useDeviceInfoService } from '@services/device-info';
 
-import { AppStorage, loadString, remove } from '@library/storage';
+import { AppStorage, loadString, remove, saveString } from '@library/storage';
 import * as Keychain from 'react-native-keychain';
 
 import { MMKV_KEY, PIN_CODE } from '@library/constants';
