@@ -13,6 +13,7 @@ import { MMKV_KEY } from '@library/constants';
 export default function useOneTimePassword(
   navigation: LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.OneTimePassword>['navigation'],
   sentTo?: string,
+  otpNotificationType?: 'SMS' | 'EMAIL',
 ) {
   const service = useTokenService(true);
 
@@ -35,7 +36,7 @@ export default function useOneTimePassword(
       };
       const queryParams = {
         otpNum: values.code,
-        sentTo: '+373' + loadString(MMKV_KEY.SEND_TO),
+        sentTo: loadString(MMKV_KEY.SEND_TO),
       };
       const res = await call(queryParams, noop, { headers });
       if (res) {
@@ -52,8 +53,8 @@ export default function useOneTimePassword(
         Authorization: `Bearer ${tokenRes.access_token}`,
       };
       const queryParams = {
-        otpNotificationType: 'SMS',
-        sendTo: '+373' + loadString(MMKV_KEY.SEND_TO),
+        otpNotificationType: otpNotificationType,
+        sendTo: loadString(MMKV_KEY.SEND_TO),
       };
       const res = await resendCode(queryParams, noop, { headers });
     }

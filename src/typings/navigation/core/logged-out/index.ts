@@ -36,7 +36,7 @@ type LoggedOutStackParamList = {
 
   [LOGGED_OUT_SCREENS.ForgotPassword]: undefined;
 
-  [LOGGED_OUT_SCREENS.OneTimePassword]: { sentTo?: string } | undefined;
+  [LOGGED_OUT_SCREENS.OneTimePassword]: { sentTo?: string; otpNotificationType?: string } | undefined;
 };
 
 type LoggedOutStackScreenProps<T extends keyof LoggedOutStackParamList> = CompositeScreenProps<
