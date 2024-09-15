@@ -7,12 +7,13 @@ import { MMKV_KEY } from '@library/constants';
 interface ISectionInfo {
   avatar?: string;
   lastName?: string;
+  loading?: boolean;
   firstName?: string;
   onEdit(): void;
 }
 
 const SectionInfo: React.FC<ISectionInfo> = props => {
-  const { avatar, firstName, lastName, onEdit } = props;
+  const { avatar, firstName, lastName, loading, onEdit } = props;
   const avatarUri = avatar ? `data:image/jpeg;base64,${avatar}` : undefined;
   const lastLogin = loadString(MMKV_KEY.LAST_LOGIN);
 
@@ -20,10 +21,12 @@ const SectionInfo: React.FC<ISectionInfo> = props => {
     <View center>
       <View center>
         <View relative>
-          <Avatar.Image source={{ uri: avatarUri }} size={120} />
-          <View absolute bottom={10} right={15} bg="blue" p="xs" br={999}>
-            <Icon icon="EditIcon" size={18} onPress={onEdit} />
-          </View>
+          <Avatar.Image loading={loading} source={{ uri: avatarUri }} size={120} />
+          {!loading && (
+            <View absolute bottom={10} right={15} bg="blue" p="xs" br={999}>
+              <Icon icon="EditIcon" size={18} onPress={onEdit} />
+            </View>
+          )}
         </View>
       </View>
       <Text my="sm" variant="16-mid">{`${firstName} ${lastName}`}</Text>

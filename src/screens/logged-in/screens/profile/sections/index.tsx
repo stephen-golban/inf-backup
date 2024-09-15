@@ -1,21 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { noop } from 'lodash';
-import { useGoBack } from '@library/hooks';
+import { useLazyAxios } from '@api/hooks';
 import { useLogoutService } from '@services/logout';
+import { useGoBack, useImagePicker } from '@library/hooks';
 
 import { SectionsModule } from '@modules/logged-in';
 
+import { RegisterApiResponse } from '@typings/responses';
 import { PROFILE_SCREENS, SETTINGS_SCREENS, type ProfileStackScreenProps } from '@typings/navigation/';
 
 const SectionsScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.SECTIONS>> = ({ navigation }) => {
   const logout = useLogoutService();
   useGoBack(true, navigation.goBack);
 
+  const { base64Image, selectImage } = useImagePicker();
+
+  const [call, { loading }] = useLazyAxios<RegisterApiResponse>({
+    url: '/admin-api/persons',
+    method: 'post',
+  });
+
+  useEffect(() => {
+    if (base64Image) {
+      call({ photo: base64Image });
+    }
+  }, [base64Image, call]);
+
   return (
     <SectionsModule
-      onEdit={noop}
       onLogout={logout}
+      onEdit={selectImage}
+      loadingAvatar={loading}
       onOpenFaq={() => navigation.navigate(PROFILE_SCREENS.FAQ)}
       onOpenContacts={() => navigation.navigate(PROFILE_SCREENS.CONTACTS)}
       onOpenMyAccount={() => navigation.navigate(PROFILE_SCREENS.MY_ACCOUNT)}
