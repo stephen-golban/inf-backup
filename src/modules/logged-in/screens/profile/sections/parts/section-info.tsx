@@ -22,11 +22,11 @@ const SectionInfo: React.FC<ISectionInfo> = props => {
       <View center>
         <View relative>
           <Avatar.Image loading={loading} source={{ uri: avatarUri }} size={120} />
-          {!loading && (
+          {/* {!loading && (
             <View absolute bottom={10} right={15} bg="blue" p="xs" br={999}>
               <Icon icon="EditIcon" size={18} onPress={onEdit} />
             </View>
-          )}
+          )} */}
         </View>
       </View>
       <Text my="sm" variant="16-mid">{`${firstName} ${lastName}`}</Text>
