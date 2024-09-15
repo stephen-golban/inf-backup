@@ -8,6 +8,7 @@ import { Screen } from '@components/common';
 import SectionInfo from './parts/section-info';
 
 interface ISectionsModule {
+  loadingAvatar?: boolean;
   onEdit(): void;
   onLogout(): void;
   onOpenFaq(): void;
@@ -21,11 +22,21 @@ interface ISectionsModule {
 const SectionsModule: React.FC<ISectionsModule> = props => {
   const { spacing } = useTheme();
   const { user } = useAppStore();
-  const { onEdit, onLogout, onOpenFaq, onOpenContacts, onOpenSettings, onOpenMyAccount, onInviteFriends, onOpenMyNotitications } = props;
+  const {
+    loadingAvatar,
+    onEdit,
+    onLogout,
+    onOpenFaq,
+    onOpenContacts,
+    onOpenSettings,
+    onOpenMyAccount,
+    onInviteFriends,
+    onOpenMyNotitications,
+  } = props;
 
   return (
     <Screen scroll unsafe style={{ paddingHorizontal: spacing.md, paddingVertical: spacing.md }}>
-      <SectionInfo firstName={user?.firstName} lastName={user?.lastName} avatar={user?.photo} onEdit={onEdit} />
+      <SectionInfo loading={loadingAvatar} firstName={user?.firstName} lastName={user?.lastName} avatar={user?.photo} onEdit={onEdit} />
       <SectionItem title="profile:sections:my_account" onPressItem={onOpenMyAccount} icon="UserIcon" />
       <SectionItem title="profile:sections:my_notifications" onPressItem={onOpenMyNotitications} icon="NotificationsIcon" />
       <SectionItem title="profile:sections:frequently_asked_questions" onPressItem={onOpenFaq} icon="QuestionIcon" />

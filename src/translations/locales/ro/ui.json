@@ -39,5 +39,14 @@
     "user_subscription_no_access": "Serviciul nu este inclus în abonament"
   },
 
-  "empty_state": "Nu am găsit date de afișat..."
+  "empty_state": "Nu am găsit date de afișat...",
+
+  "notifications": {
+    "own_data_check": "Cineva ți-a verificat istoria de credit recent",
+    "credit_report_event": "Am înregistrat modificări majore în istoria ta creditară",
+    "user_inactivity": "Salut! Amm observat inactivitate de lungă durată pe cont",
+    "subscription_expiring_info": "Abonamentul expiră în 15 zile",
+    "new_basic_service": "Serviciu NOU",
+    "unknown_notification": "Notificare necunoscută"
+  }
 }

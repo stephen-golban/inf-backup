@@ -32,8 +32,11 @@ export default function useRegisterScreen(navigation: LoggedOutStackScreenProps<
       const res = await call(queryParams, noop, { headers });
       if (res) {
         saveString(MMKV_KEY.INSERT_OTP, '1');
-        saveString(MMKV_KEY.SEND_TO, values.phone);
-        navigation.navigate(LOGGED_OUT_SCREENS.OneTimePassword, { sentTo: values.phone });
+        saveString(MMKV_KEY.SEND_TO, '+373' + values.phone);
+        navigation.navigate(LOGGED_OUT_SCREENS.OneTimePassword, {
+          sentTo: values.phone,
+          otpNotificationType: 'SMS',
+        });
       }
     }
   });

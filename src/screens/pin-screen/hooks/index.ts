@@ -1,13 +1,14 @@
 import { useMe } from '@services/me';
 import { sleep } from '@library/method';
-import { AppStorage } from '@library/storage';
+import { AppStorage, saveString } from '@library/storage';
 import { useMMKVString } from 'react-native-mmkv';
 import { usePinCodeStore } from '@store/pin-code';
 import { useLogoutService } from '@services/logout';
 import { setAppIsAuthenticated, setAppLoading, useAppStore } from '@store/app';
 
-import { PIN_CODE } from '@library/constants';
+import { MMKV_KEY, PIN_CODE } from '@library/constants';
 import { PinCodeT } from '@anhnch/react-native-pincode';
+import { format } from 'date-fns';
 
 export default function usePinScreen() {
   const logout = useLogoutService();
@@ -33,6 +34,10 @@ export default function usePinScreen() {
     if (!isAuthenticated) {
       await handleSignIn();
     }
+
+    const currentTimestamp = new Date();
+    const formattedDate = format(currentTimestamp, 'dd.MM.yyyy, HH:mm');
+    saveString(MMKV_KEY.LAST_LOGIN, formattedDate);
 
     return usePinCodeStore.setState({ visible: false });
   }

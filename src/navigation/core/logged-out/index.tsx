@@ -25,11 +25,7 @@ const LoggedOutStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_OUT>> = ()
         <Stack.Screen name={LOGGED_OUT_SCREENS.ForgotPassword} component={S.ForgotPassword} />
         <Stack.Screen name={LOGGED_OUT_SCREENS.CreatePassword} component={S.PasswordCreate} />
         <Stack.Screen name={LOGGED_OUT_SCREENS.ExpiredRegister} component={S.ExpiredRegister} />
-        <Stack.Screen
-          name={LOGGED_OUT_SCREENS.OneTimePassword}
-          component={S.OneTimePassword}
-          options={{ headerShown: false, gestureEnabled: false }}
-        />
+        <Stack.Screen name={LOGGED_OUT_SCREENS.OneTimePassword} component={S.OneTimePassword} />
       </Stack.Navigator>
     </Screen>
   );

@@ -74,10 +74,12 @@ export const formatPhoneNumber = (phoneNumber: string, isMasked: boolean = true)
 export const currencyFormat = (price: number | string) => {
   const numberPrice = typeof price === 'string' ? parseFloat(price.replace(',', '.')) : price;
 
+  const roundedPrice = Math.round(numberPrice);
+
   const formattedPrice = new Intl.NumberFormat('ro-RO', {
-    minimumFractionDigits: numberPrice % 1 === 0 ? 0 : 2,
-    maximumFractionDigits: 2,
-  }).format(numberPrice);
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(roundedPrice);
 
   return `${formattedPrice} LEI`;
 };

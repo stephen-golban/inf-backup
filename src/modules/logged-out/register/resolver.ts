@@ -15,7 +15,12 @@ const shape = object({
 
   identityNumber: string()
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))
-    .min(13, stringifyObjectValidate({ keyT: 'validation:min_chars_length', options: { count: 13 } })),
+    .matches(/^\d+$/, {
+      message: stringifyObjectValidate({ keyT: 'validation:idnp_invalid' }),
+      excludeEmptyString: true,
+    })
+    .min(13, stringifyObjectValidate({ keyT: 'validation:min_chars_length', options: { count: 13 } }))
+    .test('is-number', stringifyObjectValidate({ keyT: 'validation:invalid_format' }), value => /^\d+$/.test(value)),
 
   firstName: string()
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))

@@ -1,5 +1,6 @@
 {
   "invalid_format": "Invalid field format",
+  "idnp_invalid": "IDNP must contain only numbers",
   "min_value": "The minimum value is {{val}}",
   "field_required": "This field is required",
   "min_chars_length": "Should be at least {{count}} characters long",

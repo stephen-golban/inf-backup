@@ -33,7 +33,7 @@ export default function usePasswordCreate(
       const queryParams = {
         token: null,
         otp,
-        phoneNr: '+373' + loadString(MMKV_KEY.SEND_TO),
+        phoneNr: loadString(MMKV_KEY.SEND_TO),
         newPassword: values.password,
       };
       const res = await call(queryParams, noop, { headers });

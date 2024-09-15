@@ -1,10 +1,15 @@
 {
-    "last_login": "Ultima logare {{date}}",
+    "last_login": "Ultima logare",
     "contacts": "Contacte",
     "my_account": "Contul meu",
     "log_out": "Deconectează-te",
     "my_notifications": "Notificările mele",
     "account_settings": "Setările contului",
     "invite_your_friends": "Invită-ți prietenii",
-    "frequently_asked_questions": "Întrebări frecvente"
+    "frequently_asked_questions": "Întrebări frecvente",
+    "notifications": {
+        "no_notifications": "Nu aveți nici o notificare"
+    },
+    "subscription_expiring_info": "Abonamentul expiră în 15 zile",
+    "new_basic_service": "Serviciu NOU"
 }

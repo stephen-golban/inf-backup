@@ -13,6 +13,7 @@ const store = create<IPinCodeStore>();
 
 export const usePinCodeStore = store(() => {
   const pin = loadString(PIN_CODE.pin);
+
   return {
     visible: pin ? true : false,
     mode: pin ? PinCodeT.Modes.Enter : PinCodeT.Modes.Set,
