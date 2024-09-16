@@ -39,5 +39,14 @@
     "user_subscription_no_access": "Service not included in subscription"
   },
 
+  "notifications": {
+    "own_data_check": "Someone recently checked your credit history",
+    "credit_report_event": "We have recorded major changes in your credit history",
+    "user_inactivity": "Hello! We noticed long-term inactivity on your account",
+    "subscription_expiring_info": "Subscription expires in 15 days",
+    "new_basic_service": "NEW Service",
+    "unknown_notification": "Unknown notification"
+  },
+
   "empty_state": "No data found to display..."
 }
