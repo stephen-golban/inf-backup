@@ -1,9 +1,10 @@
-import { useToggle } from 'react-use';
-import { find, cloneDeep, merge, isEmpty } from 'lodash';
-import { useAxios, useLazyAxios } from '@api/hooks';
 import { useEffect, useCallback, useMemo } from 'react';
+import { useMount, useToggle } from 'react-use';
+import { useAxios, useLazyAxios } from '@api/hooks';
+import { find, cloneDeep, merge, isEmpty } from 'lodash';
 
 import type { NotificationSettingsApiResponse, NotificationSettingsContactData } from '@typings/responses';
+import { OneSignal } from 'react-native-onesignal';
 
 export default function useSectionsModule() {
   const [smsEnabled, toggleSms] = useToggle(false);
@@ -33,12 +34,21 @@ export default function useSectionsModule() {
     if (data) {
       toggleSms(!!smsContact);
       toggleNewsletter(!!newsletterContact);
-      togglePushNotifications(data.sendPushNotifications ? true : false);
     }
   }, [data, smsContact, newsletterContact]);
 
+  useMount(async () => {
+    const permission = await OneSignal.User.pushSubscription.getOptedInAsync();
+    togglePushNotifications(permission);
+  });
+
   const handleTogglePushNotifications = (val: boolean) => {
     togglePushNotifications(val);
+    if (val) {
+      OneSignal.User.pushSubscription.optIn();
+    } else {
+      OneSignal.User.pushSubscription.optOut();
+    }
     updateSettings({ sendPushNotifications: val });
   };
 
