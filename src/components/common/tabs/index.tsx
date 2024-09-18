@@ -9,7 +9,37 @@ import { Text } from '../text';
 
 import style from './style';
 
-const TabsRoot = TabsPrimitive.Root;
+const TabsRoot = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Root>,
+  Omit<React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>, 'value' | 'onValueChange'> & {
+    value?: string;
+    onValueChange?: (value: string) => void;
+    defaultValue?: string;
+  }
+>(({ value, onValueChange, defaultValue, ...props }, ref) => {
+  const [internalValue, setInternalValue] = React.useState(defaultValue || '');
+
+  const handleValueChange = React.useCallback(
+    (newValue: string) => {
+      if (onValueChange) {
+        onValueChange(newValue);
+      } else {
+        setInternalValue(newValue);
+      }
+    },
+    [onValueChange],
+  );
+
+  React.useEffect(() => {
+    if (defaultValue && !value && !internalValue) {
+      handleValueChange(defaultValue);
+    }
+  }, [defaultValue, value, internalValue, handleValueChange]);
+
+  return <TabsPrimitive.Root ref={ref} value={value !== undefined ? value : internalValue} onValueChange={handleValueChange} {...props} />;
+});
+
+TabsRoot.displayName = TabsPrimitive.Root.displayName;
 
 const TabsList = React.forwardRef<React.ElementRef<typeof TabsPrimitive.List>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>>(
   ({ style: listStyle, ...props }, ref) => {

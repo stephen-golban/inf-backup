@@ -1,7 +1,7 @@
 import type { User } from './user';
 import type { ThemeType } from '@theme/index';
 import type { StageNomenclatureResponse } from './responses/nomenclatures';
-import type { LastInquiryApiResponse, PurchasedSubscription } from './responses';
+import type { ICreditReportSummaryResponse, ICreditScoreResponse, LastInquiryApiResponse, PurchasedSubscription } from './responses';
 
 export interface IAppState {
   user: User | null;
@@ -16,9 +16,13 @@ export interface IAppState {
 
   locale: 'en' | 'ru' | 'ro';
 
-  inquiry: LastInquiryApiResponse | undefined;
-
   nomenclature: StageNomenclatureResponse[] | any;
 }
 
 export type Locale = IAppState['locale'];
+
+export interface IAppDataCheckState {
+  creditScore: ICreditScoreResponse | null;
+  inquiry: LastInquiryApiResponse | undefined;
+  creditReportSummary: ICreditReportSummaryResponse | null;
+}

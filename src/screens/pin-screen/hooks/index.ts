@@ -2,59 +2,104 @@ import { useMe } from '@services/me';
 import { sleep } from '@library/method';
 import { AppStorage } from '@library/storage';
 import { useMMKVString } from 'react-native-mmkv';
-import { usePinCodeStore } from '@store/pin-code';
 import { useLogoutService } from '@services/logout';
-import { setAppIsAuthenticated, setAppLoading, useAppStore } from '@store/app';
+import { setAppLoading, useAppStore } from '@store/app';
+import { useEffect, useState, useCallback } from 'react';
+import { useSubscriptionValidation } from '@services/subscription';
 
 import { PIN_CODE } from '@library/constants';
 import { PinCodeT } from '@anhnch/react-native-pincode';
+import { APP_SCREEN, LOGGED_IN_STACK, LOGGED_IN_SCREENS, SUBSCRIPTIONS_SCREENS, type RootStackScreenProps } from '@typings/navigation';
 
-export default function usePinScreen() {
-  const logout = useLogoutService();
-  const { getMe, loading } = useMe(false);
+function usePinScreen({ navigation, route }: RootStackScreenProps<APP_SCREEN.PIN_SCREEN>) {
+  const [mode, setMode] = useState(route.params?.mode);
+  const loadingApp = useAppStore(state => state.loadingApp);
   const [pin, setPin] = useMMKVString(PIN_CODE.pin, AppStorage);
-  const { isAuthenticated, loadingApp } = useAppStore(state => state);
 
-  const handleSignIn = async () => {
-    await getMe();
-    setAppIsAuthenticated(true);
-  };
+  const logout = useLogoutService();
+  const { getMe, loading: loadingMe } = useMe(false);
+  const { validateSubscription, loading: loadingSubscription } = useSubscriptionValidation();
 
-  async function onReset() {
+  const resetToSubscriptionScreen = useCallback(
+    (screen: SUBSCRIPTIONS_SCREENS) => {
+      return navigation?.reset({
+        index: 0,
+        routes: [
+          {
+            name: APP_SCREEN.LOGGED_IN,
+            params: { screen: LOGGED_IN_STACK.SCREENS, params: { screen: LOGGED_IN_SCREENS.SUBSCRIPTIONS, params: { screen } } },
+          },
+        ],
+      });
+    },
+    [navigation],
+  );
+
+  const handleSubscriptionValidation = useCallback(async () => {
+    const subscriptionScreen = await validateSubscription();
+
+    if (subscriptionScreen) {
+      return resetToSubscriptionScreen(subscriptionScreen);
+    }
+    // Valid subscription, navigate to home
+    return navigation.reset({
+      index: 0,
+      routes: [{ name: APP_SCREEN.LOGGED_IN }],
+    });
+  }, [validateSubscription, resetToSubscriptionScreen, navigation]);
+
+  const resetPin = useCallback(async () => {
     setAppLoading(true);
     await logout();
     setPin(undefined);
-    usePinCodeStore.setState({ mode: PinCodeT.Modes.Set });
+    setMode(PinCodeT.Modes.Set);
     await sleep();
     setAppLoading(false);
-  }
+  }, [logout, setPin]);
 
-  async function onEnter() {
-    if (!isAuthenticated) {
-      await handleSignIn();
+  const enterPin = useCallback(async () => {
+    setAppLoading(true);
+    await getMe();
+    await handleSubscriptionValidation();
+    await sleep(500);
+    setAppLoading(false);
+  }, [getMe, handleSubscriptionValidation]);
+
+  const setPinCode = useCallback(
+    async (val: string) => {
+      setPin(val);
+      await enterPin();
+      setMode(PinCodeT.Modes.Enter);
+    },
+    [enterPin, setPin],
+  );
+
+  const handleModeChange = useCallback(
+    (newMode?: PinCodeT.Modes) => {
+      if (newMode === PinCodeT.Modes.Locked) {
+        resetPin();
+      }
+    },
+    [resetPin],
+  );
+
+  useEffect(() => {
+    if (pin) {
+      setMode(route.params?.mode || PinCodeT.Modes.Enter);
+    } else {
+      setMode(PinCodeT.Modes.Set);
     }
-
-    return usePinCodeStore.setState({ visible: false });
-  }
-
-  async function onSet(val: string) {
-    setPin(val);
-    usePinCodeStore.setState({ visible: false, mode: PinCodeT.Modes.Enter });
-    await handleSignIn();
-  }
-
-  function onModeChanged(newMode?: PinCodeT.Modes | undefined) {
-    if (newMode === PinCodeT.Modes.Locked) {
-      return onReset();
-    }
-  }
+  }, [pin, route.params?.mode]);
 
   return {
-    onEnter,
-    onReset,
-    onSet,
-    onModeChanged,
+    setPinCode,
+    enterPin,
+    resetPin,
+    handleModeChange,
     pin,
-    loading: loadingApp || loading,
+    mode,
+    loading: loadingApp || loadingMe || loadingSubscription,
   };
 }
+
+export default usePinScreen;

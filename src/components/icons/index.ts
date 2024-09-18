@@ -19,6 +19,7 @@ export * from './flaky';
 export * from './arrow';
 export * from './trash';
 export * from './score';
+export * from './refresh';
 export * from './circle';
 export * from './logout';
 export * from './danger';

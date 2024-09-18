@@ -18,7 +18,7 @@ export { LOGGED_IN_STACK };
 
 export type LoggedInStackProps<T extends keyof LoggedInStackParams> = CompositeScreenProps<
   BottomTabScreenProps<LoggedInStackParams, T>,
-  RootStackScreenProps<APP_SCREEN.LOGGED_OUT>
+  RootStackScreenProps<APP_SCREEN.LOGGED_IN>
 >;
 
 export * from './tabs';

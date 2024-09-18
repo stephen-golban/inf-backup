@@ -1,14 +1,13 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+
+import { chain } from 'lodash';
+import { useAppDataCheckStore } from '@store/data-check';
+
 import RowBox from './Row.Box';
 import { format, parseISO } from 'date-fns';
 import { Icon, Text, View } from '@components/common';
 
 interface IInfoBox {
-  loading: boolean;
-  subjectDate: Date;
-  maxUpdateDate?: string;
-
   fetchReport(): void;
   onPressNewCredit(): void;
   onPressCreditReport(): void;
@@ -28,7 +27,11 @@ function formatDate(subjectDate: string | Record<string, any>) {
 }
 
 const InfoBox: React.FC<IInfoBox> = props => {
-  const { loading, subjectDate, maxUpdateDate, fetchReport, onPressCreditReport, onPressNewCredit, onPressWhoCheckedCredit } = props;
+  const report = useAppDataCheckStore(state => state.creditReportSummary);
+  const { fetchReport, onPressCreditReport, onPressNewCredit, onPressWhoCheckedCredit } = props;
+
+  const subjectDate = report?.creditReport.subjectUpdateDate!;
+  const maxUpdateDate = chain(report?.creditReport.commitments).values().flatten().filter('updateDate').map('updateDate').max().value();
 
   return (
     <View fill py="lg" bg="lightGray" br="xl" bblr={0} bbrr={0} mt="lg">
@@ -52,8 +55,6 @@ const InfoBox: React.FC<IInfoBox> = props => {
         </View>
         {subjectDate ? (
           <Text>{formatDate(subjectDate)}</Text>
-        ) : loading ? (
-          <ActivityIndicator size="small" color="#0000ff" />
         ) : (
           <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="14-semi" color="blue" />
         )}
@@ -66,8 +67,6 @@ const InfoBox: React.FC<IInfoBox> = props => {
         </View>
         {maxUpdateDate ? (
           <Text>{formatDate(maxUpdateDate)}</Text>
-        ) : loading ? (
-          <ActivityIndicator size="small" color="#0000ff" />
         ) : (
           <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="14-semi" color="blue" />
         )}

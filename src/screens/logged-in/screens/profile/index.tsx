@@ -7,7 +7,6 @@ import { ContactsScreen } from './contacts';
 import InviteFriends from './invite-friends';
 import { MyAccountScreen } from './my-account';
 import ChangePassword from './change-password';
-import { SubscriptionsStack } from './subscriptions';
 import { InviteFriendsFormScreen } from './invite-friends-form';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -27,7 +26,6 @@ const ProfileStack: React.FC<LoggedInScreensProps<LOGGED_IN_SCREENS.PROFILE>> = 
       <Stack.Screen name={PROFILE_SCREENS.INVITE_FRIENDS_FORM} component={InviteFriendsFormScreen} />
       <Stack.Screen name={PROFILE_SCREENS.FAQ} component={FaqScreen} />
       <Stack.Screen name={PROFILE_SCREENS.SETTINGS} component={SettingsStack} />
-      <Stack.Screen name={PROFILE_SCREENS.SUBSCRIPTIONS} component={SubscriptionsStack} />
     </Stack.Navigator>
   );
 };

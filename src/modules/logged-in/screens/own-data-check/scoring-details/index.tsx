@@ -3,14 +3,17 @@ import { ScoringText } from './text';
 import { ScoringOptions } from './options';
 
 import { Scoring } from '@components/ui';
-import { Screen } from '@components/common';
+import { OutlinedButton, Screen } from '@components/common';
 
 interface IScoringDetailsModuleProps {
   score?: number;
+  loading: boolean;
+  onPressUpdate(): void;
 }
 
 const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
-  const { score } = props;
+  const { score, loading, onPressUpdate } = props;
+
   return (
     <Screen unsafe scroll px="zero">
       <Scoring rating={score || 0} />
@@ -49,6 +52,7 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
         value={100}
         hasDivider={false}
       />
+      <OutlinedButton mt="lg" cg="sm" onPress={onPressUpdate} loading={loading} t18n="ui:update_data" />
     </Screen>
   );
 };

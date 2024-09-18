@@ -1,16 +1,19 @@
 import React from 'react';
 import { Divider } from '@components/ui/divider';
-import { FilledButton, Text, View } from '@components/common';
+import { Avatar, FilledButton, Icon, Text, View } from '@components/common';
 
 interface ICommitmentCount {
+  refreshing?: boolean;
+  canOrderReport?: boolean;
   activePositiveCommitments?: number;
   activeNegativeCommitments?: number;
 
+  onRefresh(): void;
   onOrderReport(): void;
 }
 
 const CommitmentCount: React.FC<ICommitmentCount> = props => {
-  const { activePositiveCommitments, activeNegativeCommitments, onOrderReport } = props;
+  const { activePositiveCommitments, activeNegativeCommitments, canOrderReport, refreshing, onOrderReport, onRefresh } = props;
   return (
     <View bg="white">
       <Divider isHorizontal />
@@ -32,13 +35,18 @@ const CommitmentCount: React.FC<ICommitmentCount> = props => {
         <Text color="crimsonRed" variant="12-reg" t18n="logged_in:credit_report_summary:negative_history" />
       </View>
       <Divider isHorizontal />
-      <View my="lg" px="xxl">
+      <View my="lg" px="lg" row cg="sm">
         <FilledButton
-          onPress={onOrderReport}
-          textProps={{ variant: '14-reg' }}
           br="sm"
+          fill
+          onPress={onOrderReport}
+          disabled={!canOrderReport}
+          textProps={{ variant: '14-reg' }}
           t18n="logged_in:credit_report_summary:order_report_for_details"
         />
+        <Avatar.Base br="sm" center size={48} bg="blue" onPress={onRefresh}>
+          <Icon icon="RefreshIcon" size={24} color="white" disabled loading={refreshing} />
+        </Avatar.Base>
       </View>
     </View>
   );

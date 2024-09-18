@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { format } from 'date-fns';
+import { getFormattedCheckDate } from '../../util';
+
 import { Text, View } from '@components/common';
 
 interface ICheckItem {
@@ -9,14 +10,15 @@ interface ICheckItem {
 }
 
 const CheckItem: React.FC<ICheckItem> = ({ orgName, checkDateTime }) => {
-  const checkDate = format(new Date(checkDateTime), 'yyyy-MM-dd');
+  const checkDate = getFormattedCheckDate(checkDateTime);
+  const checkTime = getFormattedCheckDate(checkDateTime, true);
 
   return (
     <View bg="lightGray" px="md" py="lg" row align="center" br={24} shadow="card">
       <Text variant="18-bold" flex fontWeight="400" text={orgName} />
       <View>
         <Text variant="12-semi" text={checkDate} />
-        <Text variant="12-semi" style={{ marginTop: 4 }} text={format(new Date(checkDateTime), 'HH:mm:ssXXX')} />
+        <Text variant="12-semi" style={{ marginTop: 4 }} text={checkTime} />
       </View>
     </View>
   );

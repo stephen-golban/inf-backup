@@ -7,6 +7,7 @@
   "apply": "Aplică",
   "select": "Selectează",
   "logout": "Deconectare",
+  "update": "Actualizează",
   "loading": "Încărcare",
   "continue": "Continuă",
   "back": "Înapoi",
@@ -39,5 +40,7 @@
     "user_subscription_no_access": "Serviciul nu este inclus în abonament"
   },
 
-  "empty_state": "Nu am găsit date de afișat..."
+  "empty_state": "Nu am găsit date de afișat...",
+
+  "update_data": "Actualizează datele"
 }

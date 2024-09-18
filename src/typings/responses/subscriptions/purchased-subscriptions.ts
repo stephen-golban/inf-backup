@@ -1,13 +1,3 @@
-export type PurchasedSubscriptionsResponse = {
-  page: Page;
-  _embedded: Embedded;
-  _links: PurchasedSubscriptionsLinks;
-};
-
-type Embedded = {
-  entityModelList: PurchasedSubscription[];
-};
-
 export type SubscriptionInfo = {
   name?: string;
   price?: number;
@@ -26,50 +16,62 @@ enum SubscriptionDuration {
   MONTH_12 = 'MONTH_12',
 }
 
-export type PurchasedSubscription = {
+export interface PurchasedSubscriptionsResponse {
+  _embedded: Embedded;
+  _links: Links2;
+  page: Page;
+}
+
+interface Embedded {
+  entityModelList: PurchasedSubscription[];
+}
+
+export interface PurchasedSubscription {
   id: number;
-  type: string;
   title: string;
   price: number;
   separateBilling: boolean;
   discountData: DiscountData;
-  _links: EntityModelListLinks;
+  type: string;
   subscriptionDuration: SubscriptionDuration;
   subscriptionAccounts: SubscriptionAccount[];
-};
+  trial: boolean;
+  _links: Links;
+}
 
-type EntityModelListLinks = {
-  self: PurpleSelf;
-};
-
-type PurpleSelf = {
-  href: string;
-  templated: boolean;
-};
-
-type DiscountData = {
+interface DiscountData {
   discount: boolean;
   discountType: string;
   discountAmount: number;
-};
+}
 
-type SubscriptionAccount = {
+interface SubscriptionAccount {
   accountId: number;
-  termDateTime: string;
   automaticTermExtension: boolean;
-};
+  termDateTime: string;
+  reservedSubscriptionId: any;
+}
 
-type PurchasedSubscriptionsLinks = {
-  self: FluffySelf;
-};
+interface Links {
+  self: Self;
+}
 
-type FluffySelf = {
+interface Self {
   href: string;
-};
+  templated: boolean;
+}
 
-type Page = {
+interface Links2 {
+  self: Self2;
+}
+
+interface Self2 {
+  href: string;
+}
+
+interface Page {
   size: number;
-  number: number;
-  totalPages: number;
   totalElements: number;
-};
+  totalPages: number;
+  number: number;
+}

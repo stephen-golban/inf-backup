@@ -1,25 +1,28 @@
 import React from 'react';
 
 import { isEmpty } from 'lodash';
-import { format } from 'date-fns';
+import { getFormattedCheckDate } from './util';
 
 import { CheckItem, Header } from './parts';
-import { Screen, Text, View } from '@components/common';
+import { OutlinedButton, Screen, Text, View } from '@components/common';
 
 import type { OwnDataCheckApiResponse } from '@typings/responses';
 
 interface IWhoCheckedCreditModule {
-  loading?: boolean;
   onRefresh?(): void;
-  data: OwnDataCheckApiResponse | undefined;
+  updateReport?(): void;
+  reportLoading: boolean;
+  updateLoading: boolean;
+  data: OwnDataCheckApiResponse | null;
 }
 
-const WhoCheckedCreditModule: React.FC<IWhoCheckedCreditModule> = ({ data, onRefresh, loading }) => {
+const WhoCheckedCreditModule: React.FC<IWhoCheckedCreditModule> = ({ data, onRefresh, updateReport, reportLoading, updateLoading }) => {
   return (
-    <Screen loading={loading} pt="zero" pb='lg' scroll unsafe onRefresh={onRefresh}>
+    <Screen loading={reportLoading} pt="zero" pb="lg" scroll unsafe onRefresh={onRefresh}>
       <View bg="lightBlue" br="xl" p="lg">
         <Header days={data?.checksPeriod || 0} count={data?.checksNumber || 0} companies={data?.requestorsNumber || 0} />
       </View>
+      <OutlinedButton t18n="ui:update_data" onPress={updateReport} loading={updateLoading} mt="md" />
       <View rg="sm" mt="lg">
         {!data || isEmpty(data) ? (
           <View px="lg">
@@ -27,7 +30,7 @@ const WhoCheckedCreditModule: React.FC<IWhoCheckedCreditModule> = ({ data, onRef
           </View>
         ) : (
           data.checksData.map((item, idx) => {
-            const checkDate = format(new Date(item.checkDateTime), 'yyyy-MM-dd');
+            const checkDate = getFormattedCheckDate(item.checkDateTime);
 
             return <CheckItem key={checkDate + item.checkId + idx} orgName={item.orgName} checkDateTime={item.checkDateTime} />;
           })

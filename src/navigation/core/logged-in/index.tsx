@@ -14,8 +14,8 @@ const Stack = createNativeStackNavigator<LoggedInStackParams>();
 
 const renderHeader = (props: NativeStackHeaderProps) => <Header {...props} />;
 
-const LoggedInStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_IN>> = ({}) => {
-  const { loading } = useLoggedInNavigation();
+const LoggedInStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_IN>> = ({ navigation }) => {
+  const { loading } = useLoggedInNavigation(navigation);
 
   return (
     <Screen bg="primary" excludeEdges={['bottom']} loading={loading}>

@@ -1,30 +1,41 @@
-import { useEffect } from 'react';
-import { isAfter } from 'date-fns';
-import { useNavigation } from '@react-navigation/native';
-import { useGetSubscription } from '@services/subscription';
+import { useCallback } from 'react';
+import { useUpdateEffect } from 'react-use';
 import { useGetNomenclatures } from '@services/nomenclatures';
 
-import { type NavigationProp } from '@react-navigation/native';
-import { LOGGED_IN_STACK, PROFILE_SCREENS, LOGGED_IN_SCREENS, SUBSCRIPTIONS_SCREENS, type LoggedInStackParams } from '@typings/navigation';
+import { APP_SCREEN, LOGGED_IN_STACK, LOGGED_IN_SCREENS, SUBSCRIPTIONS_SCREENS, type RootStackParamList } from '@typings/navigation';
 
-export default function useLoggedInNavigation() {
-  const navigation = useNavigation<NavigationProp<LoggedInStackParams>>();
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useSubscriptionValidation } from '@services/subscription';
 
+export default function useLoggedInNavigation(navigation: NativeStackNavigationProp<RootStackParamList, APP_SCREEN.LOGGED_IN>) {
   const { loading: loadingNomenclatures } = useGetNomenclatures('STAGES');
-  const { loading: loadingSubscription, subscription } = useGetSubscription(true);
+  const { loading: loadingSubscription, validateSubscription, subscription } = useSubscriptionValidation();
 
-  useEffect(() => {
-    if (subscription) {
-      if (isAfter(new Date(), new Date(subscription.subscriptionAccounts[0].termDateTime))) {
-        navigation.navigate(LOGGED_IN_STACK.SCREENS, {
-          screen: LOGGED_IN_SCREENS.PROFILE,
-          params: { screen: PROFILE_SCREENS.SUBSCRIPTIONS, params: { screen: SUBSCRIPTIONS_SCREENS.INDEX } },
-        });
-      }
+  const navigateToSubscriptions = useCallback(
+    (screen: SUBSCRIPTIONS_SCREENS) => {
+      navigation.navigate(APP_SCREEN.LOGGED_IN, {
+        screen: LOGGED_IN_STACK.SCREENS,
+        params: { screen: LOGGED_IN_SCREENS.SUBSCRIPTIONS, params: { screen } },
+      });
+    },
+    [navigation],
+  );
+
+  // checking for subscription changes and if there are, then navigate to the appropriate screen
+
+  const handleSubscriptionValidation = useCallback(async () => {
+    const subscriptionScreen = await validateSubscription();
+
+    if (subscriptionScreen) {
+      return navigateToSubscriptions(subscriptionScreen);
     }
+  }, [validateSubscription, navigateToSubscriptions, navigation]);
+
+  useUpdateEffect(() => {
+    handleSubscriptionValidation();
   }, [subscription]);
 
   return {
-    loading: loadingSubscription || loadingNomenclatures,
+    loading: loadingNomenclatures || loadingSubscription,
   };
 }

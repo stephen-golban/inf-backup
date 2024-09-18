@@ -4,7 +4,8 @@ import { StyleSheet } from 'react-native';
 import { Icon } from '@components/common';
 
 import { DEFAULT, PinCodeT } from '@anhnch/react-native-pincode';
-import { AppTheme } from '@theme/index';
+
+import type { AppTheme } from '@theme/index';
 
 export const PinCodeOptions: PinCodeT.Options = {
   pinLength: 5,
