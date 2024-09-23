@@ -102,5 +102,10 @@
         }
       ]
     }
+  },
+
+  "trial_modal": {
+    "bonus_text": "Ai primit BONUS 7 zile de acces gratis, valabil până la {{date}}.",
+    "subscription_options": "Vezi opțiunile de abonament"
   }
 }

@@ -98,8 +98,8 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
         refreshing={loading}
         onOrderReport={onOrderReport}
         onRefresh={fetchCreditReport}
-        activeNegativeCommitments={creditReportSummary?.creditReport.commitments.activeNegativeCommitments.length}
-        activePositiveCommitments={creditReportSummary?.creditReport.commitments.activePositiveCommitments.length}
+        activeNegativeCommitments={(creditReportSummary?.creditReport.commitments?.activeNegativeCommitments || []).length}
+        activePositiveCommitments={(creditReportSummary?.creditReport.commitments?.activePositiveCommitments || []).length}
       />
       <DebtModal
         loading={feedbackLoading}

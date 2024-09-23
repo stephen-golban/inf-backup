@@ -6,13 +6,7 @@ import { useLogoutService } from '@services/logout';
 
 import { SectionsModule } from '@modules/logged-in';
 
-import {
-  LOGGED_IN_SCREENS,
-  PROFILE_SCREENS,
-  SETTINGS_SCREENS,
-  SUBSCRIPTIONS_SCREENS,
-  type ProfileStackScreenProps,
-} from '@typings/navigation';
+import { PROFILE_SCREENS, SETTINGS_SCREENS, type ProfileStackScreenProps } from '@typings/navigation';
 
 const SectionsScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.SECTIONS>> = ({ navigation }) => {
   const logout = useLogoutService();
@@ -28,7 +22,6 @@ const SectionsScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.SECTIONS>
       onInviteFriends={() => navigation.navigate(PROFILE_SCREENS.INVITE_FRIENDS)}
       onOpenMyNotitications={noop}
       onOpenMyAccount={() => navigation.navigate(PROFILE_SCREENS.MY_ACCOUNT)}
-      onOpenMySubscriptions={() => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX })} // Add this line
     />
   );
 };

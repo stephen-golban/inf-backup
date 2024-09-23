@@ -2,6 +2,7 @@ export type SubscriptionInfo = {
   name?: string;
   price?: number;
   nextPayment?: string;
+  trial: boolean;
   subscriptionId?: string | number;
   subscriptionDuration?: SubscriptionDuration;
 };

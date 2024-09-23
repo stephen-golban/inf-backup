@@ -42,5 +42,9 @@
 
   "empty_state": "Nu am găsit date de afișat...",
 
-  "update_data": "Actualizează datele"
+  "update_data": "Actualizează datele",
+
+  "confirmation": "Confirmare",
+  "are_you_sure": "Ești sigur că vrei să continui?",
+  "ok": "OK"
 }

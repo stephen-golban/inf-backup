@@ -2,7 +2,6 @@ import { auth_api } from '@api/base';
 import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
 import { useMMKVString } from 'react-native-mmkv';
-import { setAppIsAuthenticated } from '@store/app';
 import { useDeviceInfoService } from '@services/device-info';
 
 import { AppStorage, loadString, remove } from '@library/storage';
@@ -40,8 +39,6 @@ export default function useLoginScreen({ navigation }: Pick<LoggedOutStackScreen
         await service.saveDeviceToken().then(() => remove(MMKV_KEY.DEVICE_TOKEN));
       }
     }).then(() => {
-      setAppIsAuthenticated(true);
-
       if (pin) {
         return navigation.navigate(APP_SCREEN.PIN_SCREEN, { mode: PinCodeT.Modes.Enter });
       }

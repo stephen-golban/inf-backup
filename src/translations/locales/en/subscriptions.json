@@ -102,5 +102,10 @@
         }
       ]
     }
+  },
+
+  "trial_modal": {
+    "bonus_text": "You received a BONUS of 7 days of free access, valid until {{date}}.",
+    "subscription_options": "See subscription options"
   }
 }

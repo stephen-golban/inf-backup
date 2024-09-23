@@ -9,7 +9,6 @@ import type { IAllSubscriptionsResponse, PurchasedSubscription } from '@typings/
 export default function useSubscriptionsModule(data: IAllSubscriptionsResponse | undefined, purschased: PurchasedSubscription | undefined) {
   const { t } = useTranslation();
 
-  const [selectedPlan, setSelectedPlan] = useState<SelectedPlan>();
   const [subscriptions, setSubscriptions] = useState<RenderedSubscription[] | null>(null);
 
   const getTag = (tag: string) => t(`subscriptions:index:comparison:interval:${tag}` as I18nKey);
@@ -21,6 +20,7 @@ export default function useSubscriptionsModule(data: IAllSubscriptionsResponse |
     const transformedSubscriptions = data._embedded.entityModelList
       .map(subscription => {
         return {
+          isAnnual: false,
           id: subscription.id,
           price: subscription.price,
           calculatedPrice: subscription.price,
@@ -48,6 +48,7 @@ export default function useSubscriptionsModule(data: IAllSubscriptionsResponse |
           acc[planKey] = {
             id: subscription.id,
             isActive: subscription.isActive,
+            isAnnual: subscription.isAnnual,
             name: t(`subscriptions:index:comparison:plans:${planKey}` as I18nKey),
             features: [
               { title: getFeature('1'), disabled: false, hasInfo: false, tag: undefined },
@@ -85,5 +86,5 @@ export default function useSubscriptionsModule(data: IAllSubscriptionsResponse |
     };
   }, [t, getTag, getFeature, subscriptions]);
 
-  return { subscriptions, plans, selectedPlan, setSelectedPlan, setSubscriptions };
+  return { subscriptions, plans, setSubscriptions };
 }

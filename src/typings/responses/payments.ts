@@ -17,8 +17,14 @@ export type ExecutePaymentApiResponse = {
   ok: boolean;
 };
 
-export type ExecutePaymentBodyArgs = Partial<Pick<ExecutePaymentBody, 'amount' | 'currency'>> &
-  Pick<ExecutePaymentBody, 'billerId' | 'purchasedServiceName' | 'paymentType'>;
+export type SelectedCardParams = {
+  cardId: number;
+  billerId: string;
+  automaticTermExtension: boolean;
+};
+
+export type ExecutePaymentBodyArgs = Partial<Pick<ExecutePaymentBody, 'amount' | 'currency' | 'paymentType'>> &
+  Pick<ExecutePaymentBody, 'billerId' | 'purchasedServiceName'> & { cardId?: number };
 
 export interface CreateCreditReportApiResponse {
   requestDateTime: string;

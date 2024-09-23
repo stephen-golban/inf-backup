@@ -42,5 +42,9 @@
 
   "empty_state": "No data found to display...",
 
-  "update_data": "Update Data"
+  "update_data": "Update Data",
+
+  "confirmation": "Confirmation",
+  "are_you_sure": "Are you sure you want to continue?",
+  "ok": "OK"
 }

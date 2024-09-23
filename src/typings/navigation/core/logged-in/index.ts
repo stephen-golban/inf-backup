@@ -24,4 +24,5 @@ export type LoggedInStackProps<T extends keyof LoggedInStackParams> = CompositeS
 export * from './tabs';
 export * from './screens';
 export * from './screens/profile';
+export * from './screens/subscriptions';
 export * from './screens/own-data-check';

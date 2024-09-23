@@ -1,33 +1,40 @@
 import React from 'react';
 
-import { useAxios } from '@api/hooks';
-import { useGetSubscription } from '@services/subscription';
+import { useGoBack } from '@library/hooks';
+import useSubscriptionsScreen from './hooks';
 
-import { SubscriptionsModule } from '@modules/logged-in';
+import { BottomSheet } from '@components/common';
+import { PaymentCardsModule, SubscriptionsModule } from '@modules/logged-in';
 
-import type { IAllSubscriptionsResponse } from '@typings/responses';
-import { type SubscriptionsStackScreenProps, SUBSCRIPTIONS_SCREENS } from '@typings/navigation';
+import { type SubscriptionsStackScreenProps, Reason, SUBSCRIPTIONS_SCREENS } from '@typings/navigation';
+import { usePurchaseSubscriptionService } from '@services/subscription';
 
 const SubscriptionsScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS.INDEX>> = ({ navigation }) => {
-  const purschased = useGetSubscription(false);
-  const all = useAxios<IAllSubscriptionsResponse>('/admin-api/subscriptions', { method: 'get' });
+  const { selectedPlan, screenLoading, allSubscriptions, subscriptionService, onSuccess, ...fns } = useSubscriptionsScreen();
 
-  const loading = purschased.loading || all.loading;
+  const { loadingPayment, loadingPurchase, onCardSelected } = usePurchaseSubscriptionService({ onSuccess, selectedPlan });
 
-  const onRefresh = async () => {
-    await Promise.all([purschased.getSubscription(), all.refetch()]);
+  const onCancelSubscription = () => {
+    navigation.navigate(SUBSCRIPTIONS_SCREENS.REASON, { reason: Reason.CANCEL_SUBSCRIPTION });
   };
 
-  const onCancelSubscription = () => navigation.navigate(SUBSCRIPTIONS_SCREENS.CANCEL_STAY);
+  useGoBack(true, navigation.goBack);
 
   return (
-    <SubscriptionsModule
-      all={all.data}
-      loading={loading}
-      onRefresh={onRefresh}
-      purschased={purschased.subscription}
-      onCancelSubscription={onCancelSubscription}
-    />
+    <>
+      <SubscriptionsModule
+        onRefresh={fns.onRefresh}
+        loading={screenLoading}
+        all={allSubscriptions.data}
+        onPressPlan={fns.setSelectedPlan}
+        onCancelSubscription={onCancelSubscription}
+        purschased={subscriptionService.subscription}
+        purchaseLoading={id => id === selectedPlan?.id && loadingPurchase}
+      />
+      <BottomSheet isVisible={!!selectedPlan} onDismiss={fns.onDismiss} snapPoints={['75%']}>
+        <PaymentCardsModule paymentLoading={loadingPayment} onPressContinue={onCardSelected} hasAutomaticTermExtension />
+      </BottomSheet>
+    </>
   );
 };
 

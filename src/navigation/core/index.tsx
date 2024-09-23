@@ -17,12 +17,12 @@ const CoreNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {isAuthenticated ? (
-        <Stack.Group>
-          <Stack.Screen name={APP_SCREEN.PIN_SCREEN} component={PinScreen} />
-          <Stack.Screen name={APP_SCREEN.LOGGED_IN} component={LoggedInStack} />
-        </Stack.Group>
+        <Stack.Screen name={APP_SCREEN.LOGGED_IN} component={LoggedInStack} />
       ) : (
-        <Stack.Screen name={APP_SCREEN.LOGGED_OUT} component={LoggedOutStack} />
+        <Stack.Group>
+          <Stack.Screen name={APP_SCREEN.LOGGED_OUT} component={LoggedOutStack} />
+          <Stack.Screen name={APP_SCREEN.PIN_SCREEN} component={PinScreen} />
+        </Stack.Group>
       )}
     </Stack.Navigator>
   );

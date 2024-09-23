@@ -10,11 +10,19 @@ import type { RenderedPlans } from '../../../type';
 type RenderedPlan = RenderedPlans[keyof RenderedPlans];
 
 interface IComparisionTabProps extends RenderedPlan {
-  isAnnual?: boolean;
   onPressButton?: () => void;
+  loading?: boolean;
 }
 
-const ComparisionTab: React.FC<IComparisionTabProps> = ({ price, features, discount, isActive, onPressButton, isAnnual = false }) => {
+const ComparisionTab: React.FC<IComparisionTabProps> = ({
+  price,
+  features,
+  discount,
+  isActive,
+  onPressButton,
+  loading,
+  isAnnual = false,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -43,6 +51,7 @@ const ComparisionTab: React.FC<IComparisionTabProps> = ({ price, features, disco
         <FilledButton
           br="md"
           px="xxxl"
+          loading={loading}
           onPress={onPressButton}
           bg={isActive ? 'error' : 'blue'}
           t18n={isActive ? 'subscriptions:index:cancel_button' : 'subscriptions:index:comparison:continue_to_activation'}

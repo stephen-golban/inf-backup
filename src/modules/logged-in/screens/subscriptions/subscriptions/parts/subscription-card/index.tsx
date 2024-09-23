@@ -10,6 +10,7 @@ import type { I18nKey } from '@translations/locales';
 import type { RenderedSubscription, SelectedPlan } from '../../type';
 
 interface ISubscriptionCard extends RenderedSubscription {
+  loading?: boolean;
   onPressCancel?: () => void;
   onSelectPlan: (val: SelectedPlan) => void;
   setSubscriptions: React.Dispatch<React.SetStateAction<RenderedSubscription[] | null>>;
@@ -19,6 +20,7 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
   id,
   plan,
   price,
+  loading,
   isActive,
   discount = 0,
   onSelectPlan,
@@ -40,15 +42,16 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
       updatePrice(newPrice);
       setCalculatedPrice(newPrice);
     } else {
+      updatePrice(price);
       setCalculatedPrice(price);
     }
   };
 
-  const updatePrice = (newPrice = calculatedPrice) => {
+  const updatePrice = (newPrice = calculatedPrice, checked = false) => {
     setSubscriptions(prev => {
       const updatedPlans = (prev || []).map(item => {
         if (item.id === id) {
-          return { ...item, calculatedPrice: newPrice };
+          return { ...item, isAnnual: isPremium ? true : checked, calculatedPrice: newPrice };
         }
         return item;
       });
@@ -57,7 +60,7 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
   };
 
   const handleOnSelectPlan = () => {
-    onSelectPlan({ id, price: calculatedPrice, discount });
+    onSelectPlan({ id, price: calculatedPrice, discount, isAnnual: isPremium ? true : isChecked });
   };
 
   const planTranslation = (keys: string) => t(`subscriptions:index:${plan}:${keys}` as I18nKey);
@@ -121,6 +124,7 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
       <FilledButton
         mt="xl"
         br="md"
+        loading={loading}
         bg={isActive ? 'error' : 'blue'}
         onPress={isActive ? onPressCancel : handleOnSelectPlan}
         text={isActive ? t('subscriptions:index:cancel_button') : planTranslation('button')}

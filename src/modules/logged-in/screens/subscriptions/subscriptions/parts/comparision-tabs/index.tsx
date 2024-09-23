@@ -11,9 +11,10 @@ interface IComparisionTabs {
   data: RenderedPlans;
   onCancelSubscription(): void;
   setSelectedPlan(val: SelectedPlan): void;
+  purchaseLoading?: (id: number) => boolean;
 }
 
-const ComparisionTabs: React.FC<IComparisionTabs> = ({ data, setSelectedPlan, onCancelSubscription }) => {
+const ComparisionTabs: React.FC<IComparisionTabs> = ({ data, purchaseLoading, setSelectedPlan, onCancelSubscription }) => {
   const keys = Object.keys(data);
   const labels = keys.map(key => capitalize(key.split('_')[0]));
 
@@ -27,6 +28,7 @@ const ComparisionTabs: React.FC<IComparisionTabs> = ({ data, setSelectedPlan, on
       id: data[key].id,
       price: data[key].price,
       discount: data[key].discount,
+      isAnnual: data[key].isAnnual,
     });
   };
 
@@ -39,13 +41,18 @@ const ComparisionTabs: React.FC<IComparisionTabs> = ({ data, setSelectedPlan, on
       </Tabs.List>
 
       <Tabs.Content value={labels[0]}>
-        <ComparisionTab {...data[keys[0]]} onPressButton={() => onPressButton(keys[0])} />
+        <ComparisionTab {...data[keys[0]]} onPressButton={() => onPressButton(keys[0])} loading={purchaseLoading?.(data[keys[0]].id)} />
       </Tabs.Content>
       <Tabs.Content value={labels[1]}>
-        <ComparisionTab {...data[keys[1]]} onPressButton={() => onPressButton(keys[1])} />
+        <ComparisionTab {...data[keys[1]]} onPressButton={() => onPressButton(keys[1])} loading={purchaseLoading?.(data[keys[1]].id)} />
       </Tabs.Content>
       <Tabs.Content value={labels[2]}>
-        <ComparisionTab isAnnual {...data[keys[2]]} onPressButton={() => onPressButton(keys[2])} />
+        <ComparisionTab
+          {...data[keys[2]]}
+          isAnnual
+          onPressButton={() => onPressButton(keys[2])}
+          loading={purchaseLoading?.(data[keys[2]].id)}
+        />
       </Tabs.Content>
     </Tabs.Root>
   );
