@@ -14,12 +14,13 @@ const Stack = createNativeStackNavigator<LoggedOutStackParamList>();
 const LoggedOutStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_OUT>> = () => {
   const isOTPPage = loadString(MMKV_KEY.INSERT_OTP);
 
-  const initialRoute = isOTPPage ? LOGGED_OUT_SCREENS.OneTimePassword : LOGGED_OUT_SCREENS.Welcome;
+  const initialRoute = isOTPPage ? LOGGED_OUT_SCREENS.OneTimePassword : LOGGED_OUT_SCREENS.FaceDetection;
 
   return (
     <Screen bg="primary" excludeEdges={['bottom']}>
       <Stack.Navigator initialRouteName={initialRoute} screenOptions={{ header: props => <LoggedOutHeader {...props} /> }}>
         <Stack.Screen name={LOGGED_OUT_SCREENS.Login} component={S.Login} />
+        <Stack.Screen name={LOGGED_OUT_SCREENS.FaceDetection} component={S.FaceDetection} />
         <Stack.Screen name={LOGGED_OUT_SCREENS.Welcome} component={S.Welcome} />
         <Stack.Screen name={LOGGED_OUT_SCREENS.Register} component={S.Register} />
         <Stack.Screen name={LOGGED_OUT_SCREENS.ForgotPassword} component={S.ForgotPassword} />

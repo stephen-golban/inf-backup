@@ -1,3 +1,5 @@
+platform :ios, '14.0'
+
 def node_require(script)
   # Resolve script with node to allow for hoisting
   require Pod::Executable.execute_command('node', ['-p',
@@ -10,30 +12,16 @@ end
 node_require('react-native/scripts/react_native_pods.rb')
 node_require('react-native-permissions/scripts/setup.rb')
 
-platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
 setup_permissions([
-  # 'AppTrackingTransparency',
-  # 'Bluetooth',
-  # 'Calendars',
-  # 'CalendarsWriteOnly',
   'Camera',
-  # 'Contacts',
-  # 'FaceID',
   'LocationAccuracy',
   'LocationAlways',
   'LocationWhenInUse',
-  # 'MediaLibrary',
-  # 'Microphone',
-  # 'Motion',
   'Notifications',
   'PhotoLibrary',
   'PhotoLibraryAddOnly',
-  # 'Reminders',
-  # 'Siri',
-  # 'SpeechRecognition',
-  # 'StoreKit',
 ])
 
 linkage = ENV['USE_FRAMEWORKS']
@@ -52,18 +40,27 @@ target 'infodebit' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  # Firebase pods
+  pod 'Firebase', :modular_headers => true
+  pod 'FirebaseCoreInternal', :modular_headers => true
+  pod 'GoogleUtilities', :modular_headers => true
+  pod 'FirebaseCore', :modular_headers => true
+
   target 'infodebitTests' do
     inherit! :complete
     # Pods for testing
   end
 
   post_install do |installer|
-    # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
     react_native_post_install(
       installer,
       config[:reactNativePath],
       :mac_catalyst_enabled => false,
-      # :ccache_enabled => true
     )
+    
+    # Exclude arm64 for simulators
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    end
   end
 end

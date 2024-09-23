@@ -24,7 +24,7 @@ const CommitmentCount: React.FC<ICommitmentCount> = props => {
       </View>
       <Divider isHorizontal />
       <View px="md" py="sm" row center>
-        <Text color="forestGreen" variant="12-reg">
+        <Text color="crimsonRed" variant="12-reg">
           {`${activeNegativeCommitments} `}
         </Text>
         <Text variant="12-reg" t18n="logged_in:credit_report_summary:active_commitments_with" />
