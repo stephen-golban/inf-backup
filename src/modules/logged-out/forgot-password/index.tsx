@@ -12,11 +12,12 @@ import { forgot_password_form_schema, type ForgotPasswordFormFields } from './re
 import { DROPDOWN_OPTIONS } from './mock';
 
 interface IForgotPasswordModule {
+  loading: boolean;
   onPressQuestion(): void;
   onSubmit(args: ForgotPasswordFormFields): void;
 }
 
-const ForgotPasswordModule: React.FC<IForgotPasswordModule> = ({ onPressQuestion, onSubmit }) => {
+const ForgotPasswordModule: React.FC<IForgotPasswordModule> = ({ loading, onPressQuestion, onSubmit }) => {
   const { DEFAULT_VALUES, getOption } = useForgotPasswordModule();
 
   return (
@@ -63,7 +64,14 @@ const ForgotPasswordModule: React.FC<IForgotPasswordModule> = ({ onPressQuestion
               </View>
               <View rg="sm" mt="xl">
                 <TextRow title="logged_out:forgot-password:questions:authentication" onPress={onPressQuestion} />
-                <FilledButton t18n="ui:continue" bg="blue" mt="xl" disabled={!formState.isValid} onPress={handleSubmit(onSubmit)} />
+                <FilledButton
+                  loading={loading}
+                  t18n="ui:continue"
+                  bg="blue"
+                  mt="xl"
+                  disabled={!formState.isValid}
+                  onPress={handleSubmit(onSubmit)}
+                />
               </View>
             </View>
           );

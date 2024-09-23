@@ -1,13 +1,14 @@
+import { format } from 'date-fns';
 import { useMe } from '@services/me';
 import { sleep } from '@library/method';
-import { AppStorage } from '@library/storage';
+import { AppStorage, saveString } from '@library/storage';
 import { useMMKVString } from 'react-native-mmkv';
 import { useLogoutService } from '@services/logout';
 import { useEffect, useState, useCallback } from 'react';
 import { useGetSubscription } from '@services/subscription';
 import { setAppIsAuthenticated, setAppLoading, useAppStore } from '@store/app';
 
-import { PIN_CODE } from '@library/constants';
+import { MMKV_KEY, PIN_CODE } from '@library/constants';
 import { PinCodeT } from '@anhnch/react-native-pincode';
 import { APP_SCREEN, type RootStackScreenProps } from '@typings/navigation';
 
@@ -34,6 +35,9 @@ function usePinScreen({ route }: RootStackScreenProps<APP_SCREEN.PIN_SCREEN>) {
     await getMe();
     await getSubscription();
     setAppIsAuthenticated(true);
+    const currentTimestamp = new Date();
+    const formattedDate = format(currentTimestamp, 'dd.MM.yyyy, HH:mm');
+    saveString(MMKV_KEY.LAST_LOGIN, formattedDate);
     await sleep(500);
     setAppLoading(false);
   }, [getMe]);

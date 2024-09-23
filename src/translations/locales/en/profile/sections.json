@@ -1,5 +1,5 @@
 {
-  "last_login": "Last login {{date}}",
+  "last_login": "Last login",
   "my_account": "My account",
   "my_notifications": "My notifications",
   "frequently_asked_questions": "Frequently asked questions",
@@ -7,5 +7,9 @@
   "contacts": "Contacts",
   "account_settings": "Account settings",
   "log_out": "Log out",
-  "my_subscriptions": "My subscriptions"
+  "notifications": {
+    "no_notifications": "You have no notifications"
+  },
+  "subscription_expiring_info": "Subscription expires in 15 days",
+  "new_basic_service": "NEW Service"
 }

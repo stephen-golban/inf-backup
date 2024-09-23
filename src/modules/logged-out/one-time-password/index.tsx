@@ -16,7 +16,7 @@ interface IOneTimePasswordModule {
 
 const OneTimePasswordModule: React.FC<IOneTimePasswordModule> = ({ loading, resendCodeLoading, onSubmit, onResendCode }) => {
   const { DEFAULT_VALUES } = useOneTimePasswordModule();
-  const { canResend, resetTimer, seconds } = useResendTimer();
+  const { resetTimer, seconds } = useResendTimer();
 
   const handleResendCode = () => {
     onResendCode();

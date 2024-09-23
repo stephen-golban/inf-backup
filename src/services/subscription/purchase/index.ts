@@ -17,7 +17,7 @@ function usePurchaseSubscriptionService({ selectedPlan, retentionOffer = false, 
   const toast = useToast();
   const paymentService = useExecutePaymentService();
 
-  const [purchaseSubscription, { loading: loadingPurchase }] = useLazyAxios<string>('/subscription-management/purchase', {
+  const [purchaseSubscription, { loading: loadingPurchase, cancel }] = useLazyAxios<string>('/subscription-management/purchase', {
     method: 'post',
   });
 
@@ -34,8 +34,9 @@ function usePurchaseSubscriptionService({ selectedPlan, retentionOffer = false, 
       await purchaseSubscription(body, response => {
         if (response) {
           toast.show(response, { type: 'success' });
-          onSuccess?.();
+          return onSuccess?.();
         }
+        return cancel();
       });
     }
   });

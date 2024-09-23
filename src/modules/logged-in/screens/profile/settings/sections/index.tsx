@@ -5,6 +5,9 @@ import useSectionsModule from './hooks';
 
 import { StyleSheet, Switch } from 'react-native';
 import { BaseButton, Icon, Screen, Text, View } from '@components/common';
+import { useTranslation } from '@library/hooks';
+
+import { APP_VERSION } from '@env';
 
 interface ISettingsSectionsModule {
   onPressFeedback(): void;
@@ -19,6 +22,8 @@ const SettingsSectionsModule: React.FC<ISettingsSectionsModule> = props => {
     props;
 
   const { spacing } = useTheme();
+
+  const { t } = useTranslation();
 
   const {
     loading,
@@ -81,7 +86,9 @@ const SettingsSectionsModule: React.FC<ISettingsSectionsModule> = props => {
         <Icon icon="ChevronRight" size={16} />
       </BaseButton>
 
-      <Text textAlign="center" variant="14-reg" mt="lg" t18n="profile:settings:app_version" />
+      <Text textAlign="center" variant="14-reg" mt="lg">
+        {`${t('profile:settings:app_version')}: ${APP_VERSION}`}
+      </Text>
       <Text textAlign="center" variant="14-reg" mt="lg" t18n="profile:settings:made_with_love" />
     </Screen>
   );

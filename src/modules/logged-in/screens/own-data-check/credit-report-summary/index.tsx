@@ -69,7 +69,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
           {!isData ? (
             <EmptyState />
           ) : (
-            incassoCommitments.map((item: ICommitment, idx) => (
+            commitments.map((item: ICommitment, idx) => (
               <CommitmentItem
                 type={item?.type}
                 balance={item?.balance}
