@@ -4,37 +4,35 @@ import { noop } from 'lodash';
 import usePinScreen from './hooks';
 import { useAppStore } from '@store/app';
 import { useStyle } from '@library/hooks';
-import { usePinCodeStore } from '@store/pin-code';
-
-import { Loader } from '@components/ui';
-import { PinCodeCustomTextes, PinCodeOptions, PinCodeStyles } from './util';
+import { Screen } from '@components/common';
 
 import { PinCode } from '@anhnch/react-native-pincode';
+import { PinCodeCustomTextes, PinCodeOptions, PinCodeStyles } from './util';
 
-const PinScreen = () => {
-  const { mode, visible } = usePinCodeStore();
+import { type RootStackScreenProps, APP_SCREEN } from '@typings/navigation';
+
+const PinScreen: React.FC<RootStackScreenProps<APP_SCREEN.PIN_SCREEN>> = props => {
   const style = useStyle(PinCodeStyles);
   const locale = useAppStore(state => state.locale);
 
-  const { loading, onEnter, onModeChanged, onReset, onSet, pin } = usePinScreen();
+  const { loading, enterPin, resetPin, handleModeChange, setPinCode, mode, pin } = usePinScreen(props);
 
   return (
-    <>
-      {loading && <Loader bg="blue" fill color="white" />}
+    <Screen bg="blue" unsafe statusBarStyle="light-content" loading={loading} loaderColor="white">
       <PinCode
         pin={pin}
         mode={mode}
         styles={style}
-        visible={visible}
+        visible={true}
         options={PinCodeOptions}
-        onSet={onSet}
-        onReset={onReset}
-        onEnter={onEnter}
+        onSet={setPinCode}
+        onReset={resetPin}
+        onEnter={enterPin}
         onSetCancel={noop}
         textOptions={PinCodeCustomTextes(locale)}
-        onModeChanged={(_, newMode) => onModeChanged(newMode)}
+        onModeChanged={(_, newMode) => handleModeChange(newMode)}
       />
-    </>
+    </Screen>
   );
 };
 

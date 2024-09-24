@@ -1,14 +1,14 @@
-import { PurchasedSubscriptionsResponse } from './responses';
-import { StageNomenclatureResponse } from './responses/nomenclatures';
 import type { User } from './user';
 import type { ThemeType } from '@theme/index';
+import type { StageNomenclatureResponse } from './responses/nomenclatures';
+import type { ICreditReportSummaryResponse, ICreditScoreResponse, LastInquiryApiResponse, PurchasedSubscription } from './responses';
 
 export interface IAppState {
   user: User | null;
 
   isAuthenticated: boolean;
 
-  subscription: PurchasedSubscriptionsResponse['_embedded']['entityModelList'][number] | undefined;
+  subscription: PurchasedSubscription | undefined;
 
   loadingApp: boolean;
 
@@ -20,3 +20,9 @@ export interface IAppState {
 }
 
 export type Locale = IAppState['locale'];
+
+export interface IAppDataCheckState {
+  creditScore: ICreditScoreResponse | null;
+  inquiry: LastInquiryApiResponse | undefined;
+  creditReportSummary: ICreditReportSummaryResponse | null;
+}

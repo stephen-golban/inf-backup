@@ -1,44 +1,84 @@
-import React from 'react';
+import * as React from 'react';
 
-import { useTabs } from './hooks';
+import * as TabsPrimitive from '@rn-primitives/tabs';
 
-import { View } from '@components/common/view';
-import Animated from 'react-native-reanimated';
-import { TabsItem, TabsContent } from './parts';
+import { useStyle } from '@library/hooks';
+import { createStyled } from '@library/restyle';
 
-import type { TabsProps } from './type';
-import type { LayoutChangeEvent } from 'react-native';
+import { Text } from '../text';
 
-const AnimatedView = Animated.createAnimatedComponent(View);
+import style from './style';
 
-type ExtendedTabs = React.FC<TabsProps> & { Item: typeof TabsItem; Content: typeof TabsContent };
+const TabsRoot = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Root>,
+  Omit<React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root>, 'value' | 'onValueChange'> & {
+    value?: string;
+    onValueChange?: (value: string) => void;
+    defaultValue?: string;
+  }
+>(({ value, onValueChange, defaultValue, ...props }, ref) => {
+  const [internalValue, setInternalValue] = React.useState(defaultValue || '');
 
-const Tabs: ExtendedTabs = ({ children, defaultSelectedTab, justify = 'flex-start', tabSpace = 'lg', fill = true, onTabsPress, mt }) => {
-  const { handleTabPress, onTabLayout, underlineStyle, activeIndex } = useTabs({ children, defaultSelectedTab });
+  const handleValueChange = React.useCallback(
+    (newValue: string) => {
+      if (onValueChange) {
+        onValueChange(newValue);
+      } else {
+        setInternalValue(newValue);
+      }
+    },
+    [onValueChange],
+  );
 
   React.useEffect(() => {
-    if (onTabsPress) {
-      onTabsPress(activeIndex);
+    if (defaultValue && !value && !internalValue) {
+      handleValueChange(defaultValue);
     }
-  }, [activeIndex]);
+  }, [defaultValue, value, internalValue, handleValueChange]);
+
+  return <TabsPrimitive.Root ref={ref} value={value !== undefined ? value : internalValue} onValueChange={handleValueChange} {...props} />;
+});
+
+TabsRoot.displayName = TabsPrimitive.Root.displayName;
+
+const TabsList = React.forwardRef<React.ElementRef<typeof TabsPrimitive.List>, React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>>(
+  ({ style: listStyle, ...props }, ref) => {
+    const styles = useStyle(style);
+    return <TabsPrimitive.List ref={ref} style={[styles.tabList, listStyle]} {...props} />;
+  },
+);
+TabsList.displayName = TabsPrimitive.List.displayName;
+
+const TabsTrigger = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
+>(({ style: triggerStyle, ...props }, ref) => {
+  const styles = useStyle(style);
+  const { value } = TabsPrimitive.useRootContext();
+  const isActive = value === props.value;
 
   return (
-    <View fill={fill} mt={mt}>
-      <View direction="row" justify={justify} align="center" cg={justify.startsWith('space') ? undefined : tabSpace} flexWrap="wrap">
-        {React.Children.map(children, (child, index) =>
-          React.cloneElement(child, {
-            onPress: () => handleTabPress(index),
-            onLayout: (event: LayoutChangeEvent) => onTabLayout(event, index),
-          }),
-        )}
-        <AnimatedView h={3} bg="blue" position="absolute" bottom={3} style={[underlineStyle]} />
-      </View>
-      {React.isValidElement(children[activeIndex]) && children[activeIndex].props.children}
-    </View>
+    <TabsPrimitive.Trigger
+      ref={ref}
+      style={[styles.tabTrigger, isActive ? styles.activeTab : styles.inactiveTab, triggerStyle as any]}
+      {...props}>
+      <Text text={props.value} variant="16-semi" color={isActive ? 'blue' : 'black'} />
+    </TabsPrimitive.Trigger>
   );
-};
+});
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 
-Tabs.Item = TabsItem;
-Tabs.Content = TabsContent;
+const TabsContent = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
+>((props, ref) => <TabsPrimitive.Content ref={ref} {...props} />);
+TabsContent.displayName = TabsPrimitive.Content.displayName;
+
+const Tabs = {
+  Root: createStyled(TabsRoot),
+  List: createStyled(TabsList),
+  Trigger: createStyled(TabsTrigger),
+  Content: createStyled(TabsContent),
+};
 
 export { Tabs };

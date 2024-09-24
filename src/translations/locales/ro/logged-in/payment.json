@@ -16,5 +16,6 @@
     "subscription": "Abonament",
     "email_send": "Vreau copia Raportului pe e-mail",
     "select_language": "Alege limba raportului"
-  }
+  },
+  "automatic_term_extension": "Prelungire automată a termenului"
 }

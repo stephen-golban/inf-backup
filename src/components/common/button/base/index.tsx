@@ -18,7 +18,7 @@ const calculateDisabledStyle = (isLoading: boolean, isDisabled: boolean): Partia
   return isLoading || isDisabled ? { opacity: 0.5, disabled: true } : { disabled: false };
 };
 
-const BaseButton = forwardRef<TouchableOpacity, ButtonProps>(
+const BaseButton = forwardRef<typeof TouchableOpacity, ButtonProps>(
   (
     {
       text,

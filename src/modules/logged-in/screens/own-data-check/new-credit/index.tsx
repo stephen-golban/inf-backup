@@ -1,22 +1,24 @@
 import React from 'react';
 
 import FastImage from 'react-native-fast-image';
-import { BaseButton, Screen, Text, View } from '@components/common';
+import { BaseButton, OutlinedButton, Screen, Text, View } from '@components/common';
 
 import type { I18nKey } from '@translations/locales';
 import type { CreditReportQualityApiResponse } from '@typings/responses';
 
 interface INewCreditModule {
-  loading?: boolean;
   onRefresh?(): void;
-  data: CreditReportQualityApiResponse | undefined;
+  updateReport?(): void;
+  inquiryLoading: boolean;
+  updateLoading: boolean;
+  data: CreditReportQualityApiResponse | null;
 }
 
-const NewCreditModule: React.FC<INewCreditModule> = ({ data, onRefresh, loading }) => {
+const NewCreditModule: React.FC<INewCreditModule> = ({ data, onRefresh, inquiryLoading, updateLoading, updateReport }) => {
   const isPositive = data?.creditReportQualityType === 'POSITIVE';
 
   return (
-    <Screen unsafe pt="zero" loading={loading} onRefresh={onRefresh}>
+    <Screen unsafe pt="zero" loading={inquiryLoading} onRefresh={onRefresh}>
       <View px="md" align="center" fill pt="xl">
         <Text
           variant="24-bold"
@@ -40,7 +42,8 @@ const NewCreditModule: React.FC<INewCreditModule> = ({ data, onRefresh, loading 
           t18n={`logged_in:home:own_data_check.new_credit.${isPositive ? 'success' : 'fail'}.message` as I18nKey}
         />
 
-        <BaseButton bg="blue" br={12} mt="xl" w="100%" maxw={270} h={45} justify="center">
+        <OutlinedButton mt="lg" onPress={updateReport} w={200} minh={40} loading={updateLoading} t18n="ui:update_data" />
+        <BaseButton bg="blue" br={12} mt="md" w="100%" maxw={270} h={45} justify="center">
           <Text color="white" textAlign="center" t18n="logged_in:home:own_data_check:new_credit:button" />
         </BaseButton>
       </View>

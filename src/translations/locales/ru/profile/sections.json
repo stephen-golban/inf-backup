@@ -1,15 +1,15 @@
 {
-    "last_login": "Последний вход",
-    "my_account": "Мой счет",
-    "my_notifications": "Мои уведомления",
-    "frequently_asked_questions": "Часто задаваемые вопросы",
-    "invite_your_friends": "Пригласите своих друзей",
-    "contacts": "Контакты",
-    "account_settings": "Настройки аккаунта",
-    "log_out": "Выйти",
-    "notifications": {
-        "no_notifications": "У вас нет уведомлений"
-    },
-    "subscription_expiring_info": "Подписка истекает через 15 дней",
-    "new_basic_service": "НОВАЯ услуга"
+  "last_login": "Последний вход",
+  "my_account": "Мой счет",
+  "my_notifications": "Мои уведомления",
+  "frequently_asked_questions": "Часто задаваемые вопросы",
+  "invite_your_friends": "Пригласите своих друзей",
+  "contacts": "Контакты",
+  "account_settings": "Настройки аккаунта",
+  "log_out": "Выйти",
+  "notifications": {
+    "no_notifications": "У вас нет уведомлений"
+  },
+  "subscription_expiring_info": "Подписка истекает через 15 дней",
+  "new_basic_service": "НОВАЯ услуга"
 }

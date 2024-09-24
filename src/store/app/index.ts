@@ -56,7 +56,9 @@ function setAppLocale(locale: IAppState['locale']) {
 function resetAppStore() {
   useAppStore.setState({
     user: null,
+    nomenclature: null,
     isAuthenticated: false,
+    subscription: undefined,
   });
 }
 

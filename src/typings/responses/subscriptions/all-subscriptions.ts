@@ -1,11 +1,13 @@
 export interface IAllSubscriptionsResponse {
   page: Page;
   _embedded: Embedded;
-  _links: IAllSubscriptionsLinks;
+  _links: {
+    self: { href: string };
+  };
 }
 
 interface Embedded {
-  entityModelList: EntityModelList[];
+  entityModelList: ISubscription[];
 }
 
 export enum SubscriptionDuration {
@@ -18,13 +20,17 @@ export enum SubscriptionDuration {
   MONTH_12 = 'MONTH_12',
 }
 
-interface EntityModelList {
+export interface ISubscription {
   id: number;
   type: string;
-  title: string;
   price: number;
+  title: string;
+  trial: boolean;
+  separateBilling: boolean;
   discountData: DiscountData;
   _links: EntityModelListLinks;
+  retentionOfferMonths?: number;
+  retentionOfferDiscount?: DiscountData;
   subscriptionDuration: SubscriptionDuration;
   subscriptionAccounts?: SubscriptionAccount[];
 }
@@ -49,15 +55,6 @@ interface SubscriptionAccount {
   termDateTime: string;
   automaticTermExtension: boolean;
 }
-
-interface IAllSubscriptionsLinks {
-  self: FluffySelf;
-}
-
-interface FluffySelf {
-  href: string;
-}
-
 interface Page {
   size: number;
   number: number;

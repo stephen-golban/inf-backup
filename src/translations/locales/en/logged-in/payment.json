@@ -16,5 +16,6 @@
     "subscription": "Subscription",
     "email_send": "I want a copy of the Report via e-mail",
     "select_language": "Select report language"
-  }
+  },
+  "automatic_term_extension": "Automatic Term Extension"
 }

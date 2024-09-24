@@ -3,8 +3,9 @@ import React from 'react';
 import { useAppStore } from '@store/app';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import LoggedOutStack from './logged-out';
 import LoggedInStack from './logged-in';
+import LoggedOutStack from './logged-out';
+import { PinScreen } from '@screens/pin-screen';
 
 import { APP_SCREEN, type RootStackParamList } from '@typings/navigation';
 
@@ -18,7 +19,10 @@ const CoreNavigator = () => {
       {isAuthenticated ? (
         <Stack.Screen name={APP_SCREEN.LOGGED_IN} component={LoggedInStack} />
       ) : (
-        <Stack.Screen name={APP_SCREEN.LOGGED_OUT} component={LoggedOutStack} />
+        <Stack.Group>
+          <Stack.Screen name={APP_SCREEN.LOGGED_OUT} component={LoggedOutStack} />
+          <Stack.Screen name={APP_SCREEN.PIN_SCREEN} component={PinScreen} />
+        </Stack.Group>
       )}
     </Stack.Navigator>
   );

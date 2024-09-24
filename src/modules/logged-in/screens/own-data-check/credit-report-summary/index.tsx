@@ -1,21 +1,27 @@
 import React from 'react';
-import { useAppStore } from '@store/app';
+
 import { isEmpty } from 'lodash';
-import { MMKV_KEY } from '@library/constants';
+import { useAppStore } from '@store/app';
 import { loadString, saveString } from '@library/storage';
+import { useCreditReportSummaryService } from '@services/credit-report-summary';
+
 import { OutlinedButton, Screen, Text, View } from '@components/common';
 import { CommitmentCount, CommitmentItem, DebtModal, EmptyState, GridItems, Header } from './parts';
 
-import { ICommitment, ICreditReportSummaryModule } from './typings';
-import { StageNomenclatureResponse } from '@typings/responses/nomenclatures';
+import { MMKV_KEY } from '@library/constants';
+
+import type { ICommitment, ICreditReportSummaryModule } from './typings';
+import type { StageNomenclatureResponse } from '@typings/responses/nomenclatures';
 
 const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props => {
-  const { data, loading, onOrderReport, onSubmit } = props;
+  const { feedbackLoading, onOrderReport, onSubmit } = props;
   const { nomenclature, locale } = useAppStore();
 
   const [isVisible, setIsVisible] = React.useState(false);
 
-  const commitments = Object.entries(data?.creditReport?.commitments || {}).flatMap(([type, commitments]) =>
+  const { fetchCreditReport, loading, creditReportSummary } = useCreditReportSummaryService(false);
+
+  const commitments = Object.entries(creditReportSummary?.creditReport?.commitments || {}).flatMap(([type, commitments]) =>
     commitments.map((commitment: ICommitment) => {
       const match = nomenclature.find((n: StageNomenclatureResponse) => n.attribute === commitment.currentStage);
       const description = match ? match[`description${locale.charAt(0).toUpperCase() + locale.slice(1)}`] || match.descriptionRo : '';
@@ -32,8 +38,8 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
     commitment => commitment.sourceIdno === searchSourceIdno && commitment.type === 'activeNegativeCommitments',
   );
 
-  const reportRequestDateTime = data?.requestDateTime;
-  const reportResponseDateTime = data?.responseDateTime;
+  const reportRequestDateTime = creditReportSummary?.requestDateTime;
+  const reportResponseDateTime = creditReportSummary?.responseDateTime;
 
   React.useEffect(() => {
     const lastShownTimestamp = loadString(MMKV_KEY.INCASSO_REMIND);
@@ -46,7 +52,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
     }
   }, [sourceIdnos]);
 
-  const isData = data || !isEmpty(commitments);
+  const isData = creditReportSummary || !isEmpty(commitments);
 
   const formatCommitmentsForBackend = (commitments: ICommitment[]) => {
     return commitments.map(({ sourceIdno, ...commitment }) => ({
@@ -58,7 +64,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
   return (
     <View fill bg="white">
       <Screen pt="zero" scroll unsafe>
-        <Header totalBalance={data?.creditReport?.primaryIndicators?.totalBalance || 0} />
+        <Header totalBalance={creditReportSummary?.creditReport?.primaryIndicators?.totalBalance || 0} />
         <View rg="sm" mt="lg">
           {!isData ? (
             <EmptyState />
@@ -84,16 +90,19 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
             }
           />
           <Text variant="18-semi" t18n="logged_in:credit_report_summary:last_24_months" />
-          <GridItems data={data?.creditReport.primaryIndicators} />
+          <GridItems data={creditReportSummary?.creditReport.primaryIndicators} />
         </View>
       </Screen>
       <CommitmentCount
+        canOrderReport={!!creditReportSummary}
+        refreshing={loading}
         onOrderReport={onOrderReport}
-        activeNegativeCommitments={data?.creditReport.commitments.activeNegativeCommitments.length}
-        activePositiveCommitments={data?.creditReport.commitments.activePositiveCommitments.length}
+        onRefresh={fetchCreditReport}
+        activeNegativeCommitments={(creditReportSummary?.creditReport.commitments?.activeNegativeCommitments || []).length}
+        activePositiveCommitments={(creditReportSummary?.creditReport.commitments?.activePositiveCommitments || []).length}
       />
       <DebtModal
-        loading={loading}
+        loading={feedbackLoading}
         isVisible={isVisible}
         onPressYes={async ({ phone }) => {
           const formattedCommitments = formatCommitmentsForBackend(incassoCommitments);
