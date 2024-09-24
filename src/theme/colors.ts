@@ -22,7 +22,9 @@ const palette = {
   lightGray: 'rgb(241, 241, 241)',
   softGray: 'rgb(232, 232, 232)',
   mediumGray: 'rgb(223, 223, 223)',
+  darkGray: 'rgb(66, 66, 66)', // #424242
   gray: 'rgb(107, 107, 107)',
+  gray_41: 'rgb(104, 107, 107)', // #686b6b
   gray_80: 'rgb(204, 204, 204)', // #cccccc
   gray_c8: 'rgb(200, 200, 200)', // #c8c8c8
 
@@ -34,7 +36,10 @@ const palette = {
   error: 'rgb(220, 20, 60)',
   success: 'rgb(58, 181, 75)',
   forestGreen: 'rgba(107,196,60, 1)',
+  teal: '#21c0a5',
   crimsonRed: 'rgba(252,54,50, 1)',
+
+  sunsetOrange: '#f45b31',
 };
 
 export const LIGHT_THEME_BASE_COLORS = {

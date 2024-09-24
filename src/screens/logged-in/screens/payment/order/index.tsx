@@ -9,7 +9,7 @@ import { PaymentOrderModule } from '@modules/logged-in';
 import { PAYMENT_SCREENS, type PaymentStackScreenProps } from '@typings/navigation';
 import type { CreditReportOrderFormFields } from '@modules/logged-in/screens/payment/order/resolver';
 
-const PaymentOrderScreen: React.FC<PaymentStackScreenProps<PAYMENT_SCREENS.ORDER>> = ({ navigation }) => {
+const PaymentOrderScreen: React.FC<PaymentStackScreenProps<PAYMENT_SCREENS.ORDER>> = ({ navigation, route }) => {
   // const params = route.params;
   const { handleCreateCreditReport, createReportLoading } = usePaymentOrderScreen();
 
@@ -22,7 +22,7 @@ const PaymentOrderScreen: React.FC<PaymentStackScreenProps<PAYMENT_SCREENS.ORDER
 
   useGoBack(true, navigation.goBack);
 
-  return <PaymentOrderModule onSubmit={onSubmit} loading={createReportLoading} />;
+  return <PaymentOrderModule onSubmit={onSubmit} loading={createReportLoading} isReportOnly={route.params?.isReport} />;
 };
 
 export { PaymentOrderScreen };

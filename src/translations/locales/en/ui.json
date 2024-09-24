@@ -7,6 +7,7 @@
   "apply": "Apply",
   "select": "Select",
   "logout": "Logout",
+  "update": "Update",
   "loading": "Loading",
   "continue": "Continue",
   "back": "Back",
@@ -39,6 +40,13 @@
     "user_subscription_no_access": "Service not included in subscription"
   },
 
+  "empty_state": "No data found to display...",
+
+  "update_data": "Update Data",
+
+  "confirmation": "Confirmation",
+  "are_you_sure": "Are you sure you want to continue?",
+  "ok": "OK",
   "notifications": {
     "own_data_check": "Someone recently checked your credit history",
     "credit_report_event": "We have recorded major changes in your credit history",
@@ -46,7 +54,5 @@
     "subscription_expiring_info": "Subscription expires in 15 days",
     "new_basic_service": "NEW Service",
     "unknown_notification": "Unknown notification"
-  },
-
-  "empty_state": "No data found to display..."
+  }
 }

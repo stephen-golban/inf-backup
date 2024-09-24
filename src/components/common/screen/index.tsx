@@ -11,7 +11,7 @@ import { getEdges } from './util';
 import type { ScreenProps } from './type';
 import { type Edge } from 'react-native-safe-area-context';
 
-const Screen: React.FC<ScreenProps> = ({ loading, ...props }) => {
+const Screen: React.FC<ScreenProps> = ({ loading, loaderColor = 'blue', ...props }) => {
   const edges = React.useMemo<Edge[]>(() => {
     return getEdges(props.excludeEdges, props?.hiddenStatusBar || false);
   }, [props.excludeEdges, props.hiddenStatusBar]);
@@ -23,7 +23,7 @@ const Screen: React.FC<ScreenProps> = ({ loading, ...props }) => {
   if (loading) {
     return (
       <View fill center {...props}>
-        <ActivityIndicator color="blue" />
+        <ActivityIndicator color={loaderColor} />
       </View>
     );
   }

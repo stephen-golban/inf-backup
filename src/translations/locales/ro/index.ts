@@ -3,6 +3,7 @@ import { profile } from './profile';
 import { logged_in } from './logged-in';
 import validation from './validation.json';
 import logged_out from './logged-out.json';
+import subscriptions from './subscriptions.json';
 
 export const ro = {
   ui,
@@ -10,4 +11,5 @@ export const ro = {
   logged_in,
   validation,
   logged_out,
+  subscriptions,
 };

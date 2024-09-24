@@ -10,4 +10,3 @@ export * from './list-view';
 export * from './helper-text';
 export * from './empty-state';
 export * from './star-rating';
-export * from './payment-webview';

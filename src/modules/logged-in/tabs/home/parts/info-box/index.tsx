@@ -1,22 +1,37 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+
+import { chain } from 'lodash';
+import { useAppDataCheckStore } from '@store/data-check';
+
 import RowBox from './Row.Box';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { Icon, Text, View } from '@components/common';
 
 interface IInfoBox {
-  loading: boolean;
-  subjectDate: Date;
-  maxUpdateDate?: string;
-
   fetchReport(): void;
   onPressNewCredit(): void;
   onPressCreditReport(): void;
   onPressWhoCheckedCredit(): void;
 }
 
+function formatDate(subjectDate: string | Record<string, any>) {
+  if (typeof subjectDate === 'string') {
+    const parsedDate = parseISO(subjectDate);
+    return format(parsedDate, 'dd/MM/yyyy');
+  } else if (subjectDate && typeof subjectDate === 'object') {
+    const date = new Date(subjectDate.year, subjectDate.monthValue - 1, subjectDate.dayOfMonth);
+    return format(date, 'dd/MM/yyyy');
+  }
+
+  return '';
+}
+
 const InfoBox: React.FC<IInfoBox> = props => {
-  const { loading, subjectDate, maxUpdateDate, fetchReport, onPressCreditReport, onPressNewCredit, onPressWhoCheckedCredit } = props;
+  const report = useAppDataCheckStore(state => state.creditReportSummary);
+  const { fetchReport, onPressCreditReport, onPressNewCredit, onPressWhoCheckedCredit } = props;
+
+  const subjectDate = report?.creditReport.subjectUpdateDate!;
+  const maxUpdateDate = chain(report?.creditReport.commitments).values().flatten().filter('updateDate').map('updateDate').max().value();
 
   return (
     <View fill py="lg" px="md" br="xl" bblr={0} bbrr={0}>
@@ -38,13 +53,11 @@ const InfoBox: React.FC<IInfoBox> = props => {
         <View row center g="sm" maxw={'80%'}>
           <Text variant="12-reg" g="md" t18n="logged_in:home:info:last_interogation" />
         </View>
-        {subjectDate ? (
-          <Text variant="12-semi">{format(subjectDate, 'dd/MM/yyyy')}</Text>
-        ) : loading ? (
-          <ActivityIndicator size="small" color="#0000ff" />
-        ) : (
-          <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="12-semi" color="blue" />
-        )}
+          {subjectDate ? (
+              <Text>{formatDate(subjectDate)}</Text>
+          ) : (
+              <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="14-semi" color="blue" />
+          )}
       </View>
       <View my="sm" />
       <View bg="lightBlue" row between p="md" shadow="card" br={10} center>
@@ -52,9 +65,7 @@ const InfoBox: React.FC<IInfoBox> = props => {
           <Text variant="12-reg" g="md" t18n="logged_in:home:info:last_history_update" />
         </View>
         {maxUpdateDate ? (
-          <Text variant="12-semi">{format(maxUpdateDate, 'dd/MM/yyyy')}</Text>
-        ) : loading ? (
-          <ActivityIndicator size="small" color="#0000ff" />
+            <Text>{formatDate(maxUpdateDate)}</Text>
         ) : (
           <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="12-semi" color="blue" />
         )}

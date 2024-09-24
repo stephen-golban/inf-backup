@@ -26,6 +26,7 @@ export type ProfileStackParams = {
   [PROFILE_SCREENS.CHANGE_PASSWORD]: undefined;
   [PROFILE_SCREENS.CHANGE_PASSWORD]: undefined;
   [PROFILE_SCREENS.INVITE_FRIENDS_FORM]: undefined;
+  [PROFILE_SCREENS.DELETE_ACCOUNT]: undefined;
   [PROFILE_SCREENS.SETTINGS]: NavigatorScreenParams<SettingsStackParams>;
 };
 

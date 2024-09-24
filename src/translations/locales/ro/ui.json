@@ -7,6 +7,7 @@
   "apply": "Aplică",
   "select": "Selectează",
   "logout": "Deconectare",
+  "update": "Actualizează",
   "loading": "Încărcare",
   "continue": "Continuă",
   "back": "Înapoi",
@@ -41,6 +42,11 @@
 
   "empty_state": "Nu am găsit date de afișat...",
 
+  "update_data": "Actualizează datele",
+
+  "confirmation": "Confirmare",
+  "are_you_sure": "Ești sigur că vrei să continui?",
+  "ok": "OK",
   "notifications": {
     "own_data_check": "Cineva ți-a verificat istoria de credit recent",
     "credit_report_event": "Am înregistrat modificări majore în istoria ta creditară",

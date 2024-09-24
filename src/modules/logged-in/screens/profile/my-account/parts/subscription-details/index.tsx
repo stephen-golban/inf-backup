@@ -8,34 +8,31 @@ import { ro, ru, enGB } from 'date-fns/locale';
 import { currencyFormat } from '@library/method';
 import { OutlinedButton, Text, View } from '@components/common';
 
-import type { SubscriptionInfo } from '@typings/responses';
-
 interface ISubscriptionDetails {
-  subscriptionInfo: SubscriptionInfo;
   onChangeSubscription(): void;
 }
 
 const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
-  const { subscriptionInfo, onChangeSubscription } = props;
+  const { onChangeSubscription } = props;
 
-  const locale = useAppStore(state => state.locale);
+  const { locale, subscription } = useAppStore(state => state);
   const processedLocale = locale === 'ro' ? ro : locale === 'ru' ? ru : enGB;
+
+  const nextPayment = subscription?.subscriptionAccounts?.[0]?.termDateTime;
 
   return (
     <View my="sm">
       <Text px="md" variant="16-reg" t18n="profile:my_account:subscription_details:title" />
-      {subscriptionInfo.subscriptionId ? (
+      {subscription ? (
         <View>
           <View my="md" bg="lightBlue" btw={1.2} bbw={1.2} bc="blue">
             <View p="md" bbw={1.2} bc="blue" row between>
-              <Text variant="14-reg"> {subscriptionInfo.name}</Text>
-              <Text variant="14-reg">{subscriptionInfo?.price! > 0 && currencyFormat(subscriptionInfo.price!)}</Text>
+              <Text variant="14-reg"> {subscription.title}</Text>
+              <Text variant="14-reg">{subscription.price > 0 && currencyFormat(subscription.price)}</Text>
             </View>
             <View p="md" row between>
               <Text variant="14-reg" t18n="profile:my_account:subscription_details:next_payment" />
-              <Text variant="14-reg">
-                {format(subscriptionInfo.nextPayment || new Date(), 'dd MMMM yyyy', { locale: processedLocale })}
-              </Text>
+              <Text variant="14-reg">{format(nextPayment || new Date(), 'dd MMMM yyyy', { locale: processedLocale })}</Text>
             </View>
           </View>
           <Text px="lg" mb="md" variant="12-reg" t18n="profile:my_account:subscription_details:unlimited_access" center />
@@ -48,7 +45,7 @@ const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
 
       <OutlinedButton
         t18n={
-          subscriptionInfo.subscriptionId
+          subscription && !subscription.trial
             ? 'profile:my_account:subscription_details:change_subscription'
             : 'profile:my_account:subscription_details:purchase_subscription'
         }

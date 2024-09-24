@@ -1,7 +1,7 @@
 import { ICreditReportSummaryResponse, IvePositiveCommitment } from '@typings/responses';
 
 export interface ICreditReportSummaryModule {
-  loading: boolean;
+  feedbackLoading: boolean;
   onOrderReport(): void;
   onSubmit(arg: {
     phone: string;
@@ -9,7 +9,7 @@ export interface ICreditReportSummaryModule {
     reportRequestDateTime: Date | undefined;
     reportResponseDateTime: Date | undefined;
   }): void;
-  data?: ICreditReportSummaryResponse;
+  data: ICreditReportSummaryResponse | null;
 }
 
 export interface ICommitment extends IvePositiveCommitment {

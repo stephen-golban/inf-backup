@@ -30,6 +30,10 @@ export type ScreenProps = {
   hiddenStatusBar?: boolean;
 
   /**
+   * Color of loading indicator
+   */
+  loaderColor?: Color;
+  /**
    * Color of status bar for both Android/IOS
    */
   statusColor?: Color;

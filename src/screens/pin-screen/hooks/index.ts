@@ -1,65 +1,82 @@
+import { format } from 'date-fns';
 import { useMe } from '@services/me';
 import { sleep } from '@library/method';
 import { AppStorage, saveString } from '@library/storage';
 import { useMMKVString } from 'react-native-mmkv';
-import { usePinCodeStore } from '@store/pin-code';
 import { useLogoutService } from '@services/logout';
+import { useEffect, useState, useCallback } from 'react';
+import { useGetSubscription } from '@services/subscription';
 import { setAppIsAuthenticated, setAppLoading, useAppStore } from '@store/app';
 
 import { MMKV_KEY, PIN_CODE } from '@library/constants';
 import { PinCodeT } from '@anhnch/react-native-pincode';
-import { format } from 'date-fns';
+import { APP_SCREEN, type RootStackScreenProps } from '@typings/navigation';
 
-export default function usePinScreen() {
-  const logout = useLogoutService();
-  const { getMe, loading } = useMe(false);
+function usePinScreen({ route }: RootStackScreenProps<APP_SCREEN.PIN_SCREEN>) {
+  const [mode, setMode] = useState(route.params?.mode);
+  const loadingApp = useAppStore(state => state.loadingApp);
   const [pin, setPin] = useMMKVString(PIN_CODE.pin, AppStorage);
-  const { isAuthenticated, loadingApp } = useAppStore(state => state);
 
-  const handleSignIn = async () => {
-    await getMe();
-    setAppIsAuthenticated(true);
-  };
+  const logout = useLogoutService();
+  const { getMe, loading: loadingMe } = useMe(false);
+  const { getSubscription } = useGetSubscription(false);
 
-  async function onReset() {
+  const resetPin = useCallback(async () => {
     setAppLoading(true);
     await logout();
     setPin(undefined);
-    usePinCodeStore.setState({ mode: PinCodeT.Modes.Set });
+    setMode(PinCodeT.Modes.Set);
     await sleep();
     setAppLoading(false);
-  }
+  }, [logout, setPin]);
 
-  async function onEnter() {
-    if (!isAuthenticated) {
-      await handleSignIn();
-    }
-
+  const enterPin = useCallback(async () => {
+    setAppLoading(true);
+    await getMe();
+    await getSubscription();
+    setAppIsAuthenticated(true);
     const currentTimestamp = new Date();
     const formattedDate = format(currentTimestamp, 'dd.MM.yyyy, HH:mm');
     saveString(MMKV_KEY.LAST_LOGIN, formattedDate);
+    await sleep(500);
+    setAppLoading(false);
+  }, [getMe]);
 
-    return usePinCodeStore.setState({ visible: false });
-  }
+  const setPinCode = useCallback(
+    async (val: string) => {
+      setPin(val);
+      await enterPin();
+      setMode(PinCodeT.Modes.Enter);
+    },
+    [enterPin, setPin],
+  );
 
-  async function onSet(val: string) {
-    setPin(val);
-    usePinCodeStore.setState({ visible: false, mode: PinCodeT.Modes.Enter });
-    await handleSignIn();
-  }
+  const handleModeChange = useCallback(
+    (newMode?: PinCodeT.Modes) => {
+      if (newMode === PinCodeT.Modes.Locked) {
+        resetPin();
+      }
+    },
+    [resetPin],
+  );
 
-  function onModeChanged(newMode?: PinCodeT.Modes | undefined) {
-    if (newMode === PinCodeT.Modes.Locked) {
-      return onReset();
+  useEffect(() => {
+    if (pin) {
+      setMode(route.params?.mode || PinCodeT.Modes.Enter);
+    } else {
+      setMode(PinCodeT.Modes.Set);
     }
-  }
+  }, [pin, route.params?.mode]);
 
   return {
-    onEnter,
-    onReset,
-    onSet,
-    onModeChanged,
+    setPinCode,
+    enterPin,
+    resetPin,
+    handleModeChange,
     pin,
-    loading: loadingApp || loading,
+    mode,
+    loading: loadingApp || loadingMe,
   };
 }
+
+export default usePinScreen;
