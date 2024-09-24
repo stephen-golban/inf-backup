@@ -14,7 +14,7 @@ interface ICreditReport extends Report {
 
 const CreditReport: React.FC<ICreditReport> = ({ badgeCount, data, formattedCount, loading, refetch, onPress }) => {
   return (
-    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={data ? 180 : 120}>
+    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={data ? 170 : 120}>
       {loading ? (
         <Loader />
       ) : !data ? (

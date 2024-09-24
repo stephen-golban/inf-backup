@@ -15,7 +15,7 @@ interface ICreditScore {
 
 const CreditScore: React.FC<ICreditScore> = ({ data, loading, onPress, fetchScore }) => {
   return (
-    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={data ? 180 : 120}>
+    <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={data ? 170 : 120}>
       {loading ? (
         <Loader />
       ) : !data ? (
