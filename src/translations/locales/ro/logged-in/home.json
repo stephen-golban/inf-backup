@@ -15,10 +15,14 @@
     "who_checked_credit": "Cine mi-a verificat istoricul creditar?",
     "new_credit": "Credit nou? Află dacă ești eligibil",
     "credit_history_updates": "Ultimele actualizări ale istoricului creditar",
+    "transform_your_history_credit": "Transformă istoria ta de credit în superputerea ta cu Myinfodebit",
     "payment_behavior": "Comportament de plată",
+     "responsible_monitoring": "Monitorizarea responsabilă a scorului și istoriei tale de credit îți oferă siguranță pe termen lung și te ajută să te protejezi de escroci, să obții credite mai avantajoase sau locuri de muncă mai bine plătite, ceea ce îți poate deschide noi oportunități.",
     "personal_data": "Date personale",
     "update": "Verifică",
-    "send": "Trimite"
+    "send": "Trimite",
+    "last_interogation":"Ultima interogare a datelor tale în bază",
+    "last_history_update":"Ultima actualizare a istoriei de credit"
   },
   "own_data_check": {
     "who_checked": {

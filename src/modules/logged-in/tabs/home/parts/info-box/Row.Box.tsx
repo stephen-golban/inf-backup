@@ -11,14 +11,14 @@ interface IRowBox extends Pick<ButtonProps, 'onPress'> {
 
 const RowBox: React.FC<IRowBox> = ({ icon, title, onPress }) => {
   return (
-    <BaseButton py="md" px="sm" br={26} bg="lightBlue" onPress={onPress} row between align="center" shadow="card">
+    <BaseButton py="md" px="md" br={10} bg="lightBlue" onPress={onPress} row between align="center" shadow="card">
       <View row align="center" cg="sm" fill>
         <View bg="blue" w={40} h={40} br="round" center>
           <Icon icon={icon} color="white" size={18} />
         </View>
-        <Text variant="16-semi" flex t18n={title} />
+        <Text variant="14-reg" flex t18n={title} />
       </View>
-      <Icon icon="ChevronRight" />
+      <Icon icon="ChevronRight" size={12} />
     </BaseButton>
   );
 };

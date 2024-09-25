@@ -36,6 +36,7 @@ export * from './time-person';
 export * from './master-card';
 export * from './find-person';
 export * from './estate-agent';
+export * from './credit-image';
 export * from './square-share';
 export * from './sync-problem';
 export * from './person-search';

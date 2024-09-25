@@ -2,11 +2,11 @@ export const SHADOWS = {
   card: {
     shadowColor: 'black',
     shadowOffset: {
-      width: 0,
+      width: -2,
       height: 2,
     },
-    shadowOpacity: 0.16,
-    shadowRadius: 8,
+    shadowOpacity: 0.1,
+    shadowRadius: 0,
     elevation: 4,
   },
   credit_card: {

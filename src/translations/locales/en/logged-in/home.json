@@ -15,10 +15,14 @@
     "who_checked_credit": "Who checked my credit history?",
     "new_credit": "New credit? Find out if you're eligible",
     "credit_history_updates": "Latest credit history updates",
+    "transform_your_history_credit": "Transform your history of credit into your Myinfodebit superpower",
+    "responsible_monitoring": "Responsible monitoring of your credit score and history of credit will give you long-term security and help you protect yourself from scams, earn better credit or better job opportunities, which can open up new opportunities.",
     "payment_behavior": "Payment behavior",
     "personal_data": "Personal data",
     "update": "Update",
-    "send": "Send"
+    "send": "Send",
+    "last_interogation":"Last interrogation of your data in the database",
+    "last_history_update":"Last update of your credit history"
   },
   "own_data_check": {
     "who_checked": {
