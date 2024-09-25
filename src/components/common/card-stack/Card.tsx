@@ -77,7 +77,7 @@ const Card = <T extends any>(
     'worklet';
 
     const currentItem = index === currentIndex;
-    const translateY = interpolate(animatedValue.value, [index - 1, index], [-20, 0]);
+    const translateY = interpolate(animatedValue.value, [index - 1, index], [-15, 0]);
     const scale = interpolate(animatedValue.value, [index - 1, index], [0.9, 1]);
     const rotateZ = interpolate(Math.abs(translateX.value), [0, width], [0, 20]);
     const opacity = interpolate(animatedValue.value + maxVisibleItems, [index, index + 1], [0, 1]);

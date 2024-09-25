@@ -38,7 +38,6 @@ const StayScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS.S
         onActivateOffer={fns.onActivate}
         onRemove={onRemove}
       />
-      ;
       <BottomSheet isVisible={!!selectedPlan} onDismiss={fns.onDismiss} snapPoints={['75%']}>
         <PaymentCardsModule paymentLoading={loadingPayment} onPressContinue={onCardSelected} hasAutomaticTermExtension />
       </BottomSheet>

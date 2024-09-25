@@ -18,7 +18,7 @@ export default function useSubscriptionsScreen() {
   const onDismiss = () => setSelectedPlan(undefined);
 
   const onRefresh = useTryCatch(async () => {
-    await Promise.all([subscriptionService.getSubscription(), allSubscriptions.refetch()]);
+    await Promise.all([await subscriptionService.getSubscription(), await allSubscriptions.refetch()]);
   });
 
   const onSuccess = () => {

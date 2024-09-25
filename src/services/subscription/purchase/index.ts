@@ -1,7 +1,7 @@
-import { useTryCatch } from '@library/hooks';
+import { noop } from 'lodash';
 import { useLazyAxios } from '@api/hooks';
+import { useTryCatch } from '@library/hooks';
 import { useToast } from 'react-native-toast-notifications';
-import { useGetSubscription } from '@services/subscription';
 import { useExecutePaymentService } from '@services/execute-payment';
 
 import type { SelectedCardParams } from '@typings/responses';
@@ -17,7 +17,7 @@ function usePurchaseSubscriptionService({ selectedPlan, retentionOffer = false, 
   const toast = useToast();
   const paymentService = useExecutePaymentService();
 
-  const [purchaseSubscription, { loading: loadingPurchase, cancel }] = useLazyAxios<string>('/subscription-management/purchase', {
+  const [purchaseSubscription, { loading: loadingPurchase }] = useLazyAxios<string>('/subscription-management/purchase', {
     method: 'post',
   });
 
@@ -26,25 +26,26 @@ function usePurchaseSubscriptionService({ selectedPlan, retentionOffer = false, 
       const body = {
         retentionOffer,
         automaticTermExtension,
-        reservedSubscriptionId: 0,
+        reservedSubscriptionId: null,
         transactionId: params.orderId,
         subscriptionId: selectedPlan.id,
         annualPayment: selectedPlan.isAnnual,
       };
+
       await purchaseSubscription(body, response => {
         if (response) {
+          onSuccess?.();
           toast.show(response, { type: 'success' });
-          return onSuccess?.();
         }
-        return cancel();
       });
     }
   });
 
   const onCardSelected = async ({ billerId, cardId, automaticTermExtension }: SelectedCardParams) => {
     if (selectedPlan) {
-      await paymentService.onPressPay({ purchasedServiceName: 'SUBSCRIPTION', amount: selectedPlan.price, billerId, cardId }, params =>
-        onPaySuccess(params, automaticTermExtension),
+      return await paymentService.onPressPay(
+        { purchasedServiceName: 'SUBSCRIPTION', amount: selectedPlan.price, billerId, cardId },
+        params => onPaySuccess(params, automaticTermExtension),
       );
     }
   };

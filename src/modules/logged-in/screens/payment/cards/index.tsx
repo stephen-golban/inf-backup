@@ -21,11 +21,7 @@ const PaymentCardsModule: React.FC<IPaymentCardsModule> = ({ onPressContinue, pa
   const { data, loading, refetch } = useAxios<GetAllCardsApiResponse>('/bank-card-accounts', { method: 'get' });
 
   const [billerId, setBillerId] = React.useState<string>('');
-  const [automaticTermExtension, setAutomaticTermExtension] = React.useState<boolean>(false);
-
-  const onRefresh = useTryCatch(async () => {
-    await refetch();
-  });
+  const [automaticTermExtension, setAutomaticTermExtension] = React.useState<boolean>(true);
 
   useUpdateEffect(() => {
     if (data && !isEmpty(data)) {
@@ -36,7 +32,7 @@ const PaymentCardsModule: React.FC<IPaymentCardsModule> = ({ onPressContinue, pa
   const cardAddingLoading = loadingRegister || callbackLoading;
 
   return (
-    <Screen loading={loading} onRefresh={onRefresh} fill px="lg" pb="xl">
+    <Screen loading={loading} onRefresh={refetch} fill px="lg" pb="xl">
       <View fill rg="md">
         {hasAutomaticTermExtension && (
           <View row align="center">

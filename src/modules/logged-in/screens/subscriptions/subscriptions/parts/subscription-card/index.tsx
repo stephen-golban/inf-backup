@@ -21,6 +21,7 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
   plan,
   price,
   loading,
+  isAnnual,
   isActive,
   discount = 0,
   onSelectPlan,
@@ -38,11 +39,11 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
     setIsChecked(checked);
     if (checked) {
       const formula = price - (price * discount) / 100;
-      const newPrice = Math.ceil(isPremium ? formula : calculateAnnual(formula));
-      updatePrice(newPrice);
+      const newPrice = isPremium ? Number(formula.toFixed(2)) : Number(calculateAnnual(formula).toFixed(2));
+      updatePrice(newPrice, checked);
       setCalculatedPrice(newPrice);
     } else {
-      updatePrice(price);
+      updatePrice(price, checked);
       setCalculatedPrice(price);
     }
   };
@@ -60,7 +61,7 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
   };
 
   const handleOnSelectPlan = () => {
-    onSelectPlan({ id, price: calculatedPrice, discount, isAnnual: isPremium ? true : isChecked });
+    onSelectPlan({ id, price: calculatedPrice, discount, isAnnual });
   };
 
   const planTranslation = (keys: string) => t(`subscriptions:index:${plan}:${keys}` as I18nKey);

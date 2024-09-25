@@ -10,9 +10,17 @@ export type ExecutePaymentBody = {
 
 export type ExecutePaymentApiResponse = {
   result: {
-    payId: string;
-    payUrl: string;
+    amount: number;
+    approval: string;
+    billerId: string;
+    cardNumber: string;
+    currency: string;
     orderId: string;
+    payId: string;
+    rrn: string;
+    status: string;
+    statusCode: string;
+    statusMessage: string;
   };
   ok: boolean;
 };

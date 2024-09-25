@@ -10,15 +10,20 @@ export default function useCardsManagement() {
   const { callbackLoading, loadingRegister, onRegisterCard } = useRegisterCardService();
 
   const cards = useAxios<GetAllCardsApiResponse>('/bank-card-accounts', { method: 'get' });
-  const [remove, { loading: loadingDelete }] = useLazyAxios('/bank-card-accounts', { method: 'delete' });
+  const [remove, { loading: loadingDelete }] = useLazyAxios<number>('/bank-card-accounts', { method: 'delete' });
 
-  const onDeleteCallback = useTryCatch(async () => {
-    stackRef.current?.swipe(-1);
-    await cards.refetch();
+  const onDeleteCallback = useTryCatch(async (res: number) => {
+    if (res === 204) {
+      stackRef.current?.swipe(-1);
+      return await cards.refetch();
+    }
+    return;
   });
 
   const onDeleteCard = useTryCatch(async (id: number) => {
-    await remove(undefined, onDeleteCallback, { additionalUrl: `/${id}` });
+    if (cards.data && cards.data.length > 1) {
+      await remove(undefined, onDeleteCallback, { additionalUrl: `/${id}` });
+    }
   });
 
   return { stackRef, cards, loadingRegister, callbackLoading, loadingDelete, onRegisterCard, onDeleteCard };

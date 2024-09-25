@@ -1,6 +1,7 @@
 import React from 'react';
 
 import useMyAccountScreen from './hooks';
+import { useGoBack } from '@library/hooks';
 
 import { MyAccountModule } from '@modules/logged-in/screens';
 
@@ -16,7 +17,7 @@ const MyAccountScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.MY_ACCOU
       params: { reason: Reason.REMOVE_ACCOUNT, comment: 'Remove account' },
     });
   };
-
+  useGoBack(true, navigation.goBack);
   return (
     <MyAccountModule
       loading={loading}
@@ -24,9 +25,6 @@ const MyAccountScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.MY_ACCOU
       onRemoveAccount={onRemoveAccount}
       onHandleSubscription={onHandleSubscription}
       onChangePassword={() => navigation.navigate(PROFILE_SCREENS.CHANGE_PASSWORD)}
-      // onCancelSubscription={() =>
-      //   navigation.navigate(LOGGED_IN_SCREENS.FEEDBACK, { screen: FEEDBACK_SCREENS.REASON, params: { reason: Reason.CANCEL_SUBSCRIPTION } })
-      // }
     />
   );
 };

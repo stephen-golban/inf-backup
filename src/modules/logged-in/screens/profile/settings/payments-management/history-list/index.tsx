@@ -19,8 +19,8 @@ const HistoryList = () => {
         canRefresh
         onRefresh={refetch}
         refreshing={loading}
-        ListHeaderComponent={ListHeader}
         data={data?.payments}
+        ListHeaderComponent={ListHeader}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => <ListItem {...item} />}
         ListEmptyComponent={<Text t18n="profile:settings:payment_history_screen:no_payment_history" />}
