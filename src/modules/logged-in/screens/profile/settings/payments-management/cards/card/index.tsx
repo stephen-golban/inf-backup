@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Loader } from '@components/ui';
-import { Icon, Text, View } from '@components/common';
+import { Icon, IconType, Text, View } from '@components/common';
 
 import type { GetAllCardsApiResponse } from '@typings/responses';
 
@@ -16,6 +16,10 @@ interface ICard {
 const Card: React.FC<ICard> = ({ isFirst, canDelete, loadingDelete, item, onDeleteCard }) => {
   const isLoading = loadingDelete && isFirst;
 
+  const isVisa = item.cardNr.startsWith('4');
+  const isMasterCard = item.cardNr.startsWith('2') || item.cardNr.startsWith('5');
+  const CardIcon: IconType = isVisa ? 'VisaCardIcon' : isMasterCard ? 'MasterCardIcon' : 'CreditCardIcon';
+
   return (
     <View bg="softGray" br={24} p="lg" w={279} h={144} between shadow="credit_card">
       {isFirst && canDelete && (
@@ -28,7 +32,7 @@ const Card: React.FC<ICard> = ({ isFirst, canDelete, loadingDelete, item, onDele
       </View>
       <View row between align="center">
         <Text variant="14-reg" text={item.cardType} />
-        <Icon icon="MasterCardIcon" size={30} />
+        <Icon icon={CardIcon} size={30} />
       </View>
     </View>
   );

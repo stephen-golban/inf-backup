@@ -29,7 +29,7 @@ const CardList: React.FC<ICardList> = ({ data, onSelect, selected }) => {
           const isSelected = item.billerId === selected;
           const isVisa = item.cardNr.startsWith('4');
           const isMasterCard = item.cardNr.startsWith('2') || item.cardNr.startsWith('5');
-          const CardIcon: IconType = isVisa ? 'VisaCardIcon' : isMasterCard ? 'CreditCardIcon' : 'CreditCardIcon';
+          const CardIcon: IconType = isVisa ? 'VisaCardIcon' : isMasterCard ? 'MasterCardIcon' : 'CreditCardIcon';
 
           return (
             <Checkbox value={isSelected} size={16} checkIconSize={10} onToggle={() => onSelect(item.billerId)}>
