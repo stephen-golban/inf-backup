@@ -12,7 +12,7 @@ interface ICardStack<T extends any> {
 }
 
 const _CardStack = <T extends any>({ data, renderItem, maxVisibleItems = 3 }: ICardStack<T>, ref: React.Ref<any>) => {
-  const [newData, setNewData] = React.useState([...data, ...data]);
+  const [newData, setNewData] = React.useState(data);
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const animatedValue = useSharedValue(0);

@@ -19,6 +19,7 @@ const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
   const processedLocale = locale === 'ro' ? ro : locale === 'ru' ? ru : enGB;
 
   const nextPayment = subscription?.subscriptionAccounts?.[0]?.termDateTime;
+  const isTrial = subscription?.trial;
 
   return (
     <View my="sm">
@@ -45,9 +46,11 @@ const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
 
       <OutlinedButton
         t18n={
-          subscription && !subscription.trial
-            ? 'profile:my_account:subscription_details:change_subscription'
-            : 'profile:my_account:subscription_details:purchase_subscription'
+          !subscription
+            ? 'profile:my_account:subscription_details:purchase_subscription'
+            : isTrial
+              ? 'profile:my_account:subscription_details:purchase_subscription'
+              : 'profile:my_account:subscription_details:change_subscription'
         }
         mx="xxl"
         textProps={{ variant: '14-reg' }}

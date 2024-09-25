@@ -9,25 +9,33 @@ import { Text, View, CardStack, Screen, OutlinedButton } from '@components/commo
 const PaymentsCards: React.FC = () => {
   const { stackRef, callbackLoading, cards, loadingRegister, loadingDelete, onDeleteCard, onRegisterCard } = useCardsManagement();
 
+  const data = cards.data;
+
   return (
-    <Screen fill maxh="40%" unsafe onRefresh={cards.refetch} loading={cards.loading}>
-      {isEmpty(cards.data) ? (
+    <Screen fill maxh="35%" unsafe onRefresh={cards.refetch} loading={cards.loading}>
+      {!data || isEmpty(data) ? (
         <View center my="md">
           <Text t18n="profile:settings:payment_history_screen:no_cards_to_display" />
         </View>
       ) : (
         <CardStack
           ref={stackRef}
-          data={cards.data!}
+          data={data!}
           renderItem={(item, isFirst) => (
-            <Card item={item as any} isFirst={isFirst} loadingDelete={loadingDelete} onDeleteCard={onDeleteCard} />
+            <Card
+              item={item as any}
+              canDelete={data.length > 1}
+              isFirst={isFirst}
+              loadingDelete={loadingDelete}
+              onDeleteCard={onDeleteCard}
+            />
           )}
         />
       )}
       <View px="md">
         <OutlinedButton
-          onPress={() => onRegisterCard(cards.refetch)}
           loading={loadingRegister || callbackLoading}
+          onPress={() => onRegisterCard(cards.refetch)}
           t18n="profile:settings:payment_history_screen:register_new_card"
         />
       </View>

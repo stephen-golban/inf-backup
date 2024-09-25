@@ -32,7 +32,7 @@ const SubscriptionsScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_
         purchaseLoading={id => id === selectedPlan?.id && loadingPurchase}
       />
       <BottomSheet isVisible={!!selectedPlan} onDismiss={fns.onDismiss} snapPoints={['75%']}>
-        <PaymentCardsModule paymentLoading={loadingPayment} onPressContinue={onCardSelected} hasAutomaticTermExtension />
+        <PaymentCardsModule paymentLoading={loadingPayment || loadingPurchase} onPressContinue={onCardSelected} hasAutomaticTermExtension />
       </BottomSheet>
     </>
   );

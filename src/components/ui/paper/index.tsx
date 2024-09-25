@@ -7,11 +7,11 @@ const Paper: React.FC<ViewProps> = props => {
     <View
       p="md"
       bg="white"
-      elevation={3}
-      shadowRadius={4}
-      shadowColor="black"
-      shadowOpacity={0.05}
-      shadowOffset={{ height: 2, width: 0 }}
+      // elevation={3}
+      // shadowRadius={4}
+      // shadowColor="black"
+      // shadowOpacity={0.05}
+      // shadowOffset={{ height: 2, width: 0 }}
       {...props}
     />
   );

@@ -3,7 +3,6 @@ import React from 'react';
 import { ReasonModule } from '@modules/logged-in';
 
 import { LOGGED_IN_TABS, Reason, SUBSCRIPTIONS_SCREENS, type SubscriptionsStackScreenProps } from '@typings/navigation';
-import { useTryCatch } from '@library/hooks';
 
 const reasonKeys = [
   'no_relevant_info',
@@ -20,10 +19,6 @@ const ReasonScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS
   const handleSelectReason = (reason: string) => {
     setSelectedReason(reason);
   };
-
-  const onProceed = useTryCatch(async (reason: string) => {
-    return await navigation.navigate(SUBSCRIPTIONS_SCREENS.STAY, { comment: reason!, reason: Reason.CANCEL_SUBSCRIPTION });
-  });
 
   return (
     <ReasonModule

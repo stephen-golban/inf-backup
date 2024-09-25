@@ -23,7 +23,7 @@
 		<key>CFBundleVersion</key>
 		<string>$(CURRENT_PROJECT_VERSION)</string>
 		<key>LSApplicationQueriesSchemes</key>
-		<string></string>
+		<string/>
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
 		<key>NSAppTransportSecurity</key>
@@ -46,7 +46,7 @@
 		<key>NSCameraUsageDescription</key>
 		<string>We need access to your camera to take pictures.</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-		<string></string>
+		<string/>
 		<key>UIBackgroundModes</key>
 		<array>
 			<string>remote-notification</string>
@@ -69,5 +69,14 @@
 		</array>
 		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>infodebit</string>
+				</array>
+			</dict>
+		</array>
 	</dict>
 </plist>

@@ -136,6 +136,8 @@ export const openBrowserAuthAsync = async (url: string, redirectUrl: string) => 
   return;
 };
 
+export const closeInAppBrowser = () => InAppBrowser.close();
+
 export const getQueryParams = <T>(url: string) => {
   const params: { [key: string]: string } = {};
 

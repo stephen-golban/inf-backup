@@ -2,7 +2,7 @@ import { noop } from 'lodash';
 import { useLazyAxios } from '@api/hooks';
 import { createPaymentBody } from './util';
 import { useTryCatch } from '@library/hooks';
-import { getQueryParams, openBrowserAuthAsync } from '@library/method';
+import { closeInAppBrowser, getQueryParams, openBrowserAuthAsync } from '@library/method';
 
 import type { ExecutePaymentApiResponse, ExecutePaymentBodyArgs } from '@typings/responses';
 
@@ -17,15 +17,24 @@ function useExecutePaymentService() {
     initiatePaymentUtils.cancel();
   });
 
-  const onPressPayCallback = useTryCatch(async ({ result }: ExecutePaymentApiResponse, onSuccess: OnSuccess) => {
-    const response = await openBrowserAuthAsync(result.payUrl, 'infodebit://payment-purchases/call-back-payment');
-
-    if (response && response.type === 'success') {
-      const params = getQueryParams<{ payId: string; orderId: string }>(response.url);
-      await callback(undefined, noop, { params });
-      return await onSuccess(params);
+  const onPressPayCallback = useTryCatch(async ({ result, ok }: ExecutePaymentApiResponse, onSuccess: OnSuccess) => {
+    if (ok) {
+      return onSuccess({ payId: result.payId, orderId: result.orderId });
     }
     return onPaymentFailure();
+    // const response = await openBrowserAuthAsync(result.payUrl, 'infodebit://payment-purchases/call-back-payment');
+
+    // if (response) {
+    //   if (response.type === 'success') {
+    //     const params = getQueryParams<{ payId: string; orderId: string }>(response.url);
+    //     await callback(undefined, noop, { params });
+    //     return await onSuccess(params);
+    //   }
+    //   closeInAppBrowser();
+    //   return onPaymentFailure();
+    // }
+    // closeInAppBrowser();
+    // return onPaymentFailure();
   });
 
   const onPressPay = useTryCatch(async (bodyArgs: ExecutePaymentBodyArgs, onSuccess: OnSuccess) => {

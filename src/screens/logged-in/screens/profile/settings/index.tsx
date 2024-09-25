@@ -7,10 +7,12 @@ import { PaymentsManagement } from './payments-management';
 import { TechnicalFeedback } from './technical-feedback';
 
 import { PROFILE_SCREENS, SETTINGS_SCREENS, SettingsStackParams, type ProfileStackScreenProps } from '@typings/navigation';
+import { useGoBack } from '@library/hooks';
 
 const Stack = createNativeStackNavigator<SettingsStackParams>();
 
-const SettingsStack: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.SETTINGS>> = () => {
+const SettingsStack: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.SETTINGS>> = ({ navigation }) => {
+  useGoBack(true, navigation.goBack);
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={SETTINGS_SCREENS.SECTIONS} component={Sections} />

@@ -2,6 +2,7 @@ export * from './useTryCatch';
 
 export { default as useStyle } from './useStyle';
 export { default as useGoBack } from './useGoBack';
+export { default as useDeepLinks } from './useDeepLinks';
 export { default as useImagePicker } from './useImagePicker';
 export { default as useTranslation } from './useTranslation';
 export { default as useDownloadFile } from './use-download-file';
