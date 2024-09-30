@@ -1,11 +1,11 @@
-import { format } from 'date-fns';
 import { auth_api } from '@api/base';
 import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
+import { usePinCodeStore } from '@store/pin-code';
 import { useMMKVString } from 'react-native-mmkv';
 import { useDeviceInfoService } from '@services/device-info';
 
-import { AppStorage, loadString, remove, saveString } from '@library/storage';
+import { AppStorage, loadString, remove } from '@library/storage';
 import * as Keychain from 'react-native-keychain';
 
 import { MMKV_KEY, PIN_CODE } from '@library/constants';
@@ -13,7 +13,8 @@ import { PinCodeT } from '@anhnch/react-native-pincode';
 
 import type { LoginApiResponse } from '@typings/responses/login';
 import type { LoginFormFields } from '@modules/logged-out/login/resolver';
-import { type LoggedOutStackScreenProps, APP_SCREEN, LOGGED_OUT_SCREENS } from '@typings/navigation';
+import { type LoggedOutStackScreenProps, LOGGED_OUT_SCREENS } from '@typings/navigation';
+import { setAppIsAuthenticated } from '@store/app';
 
 export default function useLoginScreen({ navigation }: Pick<LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.Login>, 'navigation'>) {
   const service = useDeviceInfoService();
@@ -40,10 +41,12 @@ export default function useLoginScreen({ navigation }: Pick<LoggedOutStackScreen
         await service.saveDeviceToken().then(() => remove(MMKV_KEY.DEVICE_TOKEN));
       }
     }).then(() => {
+      setAppIsAuthenticated(true);
+
       if (pin) {
-        return navigation.navigate(APP_SCREEN.PIN_SCREEN, { mode: PinCodeT.Modes.Enter });
+        return usePinCodeStore.setState({ visible: true, mode: PinCodeT.Modes.Enter });
       }
-      return navigation.navigate(APP_SCREEN.PIN_SCREEN, { mode: PinCodeT.Modes.Set });
+      return usePinCodeStore.setState({ visible: true, mode: PinCodeT.Modes.Set });
     });
   });
 

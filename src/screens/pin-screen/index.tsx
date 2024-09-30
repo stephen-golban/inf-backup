@@ -1,37 +1,43 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 
 import { noop } from 'lodash';
 import usePinScreen from './hooks';
 import { useAppStore } from '@store/app';
 import { useStyle } from '@library/hooks';
+import { usePinCodeStore } from '@store/pin-code';
+
+import { Loader } from '@components/ui';
+import { PinCode } from '@anhnch/react-native-pincode';
+
+import { PinCodeStyles } from './style';
+import { PinCodeCustomTextes, PinCodeOptions } from './util';
 import { Screen } from '@components/common';
 
-import { PinCode } from '@anhnch/react-native-pincode';
-import { PinCodeCustomTextes, PinCodeOptions, PinCodeStyles } from './util';
-
-import { type RootStackScreenProps, APP_SCREEN } from '@typings/navigation';
-
-const PinScreen: React.FC<RootStackScreenProps<APP_SCREEN.PIN_SCREEN>> = props => {
+const PinScreen: React.FC = () => {
   const style = useStyle(PinCodeStyles);
-  const locale = useAppStore(state => state.locale);
+  const { mode, visible } = usePinCodeStore();
+  const { locale, loadingApp } = useAppStore();
 
-  const { loading, enterPin, resetPin, handleModeChange, setPinCode, mode, pin } = usePinScreen(props);
+  const { loading, onEnter, onReset, onModeChanged, onSet, pin } = usePinScreen();
 
   return (
-    <Screen bg="blue" unsafe statusBarStyle="light-content" loading={loading} loaderColor="white">
+    <Screen bg="blue" fill loading={loadingApp || loading} absoluteFill statusBarStyle="light-content" loaderColor="white">
+      {/* <StatusBar barStyle="light-content" /> */}
       <PinCode
         pin={pin}
         mode={mode}
         styles={style}
-        visible={true}
+        visible={visible}
         options={PinCodeOptions}
-        onSet={setPinCode}
-        onReset={resetPin}
-        onEnter={enterPin}
+        onSet={onSet}
+        onReset={onReset}
+        onEnter={onEnter}
         onSetCancel={noop}
         textOptions={PinCodeCustomTextes(locale)}
-        onModeChanged={(_, newMode) => handleModeChange(newMode)}
+        onModeChanged={(_, newMode) => onModeChanged(newMode)}
       />
+      {/* <Loader bg="blue" fill color="white" /> */}
     </Screen>
   );
 };

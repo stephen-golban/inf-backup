@@ -5,7 +5,7 @@ import { useRegisterCardService } from '@services/register-card';
 
 import type { GetAllCardsApiResponse } from '@typings/responses';
 
-export default function useCardsManagement() {
+function usePaymentCardsService() {
   const stackRef = useRef<any>(null);
   const { callbackLoading, loadingRegister, onRegisterCard } = useRegisterCardService();
 
@@ -28,3 +28,5 @@ export default function useCardsManagement() {
 
   return { stackRef, cards, loadingRegister, callbackLoading, loadingDelete, onRegisterCard, onDeleteCard };
 }
+
+export { usePaymentCardsService };

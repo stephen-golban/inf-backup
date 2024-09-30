@@ -75,6 +75,8 @@ export type ScreenProps = {
   onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 
   onRefresh?: (() => void) | undefined;
+
+  removeInsets?: boolean;
 } & SafeAreaViewProps &
   ViewProps;
 
