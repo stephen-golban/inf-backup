@@ -7,7 +7,7 @@ export type SubscriptionInfo = {
   subscriptionDuration?: SubscriptionDuration;
 };
 
-enum SubscriptionDuration {
+export enum SubscriptionDuration {
   WEEK_1 = 'WEEK_1',
   WEEK_2 = 'WEEK_2',
   MONTH_1 = 'MONTH_1',
@@ -36,21 +36,45 @@ export interface PurchasedSubscription {
   type: string;
   subscriptionDuration: SubscriptionDuration;
   subscriptionAccounts: SubscriptionAccount[];
+  servicesAccesses: ServiceAccess[];
   trial: boolean;
+  extraInquiriesRestriction: boolean; // Nou câmp
+  retentionOfferMonths: number; // Nou câmp
   _links: Links;
+}
+
+interface ServiceAccess {
+  id: number;
+  service: string;
+  separateBilling: boolean;
+  asyncMode: boolean;
+  estimationTime: number;
+  title: string;
+  dayLimit: number;
+  access: boolean;
+  included: boolean;
+  includedRequestsNumber: number;
+  prices: Price[];
+  extraPrices: Price[];
+}
+
+interface Price {
+  label: string;
+  price: number;
 }
 
 interface DiscountData {
   discount: boolean;
-  discountType: string;
+  discountType: string | null; // Poate fi `null`
   discountAmount: number;
+  annualDiscount: boolean; // Nou câmp
 }
 
 interface SubscriptionAccount {
   accountId: number;
   automaticTermExtension: boolean;
   termDateTime: string;
-  reservedSubscriptionId: any;
+  reservedSubscriptionId: any; // Poate fi `null`, așa că se folosește `any`
 }
 
 interface Links {

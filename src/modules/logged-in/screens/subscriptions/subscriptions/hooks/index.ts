@@ -6,6 +6,8 @@ import type { I18nKey } from '@translations/locales';
 import type { RenderedPlans, RenderedSubscription, SelectedPlan } from '../type';
 import type { IAllSubscriptionsResponse, PurchasedSubscription } from '@typings/responses';
 
+const { t } = useTranslation();
+
 export default function useSubscriptionsModule(data: IAllSubscriptionsResponse | undefined, purschased: PurchasedSubscription | undefined) {
   const { t } = useTranslation();
 

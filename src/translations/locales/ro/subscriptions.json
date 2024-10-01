@@ -107,5 +107,8 @@
   "trial_modal": {
     "bonus_text": "Ai primit BONUS 7 zile de acces gratis, valabil până la {{date}}.",
     "subscription_options": "Vezi opțiunile de abonament"
-  }
+  },
+
+  "annual_discount_text": "Economisește bani, beneficiezi de până la {{discountAmount}}% reducere la planurile anuale",
+  "from_price_per_month": "de la {{price}} lei/lună"
 }

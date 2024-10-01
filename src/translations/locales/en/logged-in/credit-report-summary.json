@@ -22,5 +22,12 @@
     "enter_number": "Enter the number",
     "no": "NO",
     "yes": "YES"
+  },
+  "scoring_details_benefits": {
+    "title": "With Mylnfodebit, you can better prepare for future loans",
+    "benefit_1": "Regularly checking your credit score can help you discover potential errors",
+    "benefit_2": "If you are working on improving your score, you can monitor the progress directly in Mylnfodebit",
+    "benefit_3": "Checking your score can help you detect fraudulent activities and act promptly",
+    "benefit_4": "Knowing your score keeps everything under control and can reduce stress related to loans and debts"
   }
 }

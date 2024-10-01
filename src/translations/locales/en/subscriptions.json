@@ -107,5 +107,8 @@
   "trial_modal": {
     "bonus_text": "You received a BONUS of 7 days of free access, valid until {{date}}.",
     "subscription_options": "See subscription options"
-  }
+  },
+
+  "annual_discount_text": "Save money, get up to {{discountAmount}}% discount on annual plans",
+  "from_price_per_month": "from {{price}} lei/month"
 }

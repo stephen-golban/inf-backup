@@ -54,5 +54,24 @@
     "subscription_expiring_info": "Abonamentul expiră în 15 zile",
     "new_basic_service": "Serviciu NOU",
     "unknown_notification": "Notificare necunoscută"
+  },
+
+  "subscription": {
+    "trial_message": "Abonează-te la MyInfodebit ca să descarci istoria ta de credit și să ai toate informațiile la îndemână.",
+    "trial_button_text": "Vezi toate abonamentele",
+    "trial_lower_button_text": "Alege-ți abonamentul potrivit",
+    "trial_cost_text": "De la {{price}} lei/lună - Poți anula oricând",
+    "extra_inquiries_message": "Ești cu adevărat liber atunci când ai acces la informații și control asupra deciziilor tale financiare.",
+    "extra_inquiries_button_text": "Vreau scorul de credit de azi",
+    "extra_inquiries_lower_button_text": "Some text",
+    "extra_inquiries_discount_text": "Some discount text",
+    "no_credit_score_message": "Ești cu adevărat liber atunci când ai acces la informații și control asupra deciziilor tale financiare.",
+    "no_credit_score_button_text": "Vreau scorul de credit de azi",
+    "no_credit_score_cost_text": "{{creditScorePrice}} lei per interogare (apăsare de buton)",
+    "no_credit_score_discount_text": "*Serviciu contra cost, conform abonamentului tău. Pentru detalii te rugăm să consulți Secțiunea Abonamente",
+    "credit_score_included_message": "Ești cu adevărat liber atunci când ai acces la informații și control asupra deciziilor tale financiare.",
+    "credit_score_included_button_text": "Vreau scorul de credit de azi",
+    "credit_score_included_lower_button_text": "Interogare scor de credit la zi",
+    "credit_score_included_discount_text": "*Serviciu gratis inclus, conform abonamentului tău. Pentru detalii te rugăm să consulți Secțiunea Abonamente"
   }
 }
