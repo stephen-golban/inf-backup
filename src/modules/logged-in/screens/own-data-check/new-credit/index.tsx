@@ -1,10 +1,10 @@
 import React from 'react';
 
-import FastImage from 'react-native-fast-image';
 import { BaseButton, OutlinedButton, Screen, Text, View } from '@components/common';
 
 import type { I18nKey } from '@translations/locales';
 import type { CreditReportQualityApiResponse } from '@typings/responses';
+import FastImage from '@d11/react-native-fast-image';
 
 interface INewCreditModule {
   onRefresh?(): void;

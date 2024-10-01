@@ -53,7 +53,7 @@ export default function useOneTimePassword(
         Authorization: `Bearer ${tokenRes.access_token}`,
       };
       const queryParams = {
-        otpNotificationType: otpNotificationType,
+        otpNotificationType: otpNotificationType || 'SMS',
         sendTo: loadString(MMKV_KEY.SEND_TO),
       };
       const res = await resendCode(queryParams, noop, { headers });

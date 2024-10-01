@@ -66,7 +66,6 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
 
   const planTranslation = (keys: string) => t(`subscriptions:index:${plan}:${keys}` as I18nKey);
   const benefits = translate(`subscriptions:index:${plan}:benefits` as I18nKey, { returnObjects: true }) as unknown as string[];
-
   return (
     <Paper bg="lightGray" br="xl" shadow="card" py="xl" bw={1} bc={isActive ? 'blue' : 'transparent'}>
       {discount && (
@@ -116,7 +115,7 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
         />
       </View>
       <View mt="lg" rg="sm">
-        {benefits.map((benefit, index) => (
+        {benefits?.map((benefit, index) => (
           <Checkbox key={'subscription-card-benefit-' + index} value={true} size={16} checkIconSize={10} br={1}>
             <Text ml="sm" color="black" variant="12-reg" flex text={benefit} />
           </Checkbox>
