@@ -2,10 +2,10 @@ import React from 'react';
 import { useTheme } from '@theme/index';
 
 import { View } from '../view';
-import FastImage from 'react-native-fast-image';
 import { ActivityIndicator } from '../activity-indicator';
 
 import type { ImageProps } from './type';
+import FastImage from '@d11/react-native-fast-image';
 
 const noImgAvailable = require('@assets/images/no-img-available.jpeg');
 
