@@ -6,13 +6,14 @@ import { ActivityIndicator, View, ViewProps } from '@components/common';
 import type { Color } from '@theme/colors';
 
 interface ILoader extends ViewProps {
-  color?: Color
+  color?: Color;
+  loading?: boolean;
 }
 
-const Loader: React.FC<ILoader> = ({ color = 'blue', ...props }) => {
+const Loader: React.FC<ILoader> = ({ color = 'blue', children, loading, ...props }) => {
   return (
     <View style={StyleSheet.absoluteFillObject} center zIndex="huge" {...props}>
-      <ActivityIndicator color={color} />
+      {loading ? <ActivityIndicator color={color} /> : <>{loading ? children : <ActivityIndicator color={color} />}</>}
     </View>
   );
 };

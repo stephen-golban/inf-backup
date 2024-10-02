@@ -1,81 +1,64 @@
-import { format } from 'date-fns';
 import { useMe } from '@services/me';
+import { setLastLogin } from '../util';
 import { sleep } from '@library/method';
-import { AppStorage, saveString } from '@library/storage';
+import { setAppLoading } from '@store/app';
+import { AppStorage } from '@library/storage';
+import { usePinCodeStore } from '@store/pin-code';
 import { useMMKVString } from 'react-native-mmkv';
 import { useLogoutService } from '@services/logout';
-import { useEffect, useState, useCallback } from 'react';
 import { useGetSubscription } from '@services/subscription';
-import { setAppIsAuthenticated, setAppLoading, useAppStore } from '@store/app';
 
-import { MMKV_KEY, PIN_CODE } from '@library/constants';
+import { PIN_CODE } from '@library/constants';
 import { PinCodeT } from '@anhnch/react-native-pincode';
-import { APP_SCREEN, type RootStackScreenProps } from '@typings/navigation';
 
-function usePinScreen({ route }: RootStackScreenProps<APP_SCREEN.PIN_SCREEN>) {
-  const [mode, setMode] = useState(route.params?.mode);
-  const loadingApp = useAppStore(state => state.loadingApp);
+function usePinScreen() {
   const [pin, setPin] = useMMKVString(PIN_CODE.pin, AppStorage);
 
   const logout = useLogoutService();
   const { getMe, loading: loadingMe } = useMe(false);
-  const { getSubscription } = useGetSubscription(false);
+  const { getSubscription, loading: loadingSubscription } = useGetSubscription(false);
 
-  const resetPin = useCallback(async () => {
+  async function authorize() {
+    await getMe();
+    await getSubscription();
+    setLastLogin();
+  }
+
+  async function onEnter() {
+    await authorize();
+    return usePinCodeStore.setState({ visible: false });
+  }
+
+  async function onSet(val: string) {
+    setPin(val);
+    await onEnter();
+    return usePinCodeStore.setState({ visible: false, mode: PinCodeT.Modes.Enter });
+  }
+
+  async function onReset() {
     setAppLoading(true);
     await logout();
     setPin(undefined);
-    setMode(PinCodeT.Modes.Set);
+    usePinCodeStore.setState({ mode: PinCodeT.Modes.Set });
     await sleep();
     setAppLoading(false);
-  }, [logout, setPin]);
+  }
 
-  const enterPin = useCallback(async () => {
-    setAppLoading(true);
-    await getMe();
-    await getSubscription();
-    setAppIsAuthenticated(true);
-    const currentTimestamp = new Date();
-    const formattedDate = format(currentTimestamp, 'dd.MM.yyyy, HH:mm');
-    saveString(MMKV_KEY.LAST_LOGIN, formattedDate);
-    await sleep(500);
-    setAppLoading(false);
-  }, [getMe]);
-
-  const setPinCode = useCallback(
-    async (val: string) => {
-      setPin(val);
-      await enterPin();
-      setMode(PinCodeT.Modes.Enter);
-    },
-    [enterPin, setPin],
-  );
-
-  const handleModeChange = useCallback(
-    (newMode?: PinCodeT.Modes) => {
-      if (newMode === PinCodeT.Modes.Locked) {
-        resetPin();
-      }
-    },
-    [resetPin],
-  );
-
-  useEffect(() => {
-    if (pin) {
-      setMode(route.params?.mode || PinCodeT.Modes.Enter);
-    } else {
-      setMode(PinCodeT.Modes.Set);
+  function onModeChanged(newMode?: PinCodeT.Modes | undefined) {
+    if (newMode === PinCodeT.Modes.Locked) {
+      return onReset();
     }
-  }, [pin, route.params?.mode]);
+  }
+
+  const loading = loadingMe || loadingSubscription;
 
   return {
-    setPinCode,
-    enterPin,
-    resetPin,
-    handleModeChange,
     pin,
-    mode,
-    loading: loadingApp || loadingMe,
+    loading,
+    onSet,
+    onEnter,
+    onReset,
+    onModeChanged,
   };
 }
 

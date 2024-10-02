@@ -12,8 +12,9 @@ import { ToastProvider } from 'react-native-toast-notifications';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { THEME } from '@theme/index';
 import SplashScreen from 'react-native-splash-screen';
+
+import { THEME } from '@theme/index';
 
 const MyApp = () => {
   const scheme = useColorScheme();

@@ -29,7 +29,7 @@ export default function useSubscriptionsModule(data: IAllSubscriptionsResponse |
           isPremium: subscription.title === 'Premium',
           isActive: subscription.id === purschased?.id,
           plan: `${subscription.title.toLowerCase().replace(' ', '_')}_plan`,
-          discount: subscription.discountData.discount ? subscription.discountData.discountAmount : 0,
+          discount: subscription.discountData ? subscription.discountData.discountAmount : 0,
         } as RenderedSubscription;
       })
       .filter(sub => sub.price > 0 && sub.plan !== 'payment_only_plan');

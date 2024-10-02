@@ -24,6 +24,7 @@ function ScreenWithScrolling(Wrapper: React.ComponentType<ViewProps | SafeAreaVi
     leftInsetColor = bg,
     rightInsetColor = bg,
     bottomInsetColor = bg,
+    removeInsets = false,
     hiddenStatusBar = false,
     statusColor = undefined,
     ...rest
@@ -44,16 +45,18 @@ function ScreenWithScrolling(Wrapper: React.ComponentType<ViewProps | SafeAreaVi
           refreshControl={onRefresh ? <RefreshControl refreshing={false} onRefresh={onRefresh} /> : undefined}
         />
       </Wrapper>
-      <ScreenInset
-        edges={edges}
-        unsafe={actualUnsafe}
-        statusColor={statusColor}
-        statusBarStyle={statusBarStyle}
-        leftInsetColor={leftInsetColor}
-        hiddenStatusBar={hiddenStatusBar}
-        rightInsetColor={rightInsetColor}
-        bottomInsetColor={bottomInsetColor}
-      />
+      {!removeInsets && (
+        <ScreenInset
+          edges={edges}
+          unsafe={actualUnsafe}
+          statusColor={statusColor}
+          statusBarStyle={statusBarStyle}
+          leftInsetColor={leftInsetColor}
+          hiddenStatusBar={hiddenStatusBar}
+          rightInsetColor={rightInsetColor}
+          bottomInsetColor={bottomInsetColor}
+        />
+      )}
     </>
   );
 }
