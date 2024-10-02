@@ -10,6 +10,8 @@ enum LOGGED_OUT_SCREENS {
 
   Register = 'Register',
 
+  FaceDetection = 'FaceDetection',
+
   SuccessRegister = 'SuccessRegister',
 
   ExpiredRegister = 'ExpiredRegister',
@@ -28,6 +30,7 @@ type LoggedOutStackParamList = {
 
   [LOGGED_OUT_SCREENS.Register]: undefined;
 
+  [LOGGED_OUT_SCREENS.FaceDetection]: undefined;
   [LOGGED_OUT_SCREENS.SuccessRegister]: undefined;
 
   [LOGGED_OUT_SCREENS.ExpiredRegister]: undefined;
