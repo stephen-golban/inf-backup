@@ -9,6 +9,7 @@ import { Screen } from '@components/common';
 import { Screens } from '@screens/logged-in';
 
 import { APP_SCREEN, LOGGED_IN_STACK, type LoggedInStackParams, type RootStackScreenProps } from '@typings/navigation';
+import { usePinCodeStore } from '@store/pin-code';
 
 const Stack = createNativeStackNavigator<LoggedInStackParams>();
 
@@ -16,6 +17,9 @@ const renderHeader = (props: NativeStackHeaderProps) => <Header {...props} />;
 
 const LoggedInStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_IN>> = ({ navigation }) => {
   const { loading } = useLoggedInNavigation(navigation);
+  const isPinScreenVisible = usePinCodeStore(state => state.visible);
+
+  if (isPinScreenVisible) return null;
 
   return (
     <Screen bg="primary" excludeEdges={['bottom']} loading={loading}>

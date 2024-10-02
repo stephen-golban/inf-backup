@@ -68,20 +68,22 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
   const benefits = translate(`subscriptions:index:${plan}:benefits` as I18nKey, { returnObjects: true }) as unknown as string[];
   return (
     <Paper bg="lightGray" br="xl" shadow="card" py="xl" bw={1} bc={isActive ? 'blue' : 'transparent'}>
-      {discount && (
+      {discount !== undefined && (
         <View rg="sm">
-          <View row justify="flex-end" align="center" cg="md">
-            <Switch checked={isChecked} onCheckedChange={handleToggle} sizeW={38} sizeH={20} />
-            <View row between align="center" cg="sm">
-              <Text
-                variant="14-reg"
-                text={isPremium ? t('subscriptions:index:pay_now_with') : t('subscriptions:index:pay_annually_with')}
-              />
-              <Text variant="24-bold" color="sunsetOrange">
-                -{discount}%
-              </Text>
+          {!isActive && (
+            <View row justify="flex-end" align="center" cg="md">
+              <Switch checked={isChecked} onCheckedChange={handleToggle} sizeW={38} sizeH={20} />
+              <View row between align="center" cg="sm">
+                <Text
+                  variant="14-reg"
+                  text={isPremium ? t('subscriptions:index:pay_now_with') : t('subscriptions:index:pay_annually_with')}
+                />
+                <Text variant="24-bold" color="sunsetOrange">
+                  -{discount}%
+                </Text>
+              </View>
             </View>
-          </View>
+          )}
           {price !== calculatedPrice && (
             <FilledButton
               text={t('subscriptions:index:card:price_y', { price: isPremium ? price : calculateAnnual(price) })}

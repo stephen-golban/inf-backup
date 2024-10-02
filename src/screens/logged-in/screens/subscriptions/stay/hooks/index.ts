@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import { useAppStore } from '@store/app';
 import { useLazyAxios } from '@api/hooks';
 
 import { calculateDiscountedPrice } from '@modules/logged-in/screens/profile/change-subscription/method';
-import { LOGGED_IN_STACK, LOGGED_IN_TABS, Reason, SUBSCRIPTIONS_SCREENS, SubscriptionsStackScreenProps } from '@typings/navigation';
-import { useState } from 'react';
-import { SelectedPlan } from '@modules/logged-in/screens/subscriptions/subscriptions/type';
+import { LOGGED_IN_STACK, LOGGED_IN_TABS, SUBSCRIPTIONS_SCREENS, SubscriptionsStackScreenProps } from '@typings/navigation';
+
+import type { SelectedPlan } from '@modules/logged-in/screens/subscriptions/subscriptions/type';
 
 const useStayScreen = ({ navigation, route }: SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS.STAY>) => {
   const type = route.params.reason;

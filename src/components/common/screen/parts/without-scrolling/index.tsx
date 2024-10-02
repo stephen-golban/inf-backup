@@ -18,6 +18,7 @@ function ScreenWithoutScrolling(Wrapper: React.ComponentType<ViewProps | SafeAre
     bottomInsetColor = bg,
     hiddenStatusBar = false,
     statusColor = undefined,
+    removeInsets = false,
     ...rest
   } = props;
 
@@ -26,16 +27,18 @@ function ScreenWithoutScrolling(Wrapper: React.ComponentType<ViewProps | SafeAre
       <Wrapper edges={edges} fill w="100%" bg={bg} {...rest}>
         <View fill children={children} />
       </Wrapper>
-      <ScreenInset
-        edges={edges}
-        unsafe={actualUnsafe}
-        statusColor={statusColor}
-        leftInsetColor={leftInsetColor}
-        statusBarStyle={statusBarStyle}
-        rightInsetColor={rightInsetColor}
-        hiddenStatusBar={hiddenStatusBar}
-        bottomInsetColor={bottomInsetColor}
-      />
+      {!removeInsets && (
+        <ScreenInset
+          edges={edges}
+          unsafe={actualUnsafe}
+          statusColor={statusColor}
+          leftInsetColor={leftInsetColor}
+          statusBarStyle={statusBarStyle}
+          rightInsetColor={rightInsetColor}
+          hiddenStatusBar={hiddenStatusBar}
+          bottomInsetColor={bottomInsetColor}
+        />
+      )}
     </>
   );
 }

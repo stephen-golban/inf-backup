@@ -1,7 +1,7 @@
 import React from 'react';
 
 import useStayScreen from './hooks';
-import { usePurchaseSubscriptionService } from '@services/subscription';
+import { useGetSubscription, usePurchaseSubscriptionService } from '@services/subscription';
 
 import { BottomSheet } from '@components/common';
 import { PaymentCardsModule, StayModule } from '@modules/logged-in';
@@ -10,6 +10,7 @@ import { LOGGED_IN_STACK, LOGGED_IN_TABS, Reason, SUBSCRIPTIONS_SCREENS, type Su
 
 const StayScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS.STAY>> = props => {
   const { navigation, route } = props;
+  const { getSubscription, loading: subscriptionLoading } = useGetSubscription(false);
   const { loading, discountedPrice, price, subscriptionId, selectedPlan, ...fns } = useStayScreen(props);
 
   const { loadingPayment, loadingPurchase, onCardSelected } = usePurchaseSubscriptionService({
@@ -22,6 +23,7 @@ const StayScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS.S
     if (route.params.reason === Reason.CANCEL_SUBSCRIPTION) {
       await fns.call({ message: route.params.comment });
       await fns.removeSubscription({ subscriptionId });
+      await getSubscription();
       navigation.navigate(LOGGED_IN_STACK.TABS, { screen: LOGGED_IN_TABS.HOME });
     } else {
       navigation.navigate(SUBSCRIPTIONS_SCREENS.REMOVE, { comment: route.params.comment, reason: route.params.reason });
@@ -31,7 +33,7 @@ const StayScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS.S
   return (
     <>
       <StayModule
-        loading={loading}
+        loading={loading || subscriptionLoading}
         loadingPurchase={loadingPurchase}
         offerPrice={discountedPrice}
         oldOfferPrice={price}

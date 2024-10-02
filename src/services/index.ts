@@ -5,4 +5,5 @@ export * from './device-info';
 export * from './subscription';
 export * from './phone-number';
 export * from './register-card';
+export * from './payment-cards';
 export * from './execute-payment';

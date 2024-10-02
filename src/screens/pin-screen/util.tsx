@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+
+import { format } from 'date-fns';
+import { saveString } from '@library/storage';
 
 import { Icon } from '@components/common';
 
-import { DEFAULT, PinCodeT } from '@anhnch/react-native-pincode';
-
-import type { AppTheme } from '@theme/index';
+import { MMKV_KEY } from '@library/constants';
+import { PinCodeT } from '@anhnch/react-native-pincode';
 
 export const PinCodeOptions: PinCodeT.Options = {
   pinLength: 5,
@@ -110,39 +111,8 @@ export const PinCodeCustomTextes = (language: string) => {
   }
 };
 
-export const PinCodeStyles = (theme: AppTheme) => {
-  return {
-    main: {
-      zIndex: 99,
-      backgroundColor: theme.colors.blue,
-      ...StyleSheet.absoluteFillObject,
-    },
-    enter: {
-      ...DEFAULT.Styles.enter,
-      buttonText: {
-        color: theme.colors.black,
-      },
-    },
-    set: {
-      ...DEFAULT.Styles.set,
-      buttonText: {
-        color: theme.colors.black,
-      },
-    },
-    locked: {
-      ...DEFAULT.Styles.locked,
-      buttonText: {
-        color: theme.colors.black,
-      },
-    },
-    reset: {
-      ...DEFAULT.Styles.reset,
-      resetButton: {
-        color: theme.colors.black,
-      },
-      buttonText: {
-        color: theme.colors.black,
-      },
-    },
-  } as PinCodeT.PinCodeStyles;
+export const setLastLogin = () => {
+  const currentTimestamp = new Date();
+  const formattedDate = format(currentTimestamp, 'dd.MM.yyyy, HH:mm');
+  saveString(MMKV_KEY.LAST_LOGIN, formattedDate);
 };
