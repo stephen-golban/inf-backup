@@ -1,15 +1,16 @@
 import { useRef } from 'react';
+import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
-import { useAxios, useLazyAxios } from '@api/hooks';
 import { useRegisterCardService } from '@services/register-card';
 
+import type { BaseAxiosProps } from '@api/hooks/type';
 import type { GetAllCardsApiResponse } from '@typings/responses';
 
-function usePaymentCardsService() {
+export default function usePaymentCards(cards: BaseAxiosProps<GetAllCardsApiResponse>) {
   const stackRef = useRef<any>(null);
+
   const { callbackLoading, loadingRegister, onRegisterCard } = useRegisterCardService();
 
-  const cards = useAxios<GetAllCardsApiResponse>('/bank-card-accounts', { method: 'get' });
   const [remove, { loading: loadingDelete }] = useLazyAxios<number>('/bank-card-accounts', { method: 'delete' });
 
   const onDeleteCallback = useTryCatch(async (res: number) => {
@@ -28,5 +29,3 @@ function usePaymentCardsService() {
 
   return { stackRef, cards, loadingRegister, callbackLoading, loadingDelete, onRegisterCard, onDeleteCard };
 }
-
-export { usePaymentCardsService };

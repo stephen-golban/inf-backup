@@ -24,7 +24,10 @@ const palette = {
   mediumGray: 'rgb(223, 223, 223)',
   darkGray: 'rgb(66, 66, 66)', // #424242
   gray: 'rgb(107, 107, 107)',
+  veryPaleGray: '#eeeeee',
+  veryLightGray: '#f1f1f1',
   gray_41: 'rgb(104, 107, 107)', // #686b6b
+  gray_50: '#7f7f7f',
   gray_80: 'rgb(204, 204, 204)', // #cccccc
   gray_c8: 'rgb(200, 200, 200)', // #c8c8c8
 

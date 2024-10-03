@@ -1,9 +1,9 @@
 import { useTranslation } from '@library/hooks';
 import { useEffect, useMemo, useState } from 'react';
-import { sortBy, reduce, omit, isEmpty } from 'lodash';
+import { sortBy, reduce, omit, isEmpty, filter, map } from 'lodash';
 
 import type { I18nKey } from '@translations/locales';
-import type { RenderedPlans, RenderedSubscription, SelectedPlan } from '../type';
+import type { RenderedPlans, RenderedSubscription } from '../type';
 import type { IAllSubscriptionsResponse, PurchasedSubscription } from '@typings/responses';
 
 export default function useSubscriptionsModule(data: IAllSubscriptionsResponse | undefined, purschased: PurchasedSubscription | undefined) {
@@ -17,20 +17,20 @@ export default function useSubscriptionsModule(data: IAllSubscriptionsResponse |
   useEffect(() => {
     if (!data) return;
 
-    const transformedSubscriptions = data._embedded.entityModelList
-      .map(subscription => {
-        return {
-          isAnnual: false,
-          id: subscription.id,
-          price: subscription.price,
-          calculatedPrice: subscription.price,
-          isPremium: subscription.title === 'Premium',
-          isActive: subscription.id === purschased?.id,
-          plan: `${subscription.title.toLowerCase().replace(' ', '_')}_plan`,
-          discount: subscription.discountData ? subscription.discountData.discountAmount : 0,
-        } as RenderedSubscription;
-      })
-      .filter(sub => sub.price > 0 && sub.plan !== 'payment_only_plan');
+    const filteredSubscriptions = filter(data._embedded.entityModelList, subscription =>
+      ['Smart', 'Genius', 'Premium'].includes(subscription.title),
+    );
+
+    const transformedSubscriptions = map(filteredSubscriptions, subscription => ({
+      isAnnual: false,
+      id: subscription.id,
+      price: subscription.price,
+      calculatedPrice: subscription.price,
+      isPremium: subscription.title === 'Premium',
+      isActive: subscription.id === purschased?.id,
+      plan: `${subscription.title.toLowerCase().replace(' ', '_')}_plan`,
+      discount: subscription.discountData ? subscription.discountData.discountAmount : 0,
+    }));
 
     const sortedSubscriptions = sortBy(transformedSubscriptions, [sub => (sub.plan === 'smart_plan' ? 0 : 1), 'price']);
 

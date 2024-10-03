@@ -19,6 +19,16 @@ export const SHADOWS = {
     shadowRadius: 8,
     elevation: 8,
   },
+  button: {
+    shadowColor: 'rgba(0,0,0,0.16)',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.16,
+    shadowRadius: 8,
+    elevation: 8,
+  },
 };
 
 export type Shadow = keyof typeof SHADOWS;

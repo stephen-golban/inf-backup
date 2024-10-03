@@ -10,6 +10,8 @@ export * from './avatar';
 export * from './screen';
 export * from './button';
 export * from './switch';
+export * from './slider';
+export * from './select';
 export * from './checkbox';
 export * from './dropdown';
 export * from './accordion';

@@ -15,6 +15,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import SplashScreen from 'react-native-splash-screen';
 
 import { THEME } from '@theme/index';
+import { PortalHost } from '@rn-primitives/portal';
 
 const MyApp = () => {
   const scheme = useColorScheme();
@@ -38,6 +39,7 @@ const MyApp = () => {
             <GestureHandlerRootView style={{ flex: 1 }}>
               <BottomSheetModalProvider>
                 <ApplicationNavigator />
+                <PortalHost />
               </BottomSheetModalProvider>
             </GestureHandlerRootView>
           </ThemeProvider>
