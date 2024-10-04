@@ -5,4 +5,7 @@ export * from './forgot-password';
 export * from './password-create';
 export * from './expired-register';
 export * from './face-recognition';
+export * from './camera-permission';
 export * from './one-time-password';
+export * from './failed-recognition';
+export * from './success-recognition';

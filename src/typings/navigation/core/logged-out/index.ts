@@ -1,3 +1,4 @@
+import { RegisterFormFields } from '@modules/logged-out/register/resolver';
 import { APP_SCREEN, RootStackScreenProps } from '../index';
 import { CompositeScreenProps } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -9,6 +10,12 @@ enum LOGGED_OUT_SCREENS {
   Login = 'Login',
 
   Register = 'Register',
+
+  CameraPermission = 'CameraPermission',
+
+  SuccessRecognition = 'SuccessRecognition',
+
+  FailedRecognition = 'FailedRecognition',
 
   FaceDetection = 'FaceDetection',
 
@@ -30,10 +37,17 @@ type LoggedOutStackParamList = {
 
   [LOGGED_OUT_SCREENS.Register]: undefined;
 
-  [LOGGED_OUT_SCREENS.FaceDetection]: undefined;
+  [LOGGED_OUT_SCREENS.FaceDetection]: { values: RegisterFormFields };
+
   [LOGGED_OUT_SCREENS.SuccessRegister]: undefined;
 
+  [LOGGED_OUT_SCREENS.SuccessRecognition]: { sentTo?: string; otpNotificationType?: string } | undefined;
+
+  [LOGGED_OUT_SCREENS.FailedRecognition]: undefined;
+
   [LOGGED_OUT_SCREENS.ExpiredRegister]: undefined;
+
+  [LOGGED_OUT_SCREENS.CameraPermission]: { values: RegisterFormFields };
 
   [LOGGED_OUT_SCREENS.CreatePassword]: { token: TokensApiResponse; otp: string; phoneNr: string };
 

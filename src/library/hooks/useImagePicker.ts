@@ -32,6 +32,8 @@ export default function useImagePicker(): useImagePickerReturnType {
   const [base64Image, setBase64Image] = useState<string | null>(null);
   const [permissionStatus, setPermissionStatus] = useState<PermissionStatus | null>(null);
 
+  console.log('imageUri', base64Image);
+
   const requestPermission = async () => {
     const permissionType = Platform.OS === 'ios' ? PERMISSIONS.IOS.PHOTO_LIBRARY : PERMISSIONS.ANDROID.READ_MEDIA_IMAGES;
     const status = await request(permissionType);

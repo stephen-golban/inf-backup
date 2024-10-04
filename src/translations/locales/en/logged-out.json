@@ -28,7 +28,7 @@
     "code_sec": "sec.",
     "code_valid": "Code valid",
     "code_resend": "Resend code",
-    "code_resend_question": "Don't receive the code?"
+    "code_resend_question": "Don’t receive the code?"
   },
 
   "password-create": {
@@ -39,5 +39,19 @@
     "page_title": "Register",
     "expired_register": "The account activation process has expired.",
     "expired_register_desc": "Please register again."
-  }
+  },
+
+  "camera-permission": {
+    "title": "ACCESS TO YOUR CAMERA",
+    "description": "We need access to the camera to confirm your identity",
+    "continue_button": "Continue"
+  },
+
+  "success-recognition": {
+    "title": "Successful Recognition"
+  },
+
+  "something-went-wrong": "Something went wrong",
+  "please_review_your_information": "Please review your information",
+  "will_process_your_information": "Your image will be processed for remote identification"
 }

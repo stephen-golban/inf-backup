@@ -47,4 +47,5 @@ export * from './yellow-plus';
 export * from './notifications';
 export * from './switch-account';
 export * from './remove-account';
+export * from './face-recognition';
 export * from './settings-refresh';

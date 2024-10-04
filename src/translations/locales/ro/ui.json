@@ -73,5 +73,13 @@
     "credit_score_included_button_text": "Vreau scorul de credit de azi",
     "credit_score_included_lower_button_text": "Interogare scor de credit la zi",
     "credit_score_included_discount_text": "*Serviciu gratis inclus, conform abonamentului tău. Pentru detalii te rugăm să consulți Secțiunea Abonamente"
-  }
+  },
+
+  "face_detection": {
+    "multiple_faces_warning": "Avertizare: Mai multe fețe detectate",
+    "face_not_positioned_warning": "Avertizare: Fața nu este poziționată corect",
+    "error_capturing_image": "Eroare la capturarea imaginii"
+  },
+
+  "check_information": "Verificați informațiile"
 }
