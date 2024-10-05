@@ -31,7 +31,6 @@ const FaceDetectionModule: React.FC<IfaceDetectionModule> = ({ loading, onImageC
   useEffect(() => {
     (async () => {
       const status = await Camera.requestCameraPermission();
-      console.log({ status });
     })();
   }, [device]);
 

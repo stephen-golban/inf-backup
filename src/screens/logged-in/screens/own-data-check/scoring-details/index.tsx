@@ -8,7 +8,7 @@ import { OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/naviga
 import { useAppStore } from '@store/app';
 
 const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>> = ({ navigation }) => {
-  const { creditScore, fetchScore, loading } = useCreditScoreService(false);
+  const { creditScore, fetchScore, loading } = useCreditScoreService(false, navigation);
   const subscription = useAppStore(state => state.subscription);
 
   return (

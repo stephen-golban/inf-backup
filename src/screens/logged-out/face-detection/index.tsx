@@ -24,7 +24,6 @@ const FaceDetection: React.FC<LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.FaceD
   }, [base64Image, hasSubmitted]);
 
   const handleImageCaptured = (image: string | null) => {
-    console.log('captured');
     setBase64Image(image);
     setHasSubmitted(false);
   };

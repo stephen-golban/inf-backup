@@ -109,6 +109,7 @@
     "subscription_options": "See subscription options"
   },
 
-  "annual_discount_text": "Save money, get up to {{discountAmount}}% discount on annual plans",
-  "from_price_per_month": "from {{price}} lei/month"
+  "annual_discount_text": "Save money, get up to <2>{{discountAmount}} discount on annual plans</2>",
+  "from_price_per_month": "from {{price}} lei/month",
+  "discount_text_other_subscription": "Save money, choose another plan and get up to <2>{{discountAmount}} discount</2> on annual payment"
 }

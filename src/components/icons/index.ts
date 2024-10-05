@@ -49,3 +49,5 @@ export * from './switch-account';
 export * from './remove-account';
 export * from './face-recognition';
 export * from './settings-refresh';
+export * from './rejected-transaction';
+export * from './accepted-transaction';

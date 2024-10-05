@@ -112,5 +112,6 @@
     "subscription_options": "См. варианты подписки"
   },
 
-  "annual_discount_text": "Экономьте деньги, получайте до {{discountAmount}}% скидки на годовые планы"
+  "annual_discount_text": "Экономьте деньги, получайте до <2>{{discountAmount}} скидки на годовые планы</2>",
+  "discount_text_other_subscription": "Экономьте деньги, выберите другой план и получите <2>скидку до {{discountAmount}}</2> при ежегодной оплате"
 }

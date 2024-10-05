@@ -12,6 +12,7 @@ import { MMKV_KEY } from '@library/constants';
 
 import type { ICommitment, ICreditReportSummaryModule } from './typings';
 import type { StageNomenclatureResponse } from '@typings/responses/nomenclatures';
+import { formatDateTimeWithDateFns } from '@library/method';
 
 const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props => {
   const { feedbackLoading, onOrderReport, onSubmit } = props;
@@ -38,8 +39,8 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
     commitment => commitment.sourceIdno === searchSourceIdno && commitment.type === 'activeNegativeCommitments',
   );
 
-  const reportRequestDateTime = creditReportSummary?.requestDateTime;
-  const reportResponseDateTime = creditReportSummary?.responseDateTime;
+  const reportRequestDateTime = formatDateTimeWithDateFns(creditReportSummary?.requestDateTime);
+  const reportResponseDateTime = formatDateTimeWithDateFns(creditReportSummary?.responseDateTime);
 
   React.useEffect(() => {
     const lastShownTimestamp = loadString(MMKV_KEY.INCASSO_REMIND);
