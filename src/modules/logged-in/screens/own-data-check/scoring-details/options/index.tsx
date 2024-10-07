@@ -35,7 +35,7 @@ const ScoringOptions: React.FC<IScoringOptionsProps> = props => {
         </View>
 
         <View>
-          <Text variant="12-reg">{t('logged_in:home:own_data_check:credit_scoring:credit_score')}</Text>
+          <Text variant="12-reg">{t('logged_in:credit_report:scoring:credit_score')}</Text>
           <View row justify="flex-end">
             <Text color={color}>{minValue}</Text>
             <Icon px="sm" alignSelf="center" icon="ArrowNarrowRight" />

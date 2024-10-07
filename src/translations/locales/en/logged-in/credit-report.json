@@ -1,0 +1,101 @@
+{
+  "download": {
+    "history": {
+      "title": "Quick access to Credit Report",
+      "subtitle": "Get your credit history with one click"
+    },
+
+    "subscription_info": "Depending on the subscription you've chosen, you can download 1, 2, or an unlimited number of Credit History Reports per month.",
+
+    "email": {
+      "select": "Select email",
+      "want": "I want the Report by email"
+    },
+
+    "order": {
+      "question": "Do you need the Credit History Report stamped or translated and apostilled?",
+      "stamped": "Original stamped Report",
+      "translated": "Translated and apostilled Report",
+      "translated_original": "Original translated Report",
+      "agree_terms": "I agree with the terms, personal data processing, and privacy policy",
+      "select_phone": "Select phone",
+      "button": "Order",
+      "confirmation": "After placing the request, you will be contacted by a consultant who will coordinate the order details with you and present payment options.",
+      "generated_on": "Credit history report generated on {{date}}"
+    }
+  },
+
+  "summary": {
+    "total_of_active_commitments": "Total of active commitments",
+    "remaining_amount": "Remaining amount",
+    "not_have_credit_history": "No data found to display...It seems that you do not have a credit history in Infodebit yet",
+    "order_the_report": "Order the report for more details",
+    "follow_us_for_more_information": "Follow us for informations #goodtoknow",
+    "last_24_months": "Last 24 months",
+    "new_commitments": "New commitments",
+    "closed_credits": "Closed credits",
+    "outstanding_debts": "Outstanding debts",
+    "updated_debts": "Updated debts",
+    "total_to_pay": "Total to pay",
+    "total_without_penalties": "Total without penalties",
+    "active_commitments_with": "Active commitments with",
+    "positive_history": "positive history",
+    "negative_history": "negative history",
+    "order_report_for_details": "Order the Report for details",
+    "no_credit_history": "No credit history. How to start?",
+    "bottom_modal": {
+      "get_out_of_debt_easier": "Get out of debt easier",
+      "noticed_debts_at_incaso": "We noticed that you have debts at INCASO, would you like to get a discount and/or smaller installment payments? Enter your phone number and press YES if you want convenient payment solutions.",
+      "enter_number": "Enter the number",
+      "no": "NO",
+      "yes": "YES"
+    }
+  },
+
+  "new": {
+    "button_positive": "Download your credit history report",
+    "button_negative": "Choose a subscription and download the Report",
+    "success": {
+      "title": "Congratulations!",
+      "message": "According to Infodebit data, you have a good chance of getting a loan. To find out more details about your credit history, order the Report now",
+      "quick_money": "Quick money?",
+      "amount_needed": "What amount do you need?",
+      "lei": "{{amount}} LEI",
+      "choose_credit_term": "Choose the credit term",
+      "phone": "Phone",
+      "get_loan": "Get loan",
+      "credit_term": "{{amount}} months",
+      "data_protection": "All transmitted data is securely protected",
+      "disclaimer": "<1>*Infodebit does not offer loans and does not charge a fee for this service.</1> <2>You decide whether to accept offers from partner financial institutions, which operate under the supervision of the National Financial Market Commission.</2>"
+    },
+    "fail": {
+      "title": "Ohhhh, no!",
+      "message": "According to Infodebit data, you have zero chance of getting a loan. To find out the reason, check your credit history report now"
+    },
+
+    "sheets": {
+      "request_success": "Your credit request, with number {{id}}, has been successfully registered! An operator will contact you as soon as possible.",
+      "request_pending": "You have recently made a credit request. We apologize if you have waited longer. An operator will contact you as soon as possible.",
+      "request_duplicate": "You have already made a credit request, with number {{id}}. Please come back after {{date}}, and we will be happy to assist you. Thank you!"
+    }
+  },
+
+  "scoring": {
+    "credit_score": "Credit score",
+    "grown": "Don't be discouraged, any score can be improved!",
+    "medium": "No matter how slow you go, don't stop!",
+    "fair": "Trust yourself and you'll be unstoppable.",
+    "lucky": "You are capable of extraordinary things.",
+    "best": "Congratulations, you're an example worth following!",
+    "scoring_negative": "Negative scoring",
+    "scoring_neutral": "Neutral scoring",
+    "scoring_positive": "Positive scoring",
+    "scoring_excelent": "Excellent scoring",
+    "scoring": {
+      "negative": "NEGATIVE",
+      "neutral": "NEUTRAL",
+      "positive": "POSITIVE",
+      "excelent": "EXCELLENT"
+    }
+  }
+}

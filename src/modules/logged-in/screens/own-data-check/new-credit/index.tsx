@@ -36,7 +36,7 @@ const NewCreditModule: React.FC<INewCreditModule> = ({
         fontWeight="400"
         fontSize={32}
         mt="xl"
-        t18n={`logged_in:home:own_data_check:new_credit:${isPositive ? 'success' : 'fail'}.title` as I18nKey}
+        t18n={`logged_in:credit_report:new:${isPositive ? 'success' : 'fail'}.title` as I18nKey}
       />
       <FastImage
         resizeMode={FastImage.resizeMode.cover}
@@ -49,7 +49,7 @@ const NewCreditModule: React.FC<INewCreditModule> = ({
         fontWeight="400"
         variant="16-semi"
         textAlign="center"
-        t18n={`logged_in:home:own_data_check.new_credit.${isPositive ? 'success' : 'fail'}.message` as I18nKey}
+        t18n={`logged_in:credit_report:new.${isPositive ? 'success' : 'fail'}.message` as I18nKey}
       />
 
       <FilledButton
@@ -58,7 +58,7 @@ const NewCreditModule: React.FC<INewCreditModule> = ({
         mt="xxl"
         onPress={onPressDownload}
         textProps={{ variant: '14-reg' }}
-        t18n={`logged_in:home:own_data_check:new_credit:button${isSubscriptionValid ? '_positive' : '_negative'}`}
+        t18n={`logged_in:credit_report:new:button${isSubscriptionValid ? '_positive' : '_negative'}`}
       />
 
       {isPositive && (
@@ -67,12 +67,12 @@ const NewCreditModule: React.FC<INewCreditModule> = ({
 
           <FilledButton br={12} bg="softGray" mt="xl">
             <Icon icon="ShieldSuccessIcon" />
-            <Text variant="12-mid" color="gray_50" t18n="logged_in:home:own_data_check:new_credit:success:data_protection" />
+            <Text variant="12-mid" color="gray_50" t18n="logged_in:credit_report:new:success:data_protection" />
           </FilledButton>
 
           <Text mt="lg" variant="12-mid" textAlign="justify">
             <Trans
-              i18nKey="logged_in:home:own_data_check:new_credit:success:disclaimer"
+              i18nKey="logged_in:credit_report:new:success:disclaimer"
               components={{
                 1: <Text color="sunsetOrange" />,
                 2: <Text color="black" />,

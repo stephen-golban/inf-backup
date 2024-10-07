@@ -1,0 +1,100 @@
+{
+  "download": {
+    "history": {
+      "title": "Acces rapid la Raportul de credit",
+      "subtitle": "Obține istoria de credit cu un singur click"
+    },
+
+    "subscription_info": "În funcție de abonamentul pe care l-ai ales, poți descărca 1, 2 sau un număr nelimitat de Rapoarte ale istoriei tale de credit pe lună.",
+
+    "email": {
+      "select": "Selectează e-mail",
+      "want": "Vreau Raportul pe e-mail"
+    },
+
+    "order": {
+      "question": "Ai nevoie de Raportul istoriei de credit ștampilat sau tradus și apostilat?",
+      "stamped": "Raport original ștampilat",
+      "translated": "Raport tradus și apostilat",
+      "translated_original": "Raport original tradus",
+      "agree_terms": "Sunt de acord cu termenii, prelucrarea datelor personale și politica de confidențialitate",
+      "select_phone": "Selectează telefon",
+      "button": "Comandă",
+      "confirmation": "După plasarea solicitării vei fi contactat de un consultant, care va coordona cu tine detaliile comenzii și îți va prezenta opțiunile de plată.",
+      "generated_on": "Raport al istoriei de credit generat pe data {{date}}"
+    }
+  },
+
+  "summary": {
+    "total_of_active_commitments": "Suma angajamentelor active",
+    "remaining_amount": "Suma rămasă",
+    "not_have_credit_history": "Nu am găsit date de afișat...Se pare că încă nu ai istoric creditar în Infodebit",
+    "order_the_report": "Comandă raportul pentru mai multe date",
+    "follow_us_for_more_information": "Urmărește-ne pentru informații #binedeștiut",
+    "last_24_months": "Ultimele 24 de luni",
+    "new_commitments": "Angajamente noi",
+    "closed_credits": "Credite închise",
+    "outstanding_debts": "Debite restante",
+    "updated_debts": "Debite actualizate",
+    "total_to_pay": "Total spre plată",
+    "total_without_penalties": "Total fără penalități",
+    "active_commitments_with": "Angajamente active cu",
+    "positive_history": "istoric pozitiv",
+    "negative_history": "istoric negativ",
+    "order_report_for_details": "Comandă Raportul pentru detalii",
+    "no_credit_history": "Nu am istoric de credit. Cum să încep?",
+    "bottom_modal": {
+      "get_out_of_debt_easier": "Scapă de datorii mai ușor",
+      "noticed_debts_at_incaso": "Am observat că ai datorii la INCASO, vrei să obții o reducere și/sau plata în rate mai mici? Introdu numărul de telefon și apasă DA, dacă vrei soluții de plată convenabile.",
+      "enter_number": "Introdu numărul",
+      "no": "NU",
+      "yes": "DA"
+    }
+  },
+
+  "new": {
+    "button_positive": "Descarcă raportul istoricului tău de credit",
+    "button_negative": "Alege un abonament și descarcă Raportul",
+    "success": {
+      "title": "Felicitări!",
+      "message": "Conform datelor Infodebit, ai toate șansele să obții un credit. Pentru a afla mai multe detalii despre istoria ta creditară, comandă acum Raportul",
+      "quick_money": "Bani rapid?",
+      "amount_needed": "Ce sumă îți este necesară?",
+      "lei": "{{amount}} LEI",
+      "choose_credit_term": "Alege termenul creditului",
+      "phone": "Telefon",
+      "get_loan": "Obține împrumut",
+      "credit_term": "{{amount}} luni",
+      "data_protection": "Toate datele transmise sunt protejate în mod sigur",
+      "disclaimer": "<1>*Infodebit nu oferă credite și nu percepe comision pentru acest serviciu.</1> <2>Tu decizi dacă accepți ofertele instituțiilor financiare partenere, care își desfășoară activitatea de finanțare sub supravegherea Comisiei Naționale a Pieței Financiare.</2>"
+    },
+    "fail": {
+      "title": "Ohhhh, nu!",
+      "message": "Conform datelor Infodebit, ai zero șansele să obții un credit. Pentru a afla motivul, verifică acum Raportul istoriei tale de credit"
+    },
+
+    "sheets": {
+      "request_success": "Cererea ta de credit, cu numărul {{id}}, a fost înregistrată cu succes! Un operator te va contacta cât mai curând posibil.",
+      "request_pending": "Ai făcut recent o cerere de credit. Ne cerem scuze dacă ai așteptat mai mult. Un operator te va contacta cât mai curând posibil.",
+      "request_duplicate": "Ai făcut deja o cerere de credit, cu numărul {{id}}. Te rugăm să revii după {{date}}, și vom fi bucuroși să te asistăm. Mulțumim!"
+    }
+  },
+
+  "scoring": {
+    "credit_score": "Scor de credit",
+    "grown": "Nu te descuraja, orice scor poate fi îmbunătățit!",
+    "fair": "Ai încredere în tine și vei fi de neoprit.",
+    "lucky": "Ești capabil/ă de lucruri extraordinare.",
+    "best": "Felicitări, ești un exemplu demn de urmat!",
+    "scoring_negative": "Scoring negativ",
+    "scoring_neutral": "Scoring neutru",
+    "scoring_positive": "Scoring pozitiv",
+    "scoring_excelent": "Scoring excelent",
+    "scoring": {
+      "negative": "NEGATIV",
+      "neutral": "NEUTRU",
+      "positive": "POZITIV",
+      "excelent": "EXCELENT"
+    }
+  }
+}

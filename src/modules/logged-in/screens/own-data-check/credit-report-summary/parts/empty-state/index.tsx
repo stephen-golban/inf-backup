@@ -5,7 +5,7 @@ const EmptyState: React.FC = () => {
     <View g="md" align="center">
       <Icon icon="BugIcon" />
       <View bg="lightGray" px="md" py="lg" br={24} shadow="card">
-        <Text t18n="logged_in:credit_report_summary:not_have_credit_history" />
+        <Text t18n="logged_in:credit_report:summary:not_have_credit_history" />
       </View>
     </View>
   );

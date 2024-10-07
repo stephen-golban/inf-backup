@@ -8,13 +8,15 @@ export enum OWN_DATA_CHECK_SCREENS {
   WhoCheckCredit = 'WhoCheckCredit',
   ScoringDetails = 'ScoringDetails',
   CreditReportSummary = 'CreditReportSummary',
+  DownloadReport = 'DownloadReport',
 }
 
 export type OwnDataCheckScreensParamList = {
   [OWN_DATA_CHECK_SCREENS.NewCredit]: undefined;
   [OWN_DATA_CHECK_SCREENS.WhoCheckCredit]: undefined;
-  [OWN_DATA_CHECK_SCREENS.CreditReportSummary]: { data: ICreditReportSummaryResponse } | undefined;
+  [OWN_DATA_CHECK_SCREENS.DownloadReport]: { id: number; generationDateTime: string };
   [OWN_DATA_CHECK_SCREENS.ScoringDetails]: { data: ICreditScoreResponse } | undefined;
+  [OWN_DATA_CHECK_SCREENS.CreditReportSummary]: { data: ICreditReportSummaryResponse } | undefined;
 };
 
 export type OwnDataCheckScreenProps<T extends keyof OwnDataCheckScreensParamList> = CompositeScreenProps<

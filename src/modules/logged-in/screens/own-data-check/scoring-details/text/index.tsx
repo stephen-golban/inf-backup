@@ -19,7 +19,7 @@ const ScoringText: React.FC<IScoringTextProps> = props => {
   const getScoringText = (score: number): string | null => {
     for (const { max, key } of creditScoringTexts) {
       if (score <= max) {
-        return t(`logged_in:home:own_data_check:credit_scoring:${key}` as I18nKey);
+        return t(`logged_in:credit_report:scoring:${key}` as I18nKey);
       }
     }
 

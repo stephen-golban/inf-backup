@@ -1,28 +1,34 @@
 import React from 'react';
 
 import { useGoBack } from '@library/hooks';
-import usePaymentOrderScreen from './hooks';
-// import { useExecutePaymentService } from '@services/execute-payment';
+import { useCreateCreditReportService } from '@services/use-create-credit-report';
 
 import { PaymentOrderModule } from '@modules/logged-in';
 
-import { PAYMENT_SCREENS, type PaymentStackScreenProps } from '@typings/navigation';
+import { type PaymentStackScreenProps, LOGGED_IN_STACK, LOGGED_IN_TABS, PAYMENT_SCREENS } from '@typings/navigation';
 import type { CreditReportOrderFormFields } from '@modules/logged-in/screens/payment/order/resolver';
 
 const PaymentOrderScreen: React.FC<PaymentStackScreenProps<PAYMENT_SCREENS.ORDER>> = ({ navigation, route }) => {
-  // const params = route.params;
-  const { handleCreateCreditReport, createReportLoading } = usePaymentOrderScreen();
+  const reportId = route.params?.reportId || 0;
+  const { createPDF, loading } = useCreateCreditReportService();
 
-  // const { loading, onPressPay } = useExecutePaymentService();
+  const onSubmit = (data: CreditReportOrderFormFields) => {};
 
-  const onSubmit = (data: CreditReportOrderFormFields) => {
-    handleCreateCreditReport(data);
-    // onPressPay(params, params => onSuccess(params, data));
-  };
+  const onPressDownload = () => createPDF(reportId);
+  const onPressSend = (email: string) => createPDF(reportId, { email });
+  const onPressNotNow = () => navigation.navigate(LOGGED_IN_STACK.TABS, { screen: LOGGED_IN_TABS.HOME });
 
   useGoBack(true, navigation.goBack);
 
-  return <PaymentOrderModule onSubmit={onSubmit} loading={createReportLoading} isReportOnly={route.params?.isReport} />;
+  return (
+    <PaymentOrderModule
+      loading={loading}
+      onSubmit={onSubmit}
+      onPressSend={onPressSend}
+      onPressNotNow={onPressNotNow}
+      onPressDownload={onPressDownload}
+    />
+  );
 };
 
 export { PaymentOrderScreen };
