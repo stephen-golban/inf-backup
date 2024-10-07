@@ -39,7 +39,8 @@
       "app_satisfied_overall": "How satisfied are you with the MyInfoDebit app overall?"
     },
     "new_credit": {
-      "button": "Download your credit history report",
+      "button_positive": "Download your credit history report",
+      "button_negative": "Choose a subscription and download the Report",
       "success": {
         "title": "Congratulations!",
         "message": "According to Infodebit data, you have a good chance of getting a loan. To find out more details about your credit history, order the Report now",

@@ -39,7 +39,8 @@
       "app_satisfied_overall": "Cât de mulțumit ești de aplicația MyInfoDebit în general?"
     },
     "new_credit": {
-      "button": "Descarcă Raportul istoriei tale de credit",
+      "button_positive": "Descarcă raportul istoricului tău de credit",
+      "button_negative": "Alege un abonament și descarcă Raportul",
       "success": {
         "title": "Felicitări!",
         "message": "Conform datelor Infodebit, ai toate șansele să obții un credit. Pentru a afla mai multe detalii despre istoria ta creditară, comandă acum Raportul",

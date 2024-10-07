@@ -1,22 +1,33 @@
 import React from 'react';
 
 import LoanForm from './loan-form';
+import { Trans } from 'react-i18next';
 import FastImage from '@d11/react-native-fast-image';
 import { FilledButton, Icon, Screen, Text, View } from '@components/common';
 
 import type { I18nKey } from '@translations/locales';
-import type { CreditReportQualityApiResponse } from '@typings/responses';
-import { Trans } from 'react-i18next';
+import type { LoanFormFields } from './loan-form/resolver';
 
 interface INewCreditModule {
   loading: boolean;
+  loanFormLoading: boolean;
   onRefresh?(): void;
-  data: CreditReportQualityApiResponse | undefined;
+  isPositive: boolean;
+  onPressDownload(): void;
+  isSubscriptionValid: boolean;
+  onSubmitLoan(args: LoanFormFields): void;
+  // data: CreditReportQualityApiResponse | undefined;
 }
 
-const NewCreditModule: React.FC<INewCreditModule> = ({ data, onRefresh, loading }) => {
-  const isPositive = data?.creditReportQualityType === 'POSITIVE';
-
+const NewCreditModule: React.FC<INewCreditModule> = ({
+  loading,
+  isPositive,
+  loanFormLoading,
+  isSubscriptionValid,
+  onRefresh,
+  onSubmitLoan,
+  onPressDownload,
+}) => {
   return (
     <Screen excludeEdges={['top']} scroll loading={loading} onRefresh={onRefresh} style={{ paddingHorizontal: 20 }}>
       <Text
@@ -41,24 +52,35 @@ const NewCreditModule: React.FC<INewCreditModule> = ({ data, onRefresh, loading 
         t18n={`logged_in:home:own_data_check.new_credit.${isPositive ? 'success' : 'fail'}.message` as I18nKey}
       />
 
-      <FilledButton bg="blue" br={6} mt="xxl" textProps={{ variant: '14-reg' }} t18n="logged_in:home:own_data_check:new_credit:button" />
+      <FilledButton
+        bg="blue"
+        br={6}
+        mt="xxl"
+        onPress={onPressDownload}
+        textProps={{ variant: '14-reg' }}
+        t18n={`logged_in:home:own_data_check:new_credit:button${isSubscriptionValid ? '_positive' : '_negative'}`}
+      />
 
-      <LoanForm onSubmit={console.log} />
+      {isPositive && (
+        <>
+          <LoanForm onSubmit={onSubmitLoan} loading={loanFormLoading} />
 
-      <FilledButton br={12} bg="softGray" mt="xl">
-        <Icon icon="ShieldSuccessIcon" />
-        <Text variant="12-mid" color="gray_50" t18n="logged_in:home:own_data_check:new_credit:success:data_protection" />
-      </FilledButton>
+          <FilledButton br={12} bg="softGray" mt="xl">
+            <Icon icon="ShieldSuccessIcon" />
+            <Text variant="12-mid" color="gray_50" t18n="logged_in:home:own_data_check:new_credit:success:data_protection" />
+          </FilledButton>
 
-      <Text mt="lg" variant="12-mid" textAlign="justify">
-        <Trans
-          i18nKey="logged_in:home:own_data_check:new_credit:success:disclaimer"
-          components={{
-            1: <Text color="sunsetOrange" />,
-            2: <Text color="black" />,
-          }}
-        />
-      </Text>
+          <Text mt="lg" variant="12-mid" textAlign="justify">
+            <Trans
+              i18nKey="logged_in:home:own_data_check:new_credit:success:disclaimer"
+              components={{
+                1: <Text color="sunsetOrange" />,
+                2: <Text color="black" />,
+              }}
+            />
+          </Text>
+        </>
+      )}
     </Screen>
   );
 };

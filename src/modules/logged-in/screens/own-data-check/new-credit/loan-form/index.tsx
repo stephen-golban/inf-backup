@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { chain, isEmpty } from 'lodash';
+import { useAppStore } from '@store/app';
 import { useTranslation } from '@library/hooks';
 
 import { Controller } from 'react-hook-form';
@@ -8,15 +10,16 @@ import { FilledButton, Form, Icon, Select, Slider, Text, View } from '@component
 import type { Option } from '@rn-primitives/select';
 import { type LoanFormFields, loan_form_resolver } from './resolver';
 
-const phones = ['phone'];
 const terms = ['6', '12', '18', '24', '30', '36', '42', '48', '54', '60'];
 
 interface ILoanForm {
+  loading: boolean;
   onSubmit(args: LoanFormFields): void;
 }
 
-const LoanForm: React.FC<ILoanForm> = ({ onSubmit }) => {
+const LoanForm: React.FC<ILoanForm> = ({ loading, onSubmit }) => {
   const { t } = useTranslation();
+  const user = useAppStore(state => state.user);
 
   const generatedTerms = React.useMemo(() => {
     return terms.map(term => ({
@@ -26,13 +29,19 @@ const LoanForm: React.FC<ILoanForm> = ({ onSubmit }) => {
   }, [t]);
 
   const generatedPhones = React.useMemo(() => {
-    return phones.map(value => ({
-      value,
-      label: t('logged_in:home:own_data_check:new_credit:success:phone'),
-    }));
+    if (!user) return [];
+    if (isEmpty(user.contactData)) return [];
+
+    return chain(user.contactData)
+      .filter({ type: 'PHONE' })
+      .map(({ value }) => ({
+        value,
+        label: value,
+      }))
+      .value();
   }, [t]);
 
-  const defaultValues = { sliderValue: 36000, term: generatedTerms[0], phone: generatedPhones[0] };
+  const defaultValues = { sliderValue: 36000, term: undefined, phone: undefined } as any;
 
   return (
     <Form resolver={loan_form_resolver} defaultValues={defaultValues}>
@@ -103,6 +112,7 @@ const LoanForm: React.FC<ILoanForm> = ({ onSubmit }) => {
               <FilledButton
                 br={8}
                 bg="blue"
+                loading={loading}
                 disabled={!formState.isValid}
                 onPress={handleSubmit(onSubmit)}
                 textProps={{ variant: '14-semi' }}

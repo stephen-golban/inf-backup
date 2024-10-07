@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { useStyle } from '@library/hooks';
 
 import * as SelectPrimitive from '@rn-primitives/select';
-import { Icon, ScrollView, Text } from '@components/common';
+import { Icon, ScrollView, Text, View } from '@components/common';
 
 import style from './style';
 
@@ -39,7 +39,10 @@ const Select: React.FC<SelectProps> = ({ data, value, defaultValue, placeholder 
                 <ScrollView>
                   {data.map(option => (
                     <SelectPrimitive.Item key={option.value} label={option.label} value={option.value} style={styles.item}>
-                      <Text>{option.label}</Text>
+                      <Text>
+                        {option.label}
+                        <View {...StyleSheet.absoluteFillObject} />
+                      </Text>
                       <SelectPrimitive.ItemIndicator />
                     </SelectPrimitive.Item>
                   ))}
