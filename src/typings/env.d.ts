@@ -10,12 +10,16 @@ declare module '@env' {
   export const PORT_OAUTH: string;
   export const PORT_SERVICES: string;
   export const PORT_ACTUATOR: string;
+  export const PORT_LEAD: string;
 
   export const SERVER_IP: string;
+  export const LEAD_SERVER_IP: string;
 
   // * token credential parts
   export const DEV_CLIENT_ID: string;
   export const DEV_CLIENT_SECRET: string;
+  export const LEAD_CLIENT_ID: string;
+  export const LEAD_CLIENT_SECRET: string;
 
   export const DEV_CLIENT_RESET_PASSWORD_ID: string;
   export const DEV_CLIENT_RESET_PASSWORD_SECRET: string;

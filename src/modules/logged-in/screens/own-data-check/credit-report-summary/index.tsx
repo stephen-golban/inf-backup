@@ -87,10 +87,10 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
             my="sm"
             textProps={{ variant: '12-reg' }}
             t18n={
-              isData ? 'logged_in:credit_report_summary:order_the_report' : 'logged_in:credit_report_summary:follow_us_for_more_information'
+              isData ? 'logged_in:credit_report:summary:order_the_report' : 'logged_in:credit_report:summary:follow_us_for_more_information'
             }
           />
-          <Text variant="18-semi" t18n="logged_in:credit_report_summary:last_24_months" />
+          <Text variant="18-semi" t18n="logged_in:credit_report:summary:last_24_months" />
           <GridItems data={creditReportSummary?.creditReport.primaryIndicators} />
         </View>
       </Screen>

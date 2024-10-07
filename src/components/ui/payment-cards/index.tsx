@@ -1,27 +1,22 @@
 import React from 'react';
 
 import { isEmpty } from 'lodash';
-import { usePaymentCardsService } from '@services/payment-cards';
+import usePaymentCards from './hooks';
 
 import Card from './card';
 import { CardStack, OutlinedButton, Text, View } from '@components/common';
 
+import type { BaseAxiosProps } from '@api/hooks/type';
 import type { GetAllCardsApiResponse } from '@typings/responses';
 
-interface IPaymentCards extends ReturnType<typeof usePaymentCardsService> {
+interface IPaymentCards {
+  cards: BaseAxiosProps<GetAllCardsApiResponse>;
   setCurrentCard?(val: GetAllCardsApiResponse[number]): void;
 }
 
-const PaymentCards: React.FC<IPaymentCards> = ({
-  cards,
-  stackRef,
-  loadingDelete,
-  loadingRegister,
-  callbackLoading,
-  setCurrentCard,
-  onDeleteCard,
-  onRegisterCard,
-}) => {
+const PaymentCards: React.FC<IPaymentCards> = ({ cards, setCurrentCard }) => {
+  const { callbackLoading, loadingDelete, loadingRegister, onDeleteCard, onRegisterCard, stackRef } = usePaymentCards(cards);
+
   const data = cards.data;
 
   return (

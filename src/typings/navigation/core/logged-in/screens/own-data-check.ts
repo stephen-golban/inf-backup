@@ -9,12 +9,14 @@ export enum OWN_DATA_CHECK_SCREENS {
   ScoringDetails = 'ScoringDetails',
   CreditReportSummary = 'CreditReportSummary',
   SummaryReportStatus = 'SummaryReportStatus',
+  DownloadReport = 'DownloadReport',
 }
 
 export type OwnDataCheckScreensParamList = {
   [OWN_DATA_CHECK_SCREENS.NewCredit]: undefined;
   [OWN_DATA_CHECK_SCREENS.WhoCheckCredit]: undefined;
   [OWN_DATA_CHECK_SCREENS.SummaryReportStatus]: { status: string } | undefined;
+  [OWN_DATA_CHECK_SCREENS.DownloadReport]: { id: number; generationDateTime: string };
   [OWN_DATA_CHECK_SCREENS.ScoringDetails]: { data: ICreditScoreResponse } | undefined;
   [OWN_DATA_CHECK_SCREENS.CreditReportSummary]: { data: ICreditReportSummaryResponse } | undefined;
 };

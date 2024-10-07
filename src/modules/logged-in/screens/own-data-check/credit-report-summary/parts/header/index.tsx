@@ -15,7 +15,7 @@ const Header: React.FC<IHeader> = ({ totalBalance }) => {
   return (
     <View bg="blue" br="xl" p="lg">
       <Text color="white" variant="18-bold" textAlign="center">
-        {t('logged_in:credit_report_summary:total_of_active_commitments')}
+        {t('logged_in:credit_report:summary:total_of_active_commitments')}
       </Text>
       <Text color="white" variant="18-bold" textAlign="center">
         {currencyFormat(totalBalance)}

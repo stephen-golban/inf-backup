@@ -40,7 +40,6 @@ export default function useLoginScreen({ navigation }: Pick<LoggedOutStackScreen
       if (loadString(MMKV_KEY.DEVICE_TOKEN)) {
         await service.saveDeviceToken().then(() => remove(MMKV_KEY.DEVICE_TOKEN));
       }
-    }).then(() => {
       setAppIsAuthenticated(true);
 
       if (pin) {
