@@ -15,7 +15,7 @@ const SuccessRecognition: React.FC<LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.
   useGoBack(true, navigation.goBack);
 
   const onPressContinue = () => {
-    // saveString(MMKV_KEY.INSERT_OTP, '1');
+    saveString(MMKV_KEY.INSERT_OTP, '1');
     navigation.navigate(LOGGED_OUT_SCREENS.OneTimePassword, {
       sentTo: route?.params?.sentTo,
       otpNotificationType: route?.params?.otpNotificationType,
