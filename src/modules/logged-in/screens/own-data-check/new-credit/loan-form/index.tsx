@@ -23,7 +23,7 @@ const LoanForm: React.FC<ILoanForm> = ({ loading, onSubmit }) => {
 
   const generatedTerms = React.useMemo(() => {
     return terms.map(term => ({
-      label: t('logged_in:home:own_data_check:new_credit:success:credit_term', { amount: term }),
+      label: t('logged_in:credit_report:new:success:credit_term', { amount: term }),
       value: term,
     }));
   }, [t]);
@@ -51,14 +51,14 @@ const LoanForm: React.FC<ILoanForm> = ({ loading, onSubmit }) => {
             <Icon icon="WomanImageIcon" ml="md" absolute alignSelf="center" top={-15} />
 
             <View rg="xs">
-              <Text t18n="logged_in:home:own_data_check:new_credit:success:quick_money" variant="18-semi" color="blue" />
-              <Text t18n="logged_in:home:own_data_check:new_credit:success:amount_needed" variant="14-mid" color="black" />
+              <Text t18n="logged_in:credit_report:new:success:quick_money" variant="18-semi" color="blue" />
+              <Text t18n="logged_in:credit_report:new:success:amount_needed" variant="14-mid" color="black" />
             </View>
           </View>
           <FilledButton bg="lightBlue" shadow="button" br={6} mt="xxl">
             <Text
               color="blue"
-              t18n="logged_in:home:own_data_check:new_credit:success:lei"
+              t18n="logged_in:credit_report:new:success:lei"
               t18nOptions={{ amount: watch('sliderValue').toLocaleString('ro-RO') }}
             />
           </FilledButton>
@@ -71,18 +71,8 @@ const LoanForm: React.FC<ILoanForm> = ({ loading, onSubmit }) => {
               />
             </FilledButton>
             <View between row mt="sm" px="sm">
-              <Text
-                variant="12-mid"
-                color="blue"
-                t18n="logged_in:home:own_data_check:new_credit:success:lei"
-                t18nOptions={{ amount: 5000 }}
-              />
-              <Text
-                color="blue"
-                variant="12-mid"
-                t18n="logged_in:home:own_data_check:new_credit:success:lei"
-                t18nOptions={{ amount: '60.000' }}
-              />
+              <Text variant="12-mid" color="blue" t18n="logged_in:credit_report:new:success:lei" t18nOptions={{ amount: 5000 }} />
+              <Text color="blue" variant="12-mid" t18n="logged_in:credit_report:new:success:lei" t18nOptions={{ amount: '60.000' }} />
             </View>
             <View mt="lg" rg="lg">
               <Controller
@@ -93,7 +83,7 @@ const LoanForm: React.FC<ILoanForm> = ({ loading, onSubmit }) => {
                     data={generatedTerms}
                     onValueChange={field.onChange}
                     value={field.value as unknown as Option}
-                    placeholder={t('logged_in:home:own_data_check:new_credit:success:choose_credit_term')}
+                    placeholder={t('logged_in:credit_report:new:success:choose_credit_term')}
                   />
                 )}
               />
@@ -105,7 +95,7 @@ const LoanForm: React.FC<ILoanForm> = ({ loading, onSubmit }) => {
                     data={generatedPhones}
                     onValueChange={field.onChange}
                     value={field.value as unknown as Option}
-                    placeholder={t('logged_in:home:own_data_check:new_credit:success:phone')}
+                    placeholder={t('logged_in:credit_report:new:success:phone')}
                   />
                 )}
               />
@@ -116,7 +106,7 @@ const LoanForm: React.FC<ILoanForm> = ({ loading, onSubmit }) => {
                 disabled={!formState.isValid}
                 onPress={handleSubmit(onSubmit)}
                 textProps={{ variant: '14-semi' }}
-                t18n="logged_in:home:own_data_check:new_credit:success:get_loan"
+                t18n="logged_in:credit_report:new:success:get_loan"
               />
             </View>
           </View>

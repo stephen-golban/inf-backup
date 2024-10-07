@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
-import { format, isAfter } from 'date-fns';
-import { useAxios, useLazyAxios } from '@api/hooks';
+import { lead_api } from '@api/base';
 import { useAppStore } from '@store/app';
+import { format, isAfter } from 'date-fns';
+import { useTryCatch } from '@library/hooks';
+import { useAxios, useLazyAxios } from '@api/hooks';
 
 import type { CreditReportQualityApiResponse } from '@typings/responses';
-import { useTryCatch } from '@library/hooks';
-import { LoanFormFields } from '@modules/logged-in/screens/own-data-check/new-credit/loan-form/resolver';
-import { lead_api } from '@api/base';
+import type { LoanFormFields } from '@modules/logged-in/screens/own-data-check/new-credit/loan-form/resolver';
 
 const useNewCredit = () => {
   const { user, subscription } = useAppStore(state => state);
@@ -65,7 +65,7 @@ const useNewCredit = () => {
     return await call(body, res => console.log(res));
   });
 
-  return { loading, loanFormLoading, refetch, onSubmitLoan, isSubscriptionValid, isPositive };
+  return { data, loading, loanFormLoading, refetch, onSubmitLoan, isSubscriptionValid, isPositive };
 };
 
 export default useNewCredit;

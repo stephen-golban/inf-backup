@@ -18,6 +18,7 @@ export * from './accordion';
 export * from './card-stack';
 export * from './text-input';
 export * from './date-picker';
+export * from './radio-group';
 export * from './scroll-view';
 export * from './bottom-sheet';
 export * from './progress-bar';

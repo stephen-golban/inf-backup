@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { useStyle } from '@library/hooks';
 
 import * as SelectPrimitive from '@rn-primitives/select';
-import { Icon, ScrollView, Text, View } from '@components/common';
+import { Icon, IconType, ScrollView, Text, View } from '@components/common';
 
 import style from './style';
 
@@ -12,6 +12,7 @@ type SelectOption = NonNullable<SelectPrimitive.Option>;
 
 interface SelectProps {
   data: SelectOption[];
+  icon?: IconType;
   placeholder?: string;
   side?: 'bottom' | 'top';
   defaultValue?: SelectOption;
@@ -19,14 +20,25 @@ interface SelectProps {
   onValueChange: (value: SelectPrimitive.Option) => void;
 }
 
-const Select: React.FC<SelectProps> = ({ data, value, defaultValue, placeholder = 'Select an option', side = 'bottom', onValueChange }) => {
+const Select: React.FC<SelectProps> = ({
+  data,
+  icon,
+  value,
+  defaultValue,
+  side = 'bottom',
+  placeholder = 'Select an option',
+  onValueChange,
+}) => {
   const styles = useStyle(style);
 
   const [contentWidth, setContentWidth] = React.useState(0);
 
   return (
     <SelectPrimitive.Root value={value} defaultValue={defaultValue} onValueChange={onValueChange}>
-      <SelectPrimitive.Trigger style={styles.trigger} onLayout={e => setContentWidth(e.nativeEvent.layout.width)}>
+      <SelectPrimitive.Trigger
+        style={[styles.trigger, { paddingLeft: icon ? 35 : 16 }]}
+        onLayout={e => setContentWidth(e.nativeEvent.layout.width)}>
+        {icon && <Icon icon={icon} size={20} absolute left={10} />}
         <SelectPrimitive.Value placeholder={placeholder} style={value ? styles.itemText : styles.placeholder} />
         <Icon icon="ChevronDown" size={12} />
       </SelectPrimitive.Trigger>
@@ -37,8 +49,12 @@ const Select: React.FC<SelectProps> = ({ data, value, defaultValue, placeholder 
             <SelectPrimitive.Viewport>
               <SelectPrimitive.Group>
                 <ScrollView>
-                  {data.map(option => (
-                    <SelectPrimitive.Item key={option.value} label={option.label} value={option.value} style={styles.item}>
+                  {data.map((option, idx) => (
+                    <SelectPrimitive.Item
+                      key={option.value}
+                      label={option.label}
+                      value={option.value}
+                      style={[styles.item, idx === data.length - 1 ? { borderBottomColor: 'transparent' } : {}]}>
                       <Text>
                         {option.label}
                         <View {...StyleSheet.absoluteFillObject} />

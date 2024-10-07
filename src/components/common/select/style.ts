@@ -1,7 +1,7 @@
 import { AppTheme } from '@theme/index';
 import { StyleSheet } from 'react-native';
 
-export default ({ colors, textVariants }: AppTheme) => {
+export default ({ colors, textVariants, shadows }: AppTheme) => {
   return StyleSheet.create({
     trigger: {
       height: 50,
@@ -10,8 +10,8 @@ export default ({ colors, textVariants }: AppTheme) => {
       alignItems: 'center',
       flexDirection: 'row',
       paddingHorizontal: 16,
-      borderColor: colors.black,
-      backgroundColor: colors.veryLightGray,
+      borderColor: '#d2d2d7',
+      backgroundColor: 'rgba(248,248,248,0.85)',
       justifyContent: 'space-between',
     },
     placeholder: {
@@ -23,14 +23,15 @@ export default ({ colors, textVariants }: AppTheme) => {
       borderRadius: 8,
       paddingVertical: 8,
       maxHeight: 220,
-      borderColor: colors.gray_50,
-      backgroundColor: colors.veryLightGray,
+      borderColor: '#d2d2d7',
+      backgroundColor: 'rgb(248,248,248)',
+      ...shadows.card,
     },
     item: {
       paddingVertical: 12,
       paddingHorizontal: 16,
       borderBottomWidth: 1,
-      borderBottomColor: '#E0E0E0',
+      borderBottomColor: '#d2d2d7',
     },
     itemText: {
       ...textVariants['14-reg'],

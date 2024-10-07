@@ -34,13 +34,13 @@ const DebtModal: React.FC<IDebtModal> = props => {
   return (
     <BottomSheet isVisible={isVisible} snapPoints={snapPoints}>
       <View px="lg">
-        <Text my="sm" textAlign="center" variant="18-bold" t18n="logged_in:credit_report_summary:bottom_modal:get_out_of_debt_easier" />
+        <Text my="sm" textAlign="center" variant="18-bold" t18n="logged_in:credit_report:summary:bottom_modal:get_out_of_debt_easier" />
         <Text
           mt="sm"
           textAlign="justify"
           variant="12-reg"
           color="gray"
-          t18n="logged_in:credit_report_summary:bottom_modal:noticed_debts_at_incaso"
+          t18n="logged_in:credit_report:summary:bottom_modal:noticed_debts_at_incaso"
         />
         <Form defaultValues={DEFAULT_VALUES} resolver={debt_modal_phone}>
           {({ setValue, watch, handleSubmit }) => {
@@ -48,12 +48,12 @@ const DebtModal: React.FC<IDebtModal> = props => {
               <View>
                 <LoggedOutPhoneInput autoFocus value={watch('phone')} onChange={txt => setValue('phone', txt, { shouldValidate: true })} />
                 <FilledButton
-                  t18n="logged_in:credit_report_summary:bottom_modal:yes"
+                  t18n="logged_in:credit_report:summary:bottom_modal:yes"
                   my="sm"
                   onPress={handleSubmit(onPressYes)}
                   loading={loading}
                 />
-                <FilledButton t18n="logged_in:credit_report_summary:bottom_modal:no" bg="lightBlue" textColor="blue" onPress={onPressNo} />
+                <FilledButton t18n="logged_in:credit_report:summary:bottom_modal:no" bg="lightBlue" textColor="blue" onPress={onPressNo} />
               </View>
             );
           }}

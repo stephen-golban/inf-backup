@@ -1,21 +1,5 @@
 {
   "my_saved_cards": "Cardurile mele salvate",
   "new_card": "Card nou",
-
-  "credit_report_order": {
-    "title": "Comandă Raportul de Credit",
-    "choose_credit_bureau": "Alege Biroul de Credit",
-    "bic_infodebit_credit_report": "BIC INFODEBIT CREDIT REPORT",
-    "choose_service_type": "Alege tipul serviciului",
-    "credit_report": "Raport de Credit Infodebit",
-    "credit_report_summary": "Sumar raport de credit",
-    "own_data_checks": "Verificări proprii de date",
-    "credit_report_events": "Evenimente raport de credit",
-    "credit_report_quality": "Calitatea raportului de credit",
-    "credit_score": "Scor de credit",
-    "subscription": "Abonament",
-    "email_send": "Vreau copia Raportului pe e-mail",
-    "select_language": "Alege limba raportului"
-  },
   "automatic_term_extension": "Prelungire automată a termenului"
 }

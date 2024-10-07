@@ -57,7 +57,7 @@ const CommitmentItem: React.FC<ICommitmentItem> = props => {
           </View>
         ) : (
           <View align="flex-end">
-            <Text variant="10-reg" t18n="logged_in:credit_report_summary:remaining_amount" />
+            <Text variant="10-reg" t18n="logged_in:credit_report:summary:remaining_amount" />
             <Text variant="12-semi">{currencyFormat(balance)}</Text>
           </View>
         )}

@@ -16,6 +16,7 @@ const palette = {
   lightBlue: 'rgb(205, 220, 242)',
   skyBlue: 'rgb(6, 95, 224)',
   blue: 'rgb(33, 51, 142)',
+  blue_6: 'rgba(33, 51, 142, 0.6)',
   blue_7: 'rgba(33, 51, 142, 0.7)',
   richBlue: 'rgb(19, 31, 54)',
 
@@ -24,8 +25,9 @@ const palette = {
   mediumGray: 'rgb(223, 223, 223)',
   darkGray: 'rgb(66, 66, 66)', // #424242
   gray: 'rgb(107, 107, 107)',
-  veryPaleGray: '#eeeeee',
-  veryLightGray: '#f1f1f1',
+  veryPaleGray: 'rgb(238, 238, 238)', // #eeeeee
+  gray_66: 'rgb(102, 102, 102)', // #666666
+  gray_7e: 'rgb(126, 126, 126)', // #7e7e7e
   gray_41: 'rgb(104, 107, 107)', // #686b6b
   gray_50: '#7f7f7f',
   gray_80: 'rgb(204, 204, 204)', // #cccccc
