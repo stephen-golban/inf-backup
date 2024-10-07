@@ -6,7 +6,7 @@
 
   "active_debt_amount": "Suma datoriilor active",
   "obligations_history": "Istoric angajamente",
-  "check_credit_report":"Verifică raportul de credit",
+  "check_credit_report": "Verifică raportul de credit",
   "check_your_credit_score": "Verifică scorul de credit",
 
   "info": {
@@ -17,12 +17,12 @@
     "credit_history_updates": "Ultimele actualizări ale istoricului creditar",
     "transform_your_history_credit": "Transformă istoria ta de credit în superputerea ta cu Myinfodebit",
     "payment_behavior": "Comportament de plată",
-     "responsible_monitoring": "Monitorizarea responsabilă a scorului și istoriei tale de credit îți oferă siguranță pe termen lung și te ajută să te protejezi de escroci, să obții credite mai avantajoase sau locuri de muncă mai bine plătite, ceea ce îți poate deschide noi oportunități.",
+    "responsible_monitoring": "Monitorizarea responsabilă a scorului și istoriei tale de credit îți oferă siguranță pe termen lung și te ajută să te protejezi de escroci, să obții credite mai avantajoase sau locuri de muncă mai bine plătite, ceea ce îți poate deschide noi oportunități.",
     "personal_data": "Date personale",
     "update": "Verifică",
     "send": "Trimite",
-    "last_interogation":"Ultima interogare a datelor tale în bază",
-    "last_history_update":"Ultima actualizare a istoriei de credit"
+    "last_interogation": "Ultima interogare a datelor tale în bază",
+    "last_history_update": "Ultima actualizare a istoriei de credit"
   },
   "own_data_check": {
     "who_checked": {
@@ -39,32 +39,48 @@
       "app_satisfied_overall": "Cât de mulțumit ești de aplicația MyInfoDebit în general?"
     },
     "new_credit": {
-      "button": "Comandă Raportul",
+      "button_positive": "Descarcă raportul istoricului tău de credit",
+      "button_negative": "Alege un abonament și descarcă Raportul",
       "success": {
         "title": "Felicitări!",
-        "message": "Conform datelor Infodebit, ai toate șansele să obții un credit. Pentru a afla mai multe detalii despre istoria ta creditară, comandă acum Raportul"
+        "message": "Conform datelor Infodebit, ai toate șansele să obții un credit. Pentru a afla mai multe detalii despre istoria ta creditară, comandă acum Raportul",
+        "quick_money": "Bani rapid?",
+        "amount_needed": "Ce sumă îți este necesară?",
+        "lei": "{{amount}} LEI",
+        "choose_credit_term": "Alege termenul creditului",
+        "phone": "Telefon",
+        "get_loan": "Obține împrumut",
+        "credit_term": "{{amount}} luni",
+        "data_protection": "Toate datele transmise sunt protejate în mod sigur",
+        "disclaimer": "<1>*Infodebit nu oferă credite și nu percepe comision pentru acest serviciu.</1> <2>Tu decizi dacă accepți ofertele instituțiilor financiare partenere, care își desfășoară activitatea de finanțare sub supravegherea Comisiei Naționale a Pieței Financiare.</2>"
       },
       "fail": {
         "title": "Ohhhh, nu!",
         "message": "Conform datelor Infodebit, ai zero șansele să obții un credit. Pentru a afla motivul, verifică acum Raportul istoriei tale de credit"
+      },
+
+      "sheets": {
+        "request_success": "Cererea ta de credit, cu numărul {{id}}, a fost înregistrată cu succes! Un operator te va contacta cât mai curând posibil.",
+        "request_pending": "Ai făcut recent o cerere de credit. Ne cerem scuze dacă ai așteptat mai mult. Un operator te va contacta cât mai curând posibil.",
+        "request_duplicate": "Ai făcut deja o cerere de credit, cu numărul {{id}}. Te rugăm să revii după {{date}}, și vom fi bucuroși să te asistăm. Mulțumim!"
       }
     },
     "credit_scoring": {
       "credit_score": "Scor de credit",
-        "grown": "Nu te descuraja, orice scor poate fi îmbunătățit!",
-        "fair": "Ai încredere în tine și vei fi de neoprit.",
-        "lucky": "Ești capabil/ă de lucruri extraordinare.",
-        "best": "Felicitări, ești un exemplu demn de urmat!",
-        "scoring_negative": "Scoring negativ",
-        "scoring_neutral": "Scoring neutru",
-        "scoring_positive": "Scoring pozitiv",
-        "scoring_excelent": "Scoring excelent",
-        "scoring": {
-          "negative": "NEGATIV",
-          "neutral": "NEUTRU",
-          "positive": "POZITIV",
-          "excelent": "EXCELENT"
-        }
+      "grown": "Nu te descuraja, orice scor poate fi îmbunătățit!",
+      "fair": "Ai încredere în tine și vei fi de neoprit.",
+      "lucky": "Ești capabil/ă de lucruri extraordinare.",
+      "best": "Felicitări, ești un exemplu demn de urmat!",
+      "scoring_negative": "Scoring negativ",
+      "scoring_neutral": "Scoring neutru",
+      "scoring_positive": "Scoring pozitiv",
+      "scoring_excelent": "Scoring excelent",
+      "scoring": {
+        "negative": "NEGATIV",
+        "neutral": "NEUTRU",
+        "positive": "POZITIV",
+        "excelent": "EXCELENT"
+      }
     }
   }
 }

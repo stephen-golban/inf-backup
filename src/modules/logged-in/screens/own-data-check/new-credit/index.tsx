@@ -1,52 +1,86 @@
 import React from 'react';
 
-import { BaseButton, OutlinedButton, Screen, Text, View } from '@components/common';
+import LoanForm from './loan-form';
+import { Trans } from 'react-i18next';
+import FastImage from '@d11/react-native-fast-image';
+import { FilledButton, Icon, Screen, Text, View } from '@components/common';
 
 import type { I18nKey } from '@translations/locales';
-import type { CreditReportQualityApiResponse } from '@typings/responses';
-import FastImage from '@d11/react-native-fast-image';
+import type { LoanFormFields } from './loan-form/resolver';
 
 interface INewCreditModule {
+  loading: boolean;
+  loanFormLoading: boolean;
   onRefresh?(): void;
-  updateReport?(): void;
-  inquiryLoading: boolean;
-  updateLoading: boolean;
-  data: CreditReportQualityApiResponse | null;
+  isPositive: boolean;
+  onPressDownload(): void;
+  isSubscriptionValid: boolean;
+  onSubmitLoan(args: LoanFormFields): void;
+  // data: CreditReportQualityApiResponse | undefined;
 }
 
-const NewCreditModule: React.FC<INewCreditModule> = ({ data, onRefresh, inquiryLoading, updateLoading, updateReport }) => {
-  const isPositive = data?.creditReportQualityType === 'POSITIVE';
-
+const NewCreditModule: React.FC<INewCreditModule> = ({
+  loading,
+  isPositive,
+  loanFormLoading,
+  isSubscriptionValid,
+  onRefresh,
+  onSubmitLoan,
+  onPressDownload,
+}) => {
   return (
-    <Screen unsafe pt="zero" loading={inquiryLoading} onRefresh={onRefresh}>
-      <View px="md" align="center" fill pt="xl">
-        <Text
-          variant="24-bold"
-          textAlign="center"
-          fontWeight="400"
-          fontSize={32}
-          mt="xl"
-          t18n={`logged_in:home:own_data_check:new_credit:${isPositive ? 'success' : 'fail'}.title` as I18nKey}
-        />
-        <FastImage
-          resizeMode={FastImage.resizeMode.cover}
-          style={{ width: 203, height: 103, marginTop: 20 }}
-          source={isPositive ? require('@assets/images/check-success.png') : require('@assets/images/x-fail.png')}
-        />
+    <Screen excludeEdges={['top']} scroll loading={loading} onRefresh={onRefresh} style={{ paddingHorizontal: 20 }}>
+      <Text
+        variant="24-bold"
+        textAlign="center"
+        fontWeight="400"
+        fontSize={32}
+        mt="xl"
+        t18n={`logged_in:home:own_data_check:new_credit:${isPositive ? 'success' : 'fail'}.title` as I18nKey}
+      />
+      <FastImage
+        resizeMode={FastImage.resizeMode.cover}
+        style={{ width: 203, height: 103, marginTop: 20, alignSelf: 'center' }}
+        source={isPositive ? require('@assets/images/check-success.png') : require('@assets/images/x-fail.png')}
+      />
 
-        <Text
-          mt="lg"
-          fontWeight="400"
-          variant="16-semi"
-          textAlign="center"
-          t18n={`logged_in:home:own_data_check.new_credit.${isPositive ? 'success' : 'fail'}.message` as I18nKey}
-        />
+      <Text
+        mt="lg"
+        fontWeight="400"
+        variant="16-semi"
+        textAlign="center"
+        t18n={`logged_in:home:own_data_check.new_credit.${isPositive ? 'success' : 'fail'}.message` as I18nKey}
+      />
 
-        <OutlinedButton mt="lg" onPress={updateReport} w={200} minh={40} loading={updateLoading} t18n="ui:update_data" />
-        <BaseButton bg="blue" br={12} mt="md" w="100%" maxw={270} h={45} justify="center">
-          <Text color="white" textAlign="center" t18n="logged_in:home:own_data_check:new_credit:button" />
-        </BaseButton>
-      </View>
+      <FilledButton
+        bg="blue"
+        br={6}
+        mt="xxl"
+        onPress={onPressDownload}
+        textProps={{ variant: '14-reg' }}
+        t18n={`logged_in:home:own_data_check:new_credit:button${isSubscriptionValid ? '_positive' : '_negative'}`}
+      />
+
+      {isPositive && (
+        <>
+          <LoanForm onSubmit={onSubmitLoan} loading={loanFormLoading} />
+
+          <FilledButton br={12} bg="softGray" mt="xl">
+            <Icon icon="ShieldSuccessIcon" />
+            <Text variant="12-mid" color="gray_50" t18n="logged_in:home:own_data_check:new_credit:success:data_protection" />
+          </FilledButton>
+
+          <Text mt="lg" variant="12-mid" textAlign="justify">
+            <Trans
+              i18nKey="logged_in:home:own_data_check:new_credit:success:disclaimer"
+              components={{
+                1: <Text color="sunsetOrange" />,
+                2: <Text color="black" />,
+              }}
+            />
+          </Text>
+        </>
+      )}
     </Screen>
   );
 };

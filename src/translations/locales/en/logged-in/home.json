@@ -6,7 +6,7 @@
 
   "active_debt_amount": "Amount of active debt",
   "obligations_history": "History of obligations",
-  "check_credit_report":"Check credit report",
+  "check_credit_report": "Check credit report",
   "check_your_credit_score": "Check your credit score",
 
   "info": {
@@ -21,8 +21,8 @@
     "personal_data": "Personal data",
     "update": "Update",
     "send": "Send",
-    "last_interogation":"Last interrogation of your data in the database",
-    "last_history_update":"Last update of your credit history"
+    "last_interogation": "Last interrogation of your data in the database",
+    "last_history_update": "Last update of your credit history"
   },
   "own_data_check": {
     "who_checked": {
@@ -39,33 +39,49 @@
       "app_satisfied_overall": "How satisfied are you with the MyInfoDebit app overall?"
     },
     "new_credit": {
-      "button": "Order Report",
+      "button_positive": "Download your credit history report",
+      "button_negative": "Choose a subscription and download the Report",
       "success": {
         "title": "Congratulations!",
-        "message": "According to Infodebit data, you have a good chance of getting a loan. To find out more details about your credit history, order the Report now"
+        "message": "According to Infodebit data, you have a good chance of getting a loan. To find out more details about your credit history, order the Report now",
+        "quick_money": "Quick money?",
+        "amount_needed": "What amount do you need?",
+        "lei": "{{amount}} LEI",
+        "choose_credit_term": "Choose the credit term",
+        "phone": "Phone",
+        "get_loan": "Get loan",
+        "credit_term": "{{amount}} months",
+        "data_protection": "All transmitted data is securely protected",
+        "disclaimer": "<1>*Infodebit does not offer loans and does not charge a fee for this service.</1> <2>You decide whether to accept offers from partner financial institutions, which operate under the supervision of the National Financial Market Commission.</2>"
       },
       "fail": {
-        "title": "Oh no!",
+        "title": "Ohhhh, no!",
         "message": "According to Infodebit data, you have zero chance of getting a loan. To find out the reason, check your credit history report now"
+      },
+
+      "sheets": {
+        "request_success": "Your credit request, with number {{id}}, has been successfully registered! An operator will contact you as soon as possible.",
+        "request_pending": "You have recently made a credit request. We apologize if you have waited longer. An operator will contact you as soon as possible.",
+        "request_duplicate": "You have already made a credit request, with number {{id}}. Please come back after {{date}}, and we will be happy to assist you. Thank you!"
       }
     },
     "credit_scoring": {
       "credit_score": "Credit score",
-        "grown": "Don't be discouraged, any score can be improved!",
-        "medium": "No matter how slow you go, don't stop!",
-        "fair": "Trust yourself and you'll be unstoppable.",
-        "lucky": "You are capable of extraordinary things.",
-        "best": "Congratulations, you're an example worth following!",
-        "scoring_negative": "Negative scoring",
-        "scoring_neutral": "Neutral scoring",
-        "scoring_positive": "Positive scoring",
-        "scoring_excelent": "Excellent scoring",
-        "scoring": {
-          "negative": "NEGATIVE",
-          "neutral": "NEUTRAL",
-          "positive": "POSITIVE",
-          "excelent": "EXCELLENT"
-        }
+      "grown": "Don't be discouraged, any score can be improved!",
+      "medium": "No matter how slow you go, don't stop!",
+      "fair": "Trust yourself and you'll be unstoppable.",
+      "lucky": "You are capable of extraordinary things.",
+      "best": "Congratulations, you're an example worth following!",
+      "scoring_negative": "Negative scoring",
+      "scoring_neutral": "Neutral scoring",
+      "scoring_positive": "Positive scoring",
+      "scoring_excelent": "Excellent scoring",
+      "scoring": {
+        "negative": "NEGATIVE",
+        "neutral": "NEUTRAL",
+        "positive": "POSITIVE",
+        "excelent": "EXCELLENT"
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { usePaymentCardsService } from '@services/payment-cards';
+import { useAxios } from '@api/hooks';
 
 import { PaymentCards } from '@components/ui';
 import { FilledButton, Screen, Switch, Text, View } from '@components/common';
@@ -14,16 +14,16 @@ interface IPaymentCardsModule {
 }
 
 const PaymentCardsModule: React.FC<IPaymentCardsModule> = ({ onPressContinue, paymentLoading, hasAutomaticTermExtension = false }) => {
-  const service = usePaymentCardsService();
-
   const [currentCard, setCurrentCard] = React.useState<GetAllCardsApiResponse[number]>();
   const [automaticTermExtension, setAutomaticTermExtension] = React.useState<boolean>(true);
 
+  const cards = useAxios<GetAllCardsApiResponse>('/bank-card-accounts', { method: 'get' });
+
   return (
-    <Screen removeInsets loading={service.cards.loading} onRefresh={service.cards.refetch} scroll px="sm" pb="xl" style={{ flex: 1 }}>
+    <Screen removeInsets loading={cards.loading} onRefresh={cards.refetch} scroll px="sm" pb="xl" style={{ flex: 1 }}>
       <View fill>
         <View fill rg="md" maxh={300}>
-          <PaymentCards {...service} setCurrentCard={setCurrentCard} />
+          <PaymentCards cards={cards} setCurrentCard={setCurrentCard} />
           {hasAutomaticTermExtension && (
             <View row align="center" mt="lg">
               <Text variant="16-bold" t18n="logged_in:payment:automatic_term_extension" />
