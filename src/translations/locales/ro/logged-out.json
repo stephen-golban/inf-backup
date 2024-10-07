@@ -39,5 +39,19 @@
     "page_title": "Înregistrează-te",
     "expired_register": "Procesul de activare a contului a expirat.",
     "expired_register_desc": "Vă rugăm să vă înregistrați din nou."
-  }
+  },
+
+  "camera-permission": {
+    "title": "ACCES LA CAMERA DVS.",
+    "description": "Avem nevoie de acces la cameră pentru a vă confirma identitatea",
+    "continue_button": "Continuă"
+  },
+  
+  "success-recognition": {
+    "title": "Recunoaștere cu succes"
+  },
+
+  "something-went-wrong": "Ceva nu a mers bine",
+  "please_review_your_information": "Vă rugăm să verificați informațiile dvs.",
+  "will_process_your_information": "Urmează să fie preluată imaginea Dvs. pentru a fi procesată în procesul de identificare la distanță"
 }

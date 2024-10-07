@@ -77,11 +77,12 @@ android {
 
     namespace "com.infodebit"
     defaultConfig {
+        missingDimensionStrategy 'react-native-camera', 'general'
         applicationId "com.infodebit"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.2"
+        versionCode 3
+        versionName "1.3"
     }
     signingConfigs {
         debug {

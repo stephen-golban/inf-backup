@@ -1,5 +1,5 @@
 {
-  "warn": "Warn",
+  "warn": "Warning",
   "login": "Login",
   "error": "Error",
   "submit": "Submit",
@@ -28,34 +28,67 @@
     "promo_code": "Promo code",
     "negative_feedback": "What don't you like about the MyInfoDebit app?",
     "neutral_feedback": "We want to hear your opinion about the app",
-    "positive_feedback": "Excellent, tell us why you like the app",
+    "positive_feedback": "Great, tell us why you like the app",
     "custom_email_placeholder": "Custom email address"
   },
 
   "toasts": {
-    "limit_was_exceeded": "The limit has been exceeded",
-    "subscription_expired": "The subscription was expired",
+    "limit_was_exceeded": "The limit was exceeded",
+    "subscription_expired": "The subscription has expired",
     "no_subscription_purchased": "No subscription purchased",
     "rating_submitted_successfully": "Rating submitted successfully",
-    "no_response_from_server": "No response from the server",
-    "no_valid_term_date": "No valid term date available",
+    "no_response_from_server": "No response from server",
+    "no_valid_term_date": "No valid expiration date",
     "invitation_submitted_successfully": "Invitation submitted successfully",
     "user_subscription_no_access": "Service not included in subscription"
   },
 
   "empty_state": "No data found to display...",
 
-  "update_data": "Update Data",
+  "update_data": "Update data",
 
   "confirmation": "Confirmation",
   "are_you_sure": "Are you sure you want to continue?",
   "ok": "OK",
   "notifications": {
     "own_data_check": "Someone recently checked your credit history",
-    "credit_report_event": "We have recorded major changes in your credit history",
-    "user_inactivity": "Hello! We noticed long-term inactivity on your account",
-    "subscription_expiring_info": "Subscription expires in 15 days",
-    "new_basic_service": "NEW Service",
+    "credit_report_event": "We recorded major changes in your credit history",
+    "user_inactivity": "Hello! We noticed long-term inactivity on the account",
+    "subscription_expiring_info": "The subscription expires in 15 days",
+    "new_basic_service": "NEW service",
     "unknown_notification": "Unknown notification"
-  }
+  },
+
+  "subscription": {
+    "trial_message": "Subscribe to MyInfodebit to download your credit history and have all the information at hand.",
+    "trial_button_text": "See all subscriptions",
+    "trial_lower_button_text": "Choose the right subscription",
+    "trial_cost_text": "From {{price}} lei/month - You can cancel anytime",
+    "extra_inquiries_message": "You are truly free when you have access to information and control over your financial decisions.",
+    "extra_inquiries_button_text": "I want today's credit score",
+    "extra_inquiries_lower_button_text": "Upgrade for more benefits",
+    "extra_inquiries_discount_text": "Some discount text",
+    "no_credit_score_message": "You are truly free when you have access to information and control over your financial decisions.",
+    "no_credit_score_button_text": "I want today's credit score",
+    "no_credit_score_lower_button_text": "Upgrade for unlimited access",
+    "no_credit_score_cost_text": "{{creditScorePrice}} lei per query (button press)",
+    "no_credit_score_discount_text": "*Paid service according to your subscription. For details, please refer to the Subscriptions section",
+    "credit_score_included_message": "You are truly free when you have access to information and control over your financial decisions.",
+    "credit_score_included_button_text": "I want today's credit score",
+    "credit_score_included_lower_button_text": "Today's credit score inquiry",
+    "credit_score_included_discount_text": "*<2>Free service included</2> according to your subscription. For details, please refer to the Subscriptions section"
+  },
+
+  "face_detection": {
+    "multiple_faces_warning": "Warning: Multiple faces detected",
+    "face_not_positioned_warning": "Warning: Face not correctly positioned",
+    "error_capturing_image": "Error capturing image"
+  },
+
+  "check_information": "Check the information",
+  "summary_report_request": "You have requested a paid inquiry of the summary of commitments for displaying up-to-date data in MyInfodebit",
+  "transaction_accepted": "Transaction accepted",
+  "transaction_rejected": "Transaction rejected",
+  "insufficient_funds": "You might not have enough funds in your account to pay. Check your account balance or contact the bank that issued your card.",
+  "pdf_report_download": "To download the PDF Report with all up-to-date data, both the summary of commitments and the score inquiry are required."
 }

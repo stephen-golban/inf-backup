@@ -71,10 +71,8 @@ export default function useImagePicker(): useImagePickerReturnType {
     return new Promise<{ asset: Asset | null; base64: string | null }>(resolve => {
       launchImageLibrary({ mediaType: 'photo', includeBase64: false }, async (response: ImagePickerResponse) => {
         if (response.didCancel) {
-          console.log('User cancelled image picker');
           resolve({ asset: null, base64: null });
         } else if (response.errorCode) {
-          console.log('ImagePicker Error: ', response.errorMessage);
           resolve({ asset: null, base64: null });
         } else if (response.assets && response.assets[0]?.uri) {
           const asset = response.assets[0];

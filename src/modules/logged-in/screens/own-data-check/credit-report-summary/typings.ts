@@ -6,8 +6,8 @@ export interface ICreditReportSummaryModule {
   onSubmit(arg: {
     phone: string;
     commitments: ICommitment[];
-    reportRequestDateTime: Date | undefined;
-    reportResponseDateTime: Date | undefined;
+    reportRequestDateTime: Date | string | undefined;
+    reportResponseDateTime: Date | string | undefined;
   }): void;
   data: ICreditReportSummaryResponse | null;
 }

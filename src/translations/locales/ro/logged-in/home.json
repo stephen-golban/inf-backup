@@ -38,5 +38,8 @@
       "financial_health": "Bonitate financiară",
       "app_satisfied_overall": "Cât de mulțumit ești de aplicația MyInfoDebit în general?"
     }
-  }
+  },
+  "financial_behavior_impact": "Comportamentul tău financiar are un impact semnificativ asupra scorului tău de credit.",
+  "correct_debt_management": "Gestionarea corectă a datoriilor poate îmbunătăți scorul tău de credit.",
+  "timely_bill_payment": "Plata la timp a facturilor ajută la menținerea unui scor de credit ridicat."
 }

@@ -1,24 +1,59 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScoringText } from './text';
 import { ScoringOptions } from './options';
-
 import { Scoring } from '@components/ui';
-import { OutlinedButton, Screen } from '@components/common';
+import { CarouselComponent, FilledButton, Icon, OutlinedButton, Screen, Text, View } from '@components/common';
+import { PurchasedSubscription } from '@typings/responses';
+import ScoringDetailsBenefits from './benefits';
+import getSubscriptionDetails from './utils';
+import { ScoringDetailsOffers } from './offers';
+import { OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
 
 interface IScoringDetailsModuleProps {
+  navigation: OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>['navigation'];
   score?: number;
   loading: boolean;
   onPressUpdate(): void;
+  subscription: PurchasedSubscription | undefined;
 }
 
 const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
-  const { score, loading, onPressUpdate } = props;
+  const { navigation, score, loading, subscription, onPressUpdate } = props;
+  const { t } = useTranslation();
+
+  const {
+    message,
+    buttonText,
+    secondButtonType,
+    lowerButtonText,
+    secondButtonTextColor,
+    onPressFirstButton,
+    onPressSecondButton,
+    costText,
+    disabled,
+    secondaryText,
+  } = getSubscriptionDetails(subscription, navigation, onPressUpdate);
+  const Button = secondButtonType === 'filled' ? FilledButton : OutlinedButton;
+
+  const data = [
+    t('logged_in:home:financial_behavior_impact'),
+    t('logged_in:home:correct_debt_management'),
+    t('logged_in:home:timely_bill_payment'),
+  ];
+
+  const renderItem = (carouselData: { item: string; index: number }) => (
+    <View bg="lightBlue" px="md" center py="lg" row align="center" br={16} shadow="card" mx="sm">
+      <Text variant="14-reg" center>
+        {carouselData.item}
+      </Text>
+    </View>
+  );
 
   return (
     <Screen unsafe scroll px="zero">
       <Scoring rating={score || 0} />
       <ScoringText score={score || 0} />
-
       <ScoringOptions
         image={require('@assets/images/scoring/grown.png')}
         title="logged_in:credit_report:scoring:scoring_negative"
@@ -52,7 +87,28 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
         value={100}
         hasDivider={false}
       />
-      <OutlinedButton mt="lg" cg="sm" onPress={onPressUpdate} loading={loading} t18n="ui:update_data" />
+      <Icon icon="CreditReportIcon" center p="md" />
+      <CarouselComponent data={data} renderItem={renderItem} />
+
+      <Text color="blue" variant="16-bold" center lineHeight={25}>
+        {message}
+      </Text>
+
+      <ScoringDetailsOffers
+        disabled={disabled}
+        secondaryText={secondaryText}
+        costText={costText}
+        buttonText={buttonText}
+        subscription={subscription}
+        isLoading={loading}
+        onNavigate={onPressFirstButton}
+      />
+
+      <ScoringDetailsBenefits />
+
+      <Button mt="lg" cg="sm" onPress={onPressSecondButton} br="md">
+        <Text color={secondButtonTextColor}>{lowerButtonText}</Text>
+      </Button>
     </Screen>
   );
 };

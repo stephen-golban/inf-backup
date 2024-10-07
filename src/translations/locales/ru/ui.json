@@ -3,10 +3,10 @@
   "login": "Вход",
   "error": "Ошибка",
   "submit": "Отправить",
-  "cancel": "Отменить",
+  "cancel": "Отмена",
   "apply": "Применить",
   "select": "Выбрать",
-  "logout": "Выйти",
+  "logout": "Выход",
   "update": "Обновить",
   "loading": "Загрузка",
   "continue": "Продолжить",
@@ -17,7 +17,7 @@
   "request": "Запрос",
   "success": "Успех",
   "save": "Сохранить",
-  "read": "Прочитайте",
+  "read": "Читать",
 
   "placeholders": {
     "phone_input_country_search_placeholder": "Поиск страны",
@@ -25,22 +25,22 @@
     "password_confirm_placeholder": "Подтвердите пароль",
     "first_name_placeholder": "Имя",
     "last_name_placeholder": "Фамилия",
-    "promo_code": "Промо-код",
+    "promo_code": "Промокод",
     "negative_feedback": "Что вам не нравится в приложении MyInfoDebit?",
     "neutral_feedback": "Мы хотим услышать ваше мнение о приложении",
-    "positive_feedback": "Отлично, расскажите нам, почему вам нравится приложение",
+    "positive_feedback": "Отлично, расскажите, почему вам нравится приложение",
     "custom_email_placeholder": "Пользовательский адрес электронной почты"
   },
 
   "toasts": {
-    "limit_was_exceeded": "Лимит был превышен",
+    "limit_was_exceeded": "Превышен лимит",
     "subscription_expired": "Подписка истекла",
-    "no_subscription_purchased": "Подписка не была приобретена",
-    "rating_submitted_successfully": "Рейтинг успешно отправлен",
-    "user_subscription_no_access": "Услуга не включена в подписку",
+    "no_subscription_purchased": "Подписка не приобретена",
+    "rating_submitted_successfully": "Оценка успешно отправлена",
     "no_response_from_server": "Нет ответа от сервера",
-    "no_valid_term_date": "Нет действительной даты истечения срока",
-    "invitation_submitted_successfully": "Пригашение успешно отправлено"
+    "no_valid_term_date": "Нет действительной даты истечения",
+    "invitation_submitted_successfully": "Приглашение успешно отправлено",
+    "user_subscription_no_access": "Услуга не включена в подписку"
   },
 
   "empty_state": "Данные для отображения не найдены...",
@@ -49,13 +49,45 @@
 
   "confirmation": "Подтверждение",
   "are_you_sure": "Вы уверены, что хотите продолжить?",
-  "ok": "OK",
+  "ok": "ОК",
   "notifications": {
     "own_data_check": "Кто-то недавно проверил вашу кредитную историю",
     "credit_report_event": "Мы зафиксировали значительные изменения в вашей кредитной истории",
-    "user_inactivity": "Здравствуйте! Мы заметили длительное бездействие на вашем аккаунте",
+    "user_inactivity": "Привет! Мы заметили длительное бездействие на аккаунте",
     "subscription_expiring_info": "Подписка истекает через 15 дней",
     "new_basic_service": "НОВАЯ услуга",
     "unknown_notification": "Неизвестное уведомление"
-  }
+  },
+
+  "subscription": {
+    "trial_message": "Подпишитесь на MyInfodebit, чтобы скачать свою кредитную историю и иметь всю информацию под рукой.",
+    "trial_button_text": "Посмотреть все подписки",
+    "trial_lower_button_text": "Выберите подходящую подписку",
+    "extra_inquiries_message": "Вы действительно свободны, когда у вас есть доступ к информации и контроль над своими финансовыми решениями.",
+    "extra_inquiries_button_text": "Хочу кредитный рейтинг на сегодня",
+"extra_inquiries_lower_button_text": "Обновите для получения дополнительных преимуществ",
+    "extra_inquiries_discount_text": "Some discount text",
+    "no_credit_score_message": "Вы действительно свободны, когда у вас есть доступ к информации и контроль над своими финансовыми решениями.",
+    "no_credit_score_button_text": "Хочу кредитный рейтинг на сегодня",
+    "no_credit_score_lower_button_text": "Обновите для неограниченного доступа",
+    "no_credit_score_cost_text": "{{creditScorePrice}} лей за запрос (нажатие на кнопку)",
+    "no_credit_score_discount_text": "*Платная услуга в соответствии с вашей подпиской. Для получения подробной информации, пожалуйста, обратитесь к разделу Подписки",
+    "credit_score_included_message": "Вы действительно свободны, когда у вас есть доступ к информации и контроль над своими финансовыми решениями.",
+    "credit_score_included_button_text": "Хочу кредитный рейтинг на сегодня",
+    "credit_score_included_lower_button_text": "Запрос кредитного рейтинга на сегодня",
+    "credit_score_included_discount_text": "*<2>Бесплатная услуга, включенная в вашу подписку</2>. Для получения подробной информации, пожалуйста, обратитесь к разделу Подписки"
+  },
+
+  "face_detection": {
+    "multiple_faces_warning": "Предупреждение: Обнаружено несколько лиц",
+    "face_not_positioned_warning": "Предупреждение: Лицо неправильно расположено",
+    "error_capturing_image": "Ошибка при захвате изображения"
+  },
+
+  "check_information": "Проверьте информацию",
+  "summary_report_request": "Вы запросили платное получение сводки обязательств для отображения актуальных данных в MyInfodebit",
+  "transaction_accepted": "Транзакция принята",
+  "transaction_rejected": "Транзакция отклонена",
+  "insufficient_funds": "Возможно, у вас недостаточно средств на счете для оплаты. Проверьте баланс счета или свяжитесь с банком, выпустившим вашу карту.",
+  "pdf_report_download": "Для загрузки PDF-отчета с актуальными данными необходимо запросить как сводку обязательств, так и оценку."
 }

@@ -17,6 +17,7 @@ module.exports = {
   presets: ['module:@react-native/babel-preset'],
   plugins: [
     ['module:react-native-dotenv', {moduleName: '@env'}],
+    ['react-native-worklets-core/plugin'],
     [
       'module-resolver',
       {

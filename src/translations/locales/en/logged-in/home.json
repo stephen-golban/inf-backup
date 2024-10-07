@@ -38,5 +38,8 @@
       "financial_health": "Financial health",
       "app_satisfied_overall": "How satisfied are you with the MyInfoDebit app overall?"
     }
-  }
+  },
+  "financial_behavior_impact": "Your financial behavior has a significant impact on your credit score.",
+  "correct_debt_management": "Proper debt management can improve your credit score.",
+  "timely_bill_payment": "Timely bill payment helps maintain a high credit score."
 }

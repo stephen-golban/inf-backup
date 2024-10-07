@@ -1,4 +1,4 @@
-import { SubscriptionDuration } from '@typings/responses/subscriptions/all-subscriptions';
+import { format } from 'date-fns';
 import { Linking } from 'react-native';
 import { Alert, Platform } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
@@ -184,3 +184,11 @@ export const formatToCurrency = (value: number | string, currency: Currency = 'M
 
   return [currencyMap[currency], formattedValue];
 };
+
+export function formatDateTimeWithDateFns(dateTimeObject: any) {
+  const { year, monthValue, dayOfMonth, hour, minute, second } = dateTimeObject;
+
+  const date = new Date(year, monthValue - 1, dayOfMonth, hour, minute, second);
+
+  return format(date, 'yyyy-MM-dd HH:mm:ss');
+}

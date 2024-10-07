@@ -5,7 +5,7 @@ import { useAppDataCheckStore } from '@store/data-check';
 
 import type { OwnDataCheckApiResponse } from '@typings/responses';
 import { useState } from 'react';
-import { useMount, useUpdateEffect } from 'react-use';
+import { useUpdateEffect } from 'react-use';
 
 const useWhoCheckedCredit = () => {
   const { user, subscription } = useAppStore(state => state);

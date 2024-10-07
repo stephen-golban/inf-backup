@@ -48,11 +48,13 @@ const CommitmentItem: React.FC<ICommitmentItem> = props => {
     <View bg="lightGray" px="md" py="lg" br={24}>
       <View row between center>
         {renderStatusLabel()}
-        <View flex={1} mx="xs">
-          <Text variant="12-reg">{name}</Text>
-        </View>
+        {name && (
+          <View flex={1} mx="xs">
+            <Text variant="12-reg">{name}</Text>
+          </View>
+        )}
         {activityType === 'ACTIVE' ? (
-          <View maxw="70%">
+          <View maxw={name ? '70%' : '100%'}>
             <Text variant="12-reg">{description}</Text>
           </View>
         ) : (

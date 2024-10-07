@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from '@library/hooks';
 
 import { Divider } from '@components/ui/divider';
-import { Source } from 'react-native-fast-image';
+import { Source } from '@d11/react-native-fast-image';
 import { Icon, Image, ProgressBar, Text, View } from '@components/common';
 
 import { I18nKey } from '@translations/locales';
@@ -26,7 +26,7 @@ const ScoringOptions: React.FC<IScoringOptionsProps> = props => {
       <View row my="md" justify="space-between">
         <View row>
           <View>
-            <Image source={image} w={36} h={36} />
+            <Image resizeMode="contain" source={image} w={36} h={36} />
           </View>
           <View ml="sm">
             <Text color="black" variant="12-mid" t18n={title} />
