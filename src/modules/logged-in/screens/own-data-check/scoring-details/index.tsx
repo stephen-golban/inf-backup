@@ -11,8 +11,12 @@ import ScoringDetailsBenefits from './benefits';
 import { Scoring } from '@components/ui';
 import { CarouselComponent, FilledButton, Icon, OutlinedButton, Screen, Text, View } from '@components/common';
 
-import { PurchasedSubscription } from '@typings/responses';
+import { CreditReportEventsApiResponse, CreditReportQualityApiResponse, PurchasedSubscription } from '@typings/responses';
 import { OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
+import { formatDate } from 'date-fns';
+import { useAppDataCheckStore } from '@store/data-check';
+import { useAppStore } from '@store/app';
+import { useAxios } from '@api/hooks';
 
 interface IScoringDetailsModuleProps {
   navigation: OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>['navigation'];
@@ -21,11 +25,13 @@ interface IScoringDetailsModuleProps {
   onPayReport(): void;
   onPressUpdate(): void;
   subscription: PurchasedSubscription | undefined;
+  creditReportEvents: CreditReportEventsApiResponse | undefined;
 }
 
 const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
-  const { navigation, score, loading, subscription, onPressUpdate, onPayReport } = props;
+  const { navigation, score, loading, subscription, onPressUpdate, onPayReport, creditReportEvents } = props;
   const { t } = useTranslation();
+  const { creditScore } = useAppDataCheckStore();
 
   const {
     message,
@@ -59,6 +65,27 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
     <Screen unsafe scroll px="zero">
       <Scoring rating={score || 0} />
       <ScoringText score={score || 0} />
+
+      <View my="sm">
+        {creditScore?.responseDateTime && (
+          <View bg="lightBlue" row between p="md" shadow="card" br={10} center>
+            <View row center g="sm" maxw={'80%'}>
+              <Text variant="12-reg" g="md" t18n="logged_in:credit_report:last_credit_score_interogation" />
+            </View>
+            <Text variant="12-mid">{formatDate(creditScore?.responseDateTime, 'dd/MM/yyyy')}</Text>
+          </View>
+        )}
+
+        {creditReportEvents?.lastEventDateTime && (
+          <View mt="sm" bg="lightBlue" row between p="md" shadow="card" br={10} center>
+            <View row center g="sm" maxw={'80%'}>
+              <Text variant="12-reg" g="md" t18n="logged_in:credit_report:last_credit_history_update" />
+            </View>
+            <Text variant="12-mid">{formatDate(creditReportEvents?.lastEventDateTime, 'dd/MM/yyyy')}</Text>
+          </View>
+        )}
+      </View>
+
       <ScoringOptions
         image={require('@assets/images/scoring/grown.png')}
         title="logged_in:credit_report:scoring:scoring_negative"
