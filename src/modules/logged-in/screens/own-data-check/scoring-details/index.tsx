@@ -1,25 +1,30 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { ScoringText } from './text';
 import { ScoringOptions } from './options';
-import { Scoring } from '@components/ui';
-import { CarouselComponent, FilledButton, Icon, OutlinedButton, Screen, Text, View } from '@components/common';
-import { PurchasedSubscription } from '@typings/responses';
-import ScoringDetailsBenefits from './benefits';
 import getSubscriptionDetails from './utils';
 import { ScoringDetailsOffers } from './offers';
+import ScoringDetailsBenefits from './benefits';
+
+import { Scoring } from '@components/ui';
+import { CarouselComponent, FilledButton, Icon, OutlinedButton, Screen, Text, View } from '@components/common';
+
+import { PurchasedSubscription } from '@typings/responses';
 import { OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
 
 interface IScoringDetailsModuleProps {
   navigation: OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>['navigation'];
   score?: number;
   loading: boolean;
+  onPayReport(): void;
   onPressUpdate(): void;
   subscription: PurchasedSubscription | undefined;
 }
 
 const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
-  const { navigation, score, loading, subscription, onPressUpdate } = props;
+  const { navigation, score, loading, subscription, onPressUpdate, onPayReport } = props;
   const { t } = useTranslation();
 
   const {
@@ -33,7 +38,7 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
     costText,
     disabled,
     secondaryText,
-  } = getSubscriptionDetails(subscription, navigation, onPressUpdate);
+  } = getSubscriptionDetails(subscription, navigation, onPressUpdate, onPayReport);
   const Button = secondButtonType === 'filled' ? FilledButton : OutlinedButton;
 
   const data = [

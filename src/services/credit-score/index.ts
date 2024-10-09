@@ -5,14 +5,13 @@ import { useTryCatch } from '@library/hooks';
 import { useAppDataCheckStore } from '@store/data-check';
 
 import type { ICreditScoreResponse } from '@typings/responses/credit-score';
-import { OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
 
 const CREDIT_SCORE_QUERY_PARAMS = {
   subjectType: 'INDIVIDUAL',
   requestBasis: 'MR0000001',
 };
 
-function useCreditScoreService(runOnMount = true, navigation?: any) {
+function useCreditScoreService(runOnMount = true) {
   const { creditScore, inquiry } = useAppDataCheckStore();
   const subscription = useAppStore(state => state.subscription);
 
