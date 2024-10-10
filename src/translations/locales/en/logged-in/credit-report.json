@@ -106,5 +106,12 @@
   "benefit_4": "Knowing your score keeps everything under control and can reduce stress related to loans and debts"
 },
 "last_credit_score_interogation": "Last credit score inquiry",
-"last_credit_history_update": "Last credit history update"
+"last_credit_history_update": "Last credit history update",
+
+"credit_report_summary_options": {
+  "choose_subscription": "Choose a subscription and download the report",
+  "information_from_today": "I want information from today",
+  "for_complete_data_choose_a_subscription": "For complete data, choose a subscription",
+  "download_complete_report": "Download the complete report"
+}
 }

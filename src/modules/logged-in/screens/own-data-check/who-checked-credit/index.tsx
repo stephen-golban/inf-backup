@@ -7,6 +7,8 @@ import { CheckItem, Header } from './parts';
 import { OutlinedButton, Screen, Text, View } from '@components/common';
 
 import type { OwnDataCheckApiResponse } from '@typings/responses';
+import { HistoryCard } from '@components/ui';
+import { useAppDataCheckStore } from '@store/data-check';
 
 interface IWhoCheckedCreditModule {
   onRefresh?(): void;
@@ -17,8 +19,9 @@ interface IWhoCheckedCreditModule {
 }
 
 const WhoCheckedCreditModule: React.FC<IWhoCheckedCreditModule> = ({ data, onRefresh, updateReport, reportLoading, updateLoading }) => {
+  const { inquiry, reportEvents } = useAppDataCheckStore();
   return (
-    <Screen loading={reportLoading} pt="zero" pb="lg" scroll unsafe onRefresh={onRefresh}>
+    <Screen loading={reportLoading} pt="zero" scroll unsafe onRefresh={onRefresh}>
       <View bg="lightBlue" br="xl" p="lg">
         <Header days={data?.checksPeriod || 0} count={data?.checksNumber || 0} companies={data?.requestorsNumber || 0} />
       </View>
@@ -35,6 +38,10 @@ const WhoCheckedCreditModule: React.FC<IWhoCheckedCreditModule> = ({ data, onRef
             return <CheckItem key={checkDate + item.checkId + idx} orgName={item.orgName} checkDateTime={item.checkDateTime} />;
           })
         )}
+      </View>
+      <View my="sm">
+        <HistoryCard t18nTitle="logged_in:home:info:last_interogation" date={inquiry?.inquiryDateTime} />
+        <HistoryCard t18nTitle="logged_in:home:info:last_history_update" date={reportEvents?.lastEventDateTime} />
       </View>
     </Screen>
   );

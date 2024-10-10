@@ -1,8 +1,8 @@
 import { Color } from '@theme/colors';
 import { isAfter, parseISO } from 'date-fns';
-import { useTranslation } from 'react-i18next';
 import { PurchasedSubscription } from '@typings/responses';
 import { LOGGED_IN_SCREENS, OwnDataCheckScreenProps, SUBSCRIPTIONS_SCREENS } from '@typings/navigation';
+import { useTranslation } from '@library/hooks';
 
 interface SubscriptionResult {
   message: string;
@@ -20,7 +20,7 @@ interface SubscriptionResult {
   onPressSecondButton: () => void;
 }
 
-const getSubscriptionDetails = (
+const getReportSummaryOptions = (
   subscription: PurchasedSubscription | undefined,
   navigation: OwnDataCheckScreenProps<any>['navigation'],
   onPressUpdate: () => void,
@@ -67,62 +67,62 @@ const getSubscriptionDetails = (
   }
   if (trial) {
     return {
-      message: t('subscription.trial_message'),
-      buttonText: t('subscription.trial_button_text'),
+      message: t('ui:subscription:trial_message'),
+      buttonText: t('profile:my_account:subscription_details:choose_subscription'),
       firstButtonTextColor: 'white',
       secondButtonTextColor: 'blue',
       firstButtonType: 'filled',
       disabled: false,
-      costText: t('subscription.trial_cost_text', { price }),
+      costText: t('ui:subscription:trial_cost_text', { price }),
       secondButtonType: 'outlined',
-      lowerButtonText: t('subscription.trial_lower_button_text'),
+      lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:for_complete_data_choose_a_subscription'),
       discountText: discountText,
       onPressFirstButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
       onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
     };
   } else if (!trial && extraInquiriesRestriction && !isExpired) {
     return {
-      message: t('subscription.extra_inquiries_message'),
-      buttonText: t('subscription.extra_inquiries_button_text'),
+      message: t('ui:subscription:extra_inquiries_message'),
+      buttonText: t('ui:subscription:extra_inquiries_button_text'),
       firstButtonType: 'outlined',
       disabled: true,
-      costText: t('subscription.extra_inquiries_cost_text'),
+      costText: t('ui:subscription:extra_inquiries_cost_text'),
       secondButtonType: 'filled',
       firstButtonTextColor: 'blue',
       secondButtonTextColor: 'white',
-      lowerButtonText: t('subscription.extra_inquiries_lower_button_text'),
-      discountText: t('subscription.discount_text_other_subscription'),
+      lowerButtonText: t('ui:subscription:extra_inquiries_lower_button_text'),
+      discountText: t('subscriptions:discount_text_other_subscription'),
       onPressFirstButton: () => {},
       onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
     };
   } else if (!trial && !extraInquiriesRestriction && !isExpired && !isCreditScoreIncluded) {
     return {
-      message: t('subscription.no_credit_score_message'),
-      buttonText: t('subscription.no_credit_score_button_text'),
+      message: t('ui:subscription:no_credit_score_message'),
+      buttonText: t('logged_in:credit_report:credit_report_summary_options:information_from_today'),
       firstButtonType: 'filled',
       disabled: false,
       secondButtonType: 'outlined',
       firstButtonTextColor: 'white',
       secondButtonTextColor: 'blue',
-      costText: t('subscription.no_credit_score_cost_text', { creditScorePrice }),
-      lowerButtonText: t('subscription.no_credit_score_lower_button_text'),
-      discountText: t('subscription.no_credit_score_discount_text'),
-      secondaryText: t('subscription.no_credit_score_discount_text'),
+      costText: t('ui:subscription:no_credit_score_cost_text', { creditScorePrice }),
+      lowerButtonText: t('ui:subscription:no_credit_score_lower_button_text'),
+      discountText: t('ui:subscription:no_credit_score_discount_text'),
+      secondaryText: t('ui:subscription:no_credit_score_discount_text'),
       onPressFirstButton: onPayReport,
       onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
     };
   } else if (!trial && !extraInquiriesRestriction && !isExpired && isCreditScoreIncluded) {
     return {
-      message: t('subscription.credit_score_included_message'),
-      buttonText: t('subscription.credit_score_included_button_text'),
+      message: t('ui:subscription:credit_score_included_message'),
+      buttonText: t('ui:subscription:credit_score_included_button_text'),
       firstButtonType: 'filled',
       disabled: false,
       secondButtonType: 'outlined',
       firstButtonTextColor: 'white',
       secondButtonTextColor: 'blue',
-      costText: t('subscription.credit_score_included_cost_text'),
-      lowerButtonText: t('subscription.credit_score_included_lower_button_text'),
-      secondaryText: t('subscription.credit_score_included_discount_text'),
+      costText: t('ui:subscription:credit_score_included_cost_text'),
+      lowerButtonText: t('ui:subscription:credit_score_included_lower_button_text'),
+      secondaryText: t('ui:subscription:credit_score_included_discount_text'),
       onPressFirstButton: onPressUpdate,
       onPressSecondButton: onPressUpdate,
     };
@@ -144,4 +144,4 @@ const getSubscriptionDetails = (
   };
 };
 
-export default getSubscriptionDetails;
+export default getReportSummaryOptions;

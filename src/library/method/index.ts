@@ -184,11 +184,3 @@ export const formatToCurrency = (value: number | string, currency: Currency = 'M
 
   return [currencyMap[currency], formattedValue];
 };
-
-export function formatDateTimeWithDateFns(dateTimeObject: any) {
-  const { year, monthValue, dayOfMonth, hour, minute, second } = dateTimeObject;
-
-  const date = new Date(year, monthValue - 1, dayOfMonth, hour, minute, second);
-
-  return format(date, 'yyyy-MM-dd HH:mm:ss');
-}

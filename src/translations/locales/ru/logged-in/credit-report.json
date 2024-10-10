@@ -107,5 +107,12 @@
   "benefit_4": "Зная свой рейтинг, вы держите все под контролем и можете уменьшить стресс, связанный с кредитами и долгами"
 },
 "last_credit_score_interogation": "Последняя проверка кредитного рейтинга",
-"last_credit_history_update": "Последнее обновление истории кредита"
+"last_credit_history_update": "Последнее обновление истории кредита",
+
+"credit_report_summary_options": {
+  "choose_subscription": "Выберите подписку и скачайте отчет",
+  "information_from_today": "Я хочу информацию с сегодняшнего дня",
+  "for_complete_data_choose_a_subscription": "Для полных данных выберите подписку",
+  "download_complete_report": "Скачайте полный отчет"
+}
 }

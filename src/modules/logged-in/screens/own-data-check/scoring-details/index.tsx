@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useTranslation } from 'react-i18next';
+import { useAppDataCheckStore } from '@store/data-check';
 
 import { ScoringText } from './text';
 import { ScoringOptions } from './options';
@@ -8,15 +9,11 @@ import getSubscriptionDetails from './utils';
 import { ScoringDetailsOffers } from './offers';
 import ScoringDetailsBenefits from './benefits';
 
-import { Scoring } from '@components/ui';
+import { HistoryCard, Scoring } from '@components/ui';
 import { CarouselComponent, FilledButton, Icon, OutlinedButton, Screen, Text, View } from '@components/common';
 
-import { CreditReportEventsApiResponse, CreditReportQualityApiResponse, PurchasedSubscription } from '@typings/responses';
 import { OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
-import { formatDate } from 'date-fns';
-import { useAppDataCheckStore } from '@store/data-check';
-import { useAppStore } from '@store/app';
-import { useAxios } from '@api/hooks';
+import { CreditReportEventsApiResponse, PurchasedSubscription } from '@typings/responses';
 
 interface IScoringDetailsModuleProps {
   navigation: OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>['navigation'];
@@ -25,7 +22,7 @@ interface IScoringDetailsModuleProps {
   onPayReport(): void;
   onPressUpdate(): void;
   subscription: PurchasedSubscription | undefined;
-  creditReportEvents: CreditReportEventsApiResponse | undefined;
+  creditReportEvents: CreditReportEventsApiResponse | null;
 }
 
 const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
@@ -65,26 +62,16 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
     <Screen unsafe scroll px="zero">
       <Scoring rating={score || 0} />
       <ScoringText score={score || 0} />
-
-      <View my="sm">
-        {creditScore?.responseDateTime && (
-          <View bg="lightBlue" row between p="md" shadow="card" br={10} center>
-            <View row center g="sm" maxw={'80%'}>
-              <Text variant="12-reg" g="md" t18n="logged_in:credit_report:last_credit_score_interogation" />
-            </View>
-            <Text variant="12-mid">{formatDate(creditScore?.responseDateTime, 'dd/MM/yyyy')}</Text>
-          </View>
-        )}
-
-        {creditReportEvents?.lastEventDateTime && (
-          <View mt="sm" bg="lightBlue" row between p="md" shadow="card" br={10} center>
-            <View row center g="sm" maxw={'80%'}>
-              <Text variant="12-reg" g="md" t18n="logged_in:credit_report:last_credit_history_update" />
-            </View>
-            <Text variant="12-mid">{formatDate(creditReportEvents?.lastEventDateTime, 'dd/MM/yyyy')}</Text>
-          </View>
-        )}
-      </View>
+      <HistoryCard
+        loading={loading}
+        t18nTitle="logged_in:credit_report:last_credit_score_interogation"
+        date={creditScore?.responseDateTime}
+      />
+      <HistoryCard
+        loading={loading}
+        t18nTitle="logged_in:credit_report:last_credit_history_update"
+        date={creditReportEvents?.lastEventDateTime}
+      />
 
       <ScoringOptions
         image={require('@assets/images/scoring/grown.png')}

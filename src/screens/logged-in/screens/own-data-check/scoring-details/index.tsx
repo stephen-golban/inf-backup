@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useAppStore } from '@store/app';
-import { useAxios, useLazyAxios } from '@api/hooks';
+import { useLazyAxios } from '@api/hooks';
 import { useCreditScoreService } from '@services/credit-score';
 
 import { BottomSheet } from '@components/common';
@@ -9,7 +9,7 @@ import { useAppDataCheckStore } from '@store/data-check';
 import { useExecutePaymentService } from '@services/execute-payment';
 import { PaymentCardsModule, ScoringDetailsModule } from '@modules/logged-in';
 
-import { CreditReportEventsApiResponse, CreditReportQualityApiResponse, LastInquiryApiResponse } from '@typings/responses';
+import { LastInquiryApiResponse } from '@typings/responses';
 import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
 
 const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>> = ({ navigation }) => {
@@ -30,29 +30,16 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
 
   const loading = loadingCreditScore || loadingInquiry;
 
-  const { user } = useAppStore(state => state);
-
-  const userAccountId = user?.accounts[0].accountId || subscription?.subscriptionAccounts[0].accountId;
-
-  const { data: creditReportEvents, loading: loadingCreditReportEvents } = useAxios<CreditReportEventsApiResponse>(
-    '/credit-report-events?subscriptionFreeAccess=true',
-    {
-      method: 'post',
-      headers: {
-        'User-Account-Id': userAccountId || 114,
-        'Subscription-Id': subscription?.id || 60,
-      },
-    },
-  );
+  const { reportEvents } = useAppDataCheckStore(state => state);
 
   return (
     <>
       <ScoringDetailsModule
-        creditReportEvents={creditReportEvents}
+        creditReportEvents={reportEvents}
         navigation={navigation}
         subscription={subscription}
         score={creditScore?.scoreValue}
-        loading={loadingCreditScore || loadingCreditReportEvents}
+        loading={loadingCreditScore}
         onPressUpdate={fetchScore}
         onPayReport={onPayReport}
       />
