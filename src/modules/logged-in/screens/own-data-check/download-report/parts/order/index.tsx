@@ -12,10 +12,6 @@ import { Checkbox, FilledButton, Form, Icon, Select, Text, View } from '@compone
 import type { Option } from '@rn-primitives/select';
 import { type ReportRequestFormFields, report_request_schema } from './resolver';
 
-interface IOrder {
-  generationDateTime: string;
-}
-
 const defaultValues = {
   phone: undefined,
   termsAgreement: false,
@@ -24,7 +20,7 @@ const defaultValues = {
   translatedApostilledReport: false,
 };
 
-const Order: React.FC<IOrder> = ({ generationDateTime }) => {
+const Order: React.FC = () => {
   const { t } = useTranslation();
   const { generatedPhones, loading, onSubmit } = useDownloadReportOrder();
 
@@ -94,15 +90,6 @@ const Order: React.FC<IOrder> = ({ generationDateTime }) => {
               onPress={handleSubmit(onSubmitWithReset)}
               t18n="logged_in:credit_report:download:order:button"
             />
-            <Text color="gray" variant="14-mid" mt="lg" t18n="logged_in:credit_report:download:order:confirmation" />
-            <Paper shadow="card" bg="lightBlue" br={12} rg="md" py="sm" px="lg" mt="lg">
-              <Text
-                color="gray"
-                variant="14-mid"
-                t18n="logged_in:credit_report:download:order:generated_on"
-                t18nOptions={{ date: generationDateTime }}
-              />
-            </Paper>
           </View>
         );
       }}

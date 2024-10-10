@@ -21,7 +21,6 @@ const useHomeScreen = () => {
 
   useMount(async () => await call(undefined, res => useAppDataCheckStore.setState({ inquiry: res })));
   useMount(async () => await reportEvents(undefined, res => useAppDataCheckStore.setState({ reportEvents: res })));
-
   const trialTermDate = subscription?.subscriptionAccounts?.[0].termDateTime;
 
   useMount(() => {

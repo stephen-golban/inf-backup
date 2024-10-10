@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { format } from 'date-fns';
+import { useGoBack } from '@library/hooks';
 import { formatDateTimeWithDateFns } from '@library/method';
 
 import { DownloadReportModule } from '@modules/logged-in';
@@ -12,12 +14,14 @@ const DownloadReport: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.Do
 
   const formattedGenerationDateTime = React.useMemo(() => {
     if (typeof generationDateTime === 'string') {
-      return generationDateTime;
+      return format(new Date(generationDateTime), 'MM/dd/yyyy');
     }
     return formatDateTimeWithDateFns(generationDateTime, 'MM/dd/yyyy');
   }, [generationDateTime]);
 
   const onPressNotNow = () => navigation.navigate(LOGGED_IN_STACK.TABS, { screen: LOGGED_IN_TABS.HOME });
+
+  useGoBack(true, navigation.goBack);
 
   return <DownloadReportModule reportId={reportId} onPressNotNow={onPressNotNow} generationDateTime={formattedGenerationDateTime} />;
 };

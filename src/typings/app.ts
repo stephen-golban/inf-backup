@@ -5,7 +5,7 @@ import type {
   CreditReportEventsApiResponse,
   ICreditReportSummaryResponse,
   ICreditScoreResponse,
-  ISubscription,
+  PurchasedSubscription,
   LastInquiryApiResponse,
 } from './responses';
 
@@ -14,7 +14,7 @@ export interface IAppState {
 
   isAuthenticated: boolean;
 
-  subscription: ISubscription | undefined;
+  subscription: PurchasedSubscription | undefined;
 
   loadingApp: boolean;
 
