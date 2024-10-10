@@ -1,19 +1,19 @@
 {
-    "no_relevant_info": "Nu am găsit informație relevantă",
-    "subscription_too_expensive": "Prețul abonamentului este prea mare",
-    "not_understandable_info": "Nu știu cum să înțeleg informația",
-    "dislike_app": "Nu îmi place aplicația",
-    "other_reason": "Alt motiv",
-    "technical_issues": "Am avut probleme tehnice cu aplicația",
-    "cancellation_reason_prompt": "Ne pare rău că pleci. De ce ai decis să renunți la abonamentul MyInfodebit?",
-    "change_mind": "M-am răzgândit, rămân",
-    "proceed_to_cancel": "Continuă pentru anulare",
-    "tell_us_more": "Spune-ne mai mult (opțional)",
-    "stay_with_us_offer": "Rămâi alături de echipa Infodebit, iar noi te răsplătim cu o ofertă unică",
-    "discount_offer": "Discount de -47% timp de 3 luni, o ofertă exclusivă care îți oferă acces la serviciul scoring, info despre interpelări, angajamente financiare, bonitate",
-    "activate_offer": "Activează oferta acum",
-    "delete_account_warning": "Prin ștergerea contului, se vor șterge toate datele asociate contului tău și vei pierde accesul la toate informațiile referitoare la sănătatea ta financiară, inclusiv posibilitatea de a beneficia de ofertele și reducerile din MyInfodebit",
-    "action_final": "Această acțiune este definitivă și nu poate fi anulată",
-    "cancel_before_delete": "Pentru a șterge contul, anulează mai întâi abonamentul"
-  }
-  
+  "no_relevant_info": "Nu am găsit informație relevantă",
+  "subscription_too_expensive": "Prețul abonamentului este prea mare",
+  "not_understandable_info": "Nu știu cum să înțeleg informația",
+  "dislike_app": "Nu îmi place aplicația",
+  "other_reason": "Alt motiv",
+  "technical_issues": "Am avut probleme tehnice cu aplicația",
+  "cancellation_reason_prompt": "Ne pare rău că pleci. De ce ai decis să renunți la abonamentul MyInfodebit?",
+  "change_mind": "M-am răzgândit, rămân",
+  "proceed_to_cancel": "Continuă pentru anulare",
+  "tell_us_more": "Spune-ne mai mult (opțional)",
+  "stay_with_us_offer": "Rămâi alături de echipa Infodebit, iar noi te răsplătim cu o ofertă unică",
+  "sorry_to_see_you_go": "Ne pare rău că pleci. Feedback-ul tău ne ajută să ne îmbunătățim.",
+  "discount_offer": "Discount de -47% timp de 3 luni, o ofertă exclusivă care îți oferă acces la serviciul scoring, info despre interpelări, angajamente financiare, bonitate",
+  "activate_offer": "Activează oferta acum",
+  "delete_account_warning": "Prin ștergerea contului, se vor șterge toate datele asociate contului tău și vei pierde accesul la toate informațiile referitoare la sănătatea ta financiară, inclusiv posibilitatea de a beneficia de ofertele și reducerile din MyInfodebit",
+  "action_final": "Această acțiune este definitivă și nu poate fi anulată",
+  "cancel_before_delete": "Pentru a șterge contul, anulează mai întâi abonamentul"
+}

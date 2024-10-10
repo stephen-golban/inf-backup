@@ -1,66 +1,81 @@
-import { useState } from 'react';
-import { useAppStore } from '@store/app';
+import { has } from 'lodash';
+import { useMemo, useState } from 'react';
 import { useLazyAxios } from '@api/hooks';
+import { useTryCatch } from '@library/hooks';
+import { useToast } from 'react-native-toast-notifications';
+import { useGetSubscription } from '@services/subscription';
 
 import { calculateDiscountedPrice } from '@modules/logged-in/screens/profile/change-subscription/method';
-import { LOGGED_IN_STACK, LOGGED_IN_TABS, SUBSCRIPTIONS_SCREENS, SubscriptionsStackScreenProps } from '@typings/navigation';
 
+import { Reason } from '@typings/navigation';
 import type { SelectedPlan } from '@modules/logged-in/screens/subscriptions/subscriptions/type';
 
-const useStayScreen = ({ navigation, route }: SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS.STAY>) => {
-  const type = route.params.reason;
-  const { subscription } = useAppStore();
+type Props = {
+  comment: string;
+  reason: Reason;
+  goToHome: () => void;
+  goToRemove: () => void;
+};
+
+const useStayScreen = ({ comment, reason, goToHome, goToRemove }: Props) => {
   const [selectedPlan, setSelectedPlan] = useState<SelectedPlan>();
 
-  const price = subscription?.price;
-  const subscriptionId = subscription?.id;
-
-  const discountedPrice = calculateDiscountedPrice(
-    subscription?.price!,
-    subscription?.discountData.discountAmount!,
-    subscription?.discountData.discountType!,
-  );
-
-  const [call, { loading }] = useLazyAxios({
-    method: 'post',
-    url: `/feedback?type=${type}`,
-  });
-
-  const [removeSubscription, { loading: loadingRemoveSubscription }] = useLazyAxios({
+  const toast = useToast();
+  const { getSubscription, loading: subscriptionLoading, subscription } = useGetSubscription(false);
+  const [sendFeedback, { loading: feedbackLoading }] = useLazyAxios({ method: 'post', url: `/feedback?type=${reason}` });
+  const [removeSubscription, { loading: loadingRemoveSubscription }] = useLazyAxios<string>({
     method: 'post',
     url: '/subscription-management/unsubscribe',
   });
 
+  const hasRetentionOffer = has(subscription, 'retentionOfferDiscount') || (subscription?.retentionOfferMonths ?? 0) > 0;
+
+  const discountedPrice = useMemo(() => {
+    if (hasRetentionOffer && subscription) {
+      if (subscription?.retentionOfferDiscount) {
+        const initialPrice = subscription.price;
+        const discountAmount = subscription.retentionOfferDiscount.discountAmount;
+        const discountType = subscription.retentionOfferDiscount.discountType;
+
+        return calculateDiscountedPrice(initialPrice, discountAmount, discountType);
+      }
+    }
+  }, [hasRetentionOffer, subscription]);
+
   const onActivate = () => {
-    if (subscription) {
-      setSelectedPlan({
-        id: subscription.id,
-        price: discountedPrice,
-        discount: subscription.discountData.discountAmount,
-        isAnnual: false,
-      });
+    if (hasRetentionOffer && subscription && discountedPrice) {
+      const { id, retentionOfferDiscount } = subscription;
+      if (retentionOfferDiscount) {
+        setSelectedPlan({ id, price: discountedPrice, discount: retentionOfferDiscount.discountAmount, isAnnual: false });
+      }
     }
   };
 
+  const onRemove = useTryCatch(async () => {
+    if (subscription) {
+      if (reason === Reason.CANCEL_SUBSCRIPTION) {
+        await sendFeedback({ message: comment });
+        await removeSubscription({ subscriptionId: subscription?.id }, res => toast.show(res, { type: 'success' }));
+        await getSubscription();
+        goToHome();
+      } else {
+        goToRemove();
+      }
+    }
+  });
+
   const onDismiss = () => setSelectedPlan(undefined);
 
-  const onSuccess = () => {
-    onDismiss();
-    navigation.navigate(LOGGED_IN_STACK.TABS, { screen: LOGGED_IN_TABS.HOME });
-  };
+  const removeLoading = feedbackLoading || loadingRemoveSubscription || subscriptionLoading;
 
-  const LOADING = loading || loadingRemoveSubscription;
   return {
-    call,
+    onRemove,
     onDismiss,
-    onSuccess,
     onActivate,
-    removeSubscription,
-    price,
     selectedPlan,
-    subscriptionId,
-    loading: LOADING,
+    removeLoading,
     discountedPrice,
+    hasRetentionOffer,
   };
 };
 

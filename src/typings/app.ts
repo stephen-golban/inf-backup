@@ -1,14 +1,14 @@
 import type { User } from './user';
 import type { ThemeType } from '@theme/index';
 import type { StageNomenclatureResponse } from './responses/nomenclatures';
-import type { ICreditReportSummaryResponse, ICreditScoreResponse, LastInquiryApiResponse, PurchasedSubscription } from './responses';
+import type { ICreditReportSummaryResponse, ICreditScoreResponse, ISubscription, LastInquiryApiResponse } from './responses';
 
 export interface IAppState {
   user: User | null;
 
   isAuthenticated: boolean;
 
-  subscription: PurchasedSubscription | undefined;
+  subscription: ISubscription | undefined;
 
   loadingApp: boolean;
 

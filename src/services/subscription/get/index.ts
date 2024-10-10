@@ -3,12 +3,12 @@ import { useLazyAxios } from '@api/hooks';
 import { useTryCatchWithCallback } from '@library/hooks';
 import { setAppSubscription, useAppStore } from '@store/app';
 
-import type { PurchasedSubscription } from '@typings/responses';
+import type { ISubscription } from '@typings/responses';
 
 const useGetSubscription = (runOnMount = false) => {
   const subscription = useAppStore(state => state.subscription);
 
-  const [call, { loading }] = useLazyAxios<PurchasedSubscription>('/admin-api/subscriptions/purchased', {
+  const [call, { loading }] = useLazyAxios<ISubscription>('/admin-api/subscriptions/purchased', {
     method: 'get',
     params: { lastSubscription: true },
   });
