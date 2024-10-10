@@ -2,23 +2,37 @@ import React from 'react';
 
 import { isEmpty } from 'lodash';
 import { useAppStore } from '@store/app';
-import { loadString, saveString } from '@library/storage';
+import { useAppDataCheckStore } from '@store/data-check';
 import { useCreditReportSummaryService } from '@services/credit-report-summary';
 
-import { OutlinedButton, Screen, Text, View } from '@components/common';
+import { formatDate } from 'date-fns';
+import { HistoryCard } from '@components/ui';
+import { loadString, saveString } from '@library/storage';
+import { ScoringDetailsOffers } from '../scoring-details/offers';
+
+import getReportSummaryOptions from './utils';
+import { Screen, Text, View } from '@components/common';
 import { CommitmentCount, CommitmentItem, DebtModal, EmptyState, GridItems, Header } from './parts';
 
 import { MMKV_KEY } from '@library/constants';
 
 import type { ICommitment, ICreditReportSummaryModule } from './typings';
 import type { StageNomenclatureResponse } from '@typings/responses/nomenclatures';
-import { formatDateTimeWithDateFns } from '@library/method';
 
 const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props => {
-  const { feedbackLoading, onOrderReport, onSubmit } = props;
+  const { feedbackLoading, onOrderReport, onSubmit, subscription, onPressUpdate, onPayReport, navigation } = props;
   const { nomenclature, locale } = useAppStore();
 
+  const { inquiry, reportEvents } = useAppDataCheckStore();
+
   const [isVisible, setIsVisible] = React.useState(false);
+
+  const { buttonText, onPressFirstButton, costText, disabled, secondaryText } = getReportSummaryOptions(
+    subscription,
+    navigation,
+    onPressUpdate,
+    onPayReport,
+  );
 
   const { fetchCreditReport, loading, creditReportSummary } = useCreditReportSummaryService(false);
 
@@ -39,8 +53,8 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
     commitment => commitment.sourceIdno === searchSourceIdno && commitment.type === 'activeNegativeCommitments',
   );
 
-  const reportRequestDateTime = formatDateTimeWithDateFns(creditReportSummary?.requestDateTime);
-  const reportResponseDateTime = formatDateTimeWithDateFns(creditReportSummary?.responseDateTime);
+  const reportRequestDateTime = formatDate(String(creditReportSummary?.requestDateTime), 'dd/MM/yyyy');
+  const reportResponseDateTime = formatDate(String(creditReportSummary?.responseDateTime), 'dd/MM/yyyy');
 
   React.useEffect(() => {
     const lastShownTimestamp = loadString(MMKV_KEY.INCASSO_REMIND);
@@ -83,15 +97,19 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
               />
             ))
           )}
-          <OutlinedButton
-            my="sm"
-            textProps={{ variant: '12-reg' }}
-            t18n={
-              isData ? 'logged_in:credit_report:summary:order_the_report' : 'logged_in:credit_report:summary:follow_us_for_more_information'
-            }
+          <ScoringDetailsOffers
+            disabled={disabled}
+            secondaryText={secondaryText}
+            costText={costText}
+            buttonText={buttonText}
+            subscription={subscription}
+            isLoading={loading}
+            onNavigate={onPressFirstButton}
           />
           <Text variant="18-semi" t18n="logged_in:credit_report:summary:last_24_months" />
           <GridItems data={creditReportSummary?.creditReport.primaryIndicators} />
+          <HistoryCard t18nTitle="logged_in:home:info:last_interogation" date={inquiry?.inquiryDateTime} />
+          <HistoryCard t18nTitle="logged_in:credit_report:last_credit_history_update" date={reportEvents?.lastEventDateTime} />
         </View>
       </Screen>
       <CommitmentCount

@@ -1,26 +1,34 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+import { useAppDataCheckStore } from '@store/data-check';
+
 import { ScoringText } from './text';
 import { ScoringOptions } from './options';
-import { Scoring } from '@components/ui';
-import { CarouselComponent, FilledButton, Icon, OutlinedButton, Screen, Text, View } from '@components/common';
-import { PurchasedSubscription } from '@typings/responses';
-import ScoringDetailsBenefits from './benefits';
 import getSubscriptionDetails from './utils';
 import { ScoringDetailsOffers } from './offers';
+import ScoringDetailsBenefits from './benefits';
+
+import { HistoryCard, Scoring } from '@components/ui';
+import { CarouselComponent, FilledButton, Icon, OutlinedButton, Screen, Text, View } from '@components/common';
+
 import { OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
+import { CreditReportEventsApiResponse, PurchasedSubscription } from '@typings/responses';
 
 interface IScoringDetailsModuleProps {
   navigation: OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>['navigation'];
   score?: number;
   loading: boolean;
+  onPayReport(): void;
   onPressUpdate(): void;
   subscription: PurchasedSubscription | undefined;
+  creditReportEvents: CreditReportEventsApiResponse | null;
 }
 
 const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
-  const { navigation, score, loading, subscription, onPressUpdate } = props;
+  const { navigation, score, loading, subscription, onPressUpdate, onPayReport, creditReportEvents } = props;
   const { t } = useTranslation();
+  const { creditScore } = useAppDataCheckStore();
 
   const {
     message,
@@ -33,7 +41,7 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
     costText,
     disabled,
     secondaryText,
-  } = getSubscriptionDetails(subscription, navigation, onPressUpdate);
+  } = getSubscriptionDetails(subscription, navigation, onPressUpdate, onPayReport);
   const Button = secondButtonType === 'filled' ? FilledButton : OutlinedButton;
 
   const data = [
@@ -54,6 +62,17 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
     <Screen unsafe scroll px="zero">
       <Scoring rating={score || 0} />
       <ScoringText score={score || 0} />
+      <HistoryCard
+        loading={loading}
+        t18nTitle="logged_in:credit_report:last_credit_score_interogation"
+        date={creditScore?.responseDateTime}
+      />
+      <HistoryCard
+        loading={loading}
+        t18nTitle="logged_in:credit_report:last_credit_history_update"
+        date={creditReportEvents?.lastEventDateTime}
+      />
+
       <ScoringOptions
         image={require('@assets/images/scoring/grown.png')}
         title="logged_in:credit_report:scoring:scoring_negative"

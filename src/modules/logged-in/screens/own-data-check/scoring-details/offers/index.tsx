@@ -1,8 +1,8 @@
 import React from 'react';
-import { FilledButton, OutlinedButton, Text, View } from '@components/common';
-import { PurchasedSubscription } from '@typings/responses';
-import { TextRow } from '@modules/logged-out/parts';
 import { Trans } from 'react-i18next';
+import { FilledButton, OutlinedButton, Text, View } from '@components/common';
+
+import { PurchasedSubscription } from '@typings/responses';
 
 interface IScoringDetailsOffersProps {
   costText?: string;
