@@ -6,7 +6,7 @@ import { closeInAppBrowser, getQueryParams, openBrowserAuthAsync } from '@librar
 
 import type { ExecutePaymentApiResponse, ExecutePaymentBodyArgs } from '@typings/responses';
 
-type OnSuccess = (params: { payId: string; orderId: string }) => Promise<void>;
+type OnSuccess = (params: { payId: string; orderId: string; status?: string }) => Promise<void>;
 
 function useExecutePaymentService() {
   const [callback, callbackUtils] = useLazyAxios('/payment-purchases/call-back-payment', { method: 'get' });

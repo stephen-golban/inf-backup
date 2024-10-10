@@ -1,8 +1,8 @@
 import { Color } from '@theme/colors';
-import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps, SUBSCRIPTIONS_SCREENS } from '@typings/navigation';
-import { PurchasedSubscription } from '@typings/responses';
 import { isAfter, parseISO } from 'date-fns';
 import { useTranslation } from 'react-i18next';
+import { PurchasedSubscription } from '@typings/responses';
+import { LOGGED_IN_SCREENS, OwnDataCheckScreenProps, SUBSCRIPTIONS_SCREENS } from '@typings/navigation';
 
 interface SubscriptionResult {
   message: string;
@@ -22,8 +22,9 @@ interface SubscriptionResult {
 
 const getSubscriptionDetails = (
   subscription: PurchasedSubscription | undefined,
-  navigation: OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>['navigation'],
+  navigation: OwnDataCheckScreenProps<any>['navigation'],
   onPressUpdate: () => void,
+  onPayReport: () => void,
 ): SubscriptionResult => {
   const { t } = useTranslation();
 
@@ -58,7 +59,7 @@ const getSubscriptionDetails = (
 
   const creditScoreService = servicesAccesses?.find(s => s.service === 'CreditScore');
   const isCreditScoreIncluded = creditScoreService?.included || false;
-  const creditScorePrice = creditScoreService?.prices?.find((p: any) => p.service === 'CreditScore')?.price || 10;
+  const creditScorePrice = creditScoreService?.prices[0].price || 0;
 
   let discountText = undefined;
   if (discountData?.discount) {
@@ -107,13 +108,7 @@ const getSubscriptionDetails = (
       lowerButtonText: t('subscription.no_credit_score_lower_button_text'),
       discountText: t('subscription.no_credit_score_discount_text'),
       secondaryText: t('subscription.no_credit_score_discount_text'),
-      onPressFirstButton: async () => {
-        const res = await onPressUpdate();
-        navigation.navigate(LOGGED_IN_SCREENS.OWN_DATA_CHECK, {
-          screen: OWN_DATA_CHECK_SCREENS.SummaryReportStatus,
-          params: { status: 'accepted' },
-        });
-      },
+      onPressFirstButton: onPayReport,
       onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
     };
   } else if (!trial && !extraInquiriesRestriction && !isExpired && isCreditScoreIncluded) {

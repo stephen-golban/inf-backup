@@ -67,6 +67,7 @@
     "extra_inquiries_button_text": "Хочу кредитный рейтинг на сегодня",
 "extra_inquiries_lower_button_text": "Обновите для получения дополнительных преимуществ",
     "extra_inquiries_discount_text": "Some discount text",
+    "extra_inquiries_cost_text": "Сервис недоступен, выберите другой подписку",
     "no_credit_score_message": "Вы действительно свободны, когда у вас есть доступ к информации и контроль над своими финансовыми решениями.",
     "no_credit_score_button_text": "Хочу кредитный рейтинг на сегодня",
     "no_credit_score_lower_button_text": "Обновите для неограниченного доступа",
@@ -75,6 +76,7 @@
     "credit_score_included_message": "Вы действительно свободны, когда у вас есть доступ к информации и контроль над своими финансовыми решениями.",
     "credit_score_included_button_text": "Хочу кредитный рейтинг на сегодня",
     "credit_score_included_lower_button_text": "Запрос кредитного рейтинга на сегодня",
+    "credit_score_included_cost_text": "Нажмите с уверенностью, включено без ограничений",
     "credit_score_included_discount_text": "*<2>Бесплатная услуга, включенная в вашу подписку</2>. Для получения подробной информации, пожалуйста, обратитесь к разделу Подписки"
   },
 

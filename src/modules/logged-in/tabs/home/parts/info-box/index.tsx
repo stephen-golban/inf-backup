@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { chain } from 'lodash';
 import { useAppDataCheckStore } from '@store/data-check';
 
 import RowBox from './Row.Box';
@@ -27,11 +26,9 @@ function formatDate(subjectDate: string | Record<string, any>) {
 }
 
 const InfoBox: React.FC<IInfoBox> = props => {
-  const report = useAppDataCheckStore(state => state.creditReportSummary);
+  const inquiry = useAppDataCheckStore(state => state.inquiry);
+  const reportEvents = useAppDataCheckStore(state => state.reportEvents);
   const { fetchReport, onPressCreditReport, onPressNewCredit, onPressWhoCheckedCredit } = props;
-
-  const subjectDate = report?.creditReport.subjectUpdateDate!;
-  const maxUpdateDate = chain(report?.creditReport.commitments).values().flatten().filter('updateDate').map('updateDate').max().value();
 
   return (
     <View fill py="lg" px="md" br="xl" bblr={0} bbrr={0}>
@@ -53,8 +50,8 @@ const InfoBox: React.FC<IInfoBox> = props => {
         <View row center g="sm" maxw={'80%'}>
           <Text variant="12-reg" g="md" t18n="logged_in:home:info:last_interogation" />
         </View>
-        {subjectDate ? (
-          <Text variant="12-mid">{formatDate(subjectDate)}</Text>
+        {inquiry?.inquiryDateTime ? (
+          <Text variant="12-mid">{formatDate(inquiry?.inquiryDateTime)}</Text>
         ) : (
           <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="14-semi" color="blue" />
         )}
@@ -64,8 +61,8 @@ const InfoBox: React.FC<IInfoBox> = props => {
         <View row center g="sm" maxw={'80%'}>
           <Text variant="12-reg" g="md" t18n="logged_in:home:info:last_history_update" />
         </View>
-        {maxUpdateDate ? (
-          <Text variant="12-mid">{formatDate(maxUpdateDate)}</Text>
+        {reportEvents?.lastEventDateTime ? (
+          <Text variant="12-mid">{formatDate(reportEvents?.lastEventDateTime)}</Text>
         ) : (
           <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="12-semi" color="blue" />
         )}

@@ -1,4 +1,5 @@
-import { ICreditReportSummaryResponse, IvePositiveCommitment } from '@typings/responses';
+import { OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
+import { ICreditReportSummaryResponse, IvePositiveCommitment, PurchasedSubscription } from '@typings/responses';
 
 export interface ICreditReportSummaryModule {
   feedbackLoading: boolean;
@@ -10,6 +11,10 @@ export interface ICreditReportSummaryModule {
     reportResponseDateTime: Date | string | undefined;
   }): void;
   data: ICreditReportSummaryResponse | null;
+  subscription: PurchasedSubscription | undefined;
+  onPressUpdate(): void;
+  onPayReport(): void;
+  navigation: OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.CreditReportSummary>['navigation'];
 }
 
 export interface ICommitment extends IvePositiveCommitment {

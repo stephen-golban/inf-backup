@@ -5,6 +5,7 @@ import type { IAppDataCheckState } from '@typings/app';
 const initial_state: IAppDataCheckState = {
   inquiry: undefined,
   creditScore: null,
+  reportEvents: null,
   creditReportSummary: null,
 };
 

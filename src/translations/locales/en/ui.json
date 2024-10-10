@@ -67,6 +67,7 @@
     "extra_inquiries_message": "You are truly free when you have access to information and control over your financial decisions.",
     "extra_inquiries_button_text": "I want today's credit score",
     "extra_inquiries_lower_button_text": "Upgrade for more benefits",
+    "extra_inquiries_cost_text": "Service unavailable, choose another subscription",
     "extra_inquiries_discount_text": "Some discount text",
     "no_credit_score_message": "You are truly free when you have access to information and control over your financial decisions.",
     "no_credit_score_button_text": "I want today's credit score",
@@ -76,6 +77,7 @@
     "credit_score_included_message": "You are truly free when you have access to information and control over your financial decisions.",
     "credit_score_included_button_text": "I want today's credit score",
     "credit_score_included_lower_button_text": "Today's credit score inquiry",
+    "credit_score_included_cost_text": "Tap with confidence, unlimited included",
     "credit_score_included_discount_text": "*<2>Free service included</2> according to your subscription. For details, please refer to the Subscriptions section"
   },
 
