@@ -34,16 +34,16 @@ const PaymentCardsModule: React.FC<IPaymentCardsModule> = ({ onPressContinue, pa
           ) : (
             <>
               <CreditCards.Stack ref={stackRef} setCurrentCard={setCurrentCard} data={cards.data} renderItem={_renderItem} />
-              <CreditCards.Register onPress={onPressRegisterCard} loading={isRegistering} />
               {hasAutomaticTermExtension && (
                 <CreditCards.TermExtension toggled={automaticTermExtension} onChange={setAutomaticTermExtension} />
               )}
             </>
           )}
+          <CreditCards.Register onPress={onPressRegisterCard} loading={isRegistering} />
         </View>
       </View>
 
-      {currentCard && (
+      {currentCard && !isEmpty(cards.data) && (
         <FilledButton
           t18n="ui:continue"
           loading={paymentLoading}

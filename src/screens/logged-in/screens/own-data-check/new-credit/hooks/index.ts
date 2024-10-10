@@ -1,19 +1,21 @@
-import { useMemo, useState } from 'react';
 import { lead_api } from '@api/base';
 import { useAppStore } from '@store/app';
-import { differenceInDays, format, isAfter } from 'date-fns';
-import { useTranslation, useTryCatch } from '@library/hooks';
+import { useMemo, useState } from 'react';
+import { useTranslation } from '@library/hooks';
 import { useAxios, useLazyAxios } from '@api/hooks';
+import { differenceInDays, format, isAfter } from 'date-fns';
 
+import type { LoanApiResponse } from '@typings/responses/loan';
 import type { CreditReportQualityApiResponse } from '@typings/responses';
 import type { LoanFormFields } from '@modules/logged-in/screens/own-data-check/new-credit/loan-form/resolver';
 
 const useNewCredit = () => {
   const { t } = useTranslation();
   const { user, subscription } = useAppStore(state => state);
-  const [loanResStatus, setLoanResStatus] = useState<[any, number] | null>(null);
+  const [showLoanModal, setShowLoanModal] = useState<boolean>(false);
+  const [loanResponse, setLoanResponse] = useState<LoanApiResponse | null>(null);
 
-  const userAccountId = user?.accounts[0].accountId || subscription?.subscriptionAccounts[0].accountId;
+  const userAccountId = user?.accounts[0].accountId || subscription?.subscriptionAccounts?.[0].accountId;
 
   const { data, loading, refetch } = useAxios<CreditReportQualityApiResponse>('/credit-report-quality?subscriptionFreeAccess=true', {
     method: 'post',
@@ -23,20 +25,25 @@ const useNewCredit = () => {
     },
   });
 
-  const [call, { loading: loanFormLoading }] = useLazyAxios('/applications', { method: 'post', axiosInstance: lead_api });
+  const [call, { loading: loanFormLoading, error }] = useLazyAxios<LoanApiResponse>('/applications', {
+    method: 'post',
+    axiosInstance: lead_api,
+  });
 
   const isPositive = data?.creditReportQualityType === 'POSITIVE';
 
   const isSubscriptionValid = useMemo(() => {
     if (!subscription) return false;
+    if (!subscription.subscriptionAccounts) return false;
 
-    const today = new Date().setHours(0, 0, 0, 0);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
     const termDate = new Date(subscription.subscriptionAccounts[0].termDateTime);
 
     return !subscription.trial && isAfter(termDate, today);
   }, [subscription]);
 
-  const onSubmitLoan = useTryCatch(async (args: LoanFormFields) => {
+  const onSubmitLoan = async (args: LoanFormFields) => {
     const body = {
       identityNumber: data?.identityNumber,
       resident: true,
@@ -44,7 +51,7 @@ const useNewCredit = () => {
         subjectType: 'INDIVIDUAL',
         requestReason: 'CREDIT_FOR_INDIVIDUAL',
         requestBasis: data?.reportId,
-        requestDate: format(new Date(), 'yyyy-MM-dd'),
+        requestDate: new Date(),
         requestAmount: args.sliderValue,
         requestCurrency: 'MDL',
         creditDuration: args.term.value,
@@ -64,37 +71,51 @@ const useNewCredit = () => {
       creditReportQuality: data?.creditReportQualityType,
       otherActiveNegativeCommitments: data?.otherActiveNegativeCommitments,
     };
-    return await call(body, (res, status) => setLoanResStatus([res, status]));
-  });
+    await call(body, setLoanResponse, { hideErrors: true }).then(() => setShowLoanModal(true));
+  };
 
-  const getStatusText = useMemo(() => {
-    const [res, status] = loanResStatus || [];
-    if (status === 200 || status === 201) {
-      return t('logged_in:credit_report:new:sheets:request_success', { id: res.id });
-    }
-    if (status === 409 && res.lastLeadDate) {
-      const formattedDate = format(res.lastLeadDate, 'MM/dd/yyyy');
-      const days = differenceInDays(new Date(), new Date(res.lastLeadDate));
-      if (days <= 2) {
-        return t('logged_in:credit_report:new:sheets:request_pending', { date: formattedDate, id: res.id });
-      } else if (days > 2) {
-        return t('logged_in:credit_report:new:sheets:request_duplicate', { date: formattedDate, id: res.id });
+  const getLoanResponseType = useMemo(() => {
+    if (error && error?.response) {
+      const { status, data } = error.response;
+      if (typeof data === 'number') return;
+      const { lastLeadDate, expirationDate, lastLeadId } = data;
+
+      if (status === 409) {
+        const days = differenceInDays(new Date(), new Date(lastLeadDate));
+
+        if (days <= 2) {
+          return {
+            text: t('logged_in:credit_report:new:sheets:request_pending'),
+            type: 'pending',
+          };
+        } else if (days > 2) {
+          return {
+            text: t('logged_in:credit_report:new:sheets:request_duplicate', { date: expirationDate, id: lastLeadId }),
+            type: 'duplicate',
+          };
+        }
       }
     }
-  }, [loanResStatus]);
+    if (loanResponse && typeof loanResponse === 'number') {
+      return {
+        text: t('logged_in:credit_report:new:sheets:request_success', { id: loanResponse }),
+        type: 'success',
+      };
+    }
+  }, [loanResponse, error]);
 
   return {
     data,
     loading,
     isPositive,
-    getStatusText,
-    loanResStatus,
+    showLoanModal,
     loanFormLoading,
+    getLoanResponseType,
     isSubscriptionValid,
     fns: {
       refetch,
       onSubmitLoan,
-      setLoanResStatus,
+      setShowLoanModal,
     },
   };
 };

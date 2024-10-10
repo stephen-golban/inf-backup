@@ -1,4 +1,5 @@
 export * from './faq';
+export * from './loan';
 export * from './login';
 export * from './tokens';
 export * from './payments';

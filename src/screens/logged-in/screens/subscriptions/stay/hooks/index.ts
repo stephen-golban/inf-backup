@@ -1,11 +1,9 @@
-import { has } from 'lodash';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
 import { useToast } from 'react-native-toast-notifications';
 import { useGetSubscription } from '@services/subscription';
-
-import { calculateDiscountedPrice } from '@modules/logged-in/screens/profile/change-subscription/method';
+import useRetentionSubscription from './use-retention-subscription';
 
 import { Reason } from '@typings/navigation';
 import type { SelectedPlan } from '@modules/logged-in/screens/subscriptions/subscriptions/type';
@@ -20,6 +18,8 @@ type Props = {
 const useStayScreen = ({ comment, reason, goToHome, goToRemove }: Props) => {
   const [selectedPlan, setSelectedPlan] = useState<SelectedPlan>();
 
+  const { retentionOffer, discountedPrice, loading: screenLoading } = useRetentionSubscription();
+
   const toast = useToast();
   const { getSubscription, loading: subscriptionLoading, subscription } = useGetSubscription(false);
   const [sendFeedback, { loading: feedbackLoading }] = useLazyAxios({ method: 'post', url: `/feedback?type=${reason}` });
@@ -28,25 +28,12 @@ const useStayScreen = ({ comment, reason, goToHome, goToRemove }: Props) => {
     url: '/subscription-management/unsubscribe',
   });
 
-  const hasRetentionOffer = has(subscription, 'retentionOfferDiscount') || (subscription?.retentionOfferMonths ?? 0) > 0;
-
-  const discountedPrice = useMemo(() => {
-    if (hasRetentionOffer && subscription) {
-      if (subscription?.retentionOfferDiscount) {
-        const initialPrice = subscription.price;
-        const discountAmount = subscription.retentionOfferDiscount.discountAmount;
-        const discountType = subscription.retentionOfferDiscount.discountType;
-
-        return calculateDiscountedPrice(initialPrice, discountAmount, discountType);
-      }
-    }
-  }, [hasRetentionOffer, subscription]);
-
   const onActivate = () => {
-    if (hasRetentionOffer && subscription && discountedPrice) {
-      const { id, retentionOfferDiscount } = subscription;
-      if (retentionOfferDiscount) {
-        setSelectedPlan({ id, price: discountedPrice, discount: retentionOfferDiscount.discountAmount, isAnnual: false });
+    if (retentionOffer && subscription && discountedPrice) {
+      const { id } = subscription;
+      if (retentionOffer.discount) {
+        const { discount } = retentionOffer;
+        setSelectedPlan({ id, price: discountedPrice, discount: discount.discountAmount, isAnnual: false });
       }
     }
   };
@@ -67,15 +54,15 @@ const useStayScreen = ({ comment, reason, goToHome, goToRemove }: Props) => {
   const onDismiss = () => setSelectedPlan(undefined);
 
   const removeLoading = feedbackLoading || loadingRemoveSubscription || subscriptionLoading;
-
   return {
     onRemove,
     onDismiss,
     onActivate,
     selectedPlan,
+    screenLoading,
     removeLoading,
     discountedPrice,
-    hasRetentionOffer,
+    retentionOffer,
   };
 };
 

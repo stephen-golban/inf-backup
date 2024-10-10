@@ -10,8 +10,6 @@ const DownloadReport: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.Do
   const reportId = route.params.id;
   const generationDateTime = route.params.generationDateTime;
 
-  console.log(reportId);
-
   const formattedGenerationDateTime = React.useMemo(() => {
     if (typeof generationDateTime === 'string') {
       return generationDateTime;

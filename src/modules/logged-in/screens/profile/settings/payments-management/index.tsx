@@ -50,9 +50,11 @@ const PaymentsManagementModule: React.FC = () => {
       ) : (
         <View px="lg" minh={300}>
           {cards.data && <CreditCards.Stack ref={stackRef} data={cards.data} renderItem={_renderItem} />}
-          <CreditCards.Register onPress={functions.onPressRegisterCard} loading={isRegistering} />
         </View>
       )}
+      <View px="lg" mt="md">
+        <CreditCards.Register onPress={functions.onPressRegisterCard} loading={isRegistering} />
+      </View>
 
       <HistoryList data={history.data} />
     </Screen>

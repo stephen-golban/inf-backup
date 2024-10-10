@@ -44,7 +44,7 @@ interface PurpleSelf {
   templated: boolean;
 }
 
-interface DiscountData {
+export interface DiscountData {
   discount: boolean;
   discountType: string;
   discountAmount: number;

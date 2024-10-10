@@ -1,16 +1,18 @@
 import React from 'react';
 
 import { format } from 'date-fns';
+import { useTheme } from '@theme/index';
 import useWhoCheckedCredit from './hooks';
 
 import { NewCreditModule } from '@modules/logged-in';
-import { BottomSheet, Text, View } from '@components/common';
+import { Avatar, BottomSheet, Image, Text, View } from '@components/common';
 
-import type { I18nKey } from '@translations/locales';
 import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, SUBSCRIPTIONS_SCREENS, type OwnDataCheckScreenProps } from '@typings/navigation';
 
 const NewCredit: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.NewCredit>> = ({ navigation }) => {
-  const { data, loading, loanFormLoading, getStatusText, isSubscriptionValid, isPositive, loanResStatus, fns } = useWhoCheckedCredit();
+  const { colors } = useTheme();
+  const { data, loading, loanFormLoading, getLoanResponseType, isSubscriptionValid, isPositive, showLoanModal, fns } =
+    useWhoCheckedCredit();
 
   const onPressDownload = () => {
     if (isSubscriptionValid) {
@@ -24,6 +26,16 @@ const NewCredit: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.NewCred
     return navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX });
   };
 
+  const imageSource = React.useMemo(() => {
+    if (getLoanResponseType) {
+      const { type } = getLoanResponseType;
+      if (type === 'pending') return require('@assets/images/loan_pending.png');
+      if (type === 'duplicate') return require('@assets/images/loan_duplicate.png');
+      if (type === 'success') return require('@assets/images/loan_success.png');
+    }
+    return;
+  }, [getLoanResponseType]);
+
   return (
     <>
       <NewCreditModule
@@ -35,10 +47,21 @@ const NewCredit: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.NewCred
         onPressDownload={onPressDownload}
         isSubscriptionValid={isSubscriptionValid}
       />
-      <BottomSheet isVisible={!!loanResStatus} onDismiss={() => fns.setLoanResStatus(null)}>
-        <View>
-          <Text t18n={getStatusText as I18nKey} />
-        </View>
+      <BottomSheet
+        isVisible={showLoanModal}
+        onDismiss={() => fns.setShowLoanModal(false)}
+        snapPoints={['35%']}
+        backgroundStyle={{ backgroundColor: colors.lightBlue }}>
+        {getLoanResponseType && (
+          <View fill px="lg">
+            {imageSource && (
+              <Avatar.Base alignSelf="center" size={150}>
+                <Image source={imageSource} />
+              </Avatar.Base>
+            )}
+            <Text variant="16-mid" text={getLoanResponseType.text} color="gray_4d" />
+          </View>
+        )}
       </BottomSheet>
     </>
   );

@@ -1,4 +1,4 @@
-import Share from 'react-native-share';
+import Share, { ShareOptions } from 'react-native-share';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 
 import { isIos } from '@library/method';
@@ -17,30 +17,36 @@ function createFileName(fileUrl: string, id: string) {
   return splitted.slice(3).join('-');
 }
 
-function onDownloadResponse(localFilePath: string, fileName: string, toast: ToastType, showToast: boolean) {
+async function onDownloadResponse(localFilePath: string, fileName: string, toast: ToastType, showToast: boolean) {
   if (isIos) {
-    const options = {
+    const options: ShareOptions = {
       url: `file://${localFilePath}`,
       failOnCancel: false,
     };
 
-    return Share.open(options)
-      .then(shareResponse => {
-        if (shareResponse.success) {
-          showToast && toast.show(translate('ui:success'), { type: 'success' });
-          return true;
-        } else {
-          return false;
-        }
-      })
-      .catch(err => {
-        console.error('Error sharing the file: ', err);
-        toast.show(translate('validation:error:have_error'), { type: 'danger' });
+    try {
+      const shareResponse = await Share.open(options);
+      if (shareResponse.success) {
+        showToast && toast.show(translate('ui:success'), { type: 'success' });
+        return true;
+      } else {
         return false;
-      });
+      }
+    } catch (err) {
+      console.error('Error sharing the file: ', err);
+      toast.show(translate('validation:error:have_error'), { type: 'danger' });
+      return false;
+    }
   } else {
-    showToast && toast.show(`${translate('ui:success')} \n${fileName}`, { type: 'success' });
-    return true;
+    try {
+      await ReactNativeBlobUtil.android.actionViewIntent(localFilePath, 'application/pdf');
+      showToast && toast.show(`${translate('ui:success')} \n${fileName}`, { type: 'success' });
+      return true;
+    } catch (err) {
+      console.error('Error opening the file on Android: ', err);
+      toast.show(translate('validation:error:have_error'), { type: 'danger' });
+      return false;
+    }
   }
 }
 
