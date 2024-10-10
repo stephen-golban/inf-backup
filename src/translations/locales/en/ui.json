@@ -40,12 +40,18 @@
     "no_response_from_server": "No response from server",
     "no_valid_term_date": "No valid expiration date",
     "invitation_submitted_successfully": "Invitation submitted successfully",
-    "user_subscription_no_access": "Service not included in subscription"
+    "user_subscription_no_access": "Service not included in subscription",
+    "credit_card_deleted": "Your credit card was deleted successfully"
   },
 
   "empty_state": "No data found to display...",
 
   "update_data": "Update data",
+
+  "delete_card": {
+    "title": "Delete Card",
+    "description": "Are you sure you want to delete this card?"
+  },
 
   "confirmation": "Confirmation",
   "are_you_sure": "Are you sure you want to continue?",

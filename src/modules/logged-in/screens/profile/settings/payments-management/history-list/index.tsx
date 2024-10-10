@@ -1,29 +1,29 @@
 import React from 'react';
 
-import { useAxios } from '@api/hooks';
+import { isEmpty } from 'lodash';
 
 import ListItem from './List.Item';
 import ListHeader from './List.Header';
-import { Text } from '@components/common';
-import { ListView, Paper } from '@components/ui';
+import { EmptyState, ListView, Paper } from '@components/ui';
 
 import type { AllPaymentsApiResponse } from '@typings/responses';
 
-const HistoryList = () => {
-  const { data, loading, refetch } = useAxios<AllPaymentsApiResponse>('/payment-purchases', { method: 'get' });
+interface IHistoryList {
+  data: AllPaymentsApiResponse | undefined;
+}
 
+const HistoryList: React.FC<IHistoryList> = ({ data }) => {
+  const isEmptyData = isEmpty(data?.payments);
   return (
     <Paper bg="lightBlue" p="xl" br={8} mt={20} fill btlr="xl" btrr="xl">
       <ListView
         type="flatlist"
-        canRefresh
-        onRefresh={refetch}
-        refreshing={loading}
+        scrollEnabled={false}
         data={data?.payments}
-        ListHeaderComponent={ListHeader}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => <ListItem {...item} />}
-        ListEmptyComponent={<Text t18n="profile:settings:payment_history_screen:no_payment_history" />}
+        ListHeaderComponent={isEmptyData ? null : ListHeader}
+        ListEmptyComponent={<EmptyState t18n="profile:settings:payment_history_screen:no_payment_history" />}
       />
     </Paper>
   );

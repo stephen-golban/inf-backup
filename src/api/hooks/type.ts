@@ -25,7 +25,7 @@ export interface Config<Data> extends AxiosRequestConfig {
   additionalUrl?: string;
 }
 
-export type OnSuccess<Data> = (arg: Data) => void;
+export type OnSuccess<Data> = (arg: Data, status: number) => void;
 
 export type GetData<Data> = (
   lazyData?: Config<Data>['data'],

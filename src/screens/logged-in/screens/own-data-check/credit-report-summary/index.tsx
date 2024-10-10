@@ -9,6 +9,7 @@ import { OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/naviga
 
 const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.CreditReportSummary>> = ({ navigation }) => {
   const report = useAppDataCheckStore(state => state.creditReportSummary);
+  const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportSummaryId);
 
   const [call, { loading }] = useLazyAxios({
     method: 'post',
@@ -16,7 +17,12 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
   });
 
   function onOrderReport() {
-    navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, { id: report?.reportId || 0 });
+    if (reportId) {
+      navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
+        id: reportId,
+        generationDateTime: report?.responseDateTime as any,
+      });
+    }
   }
 
   return (

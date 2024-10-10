@@ -1,10 +1,11 @@
+import { useState } from 'react';
+import { isBefore } from 'date-fns';
 import { useMount } from 'react-use';
+import { useAppStore } from '@store/app';
 import { useLazyAxios } from '@api/hooks';
 import { useAppDataCheckStore } from '@store/data-check';
 
 import type { LastInquiryApiResponse } from '@typings/responses';
-import { useState } from 'react';
-import { useAppStore } from '@store/app';
 
 const useHomeScreen = () => {
   const subscription = useAppStore(state => state.subscription);
@@ -13,13 +14,15 @@ const useHomeScreen = () => {
 
   useMount(async () => await call(undefined, res => useAppDataCheckStore.setState({ inquiry: res })));
 
+  const trialTermDate = subscription?.subscriptionAccounts[0].termDateTime;
+
   useMount(() => {
-    if (subscription && subscription.trial) {
-      setIsTrialModalVisible(true);
+    if (subscription && subscription.trial && trialTermDate) {
+      if (isBefore(new Date(trialTermDate), new Date())) {
+        setIsTrialModalVisible(true);
+      }
     }
   });
-
-  const trialTermDate = subscription?.subscriptionAccounts[0].termDateTime;
 
   return { refetch, loading, isTrialModalVisible, setIsTrialModalVisible, trialTermDate };
 };
