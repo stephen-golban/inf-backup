@@ -5,6 +5,7 @@ export * from './text';
 export * from './view';
 export * from './tabs';
 export * from './image';
+export * from './alert';
 export * from './modal';
 export * from './avatar';
 export * from './screen';

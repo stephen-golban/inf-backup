@@ -7,9 +7,7 @@ const base_api = axios.create({ baseURL: BASE_URL });
 const lead_api = axios.create({
   baseURL: BASE_LEAD_URL,
   headers: {
-    Accept: 'application/json;charset=UTF-8',
     Authorization: `Basic ${LEAD_TOKEN}`,
-    'Content-Type': 'application/json',
   },
 });
 

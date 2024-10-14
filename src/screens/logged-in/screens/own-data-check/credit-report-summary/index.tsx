@@ -15,6 +15,7 @@ import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } fr
 
 const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.CreditReportSummary>> = ({ navigation }) => {
   const report = useAppDataCheckStore(state => state.creditReportSummary);
+  const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportSummaryId);
 
   const { fetchCreditReport, loading: loadingCreditReportSummary } = useCreditReportSummaryService();
 
@@ -34,7 +35,12 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
   const [getInquiry, { loading: loadingInquiry }] = useLazyAxios<LastInquiryApiResponse>('/inquiry-report', { method: 'get' });
 
   function onOrderReport() {
-    navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, { id: report?.reportId || 0 } as never);
+    if (reportId) {
+      navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
+        id: reportId,
+        generationDateTime: report?.responseDateTime as any,
+      });
+    }
   }
 
   const onPayReport = () => {

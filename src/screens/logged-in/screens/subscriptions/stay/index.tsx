@@ -1,47 +1,41 @@
 import React from 'react';
 
 import useStayScreen from './hooks';
-import { useGetSubscription, usePurchaseSubscriptionService } from '@services/subscription';
+import { usePurchaseSubscriptionService } from '@services/subscription';
 
 import { BottomSheet } from '@components/common';
 import { PaymentCardsModule, StayModule } from '@modules/logged-in';
 
-import { LOGGED_IN_STACK, LOGGED_IN_TABS, Reason, SUBSCRIPTIONS_SCREENS, type SubscriptionsStackScreenProps } from '@typings/navigation';
+import { LOGGED_IN_STACK, LOGGED_IN_TABS, SUBSCRIPTIONS_SCREENS, type SubscriptionsStackScreenProps } from '@typings/navigation';
 
-const StayScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS.STAY>> = props => {
-  const { navigation, route } = props;
-  const { getSubscription, loading: subscriptionLoading } = useGetSubscription(false);
-  const { loading, discountedPrice, price, subscriptionId, selectedPlan, ...fns } = useStayScreen(props);
+const StayScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS.STAY>> = ({ navigation, route }) => {
+  const { comment, reason } = route.params;
 
-  const { loadingPayment, loadingPurchase, onCardSelected } = usePurchaseSubscriptionService({
-    selectedPlan,
-    retentionOffer: true,
-    onSuccess: fns.onSuccess,
-  });
+  const goToHome = () => navigation.navigate(LOGGED_IN_STACK.TABS, { screen: LOGGED_IN_TABS.HOME });
+  const goToRemove = () => navigation.navigate(SUBSCRIPTIONS_SCREENS.REMOVE, { comment, reason });
 
-  const onRemove = async () => {
-    if (route.params.reason === Reason.CANCEL_SUBSCRIPTION) {
-      await fns.call({ message: route.params.comment });
-      await fns.removeSubscription({ subscriptionId });
-      await getSubscription();
-      navigation.navigate(LOGGED_IN_STACK.TABS, { screen: LOGGED_IN_TABS.HOME });
-    } else {
-      navigation.navigate(SUBSCRIPTIONS_SCREENS.REMOVE, { comment: route.params.comment, reason: route.params.reason });
-    }
+  const hook = useStayScreen({ comment, reason, goToHome, goToRemove });
+
+  const onSuccess = () => {
+    hook.onDismiss();
+    navigation.navigate(LOGGED_IN_STACK.TABS, { screen: LOGGED_IN_TABS.HOME });
   };
+
+  const service = usePurchaseSubscriptionService({ selectedPlan: hook.selectedPlan, retentionOffer: true, onSuccess });
 
   return (
     <>
       <StayModule
-        loading={loading || subscriptionLoading}
-        loadingPurchase={loadingPurchase}
-        offerPrice={discountedPrice}
-        oldOfferPrice={price}
-        onActivateOffer={fns.onActivate}
-        onRemove={onRemove}
+        onRemove={hook.onRemove}
+        removing={hook.removeLoading}
+        onActivateOffer={hook.onActivate}
+        offerPrice={hook.discountedPrice}
+        screenLoading={hook.screenLoading}
+        retentionOffer={hook.retentionOffer}
+        purchasing={service.loadingPurchase}
       />
-      <BottomSheet isVisible={!!selectedPlan} onDismiss={fns.onDismiss} snapPoints={['75%']}>
-        <PaymentCardsModule paymentLoading={loadingPayment} onPressContinue={onCardSelected} hasAutomaticTermExtension />
+      <BottomSheet isVisible={!!hook.selectedPlan} onDismiss={hook.onDismiss} snapPoints={['75%']}>
+        <PaymentCardsModule paymentLoading={service.loadingPayment} onPressContinue={service.onCardSelected} hasAutomaticTermExtension />
       </BottomSheet>
     </>
   );

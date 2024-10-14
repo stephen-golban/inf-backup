@@ -26,6 +26,7 @@ const palette = {
   darkGray: 'rgb(66, 66, 66)', // #424242
   gray: 'rgb(107, 107, 107)',
   veryPaleGray: 'rgb(238, 238, 238)', // #eeeeee
+  gray_4d: 'rgb(77, 81, 86)', // #4d5156
   gray_66: 'rgb(102, 102, 102)', // #666666
   gray_7e: 'rgb(126, 126, 126)', // #7e7e7e
   gray_41: 'rgb(104, 107, 107)', // #686b6b

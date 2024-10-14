@@ -6,7 +6,7 @@ import { Screen, Text, View } from '@components/common';
 import { ComparisionTabs, Faq, SubscriptionCard } from './parts';
 
 import type { SelectedPlan } from './type';
-import type { IAllSubscriptionsResponse, PurchasedSubscription } from '@typings/responses';
+import type { IAllSubscriptionsResponse } from '@typings/responses';
 
 interface ISubscriptionsModule {
   loading?: boolean;
@@ -15,19 +15,17 @@ interface ISubscriptionsModule {
   onPressPlan(val: SelectedPlan): void;
   purchaseLoading?: (id: number) => boolean;
   all: IAllSubscriptionsResponse | undefined;
-  purschased: PurchasedSubscription | undefined;
 }
 
 const SubscriptionsModule: React.FC<ISubscriptionsModule> = ({
   all,
   loading,
-  purschased,
   onRefresh,
   onPressPlan,
   purchaseLoading,
   onCancelSubscription,
 }) => {
-  const { subscriptions, plans, setSubscriptions } = useSubscriptionsModule(all, purschased);
+  const { subscriptions, plans, setSubscriptions } = useSubscriptionsModule(all);
 
   return (
     <Screen scroll unsafe style={{ padding: 16 }} bg="white" loading={loading || !subscriptions} onRefresh={onRefresh}>

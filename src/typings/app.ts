@@ -5,8 +5,8 @@ import type {
   CreditReportEventsApiResponse,
   ICreditReportSummaryResponse,
   ICreditScoreResponse,
-  LastInquiryApiResponse,
   PurchasedSubscription,
+  LastInquiryApiResponse,
 } from './responses';
 
 export interface IAppState {

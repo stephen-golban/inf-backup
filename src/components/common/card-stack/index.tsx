@@ -5,14 +5,15 @@ import { useSharedValue } from 'react-native-reanimated';
 import Card from './Card';
 import { View } from '../view';
 
-interface ICardStack<T extends any> {
+interface ICardStack<T> {
   data: T[];
   maxVisibleItems?: number;
+  setCurrentCard?: (item: T) => void;
   renderItem(item: T, isFirst: boolean): JSX.Element;
 }
 
-const _CardStack = <T extends any>({ data, renderItem, maxVisibleItems = 3 }: ICardStack<T>, ref: React.Ref<any>) => {
-  const [newData, setNewData] = React.useState(data);
+const _CardStack = <T,>({ data, renderItem, setCurrentCard, maxVisibleItems = 3 }: ICardStack<T>, ref: React.Ref<any>) => {
+  const [newData, setNewData] = React.useState<T[]>(data);
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const animatedValue = useSharedValue(0);
@@ -26,12 +27,18 @@ const _CardStack = <T extends any>({ data, renderItem, maxVisibleItems = 3 }: IC
     },
   }));
 
+  React.useEffect(() => {
+    setCurrentCard?.(newData[currentIndex]);
+  }, [currentIndex, newData]);
+
   return (
     <View fill center>
       {newData.map((item, index) => {
         if (index > currentIndex + maxVisibleItems || index < currentIndex) {
           return null;
         }
+
+        const isFirst = index === currentIndex;
 
         return (
           <Card
@@ -43,9 +50,9 @@ const _CardStack = <T extends any>({ data, renderItem, maxVisibleItems = 3 }: IC
             animatedValue={animatedValue}
             currentIndex={currentIndex}
             setNewData={setNewData as any}
-            setCurrentIndex={setCurrentIndex}
             maxVisibleItems={maxVisibleItems}
-            children={renderItem(item, index === currentIndex)}
+            setCurrentIndex={setCurrentIndex}
+            children={renderItem(item, isFirst)}
           />
         );
       })}
@@ -53,4 +60,4 @@ const _CardStack = <T extends any>({ data, renderItem, maxVisibleItems = 3 }: IC
   );
 };
 
-export const CardStack = React.forwardRef(_CardStack);
+export const CardStack = React.forwardRef(_CardStack) as <T>(props: ICardStack<T> & { ref?: React.Ref<any> }) => React.ReactElement;

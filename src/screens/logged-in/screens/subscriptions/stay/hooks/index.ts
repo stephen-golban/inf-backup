@@ -1,66 +1,68 @@
 import { useState } from 'react';
-import { useAppStore } from '@store/app';
 import { useLazyAxios } from '@api/hooks';
+import { useTryCatch } from '@library/hooks';
+import { useToast } from 'react-native-toast-notifications';
+import { useGetSubscription } from '@services/subscription';
+import useRetentionSubscription from './use-retention-subscription';
 
-import { calculateDiscountedPrice } from '@modules/logged-in/screens/profile/change-subscription/method';
-import { LOGGED_IN_STACK, LOGGED_IN_TABS, SUBSCRIPTIONS_SCREENS, SubscriptionsStackScreenProps } from '@typings/navigation';
-
+import { Reason } from '@typings/navigation';
 import type { SelectedPlan } from '@modules/logged-in/screens/subscriptions/subscriptions/type';
 
-const useStayScreen = ({ navigation, route }: SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS.STAY>) => {
-  const type = route.params.reason;
-  const { subscription } = useAppStore();
+type Props = {
+  comment: string;
+  reason: Reason;
+  goToHome: () => void;
+  goToRemove: () => void;
+};
+
+const useStayScreen = ({ comment, reason, goToHome, goToRemove }: Props) => {
   const [selectedPlan, setSelectedPlan] = useState<SelectedPlan>();
 
-  const price = subscription?.price;
-  const subscriptionId = subscription?.id;
+  const { retentionOffer, discountedPrice, loading: screenLoading } = useRetentionSubscription();
 
-  const discountedPrice = calculateDiscountedPrice(
-    subscription?.price!,
-    subscription?.discountData.discountAmount!,
-    subscription?.discountData.discountType!,
-  );
-
-  const [call, { loading }] = useLazyAxios({
-    method: 'post',
-    url: `/feedback?type=${type}`,
-  });
-
-  const [removeSubscription, { loading: loadingRemoveSubscription }] = useLazyAxios({
+  const toast = useToast();
+  const { getSubscription, loading: subscriptionLoading, subscription } = useGetSubscription(false);
+  const [sendFeedback, { loading: feedbackLoading }] = useLazyAxios({ method: 'post', url: `/feedback?type=${reason}` });
+  const [removeSubscription, { loading: loadingRemoveSubscription }] = useLazyAxios<string>({
     method: 'post',
     url: '/subscription-management/unsubscribe',
   });
 
   const onActivate = () => {
-    if (subscription) {
-      setSelectedPlan({
-        id: subscription.id,
-        price: discountedPrice,
-        discount: subscription.discountData.discountAmount,
-        isAnnual: false,
-      });
+    if (retentionOffer && subscription && discountedPrice) {
+      const { id } = subscription;
+      if (retentionOffer.discount) {
+        const { discount } = retentionOffer;
+        setSelectedPlan({ id, price: discountedPrice, discount: discount.discountAmount, isAnnual: false });
+      }
     }
   };
 
+  const onRemove = useTryCatch(async () => {
+    if (subscription) {
+      if (reason === Reason.CANCEL_SUBSCRIPTION) {
+        await sendFeedback({ message: comment });
+        await removeSubscription({ subscriptionId: subscription?.id }, res => toast.show(res, { type: 'success' }));
+        await getSubscription();
+        goToHome();
+      } else {
+        goToRemove();
+      }
+    }
+  });
+
   const onDismiss = () => setSelectedPlan(undefined);
 
-  const onSuccess = () => {
-    onDismiss();
-    navigation.navigate(LOGGED_IN_STACK.TABS, { screen: LOGGED_IN_TABS.HOME });
-  };
-
-  const LOADING = loading || loadingRemoveSubscription;
+  const removeLoading = feedbackLoading || loadingRemoveSubscription || subscriptionLoading;
   return {
-    call,
+    onRemove,
     onDismiss,
-    onSuccess,
     onActivate,
-    removeSubscription,
-    price,
     selectedPlan,
-    subscriptionId,
-    loading: LOADING,
+    screenLoading,
+    removeLoading,
     discountedPrice,
+    retentionOffer,
   };
 };
 

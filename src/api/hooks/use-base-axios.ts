@@ -6,7 +6,7 @@ import useAxiosReducer from './use-axios-reducer';
 import { useToast } from 'react-native-toast-notifications';
 
 import type { AxiosResponse } from 'axios';
-import type { BaseAxios, Config, OnSuccess } from './type';
+import type { BaseAxios, BaseError, Config, OnSuccess } from './type';
 
 function useBaseAxios<Data>(url: string): BaseAxios<Data>;
 function useBaseAxios<Data>(config: Config<Data>): BaseAxios<Data>;
@@ -54,21 +54,24 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
         if (isMounted()) {
           dispatch({ type: 'REQUEST_SUCCESS', payload: res.data });
           if (onSuccess) {
-            onSuccess(res.data || (res.status as Data));
+            onSuccess(res.data || (res.status as Data), res.status);
           }
           return res.data || (res.status as Data);
         }
       } catch (e) {
         if (isMounted()) {
-          const errResMessage = (e as any).response?.data?.message;
-          if (errResMessage) {
-            toast.show(errResMessage, { type: 'danger' });
-          } else {
-            if (__DEV__) {
-              toast.show((e as any).message, { type: 'danger' });
+          const err = e as BaseError<Data>;
+          const errResMessage = (err.response?.data as any)?.message;
+          if (!lazyConfig?.hideErrors) {
+            if (errResMessage) {
+              toast.show(errResMessage, { type: 'danger' });
+            } else {
+              if (__DEV__) {
+                toast.show(err.message, { type: 'danger' });
+              }
             }
           }
-          dispatch({ type: 'REQUEST_FAILED', payload: e as Error });
+          dispatch({ type: 'REQUEST_FAILED', payload: err });
         }
       }
     },

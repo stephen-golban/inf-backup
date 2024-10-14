@@ -76,6 +76,12 @@ export type ScreenProps = {
 
   onRefresh?: (() => void) | undefined;
 
+  /**
+   * Disables the predefined 500ms loading when the screen is mounted
+   * @default false
+   */
+  disableMountLoading?: boolean;
+
   removeInsets?: boolean;
 } & SafeAreaViewProps &
   ViewProps;

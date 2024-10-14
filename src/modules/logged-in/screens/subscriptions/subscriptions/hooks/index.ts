@@ -1,13 +1,17 @@
+import { useAppStore } from '@store/app';
 import { useTranslation } from '@library/hooks';
 import { useEffect, useMemo, useState } from 'react';
 import { sortBy, reduce, omit, isEmpty, filter, map } from 'lodash';
+import { useCurrentSubscriptionExpiryService } from '@services/subscription';
 
 import type { I18nKey } from '@translations/locales';
 import type { RenderedPlans, RenderedSubscription } from '../type';
-import type { IAllSubscriptionsResponse, PurchasedSubscription } from '@typings/responses';
+import type { IAllSubscriptionsResponse } from '@typings/responses';
 
-export default function useSubscriptionsModule(data: IAllSubscriptionsResponse | undefined, purschased: PurchasedSubscription | undefined) {
+export default function useSubscriptionsModule(data: IAllSubscriptionsResponse | undefined) {
   const { t } = useTranslation();
+  const purchased = useAppStore(state => state.subscription);
+  const isPurchasedSubscriptionExpired = useCurrentSubscriptionExpiryService();
 
   const [subscriptions, setSubscriptions] = useState<RenderedSubscription[] | null>(null);
 
@@ -27,8 +31,8 @@ export default function useSubscriptionsModule(data: IAllSubscriptionsResponse |
       price: subscription.price,
       calculatedPrice: subscription.price,
       isPremium: subscription.title === 'Premium',
-      isActive: subscription.id === purschased?.id,
       plan: `${subscription.title.toLowerCase().replace(' ', '_')}_plan`,
+      isActive: subscription.id === purchased?.id && !isPurchasedSubscriptionExpired,
       discount: subscription.discountData ? subscription.discountData.discountAmount : 0,
     }));
 

@@ -7,6 +7,7 @@ import { ro, ru, enGB } from 'date-fns/locale';
 
 import { currencyFormat } from '@library/method';
 import { OutlinedButton, Text, View } from '@components/common';
+import { useCurrentSubscriptionExpiryService } from '@services/subscription';
 
 interface ISubscriptionDetails {
   onChangeSubscription(): void;
@@ -15,7 +16,9 @@ interface ISubscriptionDetails {
 const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
   const { onChangeSubscription } = props;
 
+  const isExpired = useCurrentSubscriptionExpiryService();
   const { locale, subscription } = useAppStore(state => state);
+
   const processedLocale = locale === 'ro' ? ro : locale === 'ru' ? ru : enGB;
 
   const nextPayment = subscription?.subscriptionAccounts?.[0]?.termDateTime;
@@ -24,7 +27,7 @@ const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
   return (
     <View my="sm">
       <Text px="md" variant="16-reg" t18n="profile:my_account:subscription_details:title" />
-      {subscription ? (
+      {subscription && !isExpired ? (
         <View>
           <View my="md" bg="lightBlue" btw={1.2} bbw={1.2} bc="blue">
             <View p="md" bbw={1.2} bc="blue" row between>
@@ -48,7 +51,7 @@ const SubscriptionDetails: React.FC<ISubscriptionDetails> = props => {
         t18n={
           !subscription
             ? 'profile:my_account:subscription_details:purchase_subscription'
-            : isTrial
+            : isTrial || isExpired
               ? 'profile:my_account:subscription_details:purchase_subscription'
               : 'profile:my_account:subscription_details:change_subscription'
         }

@@ -1,15 +1,17 @@
-import { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+
+export type BaseError<Data> = Error & { response?: AxiosResponse<Data> };
 
 export interface RequestState<Data> {
   data: Data | undefined;
   loading: boolean;
-  error: Error | undefined;
+  error: BaseError<Data> | undefined;
 }
 
 export type Action<Data> =
   | { type: 'REQUEST_INIT' }
   | { type: 'REQUEST_SUCCESS'; payload: Data }
-  | { type: 'REQUEST_FAILED'; payload: Error };
+  | { type: 'REQUEST_FAILED'; payload: BaseError<Data> };
 
 export type RequestMethod = 'get' | 'delete' | 'head' | 'post' | 'put' | 'patch';
 
@@ -23,9 +25,10 @@ export interface Config<Data> extends AxiosRequestConfig {
   ssrData?: Data;
   method?: RequestMethod;
   additionalUrl?: string;
+  hideErrors?: boolean;
 }
 
-export type OnSuccess<Data> = (arg: Data) => void;
+export type OnSuccess<Data> = (arg: Data, status: number) => void;
 
 export type GetData<Data> = (
   lazyData?: Config<Data>['data'],

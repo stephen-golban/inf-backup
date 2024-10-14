@@ -1,35 +1,69 @@
 import React from 'react';
 
+import { format } from 'date-fns';
+import { useTheme } from '@theme/index';
 import useWhoCheckedCredit from './hooks';
 
 import { NewCreditModule } from '@modules/logged-in';
+import { Avatar, BottomSheet, Image, Text, View } from '@components/common';
 
 import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, SUBSCRIPTIONS_SCREENS, type OwnDataCheckScreenProps } from '@typings/navigation';
-import { format } from 'date-fns';
 
 const NewCredit: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.NewCredit>> = ({ navigation }) => {
-  const { data, loading, loanFormLoading, refetch, onSubmitLoan, isSubscriptionValid, isPositive } = useWhoCheckedCredit();
+  const { colors } = useTheme();
+  const { data, loading, loanFormLoading, getLoanResponseType, isSubscriptionValid, isPositive, showLoanModal, fns } =
+    useWhoCheckedCredit();
 
   const onPressDownload = () => {
     if (isSubscriptionValid) {
-      return navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
-        id: data?.reportId || 0,
-        generationDateTime: format(data?.responseDateTime || new Date(), 'dd/MM/yyyy'),
-      });
+      if (data) {
+        return navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
+          id: data.reportId,
+          generationDateTime: format(data.responseDateTime, 'MM/dd/yyyy'),
+        });
+      }
     }
     return navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX });
   };
 
+  const imageSource = React.useMemo(() => {
+    if (getLoanResponseType) {
+      const { type } = getLoanResponseType;
+      if (type === 'pending') return require('@assets/images/loan_pending.png');
+      if (type === 'duplicate') return require('@assets/images/loan_duplicate.png');
+      if (type === 'success') return require('@assets/images/loan_success.png');
+    }
+    return;
+  }, [getLoanResponseType]);
+
   return (
-    <NewCreditModule
-      loading={loading}
-      onRefresh={refetch}
-      isPositive={isPositive}
-      onSubmitLoan={onSubmitLoan}
-      loanFormLoading={loanFormLoading}
-      onPressDownload={onPressDownload}
-      isSubscriptionValid={isSubscriptionValid}
-    />
+    <>
+      <NewCreditModule
+        loading={loading}
+        onRefresh={fns.refetch}
+        isPositive={isPositive}
+        onSubmitLoan={fns.onSubmitLoan}
+        loanFormLoading={loanFormLoading}
+        onPressDownload={onPressDownload}
+        isSubscriptionValid={isSubscriptionValid}
+      />
+      <BottomSheet
+        isVisible={showLoanModal}
+        onDismiss={() => fns.setShowLoanModal(false)}
+        snapPoints={['35%']}
+        backgroundStyle={{ backgroundColor: colors.lightBlue }}>
+        {getLoanResponseType && (
+          <View fill px="lg">
+            {imageSource && (
+              <Avatar.Base alignSelf="center" size={150}>
+                <Image source={imageSource} />
+              </Avatar.Base>
+            )}
+            <Text variant="16-mid" text={getLoanResponseType.text} color="gray_4d" />
+          </View>
+        )}
+      </BottomSheet>
+    </>
   );
 };
 

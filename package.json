@@ -24,6 +24,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "@rn-primitives/accordion": "^1.0.3",
+    "@rn-primitives/alert-dialog": "^1.0.5",
     "@rn-primitives/portal": "^1.0.4",
     "@rn-primitives/radio-group": "^1.0.4",
     "@rn-primitives/select": "^1.0.5",

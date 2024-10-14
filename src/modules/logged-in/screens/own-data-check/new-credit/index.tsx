@@ -3,7 +3,7 @@ import React from 'react';
 import LoanForm from './loan-form';
 import { Trans } from 'react-i18next';
 import FastImage from '@d11/react-native-fast-image';
-import { FilledButton, Icon, Screen, Text, View } from '@components/common';
+import { FilledButton, Icon, Screen, Text } from '@components/common';
 
 import type { I18nKey } from '@translations/locales';
 import type { LoanFormFields } from './loan-form/resolver';

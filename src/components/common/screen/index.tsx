@@ -2,6 +2,7 @@ import React from 'react';
 
 import { View } from '../view';
 import { SafeAreaView } from '../safe-area-view';
+import { useMountLoading } from '@library/hooks';
 import ScreenWithScrolling from './parts/with-scrolling';
 import { ActivityIndicator } from '../activity-indicator';
 import ScreenWithoutScrolling from './parts/without-scrolling';
@@ -11,7 +12,7 @@ import { getEdges } from './util';
 import type { ScreenProps } from './type';
 import { type Edge } from 'react-native-safe-area-context';
 
-const Screen: React.FC<ScreenProps> = ({ loading, loaderColor = 'blue', ...props }) => {
+const Screen: React.FC<ScreenProps> = ({ loading, loaderColor = 'blue', disableMountLoading = false, ...props }) => {
   const edges = React.useMemo<Edge[]>(() => {
     return getEdges(props.excludeEdges, props?.hiddenStatusBar || false);
   }, [props.excludeEdges, props.hiddenStatusBar]);
@@ -20,7 +21,9 @@ const Screen: React.FC<ScreenProps> = ({ loading, loaderColor = 'blue', ...props
 
   const Wrapper = actualUnsafe ? View : SafeAreaView;
 
-  if (loading) {
+  const isMounting = useMountLoading();
+
+  if (disableMountLoading ? loading : isMounting || loading) {
     return (
       <View fill center {...props}>
         <ActivityIndicator color={loaderColor} />

@@ -2,7 +2,9 @@ import React from 'react';
 
 import { chain, isEmpty } from 'lodash';
 import { useAppStore } from '@store/app';
+import { useLazyAxios } from '@api/hooks';
 import { useTranslation } from '@library/hooks';
+import { useToast } from 'react-native-toast-notifications';
 
 import { Controller } from 'react-hook-form';
 import { FilledButton, Form, RadioGroup, Select, Text, View } from '@components/common';
@@ -10,16 +12,16 @@ import { FilledButton, Form, RadioGroup, Select, Text, View } from '@components/
 import { email_send_schema } from './resolver';
 
 import type { Option } from '@rn-primitives/select';
-import { useCreateCreditReportService } from '@services/use-create-credit-report';
 
 interface ISendEmail {
   reportId: number;
 }
 
 const SendEmail: React.FC<ISendEmail> = ({ reportId }) => {
+  const toast = useToast();
   const { t } = useTranslation();
   const user = useAppStore(state => state.user);
-  const { createPDF, loading } = useCreateCreditReportService();
+  const [call, { loading }] = useLazyAxios(`/credit-report/${reportId}/files/PDF`, { method: 'get' });
 
   const generatedEmails = React.useMemo(() => {
     if (!user || isEmpty(user.contactData)) return [];
@@ -30,7 +32,9 @@ const SendEmail: React.FC<ISendEmail> = ({ reportId }) => {
       .value();
   }, [user]);
 
-  const onSubmit = (email: string) => createPDF(reportId, { email });
+  const onSubmit = async (email: string) => {
+    await call(undefined, () => toast.show(t('ui:success'), { type: 'success' }), { params: { email, language: 'RO' } });
+  };
 
   return (
     <Form resolver={email_send_schema} defaultValues={{ sendEmail: false, email: undefined }}>
@@ -78,7 +82,7 @@ const SendEmail: React.FC<ISendEmail> = ({ reportId }) => {
                   t18n="ui:send"
                   loading={loading}
                   disabled={!isValid}
-                  onPress={handleSubmit(d => onSubmit(d.email || ''))}
+                  onPress={handleSubmit(d => onSubmit(d.email.value))}
                 />
               </View>
             )}

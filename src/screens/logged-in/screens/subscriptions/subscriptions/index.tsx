@@ -28,7 +28,6 @@ const SubscriptionsScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_
         all={allSubscriptions.data}
         onPressPlan={fns.setSelectedPlan}
         onCancelSubscription={onCancelSubscription}
-        purschased={subscriptionService.subscription}
         purchaseLoading={id => id === selectedPlan?.id && loadingPurchase}
       />
       <BottomSheet isVisible={!!selectedPlan} onDismiss={fns.onDismiss} snapPoints={['75%']}>
