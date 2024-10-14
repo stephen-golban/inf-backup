@@ -20,7 +20,7 @@ import type { ICommitment, ICreditReportSummaryModule } from './typings';
 import type { StageNomenclatureResponse } from '@typings/responses/nomenclatures';
 
 const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props => {
-  const { feedbackLoading, onOrderReport, onSubmit, subscription, onPressUpdate, onPayReport, navigation } = props;
+  const { feedbackLoading, onOrderReport, onSubmit, subscription, onPressUpdate, onPayReport, navigation, loadReport } = props;
   const { nomenclature, locale } = useAppStore();
 
   const { inquiry, reportEvents } = useAppDataCheckStore();
@@ -103,7 +103,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
             costText={costText}
             buttonText={buttonText}
             subscription={subscription}
-            isLoading={loading}
+            isLoading={loading || loadReport}
             onNavigate={onPressFirstButton}
           />
           <Text variant="18-semi" t18n="logged_in:credit_report:summary:last_24_months" />

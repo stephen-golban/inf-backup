@@ -40,7 +40,10 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
         subscription={subscription}
         score={creditScore?.scoreValue}
         loading={loadingCreditScore}
-        onPressUpdate={fetchScore}
+        onPressUpdate={async () => {
+          fetchScore();
+          await call(undefined, res => useAppDataCheckStore.setState({ inquiry: res }));
+        }}
         onPayReport={onPayReport}
       />
       <BottomSheet

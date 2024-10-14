@@ -16,7 +16,7 @@ const History: React.FC<IHistory> = ({ reportId, onPressNotNow }) => {
 
   return (
     <Paper br={12} shadow="card" p="lg" center bg="lightBlue" py="xl" mt="xxhuge">
-      <Icon icon="ReportImageIcon" absolute top={-130} left="45%" style={{ transform: [{ translateX: '-60%' }] }} />
+      <Icon icon="ReportImageIcon" absolute top={-130} left="45%" style={{ transform: [{ translateX: -60 }] }} />
       <Text variant="16-bold" color="blue" t18n="logged_in:credit_report:download:history:title" />
       <Text variant="12-reg" mt="sm" color="black" t18n="logged_in:credit_report:download:history:subtitle" />
       <View row between mt="lg" align="center" cg="md">

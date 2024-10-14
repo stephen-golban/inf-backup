@@ -23,9 +23,9 @@ const HistoryCard: React.FC<IHistoryCard> = props => {
         date && (
           <View bg="lightBlue" row between p="md" shadow="card" br={10} center>
             <View row center g="sm" maxw={'80%'}>
-              <Text variant="12-reg" g="md" t18n={t18nTitle} />
+              <Text variant="10-reg" g="md" t18n={t18nTitle} />
             </View>
-            <Text variant="12-mid">{formatDate(date, 'dd/MM/yyyy')}</Text>
+            <Text variant="10-mid">{formatDate(date, 'dd/MM/yyyy')}</Text>
           </View>
         )
       )}

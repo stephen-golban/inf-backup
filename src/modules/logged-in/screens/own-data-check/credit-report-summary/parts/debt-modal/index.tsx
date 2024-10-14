@@ -46,7 +46,7 @@ const DebtModal: React.FC<IDebtModal> = props => {
           {({ setValue, watch, handleSubmit }) => {
             return (
               <View>
-                <LoggedOutPhoneInput value={watch('phone')} onChange={txt => setValue('phone', txt, { shouldValidate: true })} />
+                <LoggedOutPhoneInput autoFocus value={watch('phone')} onChange={txt => setValue('phone', txt, { shouldValidate: true })} />
                 <FilledButton
                   t18n="logged_in:credit_report:summary:bottom_modal:yes"
                   my="sm"

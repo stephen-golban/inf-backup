@@ -83,7 +83,7 @@ const getReportSummaryOptions = (
   } else if (!trial && extraInquiriesRestriction && !isExpired) {
     return {
       message: t('ui:subscription:extra_inquiries_message'),
-      buttonText: t('ui:subscription:extra_inquiries_button_text'),
+      buttonText: t('logged_in:credit_report:credit_report_summary_options:information_from_today'),
       firstButtonType: 'outlined',
       disabled: true,
       costText: t('ui:subscription:extra_inquiries_cost_text'),
@@ -114,7 +114,7 @@ const getReportSummaryOptions = (
   } else if (!trial && !extraInquiriesRestriction && !isExpired && isCreditScoreIncluded) {
     return {
       message: t('ui:subscription:credit_score_included_message'),
-      buttonText: t('ui:subscription:credit_score_included_button_text'),
+      buttonText: t('logged_in:credit_report:credit_report_summary_options:information_from_today'),
       firstButtonType: 'filled',
       disabled: false,
       secondButtonType: 'outlined',
