@@ -23,21 +23,21 @@ const InformationModal: React.FC<IInformationModal> = props => {
           <View bg="blue" w={40} h={40} br="round" center>
             <Icon icon={'PersonSearchIcon'} color="white" size={18} onPress={onCheckedNavigate} />
           </View>
-          <Text my="sm" variant="12-mid" t18n="logged_in:home:own_data_check:who_checked:who_checked_me" />
+          <Text my="sm" variant="10-mid" t18n="logged_in:home:own_data_check:who_checked:who_checked_me" />
         </View>
 
         <View center>
           <View bg="blue" w={40} h={40} br="round" center>
             <Icon icon={'FileIcon'} color="white" size={18} onPress={onOrderReportNavigate} />
           </View>
-          <Text my="sm" variant="12-mid" t18n="logged_in:home:own_data_check:who_checked:order_report" />
+          <Text my="sm" variant="10-mid" t18n="logged_in:home:own_data_check:who_checked:order_report" />
         </View>
 
         <View center>
           <View bg="blue" w={40} h={40} br="round" center>
             <Icon icon={'FlakyIcon'} color="white" size={18} onPress={onFinancialHealthNavigate} />
           </View>
-          <Text my="sm" variant="12-mid" t18n="logged_in:home:own_data_check:who_checked:financial_health" />
+          <Text my="sm" variant="10-mid" t18n="logged_in:home:own_data_check:who_checked:financial_health" />
         </View>
       </View>
     </BottomSheet>
