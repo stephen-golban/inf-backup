@@ -48,10 +48,10 @@ const InfoBox: React.FC<IInfoBox> = props => {
       </View>
       <View bg="lightBlue" row between p="md" shadow="card" br={10} center>
         <View row center g="sm" maxw={'80%'}>
-          <Text variant="12-reg" g="md" t18n="logged_in:home:info:last_interogation" />
+          <Text variant="10-reg" g="md" t18n="logged_in:home:info:last_interogation" />
         </View>
         {inquiry?.inquiryDateTime ? (
-          <Text variant="12-mid">{formatDate(inquiry?.inquiryDateTime)}</Text>
+          <Text variant="10-mid">{formatDate(inquiry?.inquiryDateTime)}</Text>
         ) : (
           <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="14-semi" color="blue" />
         )}
@@ -59,10 +59,10 @@ const InfoBox: React.FC<IInfoBox> = props => {
       <View my="sm" />
       <View bg="lightBlue" row between p="md" shadow="card" br={10} center>
         <View row center g="sm" maxw={'80%'}>
-          <Text variant="12-reg" g="md" t18n="logged_in:home:info:last_history_update" />
+          <Text variant="10-reg" g="md" t18n="logged_in:home:info:last_history_update" />
         </View>
         {reportEvents?.lastEventDateTime ? (
-          <Text variant="12-mid">{formatDate(reportEvents?.lastEventDateTime)}</Text>
+          <Text variant="10-mid">{formatDate(reportEvents?.lastEventDateTime)}</Text>
         ) : (
           <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="12-semi" color="blue" />
         )}

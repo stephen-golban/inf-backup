@@ -2,6 +2,7 @@ import { OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/naviga
 import { ICreditReportSummaryResponse, IvePositiveCommitment, PurchasedSubscription } from '@typings/responses';
 
 export interface ICreditReportSummaryModule {
+  loadReport: boolean;
   feedbackLoading: boolean;
   onOrderReport(): void;
   onSubmit(arg: {

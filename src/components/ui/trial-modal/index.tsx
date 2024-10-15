@@ -19,7 +19,7 @@ const TrialModal: React.FC<ITrialModal> = ({ isVisible, date = new Date(), onPre
     <Modal isVisible={isVisible} backdropColor="black_80" onBackdropPress={onDismiss} onBackButtonPress={onDismiss}>
       <View fill center>
         <Paper bg="lightBlue" br="md" p="lg" px="xl" shadow="card">
-          <Icon icon="GiftImageIcon" absolute top={-50} left="60%" style={{ transform: [{ translateX: '-50%' }] }} />
+          <Icon icon="GiftImageIcon" absolute top={-50} left="60%" style={{ transform: [{ translateX: -50 }] }} />
           <Avatar.Base bg="white" br="huge" size={24} absolute top={10} right={10} center onPress={onDismiss}>
             <Icon icon="CloseIcon" size={16} color="gray" />
           </Avatar.Base>

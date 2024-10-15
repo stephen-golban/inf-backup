@@ -50,12 +50,16 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
   return (
     <>
       <CreditReportSummaryModule
-        onPressUpdate={fetchCreditReport}
+        onPressUpdate={async () => {
+          fetchCreditReport();
+          await getInquiry(undefined, res => useAppDataCheckStore.setState({ inquiry: res as LastInquiryApiResponse }));
+        }}
         onPayReport={onPayReport}
         navigation={navigation}
         subscription={subscription}
         onSubmit={data => call({ ...data })}
         data={report}
+        loadReport={loadingCreditReportSummary || loadingInquiry}
         feedbackLoading={loading}
         onOrderReport={onOrderReport}
       />
@@ -66,7 +70,7 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
         }}
         snapPoints={['75%']}>
         <PaymentCardsModule
-          paymentLoading={paymentService.loading || loading || loadingCreditReportSummary}
+          paymentLoading={paymentService.loading || loading || loadingCreditReportSummary || loadingInquiry}
           onPressContinue={({ cardId, billerId }) => {
             const queryData = {
               paymentServiceName: 'MAIB',
