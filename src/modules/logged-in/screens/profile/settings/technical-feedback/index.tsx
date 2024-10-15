@@ -32,8 +32,14 @@ const TechnicalFeedbackModule: React.FC<ITechnicalFeedbackModule> = ({ onSubmit,
                   label={t('profile:settings:feedback:message')}
                   placeholderI18n="profile:settings:feedback:placeholder"
                 />
+                <FilledButton
+                  my="lg"
+                  onPress={handleSubmit(customSubmit)}
+                  loading={loading}
+                  t18n="ui:submit"
+                  disabled={!formState.isValid}
+                />
               </View>
-              <FilledButton onPress={handleSubmit(customSubmit)} loading={loading} t18n="ui:submit" disabled={!formState.isValid} />
             </View>
           );
         }}
