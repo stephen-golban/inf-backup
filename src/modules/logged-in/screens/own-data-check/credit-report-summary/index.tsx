@@ -53,8 +53,8 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
     commitment => commitment.sourceIdno === searchSourceIdno && commitment.type === 'activeNegativeCommitments',
   );
 
-  const reportRequestDateTime = formatDate(String(creditReportSummary?.requestDateTime), 'dd/MM/yyyy');
-  const reportResponseDateTime = formatDate(String(creditReportSummary?.responseDateTime), 'dd/MM/yyyy');
+  const reportRequestDateTime = creditReportSummary?.requestDateTime;
+  const reportResponseDateTime = creditReportSummary?.responseDateTime;
 
   React.useEffect(() => {
     const lastShownTimestamp = loadString(MMKV_KEY.INCASSO_REMIND);
