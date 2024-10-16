@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput } from 'react-native';
 
 import { AuthLayout } from '@components/layouts';
-import { FilledButton, Form, View } from '@components/common';
+import { FilledButton, Form, Icon, View } from '@components/common';
 import { LoggedOutPasswordInput, LoggedOutPhoneInput, TermsAgreements, TextRow } from '../parts';
 
 import { login_form_schema, type LoginFormFields } from './resolver';
@@ -11,12 +11,14 @@ import { DEFAULT_VALUES } from './mock';
 
 interface ILoginModule {
   loading?: boolean;
+  onPressMpass(): void;
+  mpassLoading?: boolean;
   onPressRegister(): void;
   onPressForgotPassword(): void;
   onSubmit(args: LoginFormFields): void;
 }
 
-const LoginModule: React.FC<ILoginModule> = ({ onPressForgotPassword, onPressRegister, loading, onSubmit }) => {
+const LoginModule: React.FC<ILoginModule> = ({ onPressForgotPassword, onPressRegister, loading, onSubmit, onPressMpass, mpassLoading }) => {
   const passwordRef = React.useRef<TextInput>(null);
 
   return (
@@ -36,8 +38,13 @@ const LoginModule: React.FC<ILoginModule> = ({ onPressForgotPassword, onPressReg
                 <TermsAgreements control={control} />
               </View>
               <View rg="sm" mt="xl">
-                <TextRow title="logged_out:login:questions:register" onPress={onPressRegister} />
-                <TextRow title="logged_out:login:questions:forgot_password" onPress={onPressForgotPassword} />
+                <FilledButton bg="lightBlue" w={115} h={39} loading={mpassLoading} alignSelf="center" onPress={onPressMpass}>
+                  <Icon icon="MpassIcon" disabled />
+                </FilledButton>
+                <View mt="md" rg="sm">
+                  <TextRow title="logged_out:login:questions:register" onPress={onPressRegister} />
+                  <TextRow title="logged_out:login:questions:forgot_password" onPress={onPressForgotPassword} />
+                </View>
                 <FilledButton
                   mt="xl"
                   bg="blue"

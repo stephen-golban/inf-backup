@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash';
 import { useCreditCardService } from '@services/credit-card';
 
 import { CreditCards, EmptyState } from '@components/ui';
-import { FilledButton, Screen, View } from '@components/common';
+import { FilledButton, Image, Screen, View } from '@components/common';
 
 import type { GetAllCardsApiResponse, SelectedCardParams } from '@typings/responses';
 
@@ -40,6 +40,9 @@ const PaymentCardsModule: React.FC<IPaymentCardsModule> = ({ onPressContinue, pa
             </>
           )}
           <CreditCards.Register onPress={onPressRegisterCard} loading={isRegistering} />
+        </View>
+        <View w={100} h={50} alignSelf="center" mt="lg">
+          <Image source={require('@assets/images/maib-logo.png')} resizeMode="contain" />
         </View>
       </View>
 

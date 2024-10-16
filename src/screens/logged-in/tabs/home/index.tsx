@@ -2,6 +2,7 @@ import React from 'react';
 
 import useHomeScreen from './hooks';
 import { useGoBack } from '@library/hooks';
+import { useAppDataCheckStore } from '@store/data-check';
 
 import { TrialModal } from '@modules/modals';
 import { HomeModule } from '@modules/logged-in';
@@ -16,6 +17,8 @@ import {
 } from '@typings/navigation';
 
 const Home: React.FC<LoggedInTabsProps<LOGGED_IN_TABS.HOME>> = ({ navigation }) => {
+  const report = useAppDataCheckStore(state => state.creditReportSummary);
+  const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportSummaryId);
   const { loading, refetch, isTrialModalVisible, setIsTrialModalVisible, trialTermDate } = useHomeScreen();
 
   useGoBack(false, navigation.goBack);
@@ -27,8 +30,17 @@ const Home: React.FC<LoggedInTabsProps<LOGGED_IN_TABS.HOME>> = ({ navigation }) 
   const onPressNewCredit = () => navigate(OWN_DATA_CHECK_SCREENS.NewCredit);
   const onPressCreditScore = () => navigate(OWN_DATA_CHECK_SCREENS.ScoringDetails);
   const onPressWhoCheckedCredit = () => navigate(OWN_DATA_CHECK_SCREENS.WhoCheckCredit);
-  const onPressCreditReport = () => navigate(OWN_DATA_CHECK_SCREENS.CreditReportSummary);
-
+  const onPressCreditSummary = () => navigate(OWN_DATA_CHECK_SCREENS.CreditReportSummary);
+  const onPressCreditReport = () => {
+    if (reportId && report) {
+      navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
+        params: {
+          id: reportId,
+          generationDateTime: report.responseDateTime,
+        },
+      });
+    }
+  };
   const goToSubscriptions = () => {
     setIsTrialModalVisible(false);
     navigation.navigate(LOGGED_IN_STACK.SCREENS, {
@@ -45,6 +57,7 @@ const Home: React.FC<LoggedInTabsProps<LOGGED_IN_TABS.HOME>> = ({ navigation }) 
         onPressNewCredit={onPressNewCredit}
         onPressCreditScore={onPressCreditScore}
         onPressCreditReport={onPressCreditReport}
+        onPressCreditSummary={onPressCreditSummary}
         onPressWhoCheckedCredit={onPressWhoCheckedCredit}
       />
       <TrialModal

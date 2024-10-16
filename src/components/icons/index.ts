@@ -13,6 +13,7 @@ export * from './mail';
 export * from './usps';
 export * from './stars';
 export * from './badge';
+export * from './mpass';
 export * from './phone';
 export * from './close';
 export * from './check';
