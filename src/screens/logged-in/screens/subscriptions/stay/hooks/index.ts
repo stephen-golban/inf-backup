@@ -30,9 +30,8 @@ const useStayScreen = ({ comment, reason, goToHome, goToRemove }: Props) => {
 
   const onActivate = () => {
     if (retentionOffer && subscription && discountedPrice) {
-      const { id } = subscription;
       if (retentionOffer.discount) {
-        const { discount } = retentionOffer;
+        const { discount, id } = retentionOffer;
         setSelectedPlan({ id, price: discountedPrice, discount: discount.discountAmount, isAnnual: false });
       }
     }

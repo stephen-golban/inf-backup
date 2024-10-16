@@ -35,7 +35,11 @@ const StayScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS.S
         purchasing={service.loadingPurchase}
       />
       <BottomSheet isVisible={!!hook.selectedPlan} onDismiss={hook.onDismiss} snapPoints={['75%']}>
-        <PaymentCardsModule paymentLoading={service.loadingPayment} onPressContinue={service.onCardSelected} hasAutomaticTermExtension />
+        <PaymentCardsModule
+          hasAutomaticTermExtension
+          onPressContinue={service.onCardSelected}
+          paymentLoading={service.loadingPayment || service.loadingPurchase}
+        />
       </BottomSheet>
     </>
   );

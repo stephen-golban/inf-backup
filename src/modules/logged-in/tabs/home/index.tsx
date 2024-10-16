@@ -9,6 +9,7 @@ interface IHomeModule {
   onRefresh(): Promise<void>;
   onPressCreditScore(): void;
   onPressCreditReport(): void;
+  onPressCreditSummary(): void;
   onPressWhoCheckedCredit(): void;
 }
 
@@ -18,13 +19,14 @@ const HomeModule: React.FC<IHomeModule> = ({
   onPressNewCredit,
   onPressCreditScore,
   onPressCreditReport,
+  onPressCreditSummary,
   onPressWhoCheckedCredit,
 }) => {
   return (
     <Screen unsafe scroll bg="white" onRefresh={onRefresh} style={{ paddingHorizontal: 0, paddingBottom: 0 }} loading={loading}>
       <View row cg="md" px="md">
         <CreditScore onPress={onPressCreditScore} />
-        <CreditReport onPress={onPressCreditReport} />
+        <CreditReport onPress={onPressCreditSummary} />
       </View>
       <InfoBox
         fetchReport={onRefresh}

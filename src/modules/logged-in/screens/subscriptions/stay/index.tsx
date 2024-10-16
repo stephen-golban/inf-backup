@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useAppStore } from '@store/app';
 import { useTranslation } from '@library/hooks';
 import { currencyFormat } from '@library/method';
 
@@ -13,6 +12,7 @@ interface IStayModule {
   screenLoading?: boolean;
   offerPrice: number | undefined;
   retentionOffer?: {
+    price: number | undefined;
     months: number | undefined;
     discount: DiscountData | undefined;
   };
@@ -24,10 +24,9 @@ interface IStayModule {
 const StayModule: React.FC<IStayModule> = props => {
   const { removing, retentionOffer, offerPrice, purchasing, onRemove, onActivateOffer, screenLoading } = props;
   const { t } = useTranslation();
-  const subscription = useAppStore(state => state.subscription);
 
-  const oldOfferPrice = subscription?.price;
   const duration = retentionOffer?.months;
+  const oldOfferPrice = retentionOffer?.price;
   const discount = retentionOffer?.discount?.discountAmount;
 
   return (

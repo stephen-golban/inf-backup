@@ -9,13 +9,20 @@ import { LOGGED_OUT_SCREENS, type LoggedOutStackScreenProps } from '@typings/nav
 const Login: React.FC<LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.Login>> = props => {
   const { navigation } = props;
 
-  const { loading, onSubmit } = useLoginScreen({ navigation });
+  const { loading, onSubmit, onPressMpass, mpassLoading } = useLoginScreen();
 
   const onPressRegister = () => navigation.navigate(LOGGED_OUT_SCREENS.Register);
   const onPressForgotPassword = () => navigation.navigate(LOGGED_OUT_SCREENS.ForgotPassword);
 
   return (
-    <LoginModule onPressForgotPassword={onPressForgotPassword} onPressRegister={onPressRegister} onSubmit={onSubmit} loading={loading} />
+    <LoginModule
+      mpassLoading={mpassLoading}
+      onPressForgotPassword={onPressForgotPassword}
+      onPressRegister={onPressRegister}
+      onPressMpass={onPressMpass}
+      onSubmit={onSubmit}
+      loading={loading}
+    />
   );
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { format } from 'date-fns';
 import { useTheme } from '@theme/index';
 import useWhoCheckedCredit from './hooks';
 
@@ -19,7 +18,7 @@ const NewCredit: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.NewCred
       if (data) {
         return navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
           id: data.reportId,
-          generationDateTime: format(data.responseDateTime, 'MM/dd/yyyy'),
+          generationDateTime: data.responseDateTime,
         });
       }
     }

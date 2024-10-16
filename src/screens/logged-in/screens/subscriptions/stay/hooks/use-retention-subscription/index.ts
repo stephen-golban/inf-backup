@@ -13,9 +13,11 @@ export default function useRetentionSubscription() {
 
   const retentionOffer = useMemo(() => {
     if (retentionSubscription) {
-      const { retentionOfferDiscount, retentionOfferMonths } = retentionSubscription;
+      const { id, retentionOfferDiscount, retentionOfferMonths, price } = retentionSubscription;
 
       return {
+        id,
+        price,
         months: retentionOfferMonths,
         discount: retentionOfferDiscount,
       };
@@ -26,7 +28,7 @@ export default function useRetentionSubscription() {
   const discountedPrice = useMemo(() => {
     if (subscription && retentionOffer) {
       if (retentionOffer.discount) {
-        const initialPrice = subscription.price;
+        const initialPrice = retentionOffer.price;
         const discountAmount = retentionOffer.discount.discountAmount;
         const discountType = retentionOffer.discount.discountType;
 
