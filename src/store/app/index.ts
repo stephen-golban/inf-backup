@@ -14,7 +14,7 @@ const app_state: IAppState = {
   nomenclature: null,
   isAuthenticated: false,
   subscription: undefined,
-  locale: i18n.languages[0] as IAppState['locale'],
+  locale: null as IAppState['locale'] | any,
 };
 
 const persist_config: PersistOptions<IAppState> = {

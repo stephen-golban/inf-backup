@@ -3,6 +3,7 @@ import { DEFAULT_VALUES } from './hooks';
 import { change_password_form_schema } from './resolver';
 import { LoggedOutPasswordInput } from '@modules/logged-out/parts';
 import { FilledButton, Form, Icon, KeyboardAware, Text, View } from '@components/common';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 interface IChangePasswordModule {
   loading: boolean;
@@ -20,13 +21,18 @@ const ChangePasswordModule: React.FC<IChangePasswordModule> = ({ loading, onSubm
           const isUppercaseValid = /[A-Z]/.test(newPassword);
           const isSpecialCharValid = /[\W_]/.test(newPassword);
           return (
-            <KeyboardAware contentContainerStyle={{ flexGrow: 1 }} enableOnAndroid={true} extraScrollHeight={20}>
+            <KeyboardAwareScrollView bounces={false} keyboardShouldPersistTaps="handled">
               <View fill>
                 <LoggedOutPasswordInput
+                  returnKeyType="next"
                   name="current_password"
                   placeholderI18n="profile:my_account:change_password_section:current_password"
                 />
-                <LoggedOutPasswordInput name="new_password" placeholderI18n="profile:my_account:change_password_section:new_password" />
+                <LoggedOutPasswordInput
+                  returnKeyType="next"
+                  name="new_password"
+                  placeholderI18n="profile:my_account:change_password_section:new_password"
+                />
                 <View g="sm" my="sm">
                   <View row g="xs" mt="md">
                     <Icon
@@ -64,7 +70,7 @@ const ChangePasswordModule: React.FC<IChangePasswordModule> = ({ loading, onSubm
                   />
                 </View>
               </View>
-            </KeyboardAware>
+            </KeyboardAwareScrollView>
           );
         }}
       </Form>

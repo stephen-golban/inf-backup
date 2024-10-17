@@ -18,7 +18,7 @@ export const createQueryParams = (values: RegisterFormFields, locale: IAppState[
         value: email,
         invoiceDisplay: true,
         invoiceSending: true,
-        credentialsSending: true,
+        credentialsSending: false,
         informationSending: true,
       },
       {
@@ -26,14 +26,10 @@ export const createQueryParams = (values: RegisterFormFields, locale: IAppState[
         invoiceDisplay: true,
         invoiceSending: false,
         value: '+373' + phone,
-        credentialsSending: true,
+        credentialsSending: false,
         informationSending: true,
       },
     ],
-    identityDocumentData: {
-      identityDocument: 'DF13242224',
-      issueDate: '2024-05-01',
-      termDate: '2034-05-01',
-    },
+    identityDocumentData: null,
   };
 };

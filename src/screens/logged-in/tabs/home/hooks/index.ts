@@ -6,10 +6,16 @@ import { useAppDataCheckStore } from '@store/data-check';
 import { useCurrentSubscriptionExpiryService } from '@services/subscription';
 
 import type { CreditReportEventsApiResponse, LastInquiryApiResponse } from '@typings/responses';
+import { OneSignal } from 'react-native-onesignal';
 
 const useHomeScreen = () => {
+  const me = useAppStore(state => state.user);
   const subscription = useAppStore(state => state.subscription);
   const isPurchasedSubscriptionExpired = useCurrentSubscriptionExpiryService();
+
+  OneSignal.initialize('e59eb20d-8e97-4f53-b5d5-3f3a7b63215d');
+  OneSignal.login(String(me?.id));
+  OneSignal.Notifications.requestPermission(true);
 
   const [isTrialModalVisible, setIsTrialModalVisible] = useState(false);
   const [call, { refetch, loading: loadingInquiry }] = useLazyAxios<LastInquiryApiResponse>('/inquiry-report', { method: 'get' });
