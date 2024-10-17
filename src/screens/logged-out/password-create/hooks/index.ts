@@ -42,7 +42,7 @@ export default function usePasswordCreate(
         if (await isEmulator()) {
           saveString(MMKV_KEY.DEVICE_TOKEN, deviceInfo?.deviceToken || '');
         }
-        navigation.navigate(LOGGED_OUT_SCREENS.Login);
+        navigation.navigate(LOGGED_OUT_SCREENS.SuccessRegister);
       }
     }
   });

@@ -18,6 +18,7 @@
   "success": "Успех",
   "save": "Сохранить",
   "read": "Читать",
+  "back_to_login": "Вернуться к входу",
 
   "placeholders": {
     "phone_input_country_search_placeholder": "Поиск страны",

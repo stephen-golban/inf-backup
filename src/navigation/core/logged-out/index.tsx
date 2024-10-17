@@ -5,9 +5,10 @@ import * as S from '@screens/logged-out';
 import { Screen } from '@components/common';
 import { LoggedOutHeader } from '@components/ui';
 
-import { APP_SCREEN, LOGGED_OUT_SCREENS, LoggedOutStackParamList, RootStackScreenProps } from '@typings/navigation';
 import { loadString } from '@library/storage';
 import { MMKV_KEY } from '@library/constants';
+
+import { APP_SCREEN, LOGGED_OUT_SCREENS, LoggedOutStackParamList, RootStackScreenProps } from '@typings/navigation';
 
 const Stack = createNativeStackNavigator<LoggedOutStackParamList>();
 
@@ -28,6 +29,7 @@ const LoggedOutStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_OUT>> = ()
         <Stack.Screen name={LOGGED_OUT_SCREENS.ExpiredRegister} component={S.ExpiredRegister} />
         <Stack.Screen name={LOGGED_OUT_SCREENS.OneTimePassword} component={S.OneTimePassword} />
         <Stack.Screen name={LOGGED_OUT_SCREENS.CameraPermission} component={S.CameraPermission} />
+        <Stack.Screen name={LOGGED_OUT_SCREENS.SuccessRegister} component={S.SuccessRegistration} />
         <Stack.Screen name={LOGGED_OUT_SCREENS.FailedRecognition} component={S.FailedRecognition} />
         <Stack.Screen name={LOGGED_OUT_SCREENS.SuccessRecognition} component={S.SuccessRecognition} />
       </Stack.Navigator>

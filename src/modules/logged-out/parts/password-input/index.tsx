@@ -24,7 +24,7 @@ interface ILoggedOutPasswordInput extends Pick<TextInputProps, 'onSubmitEditing'
 }
 
 const LoggedOutPasswordInput = React.forwardRef<any, ILoggedOutPasswordInput>((props, ref) => {
-  const { name = 'password', placeholderI18n = 'ui:placeholders:password_placeholder', returnKeyType = 'done', onSubmitEditing } = props;
+  const { name = 'password', placeholderI18n = 'ui:placeholders:password_placeholder', returnKeyType = 'next', onSubmitEditing } = props;
   return (
     <FormInput
       ref={ref}

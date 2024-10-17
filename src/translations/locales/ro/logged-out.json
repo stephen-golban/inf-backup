@@ -50,6 +50,10 @@
   "success-recognition": {
     "title": "Recunoaștere cu succes"
   },
+  "success-registration": {
+    "title": "Înregistrare cu succes",
+    "account_has_been_created": "Contul a fost creat cu succes"
+  },
 
   "something-went-wrong": "Ceva nu a mers bine",
   "please_review_your_information": "Vă rugăm să verificați informațiile dvs.",
