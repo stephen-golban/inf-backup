@@ -112,6 +112,8 @@
   "choose_subscription": "Choose a subscription and download the report",
   "information_from_today": "I want information from today",
   "for_complete_data_choose_a_subscription": "For complete data, choose a subscription",
-  "download_complete_report": "Download the complete report"
+  "download_complete_report": "Download the complete report",
+  "order_report_for_more_data": "Order the Report for more data",
+  "order_report_for_details": "Order the Report for details"
 }
 }

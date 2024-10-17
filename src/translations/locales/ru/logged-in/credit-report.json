@@ -113,6 +113,8 @@
   "choose_subscription": "Выберите подписку и скачайте отчет",
   "information_from_today": "Я хочу информацию с сегодняшнего дня",
   "for_complete_data_choose_a_subscription": "Для полных данных выберите подписку",
-  "download_complete_report": "Скачайте полный отчет"
+  "download_complete_report": "Скачайте полный отчет",
+  "order_report_for_more_data": "Закажите Отчет для получения деталей",
+  "order_report_for_details": "Закажите Отчет для получения деталей"
 }
 }

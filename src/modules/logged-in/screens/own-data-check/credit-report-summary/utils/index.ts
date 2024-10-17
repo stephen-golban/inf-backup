@@ -1,8 +1,9 @@
 import { Color } from '@theme/colors';
 import { isAfter, parseISO } from 'date-fns';
 import { PurchasedSubscription } from '@typings/responses';
-import { LOGGED_IN_SCREENS, OwnDataCheckScreenProps, SUBSCRIPTIONS_SCREENS } from '@typings/navigation';
+import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps, SUBSCRIPTIONS_SCREENS } from '@typings/navigation';
 import { useTranslation } from '@library/hooks';
+import { useAppDataCheckStore } from '@store/data-check';
 
 interface SubscriptionResult {
   message: string;
@@ -17,7 +18,7 @@ interface SubscriptionResult {
   firstButtonType: 'filled' | 'outlined';
   disabled: boolean;
   onPressFirstButton: () => void;
-  onPressSecondButton: () => void;
+  onPressSecondButton: (id: number | undefined) => void;
 }
 
 const getReportSummaryOptions = (
@@ -27,6 +28,9 @@ const getReportSummaryOptions = (
   onPayReport: () => void,
 ): SubscriptionResult => {
   const { t } = useTranslation();
+
+  const report = useAppDataCheckStore(state => state.creditReportSummary);
+  const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportSummaryId);
 
   if (!subscription) {
     return {
@@ -68,7 +72,7 @@ const getReportSummaryOptions = (
   if (trial) {
     return {
       message: t('ui:subscription:trial_message'),
-      buttonText: t('profile:my_account:subscription_details:choose_subscription'),
+      buttonText: t('logged_in:credit_report:credit_report_summary_options:choose_subscription'),
       firstButtonTextColor: 'white',
       secondButtonTextColor: 'blue',
       firstButtonType: 'filled',
@@ -90,10 +94,14 @@ const getReportSummaryOptions = (
       secondButtonType: 'filled',
       firstButtonTextColor: 'blue',
       secondButtonTextColor: 'white',
-      lowerButtonText: t('ui:subscription:extra_inquiries_lower_button_text'),
+      lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:download_complete_report'),
       discountText: t('subscriptions:discount_text_other_subscription'),
       onPressFirstButton: () => {},
-      onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
+      onPressSecondButton: () =>
+        navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
+          id: reportId || 0,
+          generationDateTime: report?.responseDateTime as any,
+        }),
     };
   } else if (!trial && !extraInquiriesRestriction && !isExpired && !isCreditScoreIncluded) {
     return {
@@ -105,11 +113,15 @@ const getReportSummaryOptions = (
       firstButtonTextColor: 'white',
       secondButtonTextColor: 'blue',
       costText: t('ui:subscription:no_credit_score_cost_text', { creditScorePrice }),
-      lowerButtonText: t('ui:subscription:no_credit_score_lower_button_text'),
+      lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:download_complete_report'),
       discountText: t('ui:subscription:no_credit_score_discount_text'),
       secondaryText: t('ui:subscription:no_credit_score_discount_text'),
       onPressFirstButton: onPayReport,
-      onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
+      onPressSecondButton: () =>
+        navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
+          id: reportId || 0,
+          generationDateTime: report?.responseDateTime as any,
+        }),
     };
   } else if (!trial && !extraInquiriesRestriction && !isExpired && isCreditScoreIncluded) {
     return {
@@ -121,10 +133,14 @@ const getReportSummaryOptions = (
       firstButtonTextColor: 'white',
       secondButtonTextColor: 'blue',
       costText: t('ui:subscription:credit_score_included_cost_text'),
-      lowerButtonText: t('ui:subscription:credit_score_included_lower_button_text'),
+      lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:download_complete_report'),
       secondaryText: t('ui:subscription:credit_score_included_discount_text'),
       onPressFirstButton: onPressUpdate,
-      onPressSecondButton: onPressUpdate,
+      onPressSecondButton: () =>
+        navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
+          id: reportId || 0,
+          generationDateTime: report?.responseDateTime as any,
+        }),
     };
   }
 

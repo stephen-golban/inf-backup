@@ -111,7 +111,9 @@
   "choose_subscription": "Alege un abonament și descarcă raportul",
   "information_from_today": "Vreau informații de azi",
   "for_complete_data_choose_a_subscription": "Pentru date complete alege un abonament",
-  "download_complete_report": "Descarcă Raportul complet"
+  "download_complete_report": "Descarcă Raportul complet",
+  "order_report_for_more_data": "Comandă Raportul pentru mai multe date",
+  "order_report_for_details": "Comandă Raportul pentru detalii"
 
 }
 }

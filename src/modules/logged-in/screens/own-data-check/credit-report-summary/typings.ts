@@ -20,6 +20,7 @@ export interface ICreditReportSummaryModule {
 
 export interface ICommitment extends IvePositiveCommitment {
   type: string;
+  attribute: number;
   description: string;
   qualityType: string;
   activityType: string;
