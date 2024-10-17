@@ -18,6 +18,8 @@
   "success": "Success",
   "save": "Save",
   "read": "Read",
+  "back_to_login": "Back to login",
+
 
   "placeholders": {
     "phone_input_country_search_placeholder": "Search for a country",

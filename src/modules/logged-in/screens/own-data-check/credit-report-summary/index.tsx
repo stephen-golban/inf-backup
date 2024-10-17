@@ -5,8 +5,6 @@ import { useAppStore } from '@store/app';
 import { useAppDataCheckStore } from '@store/data-check';
 import { useCreditReportSummaryService } from '@services/credit-report-summary';
 
-import { formatDate } from 'date-fns';
-import { HistoryCard } from '@components/ui';
 import { loadString, saveString } from '@library/storage';
 import { ScoringDetailsOffers } from '../scoring-details/offers';
 
@@ -18,21 +16,20 @@ import { MMKV_KEY } from '@library/constants';
 
 import type { ICommitment, ICreditReportSummaryModule } from './typings';
 import type { StageNomenclatureResponse } from '@typings/responses/nomenclatures';
+import { I18nKey } from '@translations/locales';
 
 const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props => {
-  const { feedbackLoading, onOrderReport, onSubmit, subscription, onPressUpdate, onPayReport, navigation, loadReport } = props;
+  const { feedbackLoading, onSubmit, subscription, onPressUpdate, onPayReport, navigation, loadReport } = props;
   const { nomenclature, locale } = useAppStore();
+
+  const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportSummaryId);
 
   const { inquiry, reportEvents } = useAppDataCheckStore();
 
   const [isVisible, setIsVisible] = React.useState(false);
 
-  const { buttonText, onPressFirstButton, costText, disabled, secondaryText } = getReportSummaryOptions(
-    subscription,
-    navigation,
-    onPressUpdate,
-    onPayReport,
-  );
+  const { buttonText, onPressFirstButton, costText, disabled, secondaryText, onPressSecondButton, lowerButtonText } =
+    getReportSummaryOptions(subscription, navigation, onPressUpdate, onPayReport);
 
   const { fetchCreditReport, loading, creditReportSummary } = useCreditReportSummaryService(false);
 
@@ -42,7 +39,8 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
       const description = match ? match[`description${locale.charAt(0).toUpperCase() + locale.slice(1)}`] || match.descriptionRo : '';
       const activityType = match ? match.activityType : '';
       const qualityType = match ? match.qualityType : '';
-      return { ...commitment, type, description, activityType, qualityType };
+      const attribute = match ? match.attribute : 0;
+      return { ...commitment, type, description, activityType, qualityType, attribute };
     }),
   );
 
@@ -88,6 +86,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
               <CommitmentItem
                 type={item?.type}
                 balance={item?.balance}
+                attribute={item?.attribute}
                 status={item?.roleType}
                 name={item?.sourceShortName}
                 description={item?.description}
@@ -108,14 +107,15 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
           />
           <Text variant="18-semi" t18n="logged_in:credit_report:summary:last_24_months" />
           <GridItems data={creditReportSummary?.creditReport.primaryIndicators} />
-          <HistoryCard t18nTitle="logged_in:home:info:last_interogation" date={inquiry?.inquiryDateTime} />
-          <HistoryCard t18nTitle="logged_in:credit_report:last_credit_history_update" date={reportEvents?.lastEventDateTime} />
         </View>
       </Screen>
       <CommitmentCount
+        buttonTitle={lowerButtonText as I18nKey}
         canOrderReport={!!creditReportSummary}
         refreshing={loading}
-        onOrderReport={onOrderReport}
+        inquiryDateTime={inquiry?.inquiryDateTime}
+        lastEventDateTime={reportEvents?.lastEventDateTime}
+        onOrderReport={() => onPressSecondButton(reportId)}
         onRefresh={fetchCreditReport}
         activeNegativeCommitments={(creditReportSummary?.creditReport.commitments?.activeNegativeCommitments || []).length}
         activePositiveCommitments={(creditReportSummary?.creditReport.commitments?.activePositiveCommitments || []).length}

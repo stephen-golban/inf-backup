@@ -11,7 +11,7 @@
 
     "questions": {
       "register": "Нет учетной записи? <1>Зарегистрируйтесь</1>",
-      "forgot_password": "Забыли пароль? <1>��осстановление пароля</1>"
+      "forgot_password": "Забыли пароль? <1>Восстановление пароля</1>"
     }
   },
 
@@ -47,6 +47,10 @@
   },
   "success-recognition": {
     "title": "Успешное распознавание"
+  },
+  "success-registration": {
+    "title": "Регистрация успешна",
+    "account_has_been_created": "Учетная запись была успешно создана"
   },
   "something-went-wrong": "Что-то пошло не так",
   "please_review_your_information": "Пожалуйста, проверьте вашу информацию",

@@ -18,6 +18,7 @@
   "success": "Succes",
   "save": "Salvează",
   "read": "Сitiți",
+  "back_to_login": "Înapoi la autentificare",
 
   "placeholders": {
     "phone_input_country_search_placeholder": "Căutați o țară",

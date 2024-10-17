@@ -2,11 +2,10 @@ import React from 'react';
 
 import { Loader } from '@components/ui';
 import { ScrollView } from '@components/common';
-import { FrequentlyQuestions, FaqList } from './parts';
+import { FaqList } from './parts';
 import { IFaqResponse } from '@typings/responses';
 import { openBrowserAsync } from '@library/method';
 import { useTheme } from '@theme/index';
-import { Color } from '@theme/colors';
 
 interface IFaqModule {
   loading: boolean;
@@ -17,8 +16,6 @@ const FaqModule: React.FC<IFaqModule> = ({ faq, loading }) => {
   if (loading) {
     return <Loader center />;
   }
-
-  const { colors } = useTheme();
 
   const faqItems = faq?._embedded.entityModelList[0];
 

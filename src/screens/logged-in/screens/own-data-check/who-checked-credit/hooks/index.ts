@@ -12,7 +12,6 @@ const useWhoCheckedCredit = () => {
   const inquiry = useAppDataCheckStore(state => state.inquiry);
 
   const [data, setData] = useState<OwnDataCheckApiResponse | null>(null);
-
   const checkId = inquiry?.basicServices.ownDataChecksReportId;
   const userAccountId = user?.accounts[0].accountId || subscription?.subscriptionAccounts[0].accountId;
 
