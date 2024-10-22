@@ -23,7 +23,8 @@
     "new_password":"Новый пароль",
     "min_8_chars": "Минимум 8 символов",
     "min_1_uppercase": "Минимум 1 заглавная буква",
-    "min_1_symbol": "Минимум 1 символ"
+    "min_1_symbol": "Минимум 1 символ",
+    "success_password": "Пароль успешно изменен"
   },
   "subscription_duration": {
     "week_1": "Еженедельно",

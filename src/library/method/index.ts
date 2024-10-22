@@ -129,8 +129,8 @@ export const openBrowserAuthAsync = async (url: string, redirectUrl: string) => 
       secondaryToolbarColor: 'black',
       enableUrlBarHiding: true,
       ephemeralWebSession: true,
-      enableDefaultShare: true,
-      forceCloseOnRedirection: true,
+      enableDefaultShare: false,
+      forceCloseOnRedirection: false,
     });
   }
   return;

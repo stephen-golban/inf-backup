@@ -13,6 +13,8 @@ export enum PROFILE_SCREENS {
   'INVITE_FRIENDS' = 'INVITE_FRIENDS',
   'CHANGE_PASSWORD' = 'CHANGE_PASSWORD',
   'INVITE_FRIENDS_FORM' = 'INVITE_FRIENDS_FORM',
+
+  'SUCCESS_PASSWORD' = 'SUCCESS_PASSWORD',
 }
 
 export type ProfileStackParams = {
@@ -23,10 +25,10 @@ export type ProfileStackParams = {
   [PROFILE_SCREENS.NOTIFICATIONS]: undefined;
   [PROFILE_SCREENS.INVITE_FRIENDS]: undefined;
   [PROFILE_SCREENS.DELETE_ACCOUNT]: undefined;
-  [PROFILE_SCREENS.CHANGE_PASSWORD]: undefined;
-  [PROFILE_SCREENS.CHANGE_PASSWORD]: undefined;
-  [PROFILE_SCREENS.INVITE_FRIENDS_FORM]: undefined;
+  [PROFILE_SCREENS.CHANGE_PASSWORD]: { token?: any; otp?: string; phoneNr?: string } | undefined;
   [PROFILE_SCREENS.DELETE_ACCOUNT]: undefined;
+  [PROFILE_SCREENS.INVITE_FRIENDS_FORM]: undefined;
+  [PROFILE_SCREENS.SUCCESS_PASSWORD]: undefined;
   [PROFILE_SCREENS.SETTINGS]: NavigatorScreenParams<SettingsStackParams>;
 };
 

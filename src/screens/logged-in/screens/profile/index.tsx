@@ -13,6 +13,7 @@ import { InviteFriendsFormScreen } from './invite-friends-form';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { LOGGED_IN_SCREENS, type LoggedInScreensProps, PROFILE_SCREENS, type ProfileStackParams } from '@typings/navigation';
+import { SuccessPasswordScreen } from './success-password';
 
 const Stack = createNativeStackNavigator<ProfileStackParams>();
 
@@ -27,6 +28,7 @@ const ProfileStack: React.FC<LoggedInScreensProps<LOGGED_IN_SCREENS.PROFILE>> = 
       <Stack.Screen name={PROFILE_SCREENS.INVITE_FRIENDS} component={InviteFriends} />
       <Stack.Screen name={PROFILE_SCREENS.CHANGE_PASSWORD} component={ChangePassword} />
       <Stack.Screen name={PROFILE_SCREENS.NOTIFICATIONS} component={NotificationsScreen} />
+      <Stack.Screen name={PROFILE_SCREENS.SUCCESS_PASSWORD} component={SuccessPasswordScreen} />
       <Stack.Screen name={PROFILE_SCREENS.INVITE_FRIENDS_FORM} component={InviteFriendsFormScreen} />
     </Stack.Navigator>
   );

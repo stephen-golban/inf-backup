@@ -65,7 +65,7 @@ const getSubscriptionDetails = (
   if (discountData?.discount) {
     discountText = t('subscriptions:annual_discount_text', { discountAmount: discountData.discountAmount });
   }
-  if (trial) {
+  if ((trial && !isExpired) || isExpired) {
     return {
       message: t('subscription.trial_message'),
       buttonText: t('subscription.trial_button_text'),

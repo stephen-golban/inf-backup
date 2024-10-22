@@ -17,7 +17,8 @@ const RemoveScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_SCREENS
 
   const onRemove = useTryCatch(async () => await remove(undefined, logout));
 
-  const isAvailableSubscription = subscription && !subscription.trial;
+  const isAvailableSubscription =
+    subscription && !subscription.trial && new Date(subscription.subscriptionAccounts[0].termDateTime) > new Date();
 
   return <RemoveModule onRemove={onRemove} loading={loading} isAvailableSubscription={isAvailableSubscription} />;
 };

@@ -16,8 +16,6 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
   const { creditScore, fetchScore, loading: loadingCreditScore } = useCreditScoreService(false);
   const subscription = useAppStore(state => state.subscription);
 
-  const [call, { loading: loadingInquiry }] = useLazyAxios<LastInquiryApiResponse>('/inquiry-report', { method: 'get' });
-
   const [toggleBottomSheet, setToggleBottomSheet] = React.useState<boolean>(false);
 
   const paymentService = useExecutePaymentService();
@@ -27,8 +25,6 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
   const onPayReport = () => {
     setToggleBottomSheet(true);
   };
-
-  const loading = loadingCreditScore || loadingInquiry;
 
   const { reportEvents } = useAppDataCheckStore(state => state);
 
@@ -41,8 +37,7 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
         score={creditScore?.scoreValue}
         loading={loadingCreditScore}
         onPressUpdate={async () => {
-          fetchScore();
-          await call(undefined, res => useAppDataCheckStore.setState({ inquiry: res }));
+          await fetchScore();
         }}
         onPayReport={onPayReport}
       />
@@ -53,7 +48,7 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
         }}
         snapPoints={['75%']}>
         <PaymentCardsModule
-          paymentLoading={paymentService.loading || loading}
+          paymentLoading={paymentService.loading || loadingCreditScore}
           onPressContinue={({ cardId, billerId }) => {
             const queryData = {
               paymentServiceName: 'MAIB',
@@ -64,8 +59,7 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
               currency: 'MDL',
             };
             return paymentService.onPressPay(queryData, async res => {
-              fetchScore();
-              await call(undefined, res => useAppDataCheckStore.setState({ inquiry: res }));
+              await fetchScore();
               navigation.navigate(LOGGED_IN_SCREENS.OWN_DATA_CHECK, {
                 screen: OWN_DATA_CHECK_SCREENS.SummaryReportStatus,
                 params: { status: res.status === 'OK' ? 'accepted' : 'rejected' },

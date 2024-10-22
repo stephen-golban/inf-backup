@@ -10,10 +10,10 @@ import { PROFILE_SCREENS, ProfileStackScreenProps } from '@typings/navigation/co
 const ChangePassword: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.CHANGE_PASSWORD>> = ({ navigation }) => {
   const [call, { loading }] = useLazyAxios({
     method: 'patch',
-    url: '/password-reset',
+    url: '/password-change',
   });
 
-  const service = useTokenService(true);
+  const service = useTokenService();
 
   const onSubmit = useTryCatch(async (password: { current_password: string; new_password: string }) => {
     const tokenRes = await service.getTokens();
@@ -24,8 +24,8 @@ const ChangePassword: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.CHANGE_PA
       };
 
       const queryParams = {
-        current_password: password.current_password,
-        new_password: password.new_password,
+        currentPassword: password.current_password,
+        newPassword: password.new_password,
       };
       const res = await call(queryParams, noop, { headers });
       if (res) {

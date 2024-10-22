@@ -31,7 +31,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
   const { buttonText, onPressFirstButton, costText, disabled, secondaryText, onPressSecondButton, lowerButtonText } =
     getReportSummaryOptions(subscription, navigation, onPressUpdate, onPayReport);
 
-  const { fetchCreditReport, loading, creditReportSummary } = useCreditReportSummaryService(false);
+  const { fetchCreditReport, loadingReport, creditReportSummary } = useCreditReportSummaryService(false);
 
   const commitments = Object.entries(creditReportSummary?.creditReport?.commitments || {}).flatMap(([type, commitments]) =>
     commitments.map((commitment: ICommitment) => {
@@ -47,9 +47,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
   const sourceIdnos = commitments.map(commitment => commitment.sourceIdno);
   const searchSourceIdno = '1009600029036';
 
-  const incassoCommitments = commitments.filter(
-    commitment => commitment.sourceIdno === searchSourceIdno && commitment.type === 'activeNegativeCommitments',
-  );
+  const incassoCommitments = commitments.filter(commitment => commitment.type === 'activeNegativeCommitments');
 
   const reportRequestDateTime = creditReportSummary?.requestDateTime;
   const reportResponseDateTime = creditReportSummary?.responseDateTime;
@@ -58,7 +56,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
     const lastShownTimestamp = loadString(MMKV_KEY.INCASSO_REMIND);
     const currentTimestamp = Date.now();
 
-    if (sourceIdnos.includes(searchSourceIdno)) {
+    if (sourceIdnos.includes(searchSourceIdno) && incassoCommitments.length > 0) {
       if (!lastShownTimestamp || currentTimestamp - parseInt(lastShownTimestamp) > 60000) {
         setIsVisible(true);
       }
@@ -102,7 +100,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
             costText={costText}
             buttonText={buttonText}
             subscription={subscription}
-            isLoading={loading || loadReport}
+            isLoading={loadingReport || loadReport}
             onNavigate={onPressFirstButton}
           />
           <Text variant="18-semi" t18n="logged_in:credit_report:summary:last_24_months" />
@@ -112,7 +110,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
       <CommitmentCount
         buttonTitle={lowerButtonText as I18nKey}
         canOrderReport={!!creditReportSummary}
-        refreshing={loading}
+        refreshing={loadingReport}
         inquiryDateTime={inquiry?.inquiryDateTime}
         lastEventDateTime={reportEvents?.lastEventDateTime}
         onOrderReport={() => onPressSecondButton(reportId)}

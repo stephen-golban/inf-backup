@@ -23,7 +23,8 @@
     "new_password":"Parolă nouă",
     "min_8_chars": "Minim 8 caractere",
     "min_1_uppercase": "Minim 1 literă mare",
-    "min_1_symbol": "Minim 1 simbol"
+    "min_1_symbol": "Minim 1 simbol",
+    "success_password": "Parola schimbată cu succes"
   },
   "subscription_duration": {
     "week_1": "Săptămânal",

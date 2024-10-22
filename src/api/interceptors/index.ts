@@ -49,6 +49,11 @@ export const onResponseError = async (error: AxiosError, instance: AxiosInstance
 
 export const addRequestInterceptor = (instance: AxiosInstance) => {
   instance.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
+    if (config.headers['Authorization']) {
+      // If Authorization header is already set in the config, use it
+      return config;
+    }
+
     const accessToken = (await Keychain.getInternetCredentials('accessToken')) as Keychain.SharedWebCredentials;
     if (accessToken) {
       config.headers['Authorization'] = `Bearer ${accessToken.password}`;

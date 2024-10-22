@@ -32,7 +32,7 @@ export default function useLoginScreen() {
       undefined,
       async (data, status, finalUrl) => {
         if (finalUrl) {
-          const res = await openBrowserAuthAsync(finalUrl, 'infodebit://mpass');
+          const res = await openBrowserAuthAsync(finalUrl, '');
           if (res && res.type === 'success') {
             const decodedUrl = decodeURIComponent(res.url);
             const tokenString = decodedUrl.split('token=')[1];
