@@ -131,6 +131,7 @@ export const openBrowserAuthAsync = async (url: string, redirectUrl: string) => 
       ephemeralWebSession: true,
       enableDefaultShare: false,
       forceCloseOnRedirection: false,
+      showInRecents: true,
     });
   }
   return;

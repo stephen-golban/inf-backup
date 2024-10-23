@@ -8,12 +8,12 @@ import InviteFriends from './invite-friends';
 import { MyAccountScreen } from './my-account';
 import ChangePassword from './change-password';
 import NotificationsScreen from './notifications';
+import { SuccessPasswordScreen } from './success-password';
 import { InviteFriendsFormScreen } from './invite-friends-form';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { LOGGED_IN_SCREENS, type LoggedInScreensProps, PROFILE_SCREENS, type ProfileStackParams } from '@typings/navigation';
-import { SuccessPasswordScreen } from './success-password';
 
 const Stack = createNativeStackNavigator<ProfileStackParams>();
 

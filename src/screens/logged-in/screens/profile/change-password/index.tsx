@@ -13,29 +13,20 @@ const ChangePassword: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.CHANGE_PA
     url: '/password-change',
   });
 
-  const service = useTokenService();
-
   const onSubmit = useTryCatch(async (password: { current_password: string; new_password: string }) => {
-    const tokenRes = await service.getTokens();
-
-    if (tokenRes) {
-      const headers = {
-        Authorization: `Bearer ${tokenRes.access_token}`,
-      };
-
-      const queryParams = {
-        currentPassword: password.current_password,
-        newPassword: password.new_password,
-      };
-      const res = await call(queryParams, noop, { headers });
-      if (res) {
-        navigation.goBack();
-      }
+    const queryParams = {
+      currentPassword: password.current_password,
+      newPassword: password.new_password,
+    };
+    const res = await call(queryParams);
+    if (res) {
+      navigation.navigate(PROFILE_SCREENS.SUCCESS_PASSWORD);
     }
   });
+
   return (
     <ChangePasswordModule
-      loading={loading || service.loading}
+      loading={loading}
       onSubmit={password => {
         onSubmit(password);
       }}
