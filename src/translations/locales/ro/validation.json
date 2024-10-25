@@ -1,6 +1,6 @@
 {
   "invalid_format": "Formatul câmpului este invalid",
-  "idnp_invalid": "IDNP trebuie să conțină doar numere",
+  "idnp_invalid": "Formatul IDNP este invalid",
   "min_value": "Valoarea minimă este {{val}}",
   "field_required": "Acest câmp este obligatoriu",
   "min_chars_length": "Trebuie să aibă cel puțin {{count}} caractere",
