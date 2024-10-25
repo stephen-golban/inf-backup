@@ -6,6 +6,8 @@ import { type InferType, object, string, date } from 'yup';
 import { REGEX } from '@library/constants';
 import { yupTermsAndAgreements } from '@library/yup-validate';
 
+const IDNP_REGEX = /^((2\d{12})|(09\d{11}))$/;
+
 const shape = object({
   email: string()
     .matches(REGEX.email, stringifyObjectValidate({ keyT: 'validation:email_valid_address' }))
@@ -15,12 +17,25 @@ const shape = object({
 
   identityNumber: string()
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))
-    .matches(/^\d+$/, {
-      message: stringifyObjectValidate({ keyT: 'validation:idnp_invalid' }),
-      excludeEmptyString: true,
-    })
-    .min(13, stringifyObjectValidate({ keyT: 'validation:min_chars_length', options: { count: 13 } }))
-    .test('is-number', stringifyObjectValidate({ keyT: 'validation:invalid_format' }), value => /^\d+$/.test(value)),
+    .matches(/^[0-9]{13}$/, stringifyObjectValidate({ keyT: 'validation:idnp_invalid' }))
+    .test('is-valid-idnp', stringifyObjectValidate({ keyT: 'validation:idnp_invalid' }), value => {
+      if (!value) return false;
+
+      const validate = (value: string) => {
+        if (!IDNP_REGEX.test(value)) {
+          return false;
+        }
+
+        const crc = value
+          .substring(0, 12)
+          .split('')
+          .reduce((acc, char, i) => acc + Number(char) * (i % 3 === 0 ? 7 : i % 3 === 1 ? 3 : 1), 0);
+
+        return Number(value[12]) === crc % 10;
+      };
+
+      return validate(value);
+    }),
 
   firstName: string()
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))

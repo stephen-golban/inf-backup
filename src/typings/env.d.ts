@@ -20,6 +20,8 @@ declare module '@env' {
   export const DEV_CLIENT_SECRET: string;
   export const LEAD_CLIENT_ID: string;
   export const LEAD_CLIENT_SECRET: string;
+  export const MPASS_CLIENT_ID: string;
+  export const MPASS_CLIENT_SECRET: string;
 
   export const DEV_CLIENT_RESET_PASSWORD_ID: string;
   export const DEV_CLIENT_RESET_PASSWORD_SECRET: string;
