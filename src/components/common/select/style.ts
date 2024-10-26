@@ -7,6 +7,7 @@ export default ({ colors, textVariants, shadows }: AppTheme) => {
       height: 50,
       borderWidth: 1,
       borderRadius: 8,
+      paddingRight: 35,
       alignItems: 'center',
       flexDirection: 'row',
       paddingHorizontal: 16,
@@ -36,6 +37,11 @@ export default ({ colors, textVariants, shadows }: AppTheme) => {
     itemText: {
       ...textVariants['14-reg'],
       color: colors.black,
+    },
+    input: {
+      borderRadius: 0,
+      paddingHorizontal: 0,
+      backgroundColor: colors.transparent,
     },
   });
 };
