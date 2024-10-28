@@ -1,6 +1,6 @@
 {
   "invalid_format": "Неверный формат поля",
-  "idnp_invalid": "IDNP должен содержать только цифры",
+  "idnp_invalid": "Неверный формат IDNP",
   "min_value": "Минимальное значение {{val}}",
   "field_required": "Это поле обязательно для заполнения",
   "min_chars_length": "Должно быть не менее {{count}} символов",
