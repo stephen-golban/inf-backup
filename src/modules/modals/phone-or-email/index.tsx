@@ -52,7 +52,9 @@ const PhoneOrEmailModule: React.FC<IPhoneOrEmailModule> = ({ onSuccess, type, tr
                   t18n="ui:save"
                   loading={loading}
                   disabled={!formState.isValid}
-                  onPress={handleSubmit(data => save(type, data[type.toLowerCase()]))}
+                  onPress={handleSubmit(data =>
+                    save(type, type === 'PHONE' ? `+373${data[type.toLowerCase()]}` : data[type.toLowerCase()]),
+                  )}
                 />
               </View>
             );

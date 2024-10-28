@@ -23,7 +23,9 @@ const AccountDetails: React.FC<IAccountDetails> = props => {
         </View>
         <View p="md" row between>
           <Text variant="14-reg" t18n="profile:my_account:account_details:phone" />
-          <Text variant="14-reg">{phone || <PhoneOrEmailModule type="PHONE" onSuccess={() => onRefresh?.()} />}</Text>
+          <Text variant="14-reg">
+            {phone && phone !== 'N/A' ? phone : <PhoneOrEmailModule type="PHONE" onSuccess={() => onRefresh?.()} />}
+          </Text>
         </View>
       </View>
       <OutlinedButton

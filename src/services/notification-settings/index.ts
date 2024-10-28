@@ -5,7 +5,7 @@ import { useTryCatch } from '@library/hooks';
 import type { Noop } from 'react-hook-form';
 
 function useNotificationSettingsService(onSuccess: Noop = noop) {
-  const [call, { loading, data }] = useLazyAxios('/notification-settings', { method: 'post' });
+  const [call, { loading, data }] = useLazyAxios('/notifications/settings', { method: 'post' });
 
   const onRequestSuccess = (res: any) => {
     onSuccess();
