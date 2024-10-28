@@ -11,6 +11,8 @@ import { Checkbox, FilledButton, Form, Icon, Select, Text, View } from '@compone
 
 import type { Option } from '@rn-primitives/select';
 import { type ReportRequestFormFields, report_request_schema } from './resolver';
+import { PhoneOrEmailModule } from '@modules/modals';
+import { useMe } from '@services/me';
 
 const defaultValues = {
   phone: undefined,
@@ -22,6 +24,7 @@ const defaultValues = {
 
 const Order: React.FC = () => {
   const { t } = useTranslation();
+  const { getMe, loading: loadingMe, me } = useMe();
   const { generatedPhones, loading, onSubmit } = useDownloadReportOrder();
 
   return (
@@ -72,9 +75,21 @@ const Order: React.FC = () => {
                 render={({ field }) => (
                   <Select
                     icon="PhoneIcon"
+                    loading={loadingMe}
                     data={generatedPhones}
                     onValueChange={field.onChange}
                     value={field.value as unknown as Option}
+                    renderEmpty={
+                      <PhoneOrEmailModule
+                        type="PHONE"
+                        onSuccess={getMe}
+                        trigger={
+                          <View bg="blue" p="md" br={8}>
+                            <Text variant="14-semi" color="white" t18n="ui:add" textAlign="center" />
+                          </View>
+                        }
+                      />
+                    }
                     placeholder={t('logged_in:credit_report:download:order:select_phone')}
                   />
                 )}

@@ -70,6 +70,8 @@ const SendEmail: React.FC<ISendEmail> = ({ reportId }) => {
                       icon="ForwardToInboxIcon"
                       data={generatedEmails}
                       onValueChange={field.onChange}
+                      // typeable={isEmpty(generatedEmails)}
+                      typeable
                       value={field.value as unknown as Option}
                       placeholder={t('logged_in:credit_report:download:email:select')}
                     />

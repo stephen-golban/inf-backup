@@ -7,6 +7,7 @@ import { OutlinedButton, Screen } from '@components/common';
 import { AccountDetails, SubscriptionDetails } from './parts';
 
 import { formatPhoneNumber } from '@library/method';
+import { useMe } from '@services/me';
 
 interface IMyAccountModule {
   loading?: boolean;
@@ -18,16 +19,15 @@ interface IMyAccountModule {
 
 const MyAccountModule: React.FC<IMyAccountModule> = props => {
   const { onRemoveAccount, onChangePassword, loading, onRefresh, onHandleSubscription } = props;
+  const { getMe, loading: loadingMe, me } = useMe();
 
-  const user = useAppStore(state => state.user);
-
-  const email = user?.contactData?.find(contact => contact.type === 'EMAIL')?.value;
-  const phone = user?.contactData?.find(contact => contact.type === 'PHONE')?.value;
+  const email = me?.contactData?.find(contact => contact.type === 'EMAIL')?.value;
+  const phone = me?.contactData?.find(contact => contact.type === 'PHONE')?.value;
   const formattedPhone = phone ? formatPhoneNumber(phone, true) : 'N/A';
 
   return (
-    <Screen scroll unsafe loading={loading} onRefresh={onRefresh} style={{ paddingHorizontal: 0 }}>
-      <AccountDetails email={email} phone={formattedPhone} onChangePassword={onChangePassword} />
+    <Screen scroll unsafe loading={loading || loadingMe} onRefresh={getMe} style={{ paddingHorizontal: 0 }}>
+      <AccountDetails email={email} phone={formattedPhone} onChangePassword={onChangePassword} onRefresh={getMe} />
       <SubscriptionDetails onChangeSubscription={onHandleSubscription} />
       <Divider isHorizontal bg="blue" h={1.2} mt="xxxl" />
       <OutlinedButton

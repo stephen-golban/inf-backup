@@ -44,6 +44,12 @@ export type TextInputProps = RNTextInputProps & {
   rxFormat?: RegExp;
 
   /**
+   * Disable animation
+   * @default false
+   */
+  disableAnimation?: boolean;
+
+  /**
    * Translate placeholder by I18n
    * @default undefined
    */

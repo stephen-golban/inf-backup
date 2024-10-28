@@ -37,6 +37,7 @@ const TextInput = React.forwardRef((props: TextInputProps, ref: React.ForwardedR
     placeholderI18n,
     style: incomingStyle,
     placeholderTextColor = 'gray',
+    disableAnimation = false,
     onBlur,
     onFocus,
     onChangeText,
@@ -72,8 +73,14 @@ const TextInput = React.forwardRef((props: TextInputProps, ref: React.ForwardedR
   }, [prefix, icon, iconProps]);
 
   const renderStyle = React.useMemo(() => {
-    return [styles.input, vars.inputAnimationStyle, multiline && styles.multiline, (icon || prefix) && styles.withIcon, incomingStyle];
-  }, [styles, vars.inputAnimationStyle, icon, prefix, incomingStyle]);
+    return [
+      styles.input,
+      !disableAnimation && vars.inputAnimationStyle,
+      multiline && styles.multiline,
+      (icon || prefix) && styles.withIcon,
+      incomingStyle,
+    ];
+  }, [styles, vars.inputAnimationStyle, icon, prefix, incomingStyle, disableAnimation]);
 
   return (
     <>

@@ -10,6 +10,7 @@
   "update": "Update",
   "loading": "Loading",
   "continue": "Continue",
+  "add": "Add",
   "send": "Send",
   "back": "Back",
   "download": "Download",
@@ -19,7 +20,6 @@
   "save": "Save",
   "read": "Read",
   "back_to_login": "Back to login",
-
 
   "placeholders": {
     "phone_input_country_search_placeholder": "Search for a country",
