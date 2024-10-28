@@ -10,32 +10,23 @@ import { PROFILE_SCREENS, ProfileStackScreenProps } from '@typings/navigation/co
 const ChangePassword: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.CHANGE_PASSWORD>> = ({ navigation }) => {
   const [call, { loading }] = useLazyAxios({
     method: 'patch',
-    url: '/password-reset',
+    url: '/password-change',
   });
-
-  const service = useTokenService(true);
 
   const onSubmit = useTryCatch(async (password: { current_password: string; new_password: string }) => {
-    const tokenRes = await service.getTokens();
-
-    if (tokenRes) {
-      const headers = {
-        Authorization: `Bearer ${tokenRes.access_token}`,
-      };
-
-      const queryParams = {
-        current_password: password.current_password,
-        new_password: password.new_password,
-      };
-      const res = await call(queryParams, noop, { headers });
-      if (res) {
-        navigation.goBack();
-      }
+    const queryParams = {
+      currentPassword: password.current_password,
+      newPassword: password.new_password,
+    };
+    const res = await call(queryParams);
+    if (res) {
+      navigation.navigate(PROFILE_SCREENS.SUCCESS_PASSWORD);
     }
   });
+
   return (
     <ChangePasswordModule
-      loading={loading || service.loading}
+      loading={loading}
       onSubmit={password => {
         onSubmit(password);
       }}

@@ -10,14 +10,13 @@ import { CreditReportSummaryModule, PaymentCardsModule } from '@modules/logged-i
 import { BottomSheet } from '@components/common';
 import { useExecutePaymentService } from '@services/execute-payment';
 
-import { LastInquiryApiResponse } from '@typings/responses';
 import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
 
 const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.CreditReportSummary>> = ({ navigation }) => {
   const report = useAppDataCheckStore(state => state.creditReportSummary);
   const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportSummaryId);
 
-  const { fetchCreditReport, loading: loadingCreditReportSummary } = useCreditReportSummaryService();
+  const { fetchCreditReport, loadingReport } = useCreditReportSummaryService();
 
   const [toggleBottomSheet, setToggleBottomSheet] = React.useState<boolean>(false);
 
@@ -31,8 +30,6 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
     method: 'post',
     url: `/feedback/credit-report`,
   });
-
-  const [getInquiry, { loading: loadingInquiry }] = useLazyAxios<LastInquiryApiResponse>('/inquiry-report', { method: 'get' });
 
   function onOrderReport() {
     if (reportId) {
@@ -52,14 +49,13 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
       <CreditReportSummaryModule
         onPressUpdate={async () => {
           fetchCreditReport();
-          await getInquiry(undefined, res => useAppDataCheckStore.setState({ inquiry: res as LastInquiryApiResponse }));
         }}
         onPayReport={onPayReport}
         navigation={navigation}
         subscription={subscription}
         onSubmit={data => call({ ...data })}
         data={report}
-        loadReport={loadingCreditReportSummary || loadingInquiry}
+        loadReport={loadingReport}
         feedbackLoading={loading}
         onOrderReport={onOrderReport}
       />
@@ -70,7 +66,7 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
         }}
         snapPoints={['75%']}>
         <PaymentCardsModule
-          paymentLoading={paymentService.loading || loading || loadingCreditReportSummary || loadingInquiry}
+          paymentLoading={loadingReport || paymentService.loading}
           onPressContinue={({ cardId, billerId }) => {
             const queryData = {
               paymentServiceName: 'MAIB',
@@ -81,8 +77,7 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
               currency: 'MDL',
             };
             return paymentService.onPressPay(queryData, async res => {
-              fetchCreditReport();
-              await getInquiry(undefined, res => useAppDataCheckStore.setState({ inquiry: res as LastInquiryApiResponse }));
+              await fetchCreditReport();
               navigation.navigate(LOGGED_IN_SCREENS.OWN_DATA_CHECK, {
                 screen: OWN_DATA_CHECK_SCREENS.SummaryReportStatus,
                 params: { status: res.status === 'OK' ? 'accepted' : 'rejected' },

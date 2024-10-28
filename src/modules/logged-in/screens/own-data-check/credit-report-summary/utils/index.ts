@@ -69,7 +69,7 @@ const getReportSummaryOptions = (
   if (discountData?.discount) {
     discountText = t('subscriptions:annual_discount_text', { discountAmount: discountData.discountAmount });
   }
-  if (trial) {
+  if ((trial && !isExpired) || isExpired) {
     return {
       message: t('ui:subscription:trial_message'),
       buttonText: t('logged_in:credit_report:credit_report_summary_options:choose_subscription'),

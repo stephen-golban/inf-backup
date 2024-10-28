@@ -1,8 +1,7 @@
-import { noop } from 'lodash';
 import { useLazyAxios } from '@api/hooks';
-import { createPaymentBody } from './util';
 import { useTryCatch } from '@library/hooks';
-import { closeInAppBrowser, getQueryParams, openBrowserAuthAsync } from '@library/method';
+
+import { createPaymentBody } from './util';
 
 import type { ExecutePaymentApiResponse, ExecutePaymentBodyArgs } from '@typings/responses';
 

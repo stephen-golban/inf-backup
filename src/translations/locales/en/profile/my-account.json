@@ -23,7 +23,9 @@
     "new_password":"New password",
     "min_8_chars": "Minimum 8 characters",
     "min_1_uppercase": "Minimum 1 uppercase letter",
-    "min_1_symbol": "Minimum 1 symbol"
+    "min_1_symbol": "Minimum 1 symbol",
+    "success_password": "Password changed successfully"
+    
   },
   "subscription_duration": {
     "week_1": "Weekly",

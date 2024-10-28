@@ -11,10 +11,10 @@ interface ICreditReport {
 }
 
 const CreditReport: React.FC<ICreditReport> = ({ onPress }) => {
-  const { fetchCreditReport, formattedCount, badgeCount, loading, creditReportSummary } = useCreditReportSummaryService();
+  const { fetchCreditReport, formattedCount, badgeCount, loadingReport, creditReportSummary } = useCreditReportSummaryService();
 
   const content = React.useMemo(() => {
-    if (loading) {
+    if (loadingReport) {
       return <Loader />;
     }
 
@@ -48,7 +48,7 @@ const CreditReport: React.FC<ICreditReport> = ({ onPress }) => {
         </View>
       </View>
     );
-  }, [creditReportSummary, loading, formattedCount, badgeCount, fetchCreditReport]);
+  }, [creditReportSummary, loadingReport, formattedCount, badgeCount, fetchCreditReport]);
 
   return (
     <BaseButton onPress={onPress} fill bg="lightGray" br="xl" shadow="card" h={180}>

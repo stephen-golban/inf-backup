@@ -6,7 +6,7 @@ import { useAppDataCheckStore } from '@store/data-check';
 import { useToast } from 'react-native-toast-notifications';
 import { useTranslation, useTryCatch } from '@library/hooks';
 
-import type { ICreditReportSummaryResponse } from '@typings/responses';
+import type { ICreditReportSummaryResponse, LastInquiryApiResponse } from '@typings/responses';
 
 const CREDIT_REPORT_QUERY_PARAMS = {
   subjectType: 'INDIVIDUAL',
@@ -30,6 +30,8 @@ function useCreditReportSummaryService(runOnMount = true) {
     },
   });
 
+  const [getInquiry, { loading: loadingInquiry }] = useLazyAxios<LastInquiryApiResponse>('/inquiry-report', { method: 'get' });
+
   const handleResponseError = (message: string | undefined) => {
     if (message === 'User with subscription does not has access') {
       toast.show(t('ui:toasts:user_subscription_no_access'), { type: 'danger' });
@@ -43,14 +45,21 @@ function useCreditReportSummaryService(runOnMount = true) {
   };
 
   const fetchCreditReport = useTryCatch(async () => {
-    return await callWithSubscription(CREDIT_REPORT_QUERY_PARAMS, response => {
-      if (response) {
-        const { message } = response;
-        if (!handleResponseError(message)) {
-          return useAppDataCheckStore.setState({ creditReportSummary: response });
+    await Promise.all([
+      callWithSubscription(CREDIT_REPORT_QUERY_PARAMS, response => {
+        if (response) {
+          const { message } = response;
+          if (!handleResponseError(message)) {
+            useAppDataCheckStore.setState({ creditReportSummary: response });
+          }
         }
-      }
-    });
+      }),
+      call(undefined, res => {
+        useAppDataCheckStore.setState({ creditReportSummary: JSON.parse(atob(res)) });
+      }),
+    ]);
+
+    await getInquiry(undefined, res => useAppDataCheckStore.setState({ inquiry: res as LastInquiryApiResponse }));
   });
 
   const totalBalance = creditReportSummary?.creditReport.primaryIndicators.totalBalance ?? 0;
@@ -60,7 +69,7 @@ function useCreditReportSummaryService(runOnMount = true) {
 
   const formattedCount = `${balance} ${currencyLabel}`;
 
-  const loading = fetchLoading || report.loading;
+  const loadingReport = fetchLoading || report.loading || loadingInquiry;
 
   if (runOnMount) {
     useEffect(() => {
@@ -71,7 +80,7 @@ function useCreditReportSummaryService(runOnMount = true) {
   }
 
   return {
-    loading,
+    loadingReport,
     badgeCount,
     formattedCount,
     creditReportSummary,

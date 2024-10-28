@@ -54,7 +54,7 @@ export default function useOneTimePassword(
       };
       const queryParams = {
         otpNotificationType: otpNotificationType || 'SMS',
-        sentTo: loadString(MMKV_KEY.SEND_TO),
+        sendTo: loadString(MMKV_KEY.SEND_TO),
       };
       const res = await resendCode(queryParams, noop, { headers });
     }

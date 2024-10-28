@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMount } from 'react-use';
 import { useAppStore } from '@store/app';
 import { useLazyAxios } from '@api/hooks';
@@ -25,8 +25,29 @@ const useHomeScreen = () => {
     url: '/credit-report-events?subscriptionFreeAccess=true',
   });
 
-  useMount(async () => await call(undefined, res => useAppDataCheckStore.setState({ inquiry: res })));
-  useMount(async () => await reportEvents(undefined, res => useAppDataCheckStore.setState({ reportEvents: res })));
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await call(undefined, res => useAppDataCheckStore.setState({ inquiry: res }));
+      } catch (error) {
+        console.error('Error fetching inquiry data:', error);
+      }
+    };
+
+    fetchData();
+  }, [refetch]);
+
+  useMount(() => {
+    const fetchReportEvents = async () => {
+      try {
+        await reportEvents(undefined, res => useAppDataCheckStore.setState({ reportEvents: res }));
+      } catch (error) {
+        console.error('Error fetching report events:', error);
+      }
+    };
+
+    fetchReportEvents();
+  });
   const trialTermDate = subscription?.subscriptionAccounts?.[0].termDateTime;
 
   useMount(() => {

@@ -11,7 +11,6 @@ interface IRemoveModule {
 
 const RemoveModule: React.FC<IRemoveModule> = ({ isAvailableSubscription, loading, onRemove }) => {
   const { t } = useTranslation();
-
   const handleRemovePress = () => {
     Alert.alert(
       t('ui:confirmation'),
