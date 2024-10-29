@@ -8,13 +8,14 @@ import { useDeviceInfoService } from '@services/device-info';
 
 import { MMKV_KEY, PIN_CODE } from '@library/constants';
 import { PinCodeT } from '@anhnch/react-native-pincode';
-import { AppStorage, loadString, remove } from '@library/storage';
+import { AppStorage, loadString, remove, saveString } from '@library/storage';
 
 function useLoginService() {
   const service = useDeviceInfoService();
   const [pin] = useMMKVString(PIN_CODE.pin, AppStorage);
 
-  const saveTokens = async (accessToken: string, refreshToken: string) => {
+  const saveTokens = async (accessToken: string, refreshToken: string, isMpass = false) => {
+    isMpass && saveString(MMKV_KEY.IS_MPASS_LOGIN, 'true');
     await Keychain.setInternetCredentials('accessToken', 'user', accessToken);
     await Keychain.setInternetCredentials('refreshToken', 'user', refreshToken);
   };
@@ -33,9 +34,9 @@ function useLoginService() {
     }
   };
 
-  const onRequestSuccess = useTryCatch(async (data: any) => {
+  const onRequestSuccess = useTryCatch(async (data: any, isMpass = false) => {
     const { access_token, refresh_token } = data;
-    await saveTokens(access_token, refresh_token);
+    await saveTokens(access_token, refresh_token, isMpass);
     await handleDeviceToken();
     setAppIsAuthenticated(true);
     setPinCodeState();
