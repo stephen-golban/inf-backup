@@ -6,20 +6,19 @@ import { usePinCodeStore } from '@store/pin-code';
 import * as Keychain from 'react-native-keychain';
 import { OneSignal } from 'react-native-onesignal';
 
-async function onLogout(isMpass = false) {
+async function logout() {
+  const isMpassLogin = loadString(MMKV_KEY.IS_MPASS_LOGIN) === 'true';
   await Keychain.resetInternetCredentials('accessToken');
   await Keychain.resetInternetCredentials('refreshToken');
   resetAppDataCheckStore();
   usePinCodeStore.setState({ visible: false });
   resetAppStore();
   OneSignal.logout();
-  isMpass && remove(MMKV_KEY.IS_MPASS_LOGIN);
+  isMpassLogin && remove(MMKV_KEY.IS_MPASS_LOGIN);
 }
 
 function useLogoutService() {
-  const isMpassLogin = loadString(MMKV_KEY.IS_MPASS_LOGIN) === 'true';
-  const logout = () => onLogout(isMpassLogin);
   return logout;
 }
 
-export { useLogoutService };
+export { useLogoutService, logout };

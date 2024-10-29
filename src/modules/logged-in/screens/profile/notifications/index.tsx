@@ -47,6 +47,8 @@ const NotificationModule: React.FC<INotificationModule> = props => {
         return { message: t('ui:notifications:subscription_expiring_info'), icon: 'TimePersonIcon' };
       case 'NEW_BASIC_SERVICE':
         return { message: t('ui:notifications:new_basic_service'), icon: 'YellowPlusIcon' };
+      case 'INQUIRY':
+        return { message: t('ui:notifications:database_query'), icon: 'SettingsRefreshIcon' };
       default:
         return { message: t('ui:notifications:unknown_notification'), icon: 'SettingsRefreshIcon' };
     }
