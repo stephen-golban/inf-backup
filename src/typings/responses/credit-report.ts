@@ -61,6 +61,7 @@ interface Individual {
 export interface PrimaryIndicators {
   totalBalance: number;
   totalDebtService: number;
+  totalNetBalance: number;
   monthMaxAmount24: number;
   openedCommitments24: number;
   closedCommitments24: number;
