@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useMount } from 'react-use';
 import { useAppStore } from '@store/app';
 import { useLazyAxios } from '@api/hooks';
+import { useTryCatch } from '@library/hooks';
+import { OneSignal } from 'react-native-onesignal';
 import { useAppDataCheckStore } from '@store/data-check';
 import { useCurrentSubscriptionExpiryService } from '@services/subscription';
 
 import type { CreditReportEventsApiResponse, LastInquiryApiResponse } from '@typings/responses';
-import { OneSignal } from 'react-native-onesignal';
 
 const useHomeScreen = () => {
   const me = useAppStore(state => state.user);
@@ -18,38 +19,27 @@ const useHomeScreen = () => {
   OneSignal.Notifications.requestPermission(true);
 
   const [isTrialModalVisible, setIsTrialModalVisible] = useState(false);
-  const [call, { refetch, loading: loadingInquiry }] = useLazyAxios<LastInquiryApiResponse>('/inquiry-report', { method: 'get' });
+  const [call, { loading: loadingInquiry }] = useLazyAxios<LastInquiryApiResponse>('/inquiry-report', { method: 'get' });
 
   const [reportEvents, { loading: loadingReportEvents }] = useLazyAxios<CreditReportEventsApiResponse>({
     method: 'post',
     url: '/credit-report-events?subscriptionFreeAccess=true',
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await call(undefined, res => useAppDataCheckStore.setState({ inquiry: res }));
-      } catch (error) {
-        console.error('Error fetching inquiry data:', error);
-      }
-    };
-
-    fetchData();
-  }, [refetch]);
-
-  useMount(() => {
-    const fetchReportEvents = async () => {
-      try {
-        await reportEvents(undefined, res => useAppDataCheckStore.setState({ reportEvents: res }));
-      } catch (error) {
-        console.error('Error fetching report events:', error);
-      }
-    };
-
-    fetchReportEvents();
+  const fetchInquiryReport = useTryCatch(async () => await call(undefined, res => useAppDataCheckStore.setState({ inquiry: res })));
+  const fetchReportEvents = useTryCatch(async () => {
+    await reportEvents(undefined, res => useAppDataCheckStore.setState({ reportEvents: res }));
   });
+
+  const onRefresh = async () => {
+    await fetchInquiryReport();
+    await fetchReportEvents();
+  };
+
   const trialTermDate = subscription?.subscriptionAccounts?.[0].termDateTime;
 
+  useMount(() => fetchInquiryReport());
+  useMount(() => fetchReportEvents());
   useMount(() => {
     if (subscription && subscription.trial) {
       if (!isPurchasedSubscriptionExpired) {
@@ -60,7 +50,7 @@ const useHomeScreen = () => {
 
   const loading = loadingInquiry || loadingReportEvents;
 
-  return { refetch, loading, isTrialModalVisible, setIsTrialModalVisible, trialTermDate };
+  return { onRefresh, loading, isTrialModalVisible, setIsTrialModalVisible, trialTermDate };
 };
 
 export default useHomeScreen;
