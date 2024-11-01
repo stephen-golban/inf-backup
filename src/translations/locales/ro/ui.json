@@ -64,6 +64,7 @@
     "user_inactivity": "Salut! Am observat inactivitate de lungă durată pe cont",
     "subscription_expiring_info": "Abonamentul expiră în 15 zile",
     "new_basic_service": "Serviciu NOU",
+    "database_query": "Interogare bază de date",
     "unknown_notification": "Notificare necunoscută"
   },
 

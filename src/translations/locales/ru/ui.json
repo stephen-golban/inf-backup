@@ -64,6 +64,7 @@
     "user_inactivity": "Привет! Мы заметили длительное бездействие на аккаунте",
     "subscription_expiring_info": "Подписка истекает через 15 дней",
     "new_basic_service": "НОВАЯ услуга",
+    "database_query": "Запрос к базе данных",
     "unknown_notification": "Неизвестное уведомление"
   },
 

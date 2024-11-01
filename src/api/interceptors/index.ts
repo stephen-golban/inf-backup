@@ -2,6 +2,9 @@ import * as Keychain from 'react-native-keychain';
 import type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { auth_api } from '@api/base';
 import { logout } from '@services/logout';
+import { loadString } from '@library/storage';
+import { MMKV_KEY } from '@library/constants';
+import { MPASS_TOKEN } from '@api/constants';
 
 type Token = {
   access_token: string;
@@ -17,9 +20,11 @@ export async function refreshTokens() {
     grant_type: 'refresh_token',
     refresh_token: refreshToken,
   };
+  const isMpassLogin = loadString(MMKV_KEY.IS_MPASS_LOGIN) === 'true';
 
-  const response = await auth_api.post<Token>('/auth/oauth/token', queryParams);
-
+  const response = await auth_api.post<Token>('/auth/oauth/token', queryParams, {
+    headers: isMpassLogin ? { Authorization: `Basic ${MPASS_TOKEN}` } : {},
+  });
   const { access_token, refresh_token } = response.data;
 
   await Keychain.setInternetCredentials('accessToken', 'user', access_token);
@@ -30,20 +35,35 @@ export async function refreshTokens() {
 
 export const onResponseError = async (error: AxiosError, instance: AxiosInstance) => {
   const originalRequest: InternalAxiosRequestConfig = error.config!;
+  const errorStatus = error.response?.status;
+  const isTokenRefreshEndpoint = originalRequest.url === '/auth/oauth/token';
 
-  const isLoggedIn = !!(await Keychain.getInternetCredentials('refreshToken'));
-  if (error.response?.status === 401 && originalRequest.url !== '/auth/oauth/token') {
-    if (isLoggedIn) {
-      const res = await refreshTokens();
-      if (res) {
-        originalRequest.headers['Authorization'] = `Bearer ${res.access_token}`;
-        return instance(originalRequest);
-      }
-      return Promise.reject(error);
-    }
-    logout();
+  if (errorStatus !== 401) {
     return Promise.reject(error);
   }
+
+  const handleLogout = async () => {
+    await logout();
+    return Promise.reject(error);
+  };
+
+  const isLoggedIn = !!(await Keychain.getInternetCredentials('refreshToken'));
+
+  if (isTokenRefreshEndpoint) {
+    return handleLogout();
+  }
+
+  if (isLoggedIn) {
+    try {
+      const { access_token } = await refreshTokens();
+      originalRequest.headers['Authorization'] = `Bearer ${access_token}`;
+      return instance(originalRequest);
+    } catch (refreshError) {
+      console.error('Token refresh failed:', refreshError);
+      return handleLogout();
+    }
+  }
+
   return Promise.reject(error);
 };
 
