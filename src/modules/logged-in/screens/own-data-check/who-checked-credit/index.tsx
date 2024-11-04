@@ -2,30 +2,27 @@ import React from 'react';
 
 import { isEmpty } from 'lodash';
 import { getFormattedCheckDate } from './util';
+import { useAppDataCheckStore } from '@store/data-check';
 
 import { CheckItem, Header } from './parts';
-import { OutlinedButton, Screen, Text, View } from '@components/common';
+import { HistoryCard } from '@components/ui';
+import { Screen, Text, View } from '@components/common';
 
 import type { OwnDataCheckApiResponse } from '@typings/responses';
-import { HistoryCard } from '@components/ui';
-import { useAppDataCheckStore } from '@store/data-check';
 
 interface IWhoCheckedCreditModule {
   onRefresh?(): void;
-  updateReport?(): void;
   reportLoading: boolean;
-  updateLoading: boolean;
   data: OwnDataCheckApiResponse | null;
 }
 
-const WhoCheckedCreditModule: React.FC<IWhoCheckedCreditModule> = ({ data, onRefresh, updateReport, reportLoading, updateLoading }) => {
+const WhoCheckedCreditModule: React.FC<IWhoCheckedCreditModule> = ({ data, onRefresh, reportLoading }) => {
   const { inquiry, reportEvents } = useAppDataCheckStore();
   return (
     <Screen loading={reportLoading} pt="zero" scroll unsafe onRefresh={onRefresh}>
       <View bg="lightBlue" br="xl" p="lg">
         <Header days={data?.checksPeriod || 0} count={data?.checksNumber || 0} companies={data?.requestorsNumber || 0} />
       </View>
-      <OutlinedButton t18n="ui:update_data" onPress={updateReport} loading={updateLoading} mt="md" />
       <View rg="sm" mt="lg">
         {!data || isEmpty(data) ? (
           <View px="lg">

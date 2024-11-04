@@ -19,7 +19,7 @@ import {
 const Home: React.FC<LoggedInTabsProps<LOGGED_IN_TABS.HOME>> = ({ navigation }) => {
   const report = useAppDataCheckStore(state => state.creditReportSummary);
   const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportSummaryId);
-  const { loading, refetch, isTrialModalVisible, setIsTrialModalVisible, trialTermDate } = useHomeScreen();
+  const { loading, onRefresh, isTrialModalVisible, setIsTrialModalVisible, trialTermDate } = useHomeScreen();
 
   useGoBack(false, navigation.goBack);
 
@@ -53,7 +53,7 @@ const Home: React.FC<LoggedInTabsProps<LOGGED_IN_TABS.HOME>> = ({ navigation }) 
     <>
       <HomeModule
         loading={loading}
-        onRefresh={refetch}
+        onRefresh={onRefresh}
         onPressNewCredit={onPressNewCredit}
         onPressCreditScore={onPressCreditScore}
         onPressCreditReport={onPressCreditReport}

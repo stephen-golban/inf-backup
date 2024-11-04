@@ -5,7 +5,6 @@ import { useTryCatch } from '@library/hooks';
 import { saveString } from '@library/storage';
 import { MMKV_KEY } from '@library/constants';
 import { LOGGED_OUT_SCREENS } from '@typings/navigation';
-import { noop } from 'lodash';
 
 const useForgotPassword = (navigation: any) => {
   const [sendOTP, { loading: sendOTPLoading }] = useLazyAxios<TokensApiResponse>({
@@ -14,6 +13,15 @@ const useForgotPassword = (navigation: any) => {
   });
 
   const service = useTokenService(true);
+
+  const onSendOTPSuccess = (_res: TokensApiResponse, values: any) => {
+    saveString(MMKV_KEY.SEND_TO, values.selected_type === '✉️   EMAIL' ? values.email || '' : '+373' + values.phone || '');
+
+    navigation.navigate(LOGGED_OUT_SCREENS.OneTimePassword, {
+      sentTo: values.selected_type === '✉️   EMAIL' ? values.email || '' : '+373' + values.phone || '',
+      otpNotificationType: values.selected_type === '✉️   EMAIL' ? 'EMAIL' : 'SMS',
+    });
+  };
 
   const onSubmit = useTryCatch(async values => {
     const tokenRes = await service.getTokens();
@@ -28,21 +36,13 @@ const useForgotPassword = (navigation: any) => {
         sendTo: values.selected_type === '✉️   EMAIL' ? values.email || '' : '+373' + values.phone || '',
       };
 
-      await sendOTP(queryParams, noop, { headers });
-      saveString(MMKV_KEY.SEND_TO, values.selected_type === '✉️   EMAIL' ? values.email || '' : '+373' + values.phone || '');
-
-      navigation.navigate(LOGGED_OUT_SCREENS.OneTimePassword, {
-        sentTo: values.selected_type === '✉️   EMAIL' ? values.email || '' : '+373' + values.phone || '',
-        otpNotificationType: values.selected_type === '✉️   EMAIL' ? 'EMAIL' : 'SMS',
-      });
+      await sendOTP(queryParams, res => onSendOTPSuccess(res, values), { headers });
     }
   });
 
-  return {
-    sendOTP,
-    sendOTPLoading,
-    onSubmit,
-  };
+  const loading = sendOTPLoading || service.loading;
+
+  return { sendOTP, onSubmit, loading };
 };
 
 export default useForgotPassword;

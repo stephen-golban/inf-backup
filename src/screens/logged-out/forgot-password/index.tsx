@@ -6,10 +6,10 @@ import { LOGGED_OUT_SCREENS, type LoggedOutStackScreenProps } from '@typings/nav
 
 const ForgotPassword: React.FC<LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.ForgotPassword>> = props => {
   const { navigation } = props;
-  const { sendOTPLoading, onSubmit } = useForgotPassword(navigation);
+  const { loading, onSubmit } = useForgotPassword(navigation);
   const onPressQuestion = () => navigation.navigate(LOGGED_OUT_SCREENS.Login);
 
-  return <ForgotPasswordModule loading={sendOTPLoading} onPressQuestion={onPressQuestion} onSubmit={onSubmit} />;
+  return <ForgotPasswordModule loading={loading} onPressQuestion={onPressQuestion} onSubmit={onSubmit} />;
 };
 
 export { ForgotPassword };
