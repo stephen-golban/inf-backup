@@ -17,13 +17,13 @@ import SplashScreen from 'react-native-splash-screen';
 import { THEME } from '@theme/index';
 import { PortalHost } from '@rn-primitives/portal';
 
-import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
+// import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 
-// This is the default configuration
-configureReanimatedLogger({
-  level: ReanimatedLogLevel.warn,
-  strict: false, // Reanimated runs in strict mode by default
-});
+// // This is the default configuration
+// configureReanimatedLogger({
+//   level: ReanimatedLogLevel.warn,
+//   strict: false, // Reanimated runs in strict mode by default
+// });
 
 const MyApp = () => {
   const scheme = useColorScheme();

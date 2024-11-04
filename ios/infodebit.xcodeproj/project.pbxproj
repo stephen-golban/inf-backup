@@ -14,7 +14,7 @@
 		77DBA1092CC67DE4CF050657 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 68E1B6B7017665CFBA5A1831 /* PrivacyInfo.xcprivacy */; };
 		9F3FF0E92C5B9AB40074D663 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0E82C5B9AB40074D663 /* Images.xcassets */; };
 		9F3FF0EB2C5BA0300074D663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */; };
-		9FE7BCCA2C7CE208007F297B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FE7BCC92C7CE208007F297B /* GoogleService-Info.plist */; };
+		9F8F98DE2CD3CED600079689 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F8F98DD2CD3CED600079689 /* GoogleService-Info.plist */; };
 		A88BCF0ADBDEC2B8C64D9670 /* libPods-infodebit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1539C288C0268632C7BF1314 /* libPods-infodebit.a */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +63,7 @@
 		9F5958E72C8E01C700A81407 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		9F5958E92C8E01C700A81407 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F7ACAF12C80B3CD00B9631A /* infodebit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = infodebit.entitlements; path = infodebit/infodebit.entitlements; sourceTree = "<group>"; };
-		9FE7BCC92C7CE208007F297B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9F8F98DD2CD3CED600079689 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -108,9 +108,9 @@
 			isa = PBXGroup;
 			children = (
 				9F7ACAF12C80B3CD00B9631A /* infodebit.entitlements */,
-				9FE7BCC92C7CE208007F297B /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */,
+				9F8F98DD2CD3CED600079689 /* GoogleService-Info.plist */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				9F3FF0E82C5B9AB40074D663 /* Images.xcassets */,
@@ -220,6 +220,7 @@
 				E0667F9BA49165D55A8D05EF /* [CP] Embed Pods Frameworks */,
 				585ACE8585A51D3CE0D84297 /* [CP] Copy Pods Resources */,
 				DA8F8971E0D710FDB76AFF39 /* [CP-User] [RNFB] Core Configuration */,
+				F4F635F8180CB6255AA9C641 /* [CP-User] [RNFB] Crashlytics Configuration */,
 			);
 			buildRules = (
 			);
@@ -280,7 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F3FF0EB2C5BA0300074D663 /* LaunchScreen.storyboard in Resources */,
-				9FE7BCCA2C7CE208007F297B /* GoogleService-Info.plist in Resources */,
+				9F8F98DE2CD3CED600079689 /* GoogleService-Info.plist in Resources */,
 				9F3FF0E92C5B9AB40074D663 /* Images.xcassets in Resources */,
 				77DBA1092CC67DE4CF050657 /* PrivacyInfo.xcprivacy in Resources */,
 			);
@@ -430,6 +431,20 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-infodebit/Pods-infodebit-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F4F635F8180CB6255AA9C641 /* [CP-User] [RNFB] Crashlytics Configuration */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "[CP-User] [RNFB] Crashlytics Configuration";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\nif [[ ${PODS_ROOT} ]]; then\n  echo \"info: Exec FirebaseCrashlytics Run from Pods\"\n  \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nelse\n  echo \"info: Exec FirebaseCrashlytics Run from framework\"\n  \"${PROJECT_DIR}/FirebaseCrashlytics.framework/run\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -534,7 +549,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -570,7 +585,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6;
+				MARKETING_VERSION = 1.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -669,10 +684,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -756,10 +768,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
