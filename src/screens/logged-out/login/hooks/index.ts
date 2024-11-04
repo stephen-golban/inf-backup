@@ -6,6 +6,8 @@ import { openBrowserAuthAsync } from '@library/method';
 
 import type { LoginApiResponse } from '@typings/responses/login';
 import type { LoginFormFields } from '@modules/logged-out/login/resolver';
+import { saveString } from '@library/storage';
+import { MMKV_KEY } from '@library/constants';
 
 export default function useLoginScreen() {
   const { onRequestSuccess, service } = useLoginService();
@@ -37,7 +39,10 @@ export default function useLoginScreen() {
             const decodedUrl = decodeURIComponent(res.url);
             const tokenString = decodedUrl.split('token=')[1];
             const tokenData = JSON.parse(tokenString);
-            return await onRequestSuccess(tokenData);
+            if (tokenData) {
+              saveString(MMKV_KEY.IS_MPASS_LOGIN, 'true');
+              return await onRequestSuccess(tokenData);
+            }
           }
         }
         return cancel();

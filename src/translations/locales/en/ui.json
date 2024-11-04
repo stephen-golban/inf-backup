@@ -64,6 +64,7 @@
     "user_inactivity": "Hello! We noticed long-term inactivity on the account",
     "subscription_expiring_info": "The subscription expires in 15 days",
     "new_basic_service": "NEW service",
+    "database_query": "Database inquiry",
     "unknown_notification": "Unknown notification"
   },
 
