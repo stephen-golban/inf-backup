@@ -22,29 +22,29 @@ const GridItems: React.FC<IGridItems> = ({ data }) => {
         <Text textAlign="center" variant="16-mid" color="blue">
           {data?.closedCommitments24}
         </Text>
-        <Text textAlign="center" mt="sm" variant="12-reg" color="gray" t18n="logged_in:credit_report:summary:closed_credits" />
+        <Text textAlign="center" mt="sm" variant="12-reg" color="gray" t18n="logged_in:credit_report:summary:closed_commitments" />
       </View>
       <View bg="lightBlue" px="xs" center py="xl" br={24} w="48%" mb="md">
         <Text textAlign="center" variant="16-mid" color="crimsonRed">
           {data?.outstandingCommitments}
         </Text>
-        <Text textAlign="center" mt="sm" variant="12-reg" color="gray" t18n="logged_in:credit_report:summary:outstanding_debts" />
+        <Text textAlign="center" mt="sm" variant="12-reg" color="gray" t18n="logged_in:credit_report:summary:outstanding_commitments" />
       </View>
       <View bg="lightBlue" px="xs" center py="xl" br={24} w="48%" mb="md">
         <Text textAlign="center" variant="16-mid" color="blue">
           {data?.activeCommitmentsNr}
         </Text>
-        <Text textAlign="center" mt="sm" variant="12-reg" color="gray" t18n="logged_in:credit_report:summary:updated_debts" />
+        <Text textAlign="center" mt="sm" variant="12-reg" color="gray" t18n="logged_in:credit_report:summary:active_commitments" />
       </View>
       <View bg="lightBlue" px="xs" center py="xl" br={24} w="48%" mb="md">
         <Text textAlign="center" variant="16-mid" color="blue">
           {currencyFormat(data?.totalDebtService || 0)}
         </Text>
-        <Text textAlign="center" mt="sm" variant="12-reg" color="gray" t18n="logged_in:credit_report:summary:total_to_pay" />
+        <Text textAlign="center" mt="sm" variant="12-reg" color="gray" t18n="logged_in:credit_report:summary:debt_service" />
       </View>
       <View bg="lightBlue" px="xs" py="xl" br={24} w="48%" mb="md">
         <Text textAlign="center" variant="16-mid" color="blue">
-          {currencyFormat(data?.totalDebtService || 0)}
+          {currencyFormat(data?.totalNetBalance || 0)}
         </Text>
         <Text textAlign="center" mt="sm" variant="12-reg" color="gray" t18n="logged_in:credit_report:summary:total_without_penalties" />
       </View>
