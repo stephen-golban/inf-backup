@@ -8,12 +8,13 @@ interface ILoggedOutPhoneInput {
   value: string;
   autoFocus?: boolean;
   onSubmitEditing?(): void;
+  contextMenuHidden?: boolean;
   onChange(value: string): void;
   returnKeyType?: 'done' | 'next' | 'go' | 'search' | 'none' | undefined;
 }
 
 const LoggedOutPhoneInput = React.forwardRef<any, ILoggedOutPhoneInput>(
-  ({ onChange, onSubmitEditing, value, autoFocus = false, returnKeyType = 'next' }, ref) => {
+  ({ onChange, onSubmitEditing, value, autoFocus = false, returnKeyType = 'next', contextMenuHidden = false }, ref) => {
     const { removeWhiteSpaces, validatePhoneNumberValue, validatedPhoneNumberPlaceholder } = usePhoneNumberService();
 
     return (
@@ -21,6 +22,7 @@ const LoggedOutPhoneInput = React.forwardRef<any, ILoggedOutPhoneInput>(
         ref={ref}
         autoFocus={autoFocus}
         name="phone"
+        contextMenuHidden={contextMenuHidden}
         maxLength={10}
         autoComplete="tel"
         returnKeyType={returnKeyType}

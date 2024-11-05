@@ -30,10 +30,11 @@ const LoginModule: React.FC<ILoginModule> = ({ onPressForgotPassword, onPressReg
               <View fill>
                 <LoggedOutPhoneInput
                   value={watch('phone')}
+                  contextMenuHidden={true}
                   onSubmitEditing={() => passwordRef.current?.focus()}
                   onChange={txt => setValue('phone', txt, { shouldValidate: true })}
                 />
-                <LoggedOutPasswordInput ref={passwordRef} />
+                <LoggedOutPasswordInput contextMenuHidden={true} ref={passwordRef} />
 
                 <TermsAgreements control={control} />
               </View>
