@@ -21,14 +21,22 @@ interface ILoggedOutPasswordInput extends Pick<TextInputProps, 'onSubmitEditing'
     | 'yahoo'
     | 'done';
   placeholderI18n?: I18nKey;
+  contextMenuHidden?: boolean;
 }
 
 const LoggedOutPasswordInput = React.forwardRef<any, ILoggedOutPasswordInput>((props, ref) => {
-  const { name = 'password', placeholderI18n = 'ui:placeholders:password_placeholder', returnKeyType = 'next', onSubmitEditing } = props;
+  const {
+    name = 'password',
+    placeholderI18n = 'ui:placeholders:password_placeholder',
+    contextMenuHidden = false,
+    returnKeyType = 'next',
+    onSubmitEditing,
+  } = props;
   return (
     <FormInput
       ref={ref}
       name={name}
+      contextMenuHidden={contextMenuHidden}
       secureTextEntry
       autoCapitalize="none"
       autoComplete="password"
