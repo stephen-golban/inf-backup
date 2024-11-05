@@ -1,5 +1,4 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
 
 import { noop } from 'lodash';
 import usePinScreen from './hooks';
@@ -7,7 +6,6 @@ import { useAppStore } from '@store/app';
 import { useStyle } from '@library/hooks';
 import { usePinCodeStore } from '@store/pin-code';
 
-import { Loader } from '@components/ui';
 import { PinCode } from '@anhnch/react-native-pincode';
 
 import { PinCodeStyles } from './style';
@@ -23,7 +21,6 @@ const PinScreen: React.FC = () => {
 
   return (
     <Screen bg="blue" fill loading={loadingApp || loading} absoluteFill statusBarStyle="light-content" loaderColor="white">
-      {/* <StatusBar barStyle="light-content" /> */}
       <PinCode
         pin={pin}
         mode={mode}
@@ -37,7 +34,6 @@ const PinScreen: React.FC = () => {
         textOptions={PinCodeCustomTextes(locale)}
         onModeChanged={(_, newMode) => onModeChanged(newMode)}
       />
-      {/* <Loader bg="blue" fill color="white" /> */}
     </Screen>
   );
 };

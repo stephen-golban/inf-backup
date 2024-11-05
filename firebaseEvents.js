@@ -5,10 +5,10 @@ export const logEvent = async (eventName, params = {}) => {
   await analytics().logEvent(eventName, params);
 };
 
-export const setUser = (userId) => {
+export const setUser = userId => {
   crashlytics().setUserId(userId);
 };
 
-export const logScreenView = async (screenName) => {
+export const logScreenView = async screenName => {
   await analytics().logScreenView({ screenName });
 };

@@ -44,7 +44,7 @@ const PaymentsManagementModule: React.FC = () => {
       loading={loading}
       onRefresh={onRefresh}
       excludeEdges={['bottom']}
-      style={{ paddingTop: spacing.md, paddingBottom: 0, paddingHorizontal: 0 }}>
+      style={{ paddingTop: spacing.md, paddingBottom: 0, paddingHorizontal: 0, flex: 1 }}>
       {cards.data && isEmpty(cards.data) ? (
         <EmptyState t18n="profile:settings:payment_history_screen:no_cards_to_display" />
       ) : (
