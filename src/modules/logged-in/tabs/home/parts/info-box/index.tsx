@@ -64,7 +64,7 @@ const InfoBox: React.FC<IInfoBox> = props => {
         {reportEvents?.lastEventDateTime ? (
           <Text variant="10-mid">{formatDate(reportEvents?.lastEventDateTime)}</Text>
         ) : (
-          <Text onPress={fetchReport} t18n="logged_in:home:info:update" variant="12-semi" color="blue" />
+          <Text t18n="ui:unspecified" variant="10-mid" />
         )}
       </View>
     </View>
