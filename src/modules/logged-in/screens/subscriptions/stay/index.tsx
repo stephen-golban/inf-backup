@@ -29,36 +29,48 @@ const StayModule: React.FC<IStayModule> = props => {
   const oldOfferPrice = retentionOffer?.price;
   const discount = retentionOffer?.discount?.discountAmount;
 
+  const noRetentionOffer = !retentionOffer || !retentionOffer?.discount?.discount;
+
   return (
     <Screen pt="zero" scroll unsafe bg="white" loading={screenLoading}>
       <View w={322} h={174} alignSelf="center">
         <Image br="lg" source={require('@assets/images/stay.png')} />
       </View>
       <View maxw="80%" alignSelf="center" center>
-        <Text my="md" t18n="logged_in:feedback:stay_with_us_offer" center variant="14-reg" />
-        <Icon icon="GiftIcon" color="blue" size={40} my="md" />
-        {oldOfferPrice !== undefined && (
-          <Text color="crimsonRed" textDecorationLine="line-through" textDecorationColor="black">
-            {currencyFormat(oldOfferPrice)}/{t('profile:my_account:subscription_duration:month_1').toLowerCase()}
-          </Text>
-        )}
-        {offerPrice && (
-          <Text variant="18-mid" my="lg">
-            {currencyFormat(offerPrice)}/{t('profile:my_account:subscription_duration:month_1').toLowerCase()}
-          </Text>
-        )}
-        <Text t18n="logged_in:feedback:discount_offer" center variant="12-reg" t18nOptions={{ discount, duration }} />
-        <FilledButton
-          h={40}
-          mt="xxl"
-          br="sm"
-          px="xxl"
-          bg="skyBlue"
-          loading={purchasing}
-          onPress={onActivateOffer}
-          textProps={{ variant: '12-reg' }}
-          t18n="logged_in:feedback:activate_offer"
+        <Text
+          my="md"
+          t18n={noRetentionOffer ? 'logged_in:feedback:sorry_to_see_you_go' : 'logged_in:feedback:stay_with_us_offer'}
+          center
+          variant="14-reg"
         />
+        {!noRetentionOffer && (
+          <>
+            <Icon icon="GiftIcon" color="blue" size={40} my="md" />
+            {oldOfferPrice !== undefined && (
+              <Text color="crimsonRed" textDecorationLine="line-through" textDecorationColor="black">
+                {currencyFormat(oldOfferPrice)}/{t('profile:my_account:subscription_duration:month_1').toLowerCase()}
+              </Text>
+            )}
+            {offerPrice && (
+              <Text variant="18-mid" my="lg">
+                {currencyFormat(offerPrice)}/{t('profile:my_account:subscription_duration:month_1').toLowerCase()}
+              </Text>
+            )}
+            <Text t18n="logged_in:feedback:discount_offer" center variant="12-reg" t18nOptions={{ discount, duration }} />
+            <FilledButton
+              h={40}
+              mt="xxl"
+              br="sm"
+              px="xxl"
+              bg="skyBlue"
+              loading={purchasing}
+              onPress={onActivateOffer}
+              textProps={{ variant: '12-reg' }}
+              t18n="logged_in:feedback:activate_offer"
+              disabled={noRetentionOffer}
+            />
+          </>
+        )}
         <View row g="sm">
           <Text
             disabled={removing}
