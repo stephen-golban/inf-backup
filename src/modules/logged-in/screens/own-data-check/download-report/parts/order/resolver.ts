@@ -14,7 +14,7 @@ const shape = object({
   }).required(stringifyObjectValidate({ keyT: 'validation:field_required' })),
 
   termsAgreement: boolean()
-    .oneOf([false, true], stringifyObjectValidate({ keyT: 'validation:field_required' }))
+    .oneOf([true], stringifyObjectValidate({ keyT: 'validation:field_required' }))
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' })),
 });
 

@@ -6,13 +6,14 @@ import { Screen, Text } from '@components/common';
 
 interface IDownloadReportModule {
   reportId: number;
+  loading: boolean;
   onPressNotNow(): void;
   generationDateTime: string;
 }
 
-const DownloadReportModule: React.FC<IDownloadReportModule> = ({ reportId, generationDateTime, onPressNotNow }) => {
+const DownloadReportModule: React.FC<IDownloadReportModule> = ({ reportId, loading, generationDateTime, onPressNotNow }) => {
   return (
-    <Screen excludeEdges={['top']} scroll bg="white">
+    <Screen excludeEdges={['top']} scroll bg="white" loading={loading}>
       <History reportId={reportId} onPressNotNow={onPressNotNow} />
       <Text color="gray_66" mt="lg" textAlign="justify" variant="16-mid" t18n="logged_in:credit_report:download:subscription_info" />
       <Email reportId={reportId} />

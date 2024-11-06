@@ -1,4 +1,3 @@
-import { noop } from 'lodash';
 import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
 import { useToast } from 'react-native-toast-notifications';
@@ -6,6 +5,7 @@ import { useExecutePaymentService } from '@services/execute-payment';
 
 import type { SelectedCardParams } from '@typings/responses';
 import type { SelectedPlan } from '@modules/logged-in/screens/subscriptions/subscriptions/type';
+import { useLastInquiryService } from '@services/last-inquiry';
 
 type Props = {
   onSuccess?: () => void;
@@ -15,7 +15,8 @@ type Props = {
 
 function usePurchaseSubscriptionService({ selectedPlan, retentionOffer = false, onSuccess }: Props) {
   const toast = useToast();
-  const paymentService = useExecutePaymentService();
+  const paymentService = useExecutePaymentService(false);
+  const { fetchInquiryReport, loadingInquiry } = useLastInquiryService();
 
   const [purchaseSubscription, { loading: loadingPurchase }] = useLazyAxios<string>('/subscription-management/purchase', {
     method: 'post',
@@ -32,9 +33,10 @@ function usePurchaseSubscriptionService({ selectedPlan, retentionOffer = false, 
         annualPayment: selectedPlan.isAnnual,
       };
 
-      await purchaseSubscription(body, response => {
+      await purchaseSubscription(body, async response => {
         if (response) {
           onSuccess?.();
+          await fetchInquiryReport();
           toast.show(response, { type: 'success' });
         }
       });
@@ -50,7 +52,7 @@ function usePurchaseSubscriptionService({ selectedPlan, retentionOffer = false, 
     }
   };
 
-  const loadingPayment = paymentService.loading;
+  const loadingPayment = paymentService.loading || loadingInquiry;
 
   return {
     loadingPayment,

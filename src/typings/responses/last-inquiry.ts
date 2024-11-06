@@ -8,6 +8,7 @@ export interface LastInquiryApiResponse {
 interface BasicServices {
   creditReportSummaryId: number;
   creditScoreId: number;
+  creditReportId: number;
   creditReportEventsId: number;
   creditReportQualityId: number;
   ownDataChecksReportId: number;
