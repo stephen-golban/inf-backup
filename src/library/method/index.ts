@@ -71,7 +71,7 @@ export const formatPhoneNumber = (phoneNumber: string, isMasked: boolean = true)
   }
 };
 
-export const currencyFormat = (price: number | string) => {
+export const currencyFormat = (price: number | string, currency: string = 'LEI') => {
   const numberPrice = typeof price === 'string' ? parseFloat(price.replace(',', '.')) : price;
 
   const roundedPrice = Math.round(numberPrice);
@@ -81,7 +81,7 @@ export const currencyFormat = (price: number | string) => {
     maximumFractionDigits: 0,
   }).format(roundedPrice);
 
-  return `${formattedPrice} LEI`;
+  return `${formattedPrice} ${currency ?? 'LEI'}`;
 };
 
 export const openBrowserAsync = async (url: string = 'https://www.google.com') => {
