@@ -32,7 +32,7 @@ const ScoringDetailsOffers: React.FC<IScoringDetailsOffersProps> = ({
       </Text>
 
       <Button disabled={disabled} bc={!disabled ? 'blue' : 'gray'} br="md" onPress={onNavigate} loading={isLoading}>
-        <Text color={!disabled ? 'white' : 'gray'} variant="16-semi">
+        <Text color={!disabled ? 'white' : 'gray'} variant="14-semi" center>
           {buttonText}
         </Text>
       </Button>

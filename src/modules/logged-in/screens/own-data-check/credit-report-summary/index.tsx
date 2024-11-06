@@ -80,19 +80,22 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
           {!isData ? (
             <EmptyState />
           ) : (
-            commitments.map((item: ICommitment, idx) => (
-              <CommitmentItem
-                type={item?.type}
-                balance={item?.balance}
-                attribute={item?.attribute}
-                status={item?.roleType}
-                name={item?.sourceShortName}
-                description={item?.description}
-                qualityType={item?.qualityType}
-                activityType={item?.activityType}
-                key={idx + item?.contractNr + item?.sourceIdno}
-              />
-            ))
+            commitments.map((item: ICommitment, idx) => {
+              return (
+                <CommitmentItem
+                  type={item?.type}
+                  currency={item?.currency}
+                  balance={item?.balance}
+                  attribute={item?.attribute}
+                  status={item?.roleType}
+                  name={item?.sourceShortName}
+                  description={item?.description}
+                  qualityType={item?.qualityType}
+                  activityType={item?.activityType}
+                  key={idx + item?.contractNr + item?.sourceIdno}
+                />
+              );
+            })
           )}
           <ScoringDetailsOffers
             disabled={disabled}

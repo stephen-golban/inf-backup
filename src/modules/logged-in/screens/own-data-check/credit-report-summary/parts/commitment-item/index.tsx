@@ -7,6 +7,7 @@ interface ICommitmentItem {
   type: string;
   status: string;
   balance: number;
+  currency: string;
   description: string;
   qualityType: string;
   activityType: string;
@@ -14,7 +15,7 @@ interface ICommitmentItem {
 }
 
 const CommitmentItem: React.FC<ICommitmentItem> = props => {
-  const { name, description, activityType, balance, qualityType, attribute } = props;
+  const { name, description, activityType, balance, qualityType, attribute, currency } = props;
 
   const renderStatusLabel = () => {
     if (qualityType === 'POSITIVE') {
@@ -140,7 +141,7 @@ const CommitmentItem: React.FC<ICommitmentItem> = props => {
         {activityType === 'ACTIVE' ? (
           <View align="flex-end">
             <Text variant="10-reg" t18n="logged_in:credit_report:summary:remaining_amount" />
-            <Text variant="12-semi">{currencyFormat(balance)}</Text>
+            <Text variant="12-semi">{currencyFormat(balance, currency)}</Text>
           </View>
         ) : (
           <View maxw={name ? '65%' : '100%'}>
