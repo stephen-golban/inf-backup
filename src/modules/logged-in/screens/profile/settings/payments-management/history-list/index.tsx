@@ -18,7 +18,6 @@ const HistoryList: React.FC<IHistoryList> = ({ data }) => {
     <Paper bg="lightBlue" p="xl" br={8} mt={20} fill btlr="xl" btrr="xl">
       <ListView
         type="flatlist"
-        scrollEnabled={false}
         data={data?.payments}
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => <ListItem {...item} />}
