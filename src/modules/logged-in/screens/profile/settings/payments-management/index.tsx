@@ -36,7 +36,6 @@ const PaymentsManagementModule: React.FC = () => {
   };
 
   const loading = cards.loading || history.loading;
-
   return (
     <Screen
       unsafe
@@ -55,7 +54,6 @@ const PaymentsManagementModule: React.FC = () => {
       <View px="lg" mt="md">
         <CreditCards.Register onPress={functions.onPressRegisterCard} loading={isRegistering} />
       </View>
-
       <HistoryList data={history.data} />
     </Screen>
   );

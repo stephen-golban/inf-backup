@@ -1,18 +1,17 @@
 import React from 'react';
 
-import { format } from 'date-fns';
+import { useMe } from '@services/me';
 import useDownloadReportOrder from './hooks';
 import { useTranslation } from '@library/hooks';
 
 import { SwitchRow } from './parts';
 import { Paper } from '@components/ui';
 import { Controller } from 'react-hook-form';
+import { PhoneOrEmailModule } from '@modules/modals';
 import { Checkbox, FilledButton, Form, Icon, Select, Text, View } from '@components/common';
 
 import type { Option } from '@rn-primitives/select';
 import { type ReportRequestFormFields, report_request_schema } from './resolver';
-import { PhoneOrEmailModule } from '@modules/modals';
-import { useMe } from '@services/me';
 
 const defaultValues = {
   phone: undefined,
@@ -24,7 +23,7 @@ const defaultValues = {
 
 const Order: React.FC = () => {
   const { t } = useTranslation();
-  const { getMe, loading: loadingMe, me } = useMe();
+  const { getMe, loading: loadingMe } = useMe();
   const { generatedPhones, loading, onSubmit } = useDownloadReportOrder();
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMount } from 'react-use';
 import { useAppStore } from '@store/app';
 import { useLazyAxios } from '@api/hooks';
@@ -16,8 +16,11 @@ const useHomeScreen = () => {
   const { fetchInquiryReport, loadingInquiry } = useLastInquiryService(true);
   const isPurchasedSubscriptionExpired = useCurrentSubscriptionExpiryService();
 
-  OneSignal.initialize('e59eb20d-8e97-4f53-b5d5-3f3a7b63215d');
-  OneSignal.login(String(me?.id));
+  useEffect(() => {
+    OneSignal.initialize('e59eb20d-8e97-4f53-b5d5-3f3a7b63215d');
+    OneSignal.login(String(me?.id));
+    OneSignal.Notifications.requestPermission(true);
+  }, []);
 
   const [isTrialModalVisible, setIsTrialModalVisible] = useState(false);
 

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useTheme } from '@theme/index';
 import useWhoCheckedCredit from './hooks';
+import { useAppDataCheckStore } from '@store/data-check';
 
 import { NewCreditModule } from '@modules/logged-in';
 import { Avatar, BottomSheet, Image, Text, View } from '@components/common';
@@ -10,17 +11,14 @@ import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, SUBSCRIPTIONS_SCREENS, type 
 
 const NewCredit: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.NewCredit>> = ({ navigation }) => {
   const { colors } = useTheme();
-  const { data, loading, loanFormLoading, getLoanResponseType, isSubscriptionValid, isPositive, showLoanModal, fns } =
-    useWhoCheckedCredit();
+  const inquiry = useAppDataCheckStore(state => state.inquiry);
+  const { loading, loanFormLoading, getLoanResponseType, isSubscriptionValid, isPositive, showLoanModal, fns } = useWhoCheckedCredit();
 
   const onPressDownload = () => {
-    if (isSubscriptionValid) {
-      if (data) {
-        return navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
-          id: data.reportId,
-          generationDateTime: data.responseDateTime,
-        });
-      }
+    if (isSubscriptionValid && inquiry) {
+      return navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
+        id: inquiry.basicServices.creditReportId,
+      });
     }
     return navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX });
   };

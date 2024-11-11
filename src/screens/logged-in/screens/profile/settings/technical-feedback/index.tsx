@@ -5,10 +5,18 @@ import { TechnicalFeedbackModule } from '@modules/logged-in';
 
 import { type SettingsStackScreenProps, SETTINGS_SCREENS } from '@typings/navigation';
 
-const TechnicalFeedback: React.FC<SettingsStackScreenProps<SETTINGS_SCREENS.TECHNICAL_FEEDBACK>> = () => {
+const TechnicalFeedback: React.FC<SettingsStackScreenProps<SETTINGS_SCREENS.TECHNICAL_FEEDBACK>> = ({ navigation }) => {
   const { loading, onSubmit } = useTechnicalFeedbackScreen();
 
-  return <TechnicalFeedbackModule onSubmit={onSubmit} loading={loading} />;
+  return (
+    <TechnicalFeedbackModule
+      onSubmit={async input => {
+        await onSubmit(input);
+        navigation.goBack();
+      }}
+      loading={loading}
+    />
+  );
 };
 
 export { TechnicalFeedback };

@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useMemo } from 'react';
+import { useEffect, useCallback, useMemo, useState } from 'react';
 import { useMount, useToggle } from 'react-use';
 import { useAxios, useLazyAxios } from '@api/hooks';
 import { find, cloneDeep, merge, isEmpty } from 'lodash';
@@ -10,9 +10,10 @@ export default function useSectionsModule() {
   const [smsEnabled, toggleSms] = useToggle(false);
   const [newsletterEnabled, toggleNewsletter] = useToggle(false);
   const [sendPushNotifications, togglePushNotifications] = useToggle(false);
+  const [initialLoad, setInitialLoad] = useState(true);
 
   const [call] = useLazyAxios('/notifications/settings', { method: 'patch' });
-  const { data, loading, refetch } = useAxios<NotificationSettingsApiResponse>('/notifications/settings', { method: 'get' });
+  const { data, loading: axiosLoading, refetch } = useAxios<NotificationSettingsApiResponse>('/notifications/settings', { method: 'get' });
 
   const contactData = data?.contactData;
 
@@ -34,8 +35,11 @@ export default function useSectionsModule() {
     if (data) {
       toggleSms(!!smsContact);
       toggleNewsletter(!!newsletterContact);
+      if (initialLoad) {
+        setInitialLoad(false);
+      }
     }
-  }, [data, smsContact, newsletterContact]);
+  }, [data, smsContact, newsletterContact, initialLoad]);
 
   useMount(async () => {
     const permission = await OneSignal.User.pushSubscription.getOptedInAsync();
@@ -80,10 +84,13 @@ export default function useSectionsModule() {
     [contactData],
   );
 
-  const updateSettings = async (updatedData: Partial<NotificationSettingsApiResponse>) => await call(updatedData, refetch);
+  const updateSettings = async (updatedData: Partial<NotificationSettingsApiResponse>) =>
+    await call(updatedData, () => {
+      refetch();
+    });
 
   return {
-    loading,
+    loading: initialLoad && axiosLoading,
     smsEnabled,
     newsletterEnabled,
     sendPushNotifications,
