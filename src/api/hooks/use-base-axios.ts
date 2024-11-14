@@ -3,6 +3,7 @@ import { useMountedState } from 'react-use';
 import { useEffect, useCallback } from 'react';
 import useAxiosCancel from './use-axios-cancel';
 import useAxiosReducer from './use-axios-reducer';
+import { useFirebaseServices } from '@library/hooks';
 import { useToast } from 'react-native-toast-notifications';
 
 import type { AxiosResponse } from 'axios';
@@ -13,6 +14,7 @@ function useBaseAxios<Data>(config: Config<Data>): BaseAxios<Data>;
 function useBaseAxios<Data>(url: string, config: Config<Data>): BaseAxios<Data>;
 function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> = {}) {
   const toast = useToast();
+  const { logError } = useFirebaseServices();
   const isMounted = useMountedState();
   const [{ data, error, loading }, dispatch] = useAxiosReducer<Data>(typeof param1 === 'string' ? param2.ssrData : param1.ssrData);
   const { cancel, cancelToken } = useAxiosCancel();
@@ -68,6 +70,11 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
         if (isMounted()) {
           const err = e as BaseError<Data>;
           const errResMessage = (err.response?.data as any)?.message;
+          const context = `Error in useBaseAxios with URL: ${typeof param1 === 'string' ? param1 : param1.url}`;
+
+          // Log the error to Firebase Crashlytics
+          logError(err, context);
+
           if (!lazyConfig?.hideErrors) {
             if (errResMessage) {
               toast.show(errResMessage, { type: 'danger' });

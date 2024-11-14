@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "1050194977595",
     "project_id": "infodebitmobileapi",
-    "storage_bucket": "infodebitmobileapi.appspot.com"
+    "storage_bucket": "infodebitmobileapi.firebasestorage.app"
   },
   "client": [
     {

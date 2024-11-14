@@ -8,10 +8,19 @@ import { SectionsModule } from '@modules/logged-in';
 
 import { RegisterApiResponse } from '@typings/responses';
 import { PROFILE_SCREENS, SETTINGS_SCREENS, type ProfileStackScreenProps } from '@typings/navigation/';
+import { logScreenView } from '../../../../../../firebaseEvents';
 
 const SectionsScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.SECTIONS>> = ({ navigation }) => {
   const logout = useLogoutService();
   useGoBack(true, navigation.goBack);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      logScreenView('SectionsScreen');
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   const { base64Image, selectImage } = useImagePicker();
 
