@@ -14,7 +14,7 @@ function useBaseAxios<Data>(config: Config<Data>): BaseAxios<Data>;
 function useBaseAxios<Data>(url: string, config: Config<Data>): BaseAxios<Data>;
 function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> = {}) {
   const toast = useToast();
-  const { logError } = useFirebaseServices();
+  const { logError, logEvent } = useFirebaseServices();
   const isMounted = useMountedState();
   const [{ data, error, loading }, dispatch] = useAxiosReducer<Data>(typeof param1 === 'string' ? param2.ssrData : param1.ssrData);
   const { cancel, cancelToken } = useAxiosCancel();
@@ -49,6 +49,8 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
   const getData = useCallback(
     async (lazyData: Config<Data>['data'], onSuccess?: OnSuccess<Data>, lazyConfig?: Config<Data>) => {
       dispatch({ type: 'REQUEST_INIT' });
+
+      logEvent('backend_call_initiated', { url: typeof param1 === 'string' ? param1 : param1.url });
 
       try {
         const res = (await invokeAxios(lazyData, lazyConfig)) as AxiosResponse<Data>;
