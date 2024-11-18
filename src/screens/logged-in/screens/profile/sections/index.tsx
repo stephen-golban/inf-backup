@@ -9,6 +9,7 @@ import { SectionsModule } from '@modules/logged-in';
 import { RegisterApiResponse } from '@typings/responses';
 import { PROFILE_SCREENS, SETTINGS_SCREENS, type ProfileStackScreenProps } from '@typings/navigation/';
 import { logScreenView } from '../../../../../../firebaseEvents';
+import analytics from '@react-native-firebase/analytics';
 
 const SectionsScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.SECTIONS>> = ({ navigation }) => {
   const logout = useLogoutService();
@@ -40,7 +41,13 @@ const SectionsScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.SECTIONS>
       onLogout={logout}
       onEdit={selectImage}
       loadingAvatar={loading}
-      onOpenFaq={() => navigation.navigate(PROFILE_SCREENS.FAQ)}
+      onOpenFaq={async () => {
+        await analytics().logEvent('open_faq', {
+          id: 3745092,
+          size: 'L',
+        });
+        navigation.navigate(PROFILE_SCREENS.FAQ);
+      }}
       onOpenContacts={() => navigation.navigate(PROFILE_SCREENS.CONTACTS)}
       onOpenMyAccount={() => navigation.navigate(PROFILE_SCREENS.MY_ACCOUNT)}
       onInviteFriends={() => navigation.navigate(PROFILE_SCREENS.INVITE_FRIENDS)}

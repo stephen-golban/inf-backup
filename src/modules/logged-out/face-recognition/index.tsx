@@ -119,7 +119,7 @@ const FaceDetectionModule: React.FC<IfaceDetectionModule> = ({ loading, onImageC
       </Animated.View>
 
       {warningMessage && (
-        <View mt="xl" p="md" br="xs">
+        <View absolute bottom={100} left={0} right={0} center p="md">
           <Text variant="16-semi" color="black">
             {warningMessage}
           </Text>
