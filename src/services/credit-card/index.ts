@@ -5,6 +5,7 @@ import { useTranslation } from '@library/hooks';
 import { useAxios, useLazyAxios } from '@api/hooks';
 import { useToast } from 'react-native-toast-notifications';
 import { useRegisterCardService } from '@services/register-card';
+import { logEvent } from '../../../firebaseEvents';
 
 import type { GetAllCardsApiResponse } from '@typings/responses';
 
@@ -31,6 +32,7 @@ function useCreditCardService() {
 
   const onDeleteCard = useTryCatch(async (id: number) => {
     await remove(undefined, onDeleteCallback, { additionalUrl: `/${id}` });
+    logEvent('card_deleted', { cardId: id });
   });
 
   const onPressRegisterCard = async () => await onRegisterCard(cards.refetch);
