@@ -30,7 +30,9 @@ const useHomeScreen = () => {
   });
 
   const fetchReportEvents = useTryCatch(async () => {
-    await reportEvents(undefined, res => useAppDataCheckStore.setState({ reportEvents: res }));
+    await reportEvents(undefined, res => {
+      useAppDataCheckStore.setState({ reportEvents: res });
+    });
   });
 
   const onRefresh = async () => {
@@ -40,7 +42,7 @@ const useHomeScreen = () => {
 
   const trialTermDate = subscription?.subscriptionAccounts?.[0].termDateTime;
 
-  useMount(() => fetchReportEvents());
+  useMount(fetchReportEvents);
   useMount(() => {
     if (subscription && subscription.trial) {
       if (!isPurchasedSubscriptionExpired) {

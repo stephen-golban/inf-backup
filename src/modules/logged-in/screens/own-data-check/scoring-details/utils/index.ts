@@ -44,7 +44,6 @@ const getSubscriptionDetails = (
   }
 
   const { trial, extraInquiriesRestriction, servicesAccesses, subscriptionAccounts, discountData, price } = subscription;
-
   const account = subscriptionAccounts?.[0];
   const termDateTime = account?.termDateTime;
   let isExpired = true;
@@ -62,8 +61,10 @@ const getSubscriptionDetails = (
   const creditScorePrice = creditScoreService?.prices[0].price || 0;
 
   let discountText = undefined;
-  if (discountData?.discount) {
-    discountText = t('subscriptions:annual_discount_text', { discountAmount: discountData.discountAmount });
+  if (discountData?.discount || discountData?.annualDiscount) {
+    discountText = t('subscriptions:discount_text_other_subscription', {
+      discountAmount: discountData.discountAmount + (discountData.annualDiscount && !discountData.discount ? '%' : ' MDL'),
+    });
   }
   if ((trial && !isExpired) || isExpired) {
     return {
@@ -91,7 +92,9 @@ const getSubscriptionDetails = (
       firstButtonTextColor: 'blue',
       secondButtonTextColor: 'white',
       lowerButtonText: t('subscription.extra_inquiries_lower_button_text'),
-      discountText: t('subscription.discount_text_other_subscription'),
+      discountText: t('subscriptions:discount_text_other_subscription', {
+        discountAmount: discountData.discountAmount + (discountData.annualDiscount && !discountData.discount ? '%' : ' MDL'),
+      }),
       onPressFirstButton: () => {},
       onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
     };
@@ -106,7 +109,7 @@ const getSubscriptionDetails = (
       secondButtonTextColor: 'blue',
       costText: t('subscription.no_credit_score_cost_text', { creditScorePrice }),
       lowerButtonText: t('subscription.no_credit_score_lower_button_text'),
-      discountText: t('subscription.no_credit_score_discount_text'),
+      discountText: undefined,
       secondaryText: t('subscription.no_credit_score_discount_text'),
       onPressFirstButton: onPayReport,
       onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),

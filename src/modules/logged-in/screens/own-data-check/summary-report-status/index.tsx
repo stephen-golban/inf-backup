@@ -14,7 +14,7 @@ const SummaryReportStatusModule: React.FC<ISummaryReportStatusProps> = ({ status
         <Text variant="16-reg" center t18n="ui:summary_report_request" />
       </Paper>
       {status === 'accepted' ? (
-        <Text center my="md" color="forestGreen" variant="24-mid" t18n="ui:transaction_accepted" />
+        <Text center my="md" color="teal" variant="24-mid" t18n="ui:transaction_accepted" />
       ) : (
         <Text center my="md" color="crimsonRed" variant="24-mid" t18n="ui:transaction_rejected" />
       )}
