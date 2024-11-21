@@ -30,8 +30,6 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
   const { t } = useTranslation();
   const { creditScore } = useAppDataCheckStore();
 
-  console.log('creditScore', creditScore);
-
   const {
     message,
     buttonText,
