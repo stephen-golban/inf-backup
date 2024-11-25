@@ -28,7 +28,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
 
   const [isVisible, setIsVisible] = React.useState(false);
 
-  const { buttonText, onPressFirstButton, costText, disabled, secondaryText, onPressSecondButton, lowerButtonText } =
+  const { buttonText, onPressFirstButton, costText, disabled, secondaryText, onPressSecondButton, lowerButtonText, discountText } =
     getReportSummaryOptions(subscription, navigation, onPressUpdate, onPayReport);
 
   const { fetchCreditReport, loadingReport, creditReportSummary } = useCreditReportSummaryService(false);
@@ -101,6 +101,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
             disabled={disabled}
             secondaryText={secondaryText}
             costText={costText}
+            discountText={discountText}
             buttonText={buttonText}
             subscription={subscription}
             isLoading={loadingReport || loadReport}

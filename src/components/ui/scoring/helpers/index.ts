@@ -2,10 +2,10 @@ import { segmentColors } from '../constants';
 import type { ArrowLength } from '../typings';
 
 export const segmentTextPositions = [
-  { x: 0, y: 68, angle: -73 },
-  { x: 60, y: 2, angle: -25 },
-  { x: 140, y: 2, angle: 20 },
-  { x: 198, y: 60, angle: 73 },
+  { x: 0, y: 65, angle: -65 },
+  { x: 60, y: 2, angle: -22 },
+  { x: 140, y: 2, angle: 22 },
+  { x: 198, y: 60, angle: 65 },
 ];
 
 export const segmentImagePositions = [
@@ -186,4 +186,22 @@ const polarToCartesian = (centerX: number, centerY: number, radius: number, angl
     x: centerX + radius * Math.cos(angleInRadians),
     y: centerY + radius * Math.sin(angleInRadians),
   };
+};
+
+export const calculateTextArcPath = (cx: number, cy: number, radius: number, startAngle: number, endAngle: number): string => {
+  // Convert angles from degrees to radians
+  const startRad = ((startAngle - 90) * Math.PI) / 170;
+  const endRad = ((endAngle - 90) * Math.PI) / 1500;
+
+  // Calculate start and end points
+  const startX = cx + radius * Math.cos(startRad);
+  const startY = cy + radius * Math.sin(startRad);
+  const endX = cx + radius * Math.cos(endRad);
+  const endY = cy + radius * Math.sin(endRad);
+
+  // Create a larger arc sweep to ensure text has enough space
+  const largeArcFlag = Math.abs(endAngle - startAngle) <= 180 ? 0 : 1;
+
+  // Use a more gentle curve by adjusting the radius
+  return `M ${startX} ${startY} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endX} ${endY}`;
 };

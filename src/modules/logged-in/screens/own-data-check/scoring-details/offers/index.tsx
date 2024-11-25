@@ -12,6 +12,7 @@ interface IScoringDetailsOffersProps {
   onNavigate(): void;
   discountText?: string;
   secondaryText?: string;
+  lowerButtonText?: string;
   subscription: PurchasedSubscription | undefined;
 }
 
@@ -43,11 +44,11 @@ const ScoringDetailsOffers: React.FC<IScoringDetailsOffersProps> = ({
         </Text>
       )}
 
-      {secondaryText && (
+      {/* {secondaryText && (
         <Text variant="10-reg" textAlign="center" mt="sm">
           <Trans i18nKey={secondaryText} components={{ 2: <Text variant="10-reg" color="crimsonRed" /> }} />
         </Text>
-      )}
+      )} */}
     </View>
   );
 };

@@ -21,6 +21,7 @@ const SendEmail: React.FC<ISendEmail> = ({ reportId }) => {
   const toast = useToast();
   const { t } = useTranslation();
   const user = useAppStore(state => state.user);
+  const { locale } = useAppStore(state => state);
   const [call, { loading }] = useLazyAxios(`/credit-report/${reportId}/files/PDF`, { method: 'get' });
 
   const generatedEmails = React.useMemo(() => {
@@ -33,7 +34,9 @@ const SendEmail: React.FC<ISendEmail> = ({ reportId }) => {
   }, [user]);
 
   const onSubmit = async (email: string) => {
-    await call(undefined, () => toast.show(t('ui:success'), { type: 'success' }), { params: { email, language: 'RO' } });
+    await call(undefined, () => toast.show(t('ui:success'), { type: 'success' }), {
+      params: { email, language: locale === 'ro' ? 'RO' : locale === 'ru' ? 'RU' : 'EN' },
+    });
   };
 
   return (
