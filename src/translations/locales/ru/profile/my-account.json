@@ -24,7 +24,8 @@
     "min_8_chars": "Минимум 8 символов",
     "min_1_uppercase": "Минимум 1 заглавная буква",
     "min_1_symbol": "Минимум 1 символ",
-    "success_password": "Пароль успешно изменен"
+    "success_password": "Пароль успешно изменен",
+    "min_1_digit": "Минимум 1 цифра"
   },
   "subscription_duration": {
     "week_1": "Еженедельно",

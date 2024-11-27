@@ -24,7 +24,8 @@
     "min_8_chars": "Minimum 8 characters",
     "min_1_uppercase": "Minimum 1 uppercase letter",
     "min_1_symbol": "Minimum 1 symbol",
-    "success_password": "Password changed successfully"
+    "success_password": "Password changed successfully",
+    "min_1_digit": "Minimum 1 digit"
     
   },
   "subscription_duration": {

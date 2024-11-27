@@ -1,16 +1,14 @@
 import * as React from 'react';
-import Svg, { G, Path, Rect, type SvgProps } from 'react-native-svg';
+import Svg, { Circle, G, Path, Rect, type SvgProps } from 'react-native-svg';
 
 const FavoriteIcon: React.FC<SvgProps> = ({ color = '#fff', strokeWidth = 2, ...props }) => {
   return (
-    <Svg viewBox="0 0 28 28" width={28} height={28} fill="none" {...props}>
-      <Rect x={2} y={2} width={34} height={34} fill="#065fe0" rx={20} />
-      <G x={7} y={7}>
-        <Path
-          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-          fill="#fff"
-        />
-      </G>
+    <Svg width={28} height={28} viewBox="0 0 64 64" fill="none" {...props}>
+      <Circle cx={32} cy={32} r={32} fill="#007BFF" />
+      <Path
+        d="M32 46c-.8 0-1.5-.2-2.2-.7-3.8-2.4-14.2-9.8-14.2-20.8 0-4.8 3.8-8.5 8.6-8.5 2.9 0 5.6 1.4 7 3.5 1.4-2.1 4.1-3.5 7-3.5 4.8 0 8.6 3.7 8.6 8.5 0 11-10.4 18.4-14.2 20.8-.7.5-1.4.7-1.4.7z"
+        fill="#fff"
+      />
     </Svg>
   );
 };
