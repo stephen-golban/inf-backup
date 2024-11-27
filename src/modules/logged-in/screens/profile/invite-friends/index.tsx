@@ -15,12 +15,12 @@ const InviteFriendsModule: React.FC<IInviteFriendsModule> = ({ onInvite }) => {
         <Text center my="sm" variant="20-bold" t18n="profile:invite_friends:free_month_access" />
         <Text center variant="12-reg" t18n="profile:invite_friends:invite_benefit" />
         <View p="lg">
-          <View row g="sm" px="md" my="sm">
+          <View row g="sm" px="md" mt="sm">
             <Icon icon="SquareShareIcon" />
             <Text t18n="profile:invite_friends:send_link" />
           </View>
 
-          <View row g="sm" px="md" my="sm">
+          <View row g="sm" px="md" mb="sm">
             <Icon icon="FavoriteIcon" />
             <Text t18n="profile:invite_friends:get_month" />
           </View>
