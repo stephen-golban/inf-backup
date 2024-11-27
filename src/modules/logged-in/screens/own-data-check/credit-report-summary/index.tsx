@@ -47,8 +47,9 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
   const sourceIdnos = commitments.map(commitment => commitment.sourceIdno);
   const searchSourceIdno = '1009600029036';
 
-  const incassoCommitments = commitments.filter(commitment => commitment.type === 'activeNegativeCommitments');
-
+  const incassoCommitments = commitments.filter(
+    commitment => commitment.type === 'activeNegativeCommitments' && sourceIdnos.includes(searchSourceIdno),
+  );
   const reportRequestDateTime = creditReportSummary?.requestDateTime;
   const reportResponseDateTime = creditReportSummary?.responseDateTime;
 
@@ -56,12 +57,14 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
     const lastShownTimestamp = loadString(MMKV_KEY.INCASSO_REMIND);
     const currentTimestamp = Date.now();
 
-    if (sourceIdnos.includes(searchSourceIdno) && incassoCommitments.length > 0) {
+    const hasSpecificIdno = incassoCommitments.some(commitment => commitment.sourceIdno === searchSourceIdno);
+
+    if (hasSpecificIdno) {
       if (!lastShownTimestamp || currentTimestamp - parseInt(lastShownTimestamp) > 60000) {
         setIsVisible(true);
       }
     }
-  }, [sourceIdnos]);
+  }, [incassoCommitments]);
 
   const isData = creditReportSummary || !isEmpty(commitments);
 

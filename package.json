@@ -17,7 +17,7 @@
     "@miblanchard/react-native-slider": "^2.6.0",
     "@react-native-community/datetimepicker": "^8.1.1",
     "@react-native-community/hooks": "^3.0.0",
-    "@react-native-community/netinfo": "^11.3.2",
+    "@react-native-community/netinfo": "^11.4.1",
     "@react-native-firebase/analytics": "^21.4.0",
     "@react-native-firebase/app": "^21.4.0",
     "@react-native-firebase/crashlytics": "^21.4.0",
