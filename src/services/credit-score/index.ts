@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useAppStore } from '@store/app';
-import { useLazyAxios } from '@api/hooks';
+import { useAxios, useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
 import { useAppDataCheckStore } from '@store/data-check';
 
 import type { ICreditScoreResponse } from '@typings/responses/credit-score';
-import { LastInquiryApiResponse } from '@typings/responses';
+import { CreditReportEventsApiResponse, CreditReportQualityApiResponse, LastInquiryApiResponse } from '@typings/responses';
 
 const CREDIT_SCORE_QUERY_PARAMS = {
   subjectType: 'INDIVIDUAL',
@@ -23,6 +23,15 @@ function useCreditScoreService(runOnMount = true) {
     headers: { 'Subscription-Id': subscription?.id || 60 },
   });
 
+  const { user } = useAppStore(state => state);
+
+  const userAccountId = user?.accounts[0].accountId || subscription?.subscriptionAccounts?.[0].accountId;
+
+  const [reportEvents, { loading: loadingReportEvents }] = useLazyAxios<CreditReportEventsApiResponse>({
+    method: 'post',
+    url: '/credit-report-events?subscriptionFreeAccess=true',
+  });
+
   const [getInquiry, { loading: loadingInquiry }] = useLazyAxios<LastInquiryApiResponse>('/inquiry-report', { method: 'get' });
 
   const fetchScore = useTryCatch(async () => {
@@ -32,6 +41,10 @@ function useCreditScoreService(runOnMount = true) {
       }),
       call(undefined, res => {
         useAppDataCheckStore.setState({ creditScore: JSON.parse(atob(res)) });
+      }),
+
+      reportEvents(undefined, res => {
+        useAppDataCheckStore.setState({ reportEvents: res });
       }),
     ]);
 
@@ -47,7 +60,7 @@ function useCreditScoreService(runOnMount = true) {
     }, [inquiry]);
   }
 
-  const loading = featchLoading || score.loading || loadingInquiry;
+  const loading = featchLoading || score.loading || loadingInquiry || loadingReportEvents;
 
   return { fetchScore, creditScore, loading };
 }
