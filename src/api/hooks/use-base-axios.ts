@@ -46,6 +46,10 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
 
   const invokeAxios = createAxiosInvoker();
 
+  const showToast = (message: string, type: 'success' | 'danger' = 'danger') => {
+    toast.show(message, { type });
+  };
+
   const getData = useCallback(
     async (lazyData: Config<Data>['data'], onSuccess?: OnSuccess<Data>, lazyConfig?: Config<Data>) => {
       dispatch({ type: 'REQUEST_INIT' });
@@ -58,10 +62,8 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
         if (isMounted()) {
           dispatch({ type: 'REQUEST_SUCCESS', payload: res.data });
           if (onSuccess) {
-            if (lazyConfig?.hasFinalUrl) {
-              if (res.request?.responseURL) {
-                onSuccess(res.data || (res.status as Data), res.status, res.request?.responseURL);
-              }
+            if (lazyConfig?.hasFinalUrl && res.request?.responseURL) {
+              onSuccess(res.data || (res.status as Data), res.status, res.request?.responseURL);
             } else {
               onSuccess(res.data || (res.status as Data), res.status);
             }
@@ -71,21 +73,16 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
       } catch (e) {
         if (isMounted()) {
           const err = e as BaseError<Data>;
-          const errResMessage = (err.response?.data as any)?.message;
+          const errResMessage = (err.response?.data as any)?.message; // Tipuri mai detaliate pot fi utile
           const context = `Error in useBaseAxios with URL: ${typeof param1 === 'string' ? param1 : param1.url}`;
 
-          // Log the error to Firebase Crashlytics
           logError(err, context);
 
           if (!lazyConfig?.hideErrors) {
-            if (errResMessage) {
-              toast.show(errResMessage, { type: 'danger' });
-            } else {
-              if (__DEV__) {
-                toast.show(err.message, { type: 'danger' });
-              }
-            }
+            const message = errResMessage || err.message || 'An unexpected error occurred';
+            showToast(message);
           }
+
           dispatch({ type: 'REQUEST_FAILED', payload: err });
         }
       }

@@ -24,6 +24,7 @@ const { width } = Dimensions.get('screen');
 import type { ArrowLength } from './typings';
 import { View } from '@components/common';
 import { useAppStore } from '@store/app';
+import { useTranslation } from '@library/hooks';
 
 type Data = Array<{
   label: string;
@@ -43,6 +44,8 @@ interface ScoringProps {
 }
 
 const Scoring: React.FC<ScoringProps> = props => {
+  const { t } = useTranslation();
+
   const {
     rating,
 
@@ -112,7 +115,7 @@ const Scoring: React.FC<ScoringProps> = props => {
           {data.map((segment, index) => {
             return (
               <SvgText key={index} fontSize={textSize} fontWeight="900" fill={commonColors.ashGray}>
-                <TextPath href={`#arcPath${index}`}>{segment.label}</TextPath>
+                <TextPath href={`#arcPath${index}`}>{t(segment.label)}</TextPath>
               </SvgText>
             );
           })}
