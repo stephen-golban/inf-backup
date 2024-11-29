@@ -41,6 +41,7 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
     costText,
     disabled,
     secondaryText,
+    discountText,
   } = getSubscriptionDetails(subscription, navigation, onPressUpdate, onPayReport);
   const Button = secondButtonType === 'filled' ? FilledButton : OutlinedButton;
 
@@ -118,6 +119,7 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
         secondaryText={secondaryText}
         costText={costText}
         buttonText={buttonText}
+        discountText={discountText}
         subscription={subscription}
         isLoading={loading}
         onNavigate={onPressFirstButton}

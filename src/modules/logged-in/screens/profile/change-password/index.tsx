@@ -20,6 +20,8 @@ const ChangePasswordModule: React.FC<IChangePasswordModule> = ({ loading, onSubm
           const isMinLengthValid = newPassword.length >= 8;
           const isUppercaseValid = /[A-Z]/.test(newPassword);
           const isSpecialCharValid = /[\W_]/.test(newPassword);
+          const isDigitValid = /\d/.test(newPassword);
+
           return (
             <KeyboardAwareScrollView bounces={false} keyboardShouldPersistTaps="handled">
               <View fill>
@@ -57,6 +59,10 @@ const ChangePasswordModule: React.FC<IChangePasswordModule> = ({ loading, onSubm
                       size={15}
                     />
                     <Text variant="12-reg" center t18n="profile:my_account:change_password_section:min_1_symbol" />
+                  </View>
+                  <View row g="xs">
+                    <Icon icon={isDigitValid ? 'CheckCircleIcon' : 'CircleIcon'} color={isDigitValid ? 'skyBlue' : 'gray'} size={15} />
+                    <Text variant="12-reg" center t18n="profile:my_account:change_password_section:min_1_digit" />
                   </View>
                 </View>
                 <View rg="sm">

@@ -1514,7 +1514,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-netinfo (11.3.2):
+  - react-native-netinfo (11.4.1):
     - React-Core
   - react-native-onesignal (5.2.4):
     - OneSignalXCFramework (= 5.2.4)
@@ -2408,7 +2408,7 @@ SPEC CHECKSUMS:
   react-native-image-picker: 2fbbafdae7a7c6db9d25df2f2b1db4442d2ca2ad
   react-native-image-resizer: fd0c333eca55147bd55c5e054cac95dcd0da6814
   react-native-mmkv: 7d0b6c2a79e73100b933f2947a9c8741d664e18b
-  react-native-netinfo: 076df4f9b07f6670acf4ce9a75aac8d34c2e2ccc
+  react-native-netinfo: f0a9899081c185db1de5bb2fdc1c88c202a059ac
   react-native-onesignal: b2ccb145f06433f23c834be17a5f6522308e80f0
   react-native-safe-area-context: 851c62c48dce80ccaa5637b6aa5991a1bc36eca9
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457

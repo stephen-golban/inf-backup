@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dimensions, type ImageSourcePropType } from 'react-native';
 
-import Svg, { Circle, G, Image, Path, Text as SvgText } from 'react-native-svg';
+import Svg, { Circle, G, Image, Path, Text as SvgText, TextPath } from 'react-native-svg';
 
 import {
   getRatingColor,
@@ -13,6 +13,7 @@ import {
   calculateTopSegmentPath,
   calculateArrowAngleDegree,
   calculateTopSegmentPathBorder,
+  calculateTextArcPath,
 } from './helpers';
 
 import { segments } from './segments';
@@ -22,6 +23,7 @@ const { width } = Dimensions.get('screen');
 
 import type { ArrowLength } from './typings';
 import { View } from '@components/common';
+import { useAppStore } from '@store/app';
 
 type Data = Array<{
   label: string;
@@ -57,6 +59,10 @@ const Scoring: React.FC<ScoringProps> = props => {
     arrowLength = 'small',
   } = props;
 
+  const { locale } = useAppStore(state => state);
+
+  const textSize = locale === 'ro' ? 7 : locale === 'en' ? 6.5 : 5;
+
   return (
     <View align="center" justify="center">
       <Svg height={245} width={width * 0.9} viewBox="-22 7 245 85">
@@ -81,6 +87,12 @@ const Scoring: React.FC<ScoringProps> = props => {
               {index > 0 && index < data.length && (
                 <Path fill="none" strokeWidth="2" stroke={separatorColor} d={calculateSeparatorPath(index, data.length)} />
               )}
+
+              <Path
+                id={`arcPath${index}`}
+                d={calculateTextArcPath(100, 100, 107, segmentTextPositions[index].angle - 10, segmentTextPositions[index].angle + 10)}
+                fill="none"
+              />
             </G>
           ))}
 
@@ -97,19 +109,13 @@ const Scoring: React.FC<ScoringProps> = props => {
           <Circle cx="100" cy="90" r="12" fill={ScoringArrowColor} />
           <Circle cx="100" cy="90" r="7" fill={ScoringArrowInsideCircleColor} />
 
-          {data.map((segment, index) => (
-            <SvgText
-              key={index}
-              fontSize="7"
-              fontWeight="900"
-              textAnchor="middle"
-              fill={commonColors.ashGray}
-              x={segmentTextPositions[index].x}
-              y={segmentTextPositions[index].y}
-              transform={`rotate(${segmentTextPositions[index].angle}, ${segmentTextPositions[index].x}, ${segmentTextPositions[index].y})`}>
-              {segment.label}
-            </SvgText>
-          ))}
+          {data.map((segment, index) => {
+            return (
+              <SvgText key={index} fontSize={textSize} fontWeight="900" fill={commonColors.ashGray}>
+                <TextPath href={`#arcPath${index}`}>{segment.label}</TextPath>
+              </SvgText>
+            );
+          })}
         </G>
 
         <SvgText x="100" y="133" fontSize="28" fontWeight="bold" textAnchor="middle" fill={getRatingColor(rating)}>

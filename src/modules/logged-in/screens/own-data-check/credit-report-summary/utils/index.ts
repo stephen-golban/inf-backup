@@ -66,8 +66,10 @@ const getReportSummaryOptions = (
   const creditScorePrice = creditScoreService?.prices[0].price || 0;
 
   let discountText = undefined;
-  if (discountData?.discount) {
-    discountText = t('subscriptions:annual_discount_text', { discountAmount: discountData.discountAmount });
+  if (discountData?.discount || discountData?.annualDiscount) {
+    discountText = t('subscriptions:discount_text_other_subscription', {
+      discountAmount: discountData.discountAmount + (discountData.annualDiscount && !discountData.discount ? '%' : ' MDL'),
+    });
   }
   if ((trial && !isExpired) || isExpired) {
     return {
@@ -77,7 +79,7 @@ const getReportSummaryOptions = (
       secondButtonTextColor: 'blue',
       firstButtonType: 'filled',
       disabled: false,
-      costText: t('ui:subscription:trial_cost_text', { price }),
+      costText: t('ui:subscription:trial_cost_text', { price: 87 }),
       secondButtonType: 'outlined',
       lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:for_complete_data_choose_a_subscription'),
       discountText: discountText,
@@ -95,7 +97,9 @@ const getReportSummaryOptions = (
       firstButtonTextColor: 'blue',
       secondButtonTextColor: 'white',
       lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:download_complete_report'),
-      discountText: t('subscriptions:discount_text_other_subscription'),
+      discountText: t('subscriptions:discount_text_other_subscription', {
+        discountAmount: discountData.discountAmount + (discountData.annualDiscount && !discountData.discount ? '%' : ' MDL'),
+      }),
       onPressFirstButton: () => {},
       onPressSecondButton: () =>
         navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
@@ -134,7 +138,7 @@ const getReportSummaryOptions = (
       secondButtonTextColor: 'blue',
       costText: t('ui:subscription:credit_score_included_cost_text'),
       lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:download_complete_report'),
-      secondaryText: t('ui:subscription:credit_score_included_discount_text'),
+      discountText: t('ui:subscription:credit_score_included_discount_text'),
       onPressFirstButton: onPressUpdate,
       onPressSecondButton: () =>
         navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
