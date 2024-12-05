@@ -18,6 +18,8 @@
   "request": "Request",
   "success": "Success",
   "save": "Save",
+  "yes": "Yes",
+  "no": "No",
   "unspecified": "Not indicated",
   "read": "Read",
   "back_to_login": "Back to login",
