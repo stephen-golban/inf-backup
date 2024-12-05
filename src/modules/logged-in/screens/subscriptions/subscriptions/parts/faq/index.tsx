@@ -19,7 +19,7 @@ const Faq = () => {
         {list.map(item => (
           <Accordion.Item key={item.q} value={item.q}>
             <Accordion.Trigger>
-              <Text variant="14-reg" color="blue" text={item.q} />
+              <Text style={{ maxWidth: '90%' }} variant="14-reg" color="blue" text={item.q} />
             </Accordion.Trigger>
             <Accordion.Content>
               <Text variant="14-reg" color="gray_41" text={item.a} lineHeight={18} />

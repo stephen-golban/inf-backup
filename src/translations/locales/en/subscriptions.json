@@ -81,24 +81,36 @@
       "title": "Frequently Asked Questions",
       "questions": [
         {
-          "q": "Can I cancel my subscription?",
-          "a": "Yes, you can cancel your monthly subscription and choose a higher or lower subscription anytime. Even annual subscriptions can be canceled under certain conditions."
+          "q": "How often can I download my credit reports?",
+          "a": "You can download your credit report as many times as you want with the PREMIUM subscription."
         },
         {
-          "q": "What payment methods do you accept?",
-          "a": "We accept various payment methods including credit cards, debit cards, and PayPal."
+          "q": "What do I do if, after downloading my credit history, I discover loans that are not in my name?",
+          "a": "GENIUS and PREMIUM subscriptions include the anti-fraud monitoring service, which alerts you immediately if any suspicious changes appear in your history. If they are not yours, you can always contact us for support and guidance."
         },
         {
-          "q": "Do you offer a free trial period?",
-          "a": "Yes, we offer a 7-day free trial period for new users to explore our services."
+          "q": "How can I make sure that no one uses my data to access loans in my name?",
+          "a": "Fraud monitoring alerts you immediately if there is any change in your credit history, protecting you from potential fraud."
         },
         {
-          "q": "Will I be charged when I add my card?",
-          "a": "No, you will not be charged when you add your card. Charges will only be applied when you make a purchase."
+          "q": "How can I track my credit history in real time to understand how my payments affect my credit score?",
+          "a": "With two reports included monthly and anti-fraud monitoring, the GENIUS subscription is perfect for constant, detailed tracking, while the PREMIUM subscription allows you to update your data daily and download as many times as you need."
         },
         {
-          "q": "Which subscription is right for me?",
-          "a": "The right subscription depends on your needs. Our Smart plan is great for basic use, Genius plan offers more features, and Premium plan provides unlimited access."
+          "q": "How can I check my credit history consistently without paying extra for each report?",
+          "a": "With the SMART subscription you can regularly monitor your credit history for just 87 lei a month."
+        },
+        {
+          "q": "What are the payment methods?",
+          "a": "You can pay your subscription online using a Visa or Mastercard bank card issued by a bank in the Republic of Moldova or another country."
+        },
+        {
+          "q": "What if I want to be notified immediately about any changes in my credit history?",
+          "a": "Your GENIUS subscription includes anti-fraud monitoring, which sends you instant notifications if suspicious changes or unusual activity occurs."
+        },
+        {
+          "q": "Can I deactivate my account?",
+          "a": "Yes, you can deactivate and/or delete your account at any time. Once your account is deleted, you will only be able to use Infodebit services again after creating a new user account."
         }
       ]
     }
