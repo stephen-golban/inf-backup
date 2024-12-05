@@ -44,7 +44,8 @@
     "no_response_from_server": "Нет ответа от сервера",
     "no_valid_term_date": "Нет действительной даты истечения",
     "invitation_submitted_successfully": "Приглашение успешно отправлено",
-    "user_subscription_no_access": "Услуга не включена в подписку"
+    "user_subscription_no_access": "Услуга не включена в подписку",
+    "no_internet_connection": "Нет доступного интернет-соединения"
   },
 
   "empty_state": "Данные для отображения не найдены...",

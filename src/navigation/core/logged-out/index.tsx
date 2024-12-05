@@ -15,7 +15,7 @@ const Stack = createNativeStackNavigator<LoggedOutStackParamList>();
 const LoggedOutStack: React.FC<RootStackScreenProps<APP_SCREEN.LOGGED_OUT>> = () => {
   const isOTPPage = loadString(MMKV_KEY.INSERT_OTP);
 
-  const initialRoute = isOTPPage ? LOGGED_OUT_SCREENS.OneTimePassword : LOGGED_OUT_SCREENS.Welcome;
+  const initialRoute = isOTPPage ? LOGGED_OUT_SCREENS.SuccessRecognition : LOGGED_OUT_SCREENS.Welcome;
 
   return (
     <Screen bg="primary" excludeEdges={['bottom']}>

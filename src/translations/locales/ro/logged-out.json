@@ -7,7 +7,6 @@
     "title": "ACCES INSTANT LA DATE",
     "subtitle": "Verifică-ți rapid scorul și istoria de credit",
     "terms_conditions_agreement": "Am citit și sunt de acord cu <1>Termenii și condițiile de utilizare</1> și <1>Politica de confidențialitate</1>",
-    "credit_history_report_agreement": "Sunt de acord cu verificarea <1>Raportului istoriei</1> mele de credit la Infodebit și Biroul de credit",
 
     "questions": {
       "register": "Nu ai cont? <1>Înregistrează-te</1>",
@@ -48,7 +47,11 @@
   },
   
   "success-recognition": {
-    "title": "Recunoaștere cu succes"
+    "title": "Recunoaștere cu succes",
+    "account_created_successfully": "Contul tău a fost creat cu succes!",
+    "data_validation_message": "Validăm datele și îți expediem codul de acces în aplicație printr-un SMS. Îți mulțumim!",
+    "out_of_hours_message": "Dacă ți-ai creat cont în afara orelor de lucru (L - V; 08:00 - 17:00), precum și în zile nelucrătoare, vei primi codul în dimineața următoarei zile lucrătoare.",
+    "insert_code": "Introdu codul primit prin SMS"
   },
   "success-registration": {
     "title": "Înregistrare cu succes",

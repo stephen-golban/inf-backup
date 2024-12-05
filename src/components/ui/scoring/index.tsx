@@ -25,6 +25,7 @@ import type { ArrowLength } from './typings';
 import { View } from '@components/common';
 import { useAppStore } from '@store/app';
 import { useTranslation } from '@library/hooks';
+import { I18nKey } from '@translations/locales';
 
 type Data = Array<{
   label: string;
@@ -115,7 +116,7 @@ const Scoring: React.FC<ScoringProps> = props => {
           {data.map((segment, index) => {
             return (
               <SvgText key={index} fontSize={textSize} fontWeight="900" fill={commonColors.ashGray}>
-                <TextPath href={`#arcPath${index}`}>{t(segment.label)}</TextPath>
+                <TextPath href={`#arcPath${index}`}>{t(segment.label as I18nKey)}</TextPath>
               </SvgText>
             );
           })}

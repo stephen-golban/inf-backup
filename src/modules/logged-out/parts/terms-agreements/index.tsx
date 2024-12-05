@@ -27,20 +27,6 @@ const TermsAgreements = <T,>({ control }: ITermsAgreements<T>) => {
           );
         }}
       />
-      <Controller
-        control={control}
-        name="credit_history_report_agreement"
-        render={({ field }) => {
-          return (
-            <CheckboxField
-              value={field.value}
-              link={`https://infodebit.md/${locale}/articol/24`}
-              onToggle={option => field.onChange(option)}
-              title="logged_out:login:credit_history_report_agreement"
-            />
-          );
-        }}
-      />
     </View>
   );
 };

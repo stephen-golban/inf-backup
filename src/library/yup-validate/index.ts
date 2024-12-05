@@ -6,9 +6,6 @@ export const yupTermsAndAgreements = {
   terms_conditions_agreement: boolean()
     .oneOf([true], stringifyObjectValidate({ keyT: 'validation:field_required' }))
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' })),
-  credit_history_report_agreement: boolean()
-    .oneOf([true], stringifyObjectValidate({ keyT: 'validation:field_required' }))
-    .required(stringifyObjectValidate({ keyT: 'validation:field_required' })),
 };
 export const yupPasswordValidation = string()
   .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))
