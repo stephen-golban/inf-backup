@@ -14,6 +14,18 @@ const ListItem: React.FC<PaymentDetail> = ({ purchasedServiceName, id, paymentDa
 
   const onReimburse = useTryCatch(async () => await call(undefined, res => console.log(res), { params: { refundAmount: amount } }));
 
+  const serviceName = React.useMemo(() => {
+    switch (purchasedServiceName) {
+      case 'SUBSCRIPTION':
+        return t('profile:settings:payment_history_screen:SUBSCRIPTION');
+      case 'CREDIT_SCORE':
+        return t('profile:settings:payment_history_screen:CREDIT_SCORE');
+      case 'CREDIT_REPORT_SUMMARY':
+        return t('profile:settings:payment_history_screen:CREDIT_REPORT_SUMMARY');
+      default:
+        return purchasedServiceName;
+    }
+  }, [purchasedServiceName]);
   return (
     <>
       <View py={20} row between align="center" mt="sm">
@@ -21,7 +33,7 @@ const ListItem: React.FC<PaymentDetail> = ({ purchasedServiceName, id, paymentDa
           <Avatar.Base bg="skyBlue" br="huge" center size={40}>
             <Icon icon="DoubleCheck" color="white" size={18} />
           </Avatar.Base>
-          <Text variant="12-semi" text={purchasedServiceName} ml="sm" flex />
+          <Text variant="12-semi" text={serviceName} ml="sm" flex />
         </View>
         <View>
           <Text variant="12-reg" text={format(paymentDateTime, 'MM.dd.yyyy')} />
@@ -34,5 +46,7 @@ const ListItem: React.FC<PaymentDetail> = ({ purchasedServiceName, id, paymentDa
     </>
   );
 };
+
+// TODO: CHECK ANDROID
 
 export default ListItem;

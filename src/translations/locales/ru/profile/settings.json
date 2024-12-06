@@ -28,7 +28,10 @@
     "no_payment_history": "Нет истории платежей.",
     "successfully_registered_new_card": "Новая карта успешно зарегистрирована",
     "register_new_card": "Зарегистрировать новую карту",
-    "reimbursable": "Возмещаемый"
+    "reimbursable": "Возмещаемый",
+    "SUBSCRIPTION": "Подписка",
+    "CREDIT_SCORE": "Кредитный рейтинг",
+    "CREDIT_REPORT_SUMMARY": "Сводка кредитного отчета"
   },
 
   "feedback": {

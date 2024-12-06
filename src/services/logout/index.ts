@@ -1,4 +1,4 @@
-import { MMKV_KEY } from '@library/constants';
+import { MMKV_KEY, PIN_CODE } from '@library/constants';
 import { loadString, remove } from '@library/storage';
 import { resetAppStore } from '@store/app';
 import { resetAppDataCheckStore } from '@store/data-check';
@@ -12,6 +12,7 @@ async function logout() {
   await Keychain.resetInternetCredentials('refreshToken');
   resetAppDataCheckStore();
   usePinCodeStore.setState({ visible: false });
+  remove(PIN_CODE.pin);
   resetAppStore();
   OneSignal.logout();
   isMpassLogin && remove(MMKV_KEY.IS_MPASS_LOGIN);
