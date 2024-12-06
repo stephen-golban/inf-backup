@@ -2,6 +2,7 @@
   "download": {
     "history": {
       "title": "Acces rapid la Raportul de credit",
+      "choose_subscription": "Pentru date complete alege un abonament",
       "subtitle": "Obține istoria de credit cu un singur click"
     },
 
@@ -102,22 +103,21 @@
     }
   },
   "scoring_details_benefits": {
-  "title": "Cu Mylnfodebit te pregătesti mai ușor pentru împrumuturi viitoare",
-  "benefit_1": "Verificarea regulata a scorului de credit te poate ajuta sã descoperi eventuale erori",
-  "benefit_2": "Dacă lucrezi la îmbunătățirea scorului, poți monitoriza evolutia direct în Mylnfodebit",
-  "benefit_3": "Verificarea scorului te poate ajuta sã detectezi activități frauduloase și sã acționezi prompt",
-  "benefit_4": "Cunoscându-ti scorul ai totul sub control si poti reduce stresul legat de credite si datorii"
-},
-"last_credit_score_interogation": "Ultima interogare a scorului de credit",
-"last_credit_history_update": "Ultima actualizare a istoriei de credit",
+    "title": "Cu Mylnfodebit te pregătesti mai ușor pentru împrumuturi viitoare",
+    "benefit_1": "Verificarea regulata a scorului de credit te poate ajuta sã descoperi eventuale erori",
+    "benefit_2": "Dacă lucrezi la îmbunătățirea scorului, poți monitoriza evolutia direct în Mylnfodebit",
+    "benefit_3": "Verificarea scorului te poate ajuta sã detectezi activități frauduloase și sã acționezi prompt",
+    "benefit_4": "Cunoscându-ti scorul ai totul sub control si poti reduce stresul legat de credite si datorii"
+  },
+  "last_credit_score_interogation": "Ultima interogare a scorului de credit",
+  "last_credit_history_update": "Ultima actualizare a istoriei de credit",
 
-"credit_report_summary_options": {
-  "choose_subscription": "Alege un abonament și descarcă Raportul",
-  "information_from_today": "Vreau informații de azi",
-  "for_complete_data_choose_a_subscription": "Pentru date complete alege un abonament",
-  "download_complete_report": "Descarcă Raportul complet",
-  "order_report_for_more_data": "Comandă Raportul pentru mai multe date",
-  "order_report_for_details": "Comandă Raportul pentru detalii"
-
-}
+  "credit_report_summary_options": {
+    "choose_subscription": "Alege un abonament și descarcă Raportul",
+    "information_from_today": "Vreau informații de azi",
+    "for_complete_data_choose_a_subscription": "Pentru date complete alege un abonament",
+    "download_complete_report": "Descarcă Raportul complet",
+    "order_report_for_more_data": "Comandă Raportul pentru mai multe date",
+    "order_report_for_details": "Comandă Raportul pentru detalii"
+  }
 }

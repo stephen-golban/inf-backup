@@ -41,7 +41,7 @@ const SendEmail: React.FC<ISendEmail> = ({ reportId }) => {
 
   return (
     <Form resolver={email_send_schema} defaultValues={{ sendEmail: false, email: undefined }}>
-      {({ control, handleSubmit, watch, formState: { isValid } }) => {
+      {({ control, handleSubmit, watch, formState: { isValid }, setValue }) => {
         const canSendEmail = watch('sendEmail');
 
         return (
@@ -54,8 +54,8 @@ const SendEmail: React.FC<ISendEmail> = ({ reportId }) => {
                 render={({ field }) => (
                   <RadioGroup
                     options={[
-                      { value: 'yes', label: 'Yes' },
-                      { value: 'no', label: 'No' },
+                      { value: 'yes', label: t('ui:yes') },
+                      { value: 'no', label: t('ui:no') },
                     ]}
                     defaultValue={field.value ? 'yes' : 'no'}
                     onValueChange={val => field.onChange(val === 'yes')}
@@ -87,7 +87,9 @@ const SendEmail: React.FC<ISendEmail> = ({ reportId }) => {
                   t18n="ui:send"
                   loading={loading}
                   disabled={!isValid}
-                  onPress={handleSubmit(d => onSubmit(d.email.value))}
+                  onPress={handleSubmit(d =>
+                    onSubmit(d.email.value).then(() => setValue('email', undefined as any, { shouldValidate: true })),
+                  )}
                 />
               </View>
             )}
