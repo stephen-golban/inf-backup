@@ -75,13 +75,13 @@
     },
     "fail": {
       "title": "Ohhhh, nu!",
-      "message": "Conform datelor Infodebit, ai zero șansele să obții un credit. Pentru a afla motivul, verifică acum Raportul istoriei tale de credit"
+      "message": "Conform datelor Infodebit, istoria ta de credit este negativă și ai șanse mici să obții un credit. Pentru a afla mai multe detalii, consultă istoria ta de credit."
     },
 
     "sheets": {
-      "request_success": "Cererea ta de credit, cu numărul {{id}}, a fost înregistrată cu succes! Un operator te va contacta cât mai curând posibil.",
-      "request_pending": "Ai făcut recent o cerere de credit. Ne cerem scuze dacă ai așteptat mai mult. Un operator te va contacta cât mai curând posibil.",
-      "request_duplicate": "Ai făcut deja o cerere de credit, cu numărul {{id}}. Te rugăm să revii după {{date}}, și vom fi bucuroși să te asistăm. Mulțumim!"
+      "request_success": "Cererea ta de credit, cu numărul {{id}}, a fost înregistrată cu succes! Un operator va lua legătura cu tine în cel mai scurt timp.",
+      "request_pending": "Ai făcut recent o solicitare de credit. Ne cerem scuze dacă ai așteptat mai mult. Un operator va lua legătura cu tine în cel mai scurt timp.",
+      "request_duplicate": "Ai făcut recent o solicitare de credit, cu numărul {{id}}. Te rugăm să revii după {{date}}, iar noi vom fi bucuroși să te ajutăm. Mulțumim!"
     }
   },
 

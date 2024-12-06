@@ -8,6 +8,7 @@ import { differenceInDays, format, isAfter } from 'date-fns';
 import type { LoanApiResponse } from '@typings/responses/loan';
 import type { CreditReportQualityApiResponse } from '@typings/responses';
 import type { LoanFormFields } from '@modules/logged-in/screens/own-data-check/new-credit/loan-form/resolver';
+import { useLastInquiryService } from '@services/last-inquiry';
 
 const useNewCredit = () => {
   const { t } = useTranslation();
@@ -29,6 +30,8 @@ const useNewCredit = () => {
     method: 'post',
     axiosInstance: lead_api,
   });
+
+  const { fetchInquiryReport } = useLastInquiryService(false);
 
   const isPositive = data?.creditReportQualityType === 'POSITIVE';
 
@@ -72,6 +75,7 @@ const useNewCredit = () => {
       otherActiveNegativeCommitments: data?.otherActiveNegativeCommitments,
     };
     await call(body, setLoanResponse, { hideErrors: true }).then(() => setShowLoanModal(true));
+    await fetchInquiryReport();
   };
 
   const getLoanResponseType = useMemo(() => {

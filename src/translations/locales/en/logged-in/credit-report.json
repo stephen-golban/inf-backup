@@ -75,13 +75,13 @@
     },
     "fail": {
       "title": "Ohhhh, no!",
-      "message": "According to Infodebit data, you have zero chance of getting a loan. To find out the reason, check your credit history report now"
+      "message": "According to Infodebit data, your credit history is negative and you have a low chance of getting a loan. To find out the reason, check your credit history report now"
     },
 
     "sheets": {
-      "request_success": "Your credit request, with number {{id}}, has been successfully registered! An operator will contact you as soon as possible.",
-      "request_pending": "You have recently made a credit request. We apologize if you have waited longer. An operator will contact you as soon as possible.",
-      "request_duplicate": "You have already made a credit request, with number {{id}}. Please come back after {{date}}, and we will be happy to assist you. Thank you!"
+      "request_success": "Your credit request, with number {{id}}, has been successfully registered! An operator will contact you shortly.",
+      "request_pending": "You have recently made a credit request. We apologize if you have waited longer. An operator will contact you shortly.",
+      "request_duplicate": "You have recently made a credit request, with number {{id}}. Please come back after {{date}}, and we will be happy to assist you. Thank you!"
     }
   },
 

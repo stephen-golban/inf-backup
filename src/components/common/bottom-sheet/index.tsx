@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useMemo, useCallback } from 'react';
 import { BottomSheetBackdrop, BottomSheetBackdropProps, BottomSheetModal, BottomSheetModalProps } from '@gorhom/bottom-sheet';
-import { BackHandler } from 'react-native';
+import { BackHandler, Platform } from 'react-native';
+import useKeyboardHeight from '@api/hooks/use-keyboard-height';
 
 interface IBottomSheet extends Omit<BottomSheetModalProps, 'ref' | 'backdropComponent' | 'handleComponent'> {
   isVisible: boolean;
@@ -8,10 +9,28 @@ interface IBottomSheet extends Omit<BottomSheetModalProps, 'ref' | 'backdropComp
   handleActiveOffsets?: boolean;
 }
 
-const BottomSheet: React.FC<IBottomSheet> = ({ children, snapPoints, hideCloseIcon, isVisible, handleActiveOffsets, ...rest }) => {
+const BottomSheet: React.FC<IBottomSheet> = ({
+  children,
+  snapPoints: initialSnapPoints,
+  hideCloseIcon,
+  isVisible,
+  handleActiveOffsets,
+  ...rest
+}) => {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
+  const keyboardHeight = useKeyboardHeight();
 
-  const points = useMemo(() => snapPoints || ['50%'], [snapPoints]);
+  const snapPoints = useMemo(() => {
+    if (Platform.OS === 'android' && keyboardHeight > 0 && initialSnapPoints) {
+      return (Array.isArray(initialSnapPoints) ? initialSnapPoints : []).map((point: string | number) => {
+        if (typeof point === 'string') {
+          return point;
+        }
+        return point + keyboardHeight;
+      });
+    }
+    return initialSnapPoints;
+  }, [initialSnapPoints, keyboardHeight]);
 
   useEffect(() => {
     const backAction = () => {
@@ -60,8 +79,11 @@ const BottomSheet: React.FC<IBottomSheet> = ({ children, snapPoints, hideCloseIc
       index={0}
       ref={bottomSheetRef}
       enablePanDownToClose
-      snapPoints={points}
+      snapPoints={snapPoints}
       backdropComponent={renderBackdrop}
+      android_keyboardInputMode="adjustResize"
+      keyboardBehavior={Platform.OS === 'ios' ? 'interactive' : 'extend'}
+      keyboardBlurBehavior="restore"
       {...rest}>
       {children}
     </BottomSheetModal>
