@@ -2,6 +2,7 @@
   "download": {
     "history": {
       "title": "Quick access to Credit Report",
+      "choose_subscription": "For complete data, choose a subscription",
       "subtitle": "Get your credit history with one click"
     },
 
@@ -74,13 +75,13 @@
     },
     "fail": {
       "title": "Ohhhh, no!",
-      "message": "According to Infodebit data, you have zero chance of getting a loan. To find out the reason, check your credit history report now"
+      "message": "According to Infodebit data, your credit history is negative and you have a low chance of getting a loan. To find out the reason, check your credit history report now"
     },
 
     "sheets": {
-      "request_success": "Your credit request, with number {{id}}, has been successfully registered! An operator will contact you as soon as possible.",
-      "request_pending": "You have recently made a credit request. We apologize if you have waited longer. An operator will contact you as soon as possible.",
-      "request_duplicate": "You have already made a credit request, with number {{id}}. Please come back after {{date}}, and we will be happy to assist you. Thank you!"
+      "request_success": "Your credit request, with number {{id}}, has been successfully registered! An operator will contact you shortly.",
+      "request_pending": "You have recently made a credit request. We apologize if you have waited longer. An operator will contact you shortly.",
+      "request_duplicate": "You have recently made a credit request, with number {{id}}. Please come back after {{date}}, and we will be happy to assist you. Thank you!"
     }
   },
 
@@ -103,21 +104,21 @@
     }
   },
   "scoring_details_benefits": {
-  "title": "With Mylnfodebit, you can better prepare for future loans",
-  "benefit_1": "Regularly checking your credit score can help you discover potential errors",
-  "benefit_2": "If you are working on improving your score, you can monitor the progress directly in Mylnfodebit",
-  "benefit_3": "Checking your score can help you detect fraudulent activities and act promptly",
-  "benefit_4": "Knowing your score keeps everything under control and can reduce stress related to loans and debts"
-},
-"last_credit_score_interogation": "Last credit score inquiry",
-"last_credit_history_update": "Last credit history update",
+    "title": "With Mylnfodebit, you can better prepare for future loans",
+    "benefit_1": "Regularly checking your credit score can help you discover potential errors",
+    "benefit_2": "If you are working on improving your score, you can monitor the progress directly in Mylnfodebit",
+    "benefit_3": "Checking your score can help you detect fraudulent activities and act promptly",
+    "benefit_4": "Knowing your score keeps everything under control and can reduce stress related to loans and debts"
+  },
+  "last_credit_score_interogation": "Last credit score inquiry",
+  "last_credit_history_update": "Last credit history update",
 
-"credit_report_summary_options": {
-  "choose_subscription": "Choose a subscription and download the report",
-  "information_from_today": "I want information from today",
-  "for_complete_data_choose_a_subscription": "For complete data, choose a subscription",
-  "download_complete_report": "Download the complete report",
-  "order_report_for_more_data": "Order the Report for more data",
-  "order_report_for_details": "Order the Report for details"
-}
+  "credit_report_summary_options": {
+    "choose_subscription": "Choose a subscription and download the report",
+    "information_from_today": "I want information from today",
+    "for_complete_data_choose_a_subscription": "For complete data, choose a subscription",
+    "download_complete_report": "Download the complete report",
+    "order_report_for_more_data": "Order the Report for more data",
+    "order_report_for_details": "Order the Report for details"
+  }
 }

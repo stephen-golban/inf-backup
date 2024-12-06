@@ -6,7 +6,14 @@ import { useGoBack } from '@library/hooks';
 
 import { DownloadReportModule } from '@modules/logged-in';
 
-import { LOGGED_IN_STACK, LOGGED_IN_TABS, OWN_DATA_CHECK_SCREENS, type OwnDataCheckScreenProps } from '@typings/navigation';
+import {
+  LOGGED_IN_SCREENS,
+  LOGGED_IN_STACK,
+  LOGGED_IN_TABS,
+  OWN_DATA_CHECK_SCREENS,
+  SUBSCRIPTIONS_SCREENS,
+  type OwnDataCheckScreenProps,
+} from '@typings/navigation';
 
 const DownloadReport: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.DownloadReport>> = ({ navigation, route }) => {
   const reportId = route.params?.id;
@@ -23,6 +30,11 @@ const DownloadReport: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.Do
   }, [generationDateTime]);
 
   const onPressNotNow = () => navigation.navigate(LOGGED_IN_STACK.TABS, { screen: LOGGED_IN_TABS.HOME });
+  const onPressChooseSubscription = () =>
+    navigation.navigate(LOGGED_IN_STACK.SCREENS, {
+      screen: LOGGED_IN_SCREENS.SUBSCRIPTIONS,
+      params: { screen: SUBSCRIPTIONS_SCREENS.INDEX },
+    });
 
   useGoBack(true, navigation.goBack);
 
@@ -30,6 +42,7 @@ const DownloadReport: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.Do
     <DownloadReportModule
       reportId={reportId}
       loading={loading}
+      onPressChooseSubscription={onPressChooseSubscription}
       onPressNotNow={onPressNotNow}
       generationDateTime={formattedGenerationDateTime}
     />

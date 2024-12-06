@@ -1,23 +1,24 @@
 import { auth_api } from '@api/base';
 import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
+import { saveString } from '@library/storage';
 import { useLoginService } from '@services/login';
 import { openBrowserAuthAsync } from '@library/method';
 
-import type { LoginApiResponse } from '@typings/responses/login';
-import type { LoginFormFields } from '@modules/logged-out/login/resolver';
-import { saveString } from '@library/storage';
 import { MMKV_KEY } from '@library/constants';
 
+import type { LoginApiResponse } from '@typings/responses/login';
+import type { LoginFormFields } from '@modules/logged-out/login/resolver';
+
 export default function useLoginScreen() {
-  const { onRequestSuccess, service } = useLoginService();
+  const { onRequestSuccess, onMpassRequest, service, mpassTokenLoading } = useLoginService();
   const [call, { loading: loginLoading }] = useLazyAxios<LoginApiResponse>({
     method: 'post',
     axiosInstance: auth_api,
     url: '/auth/oauth/token',
   });
 
-  const [mpassLogin, { loading: mpassLoading, cancel }] = useLazyAxios('/mpass/request/login', { method: 'post' });
+  const [mpassLogin, { loading: mpassLoading, cancel }] = useLazyAxios<string>('/mpass/request/login', { method: 'post' });
 
   const onSubmit = useTryCatch(async (values: LoginFormFields) => {
     const queryParams = {
@@ -30,28 +31,23 @@ export default function useLoginScreen() {
   });
 
   const onPressMpass = useTryCatch(async () => {
-    await mpassLogin(
-      undefined,
-      async (data, status, finalUrl) => {
-        if (finalUrl) {
-          const res = await openBrowserAuthAsync(finalUrl, '');
-          if (res && res.type === 'success') {
-            const decodedUrl = decodeURIComponent(res.url);
-            const tokenString = decodedUrl.split('token=')[1];
-            const tokenData = JSON.parse(tokenString);
-            if (tokenData) {
-              saveString(MMKV_KEY.IS_MPASS_LOGIN, 'true');
-              return await onRequestSuccess(tokenData);
-            }
+    await mpassLogin(undefined, async finalUrl => {
+      if (finalUrl) {
+        const res = await openBrowserAuthAsync(finalUrl, '');
+        if (res && res.type === 'success') {
+          const decodedUrl = decodeURIComponent(res.url);
+          const uuid = decodedUrl.split('token=')[1];
+          if (uuid) {
+            saveString(MMKV_KEY.IS_MPASS_LOGIN, 'true');
+            return await onMpassRequest(uuid);
           }
         }
-        return cancel();
-      },
-      { hasFinalUrl: true },
-    );
+      }
+      return cancel();
+    });
   });
 
   const loading = loginLoading || service.loading;
 
-  return { loading, onSubmit, onPressMpass, mpassLoading };
+  return { loading, onSubmit, onPressMpass, mpassLoading: mpassTokenLoading || mpassLoading };
 }

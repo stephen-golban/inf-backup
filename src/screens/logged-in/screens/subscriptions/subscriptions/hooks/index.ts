@@ -23,17 +23,11 @@ export default function useSubscriptionsScreen() {
     await Promise.all([await subscriptionService.getSubscription(), await allSubscriptions.refetch(), await fetchInquiryReport()]);
   });
 
-  const onSuccess = () => {
-    onRefresh();
-    onDismiss();
-  };
-
   return {
     selectedPlan,
     screenLoading,
     allSubscriptions,
     subscriptionService,
-    onSuccess,
     onDismiss,
     onRefresh,
     setSelectedPlan,

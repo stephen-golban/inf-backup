@@ -28,7 +28,10 @@
     "no_payment_history": "No payment history.",
     "successfully_registered_new_card": "Successfully registered a new card",
     "register_new_card": "Register a new card",
-    "reimbursable": "Reimbursable"
+    "reimbursable": "Reimbursable",
+    "SUBSCRIPTION": "Subscription",
+    "CREDIT_SCORE": "Credit Score",
+    "CREDIT_REPORT_SUMMARY": "Credit Report Summary"
   },
 
   "feedback": {
