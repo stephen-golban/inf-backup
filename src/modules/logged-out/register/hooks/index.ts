@@ -9,7 +9,6 @@ const DEFAULT_VALUES: RegisterFormFields = {
   phone: '',
   birthDate: subYears(new Date(), 18),
   terms_conditions_agreement: false,
-  credit_history_report_agreement: false,
   promoCode: '',
 };
 

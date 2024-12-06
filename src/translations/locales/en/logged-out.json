@@ -7,7 +7,6 @@
     "title": "INSTANT ACCESS TO DATA",
     "subtitle": "Quickly check your score and credit history",
     "terms_conditions_agreement": "I have read and agree to the <1>Terms and Conditions</1> and <1>Privacy Policy</1>",
-    "credit_history_report_agreement": "I agree to the verification of my <1>credit report</1> by Infodebit and the Credit Bureau",
 
     "questions": {
       "register": "Don’t have an account? <1>Register</1>",
@@ -48,7 +47,11 @@
   },
 
   "success-recognition": {
-    "title": "Successful Recognition"
+    "title": "Successful Recognition",
+    "account_created_successfully": "Your account has been successfully created!",
+    "data_validation_message": "We are validating your data and will send you the access code via SMS. Thank you!",
+    "out_of_hours_message": "If you created your account outside of working hours (Mon - Fri; 08:00 - 17:00) or on non-working days, you will receive the code on the morning of the next working day.",
+    "insert_code": "Enter the code received via SMS"
   },
 
   "success-registration": {

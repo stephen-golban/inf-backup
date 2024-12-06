@@ -46,7 +46,8 @@
     "no_valid_term_date": "Nu există o dată validă de expirare",
     "invitation_submitted_successfully": "Invitația a fost trimisă cu succes",
     "user_subscription_no_access": "Serviciul nu este inclus în abonament",
-    "credit_card_deleted": "Cardul dvs. de credit a fost șters cu succes"
+    "credit_card_deleted": "Cardul dvs. de credit a fost șters cu succes",
+    "no_internet_connection": "Nu există conexiune la internet disponibilă"
   },
 
   "empty_state": "Nu am găsit date de afișat...",

@@ -7,21 +7,21 @@ export const segments: Segment[] = [
   {
     color: segmentColors.crimsonRed,
     image: require('@assets/images/scoring/grown.png'),
-    label: t(`logged_in:credit_report:scoring:scoring_negative`),
+    label: 'logged_in:credit_report:scoring:scoring_negative',
   },
   {
     color: segmentColors.goldenYellow,
     image: require('@assets/images/scoring/fair.png'),
-    label: t(`logged_in:credit_report:scoring:scoring_neutral`),
+    label: 'logged_in:credit_report:scoring:scoring_neutral',
   },
   {
     color: segmentColors.limeGreen,
     image: require('@assets/images/scoring/lucky.png'),
-    label: t(`logged_in:credit_report:scoring:scoring_positive`),
+    label: 'logged_in:credit_report:scoring:scoring_positive',
   },
   {
     color: segmentColors.forestGreen,
     image: require('@assets/images/scoring/best.png'),
-    label: t(`logged_in:credit_report:scoring:scoring_excelent`),
+    label: 'logged_in:credit_report:scoring:scoring_excelent',
   },
 ];

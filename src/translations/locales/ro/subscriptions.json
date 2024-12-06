@@ -81,24 +81,36 @@
       "title": "Întrebări frecvente",
       "questions": [
         {
-          "q": "Pot să îmi anulez abonamentul?",
-          "a": "Da, puteți anula abonamentul lunar și alege un abonament mai mare sau mai mic oricând. Chiar și abonamentele anuale pot fi anulate în anumite condiții."
+          "q": "Cât de des pot descărca rapoartele mele de credit?",
+          "a": "Poți descărca raportul tău de credit de câte ori dorești cu abonamentul PREMIUM."
         },
         {
-          "q": "Ce metode de plată acceptați?",
-          "a": "Acceptăm diverse metode de plată, inclusiv carduri de credit, carduri de debit și PayPal."
+          "q": "Ce fac dacă, după ce am descărcat istoricul meu de credit, descopăr credite care  nu sunt pe numele meu?",
+          "a": "Abonamentele GENIUS și PREMIUM includ serviciul de monitorizare antifraudă, care te anunță imediat dacă apar modificări suspecte în istoricul tău. Dacă nu sunt ale tale, poți lua legătura oricând cu noi pentru a primi suport și îndrumare."
         },
         {
-          "q": "Oferiți o perioadă de probă gratuită?",
-          "a": "Da, oferim o perioadă de probă gratuită de 7 zile pentru noii utilizatori pentru a explora serviciile noastre."
+          "q": "Cum pot să mă asigur că nimeni nu folosește datele mele pentru a accesa credite în numele meu?",
+          "a": "Monitorizarea antifraudă te avertizează imediat dacă apare o modificare în istoricul tău creditar, protejându-te de potențiale fraude."
         },
         {
-          "q": "Voi fi taxat când adaug cardul meu?",
-          "a": "Nu, nu veți fi taxat când adăugați cardul. Taxele vor fi aplicate doar atunci când faceți o achiziție."
+          "q": "Cum aș putea să urmăresc istoricul de credit în timp real pentru a înțelege cum influențează plățile mele scorul de credit?",
+          "a": "Cu două rapoarte incluse lunar și monitorizare antifraudă, abonamentul GENIUS este perfect pentru o urmărire constantă și detaliată, iar abonamentul PREMIUM îți permite să actualizezi datele la zi și să descarci de câte ori ai nevoie raportul."
         },
         {
-          "q": "Care abonament este potrivit pentru mine?",
-          "a": "Abonamentul potrivit depinde de nevoile dumneavoastră. Planul nostru Smart este excelent pentru utilizare de bază, planul Genius oferă mai multe funcții, iar planul Premium oferă acces nelimitat."
+          "q": "Cum pot verifica istoricul meu de credit în mod constant fără să plătesc suplimentar pentru fiecare raport?",
+          "a": "Cu abonamentul SMART poți să-ți monitorizezi regulat istoriul de credit și achiți doar 87 de lei lunar."
+        },
+        {
+          "q": "Care sunt modalitațile de plată?",
+          "a": "Poți achita abonamentul online cu ajutorul unui card bancar de tip Visa sau Mastercard, emis de o bancă din Republica Moldova sau din altă țară."
+        },
+        {
+          "q": "Ce fac dacă vreau să fiu notificat imediat despre orice modificare în istoricul meu de credit?",
+          "a": "Abonamentul GENIUS include monitorizarea antifraudă, care îți trimite notificări instantanee dacă apar modificări suspecte sau activități neobișnuite."
+        },
+        {
+          "q": "Pot dezactiva contul?",
+          "a": "Da, îți poți dezactiva și/sau șterge contul oricând dorești. Odată contul șters, vei putea beneficia din nou de serviciile Infodebit doar după crearea unui nou cont de utilizator."
         }
       ]
     }

@@ -6,7 +6,6 @@ const DEFAULT_VALUES: ForgotPasswordFormFields = {
   phone: undefined,
   selected_type: DROPDOWN_OPTIONS[0].value,
   terms_conditions_agreement: false,
-  credit_history_report_agreement: false,
 };
 
 const getOption = (value: string) => DROPDOWN_OPTIONS.find(item => item.value === value);

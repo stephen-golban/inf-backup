@@ -46,7 +46,8 @@
     "no_valid_term_date": "No valid expiration date",
     "invitation_submitted_successfully": "Invitation submitted successfully",
     "user_subscription_no_access": "Service not included in subscription",
-    "credit_card_deleted": "Your credit card was deleted successfully"
+    "credit_card_deleted": "Your credit card was deleted successfully",
+    "no_internet_connection": "No internet connection available"
   },
 
   "empty_state": "No data found to display...",
