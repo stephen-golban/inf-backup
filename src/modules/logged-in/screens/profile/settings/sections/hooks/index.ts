@@ -1,10 +1,11 @@
-import { useEffect, useCallback, useMemo, useState } from 'react';
+import { find } from 'lodash';
 import { useMount, useToggle } from 'react-use';
 import { useAxios, useLazyAxios } from '@api/hooks';
-import { find, cloneDeep, merge, isEmpty } from 'lodash';
+import { useEffect, useMemo, useState } from 'react';
 
-import type { NotificationSettingsApiResponse, NotificationSettingsContactData } from '@typings/responses';
 import { OneSignal } from 'react-native-onesignal';
+
+import type { NotificationSettingsApiResponse } from '@typings/responses';
 
 export default function useSectionsModule() {
   const [smsEnabled, toggleSms] = useToggle(false);
@@ -13,7 +14,7 @@ export default function useSectionsModule() {
   const [initialLoad, setInitialLoad] = useState(true);
 
   const [call] = useLazyAxios('/notifications/settings', { method: 'patch' });
-  const { data, loading: axiosLoading, refetch } = useAxios<NotificationSettingsApiResponse>('/notifications/settings', { method: 'get' });
+  const { data, loading: axiosLoading } = useAxios<NotificationSettingsApiResponse>('/notifications/settings', { method: 'get' });
 
   const contactData = data?.contactData;
 
@@ -53,48 +54,71 @@ export default function useSectionsModule() {
     } else {
       OneSignal.User.pushSubscription.optOut();
     }
-    updateSettings({ sendPushNotifications: val });
   };
 
-  const handleToggleSms = (val: boolean) => {
+  const handleToggleSms = async (val: boolean) => {
+    if (!contactData) return;
+
     toggleSms(val);
-    updateContactData('PHONE', { informationSending: val });
-  };
-
-  const handleToggleNewsletter = (val: boolean) => {
-    toggleNewsletter(val);
-    updateContactData('EMAIL', { informationSending: val });
-  };
-
-  const updateContactData = useCallback(
-    async (type: 'PHONE' | 'EMAIL', updatedFields: Partial<NotificationSettingsContactData>) => {
-      if (isEmpty(contactData) || !contactData) return;
-
-      const updatedContactData = cloneDeep(contactData);
-      const contactIndex = updatedContactData.findIndex(contact => contact.type === type);
-
-      if (contactIndex !== -1) {
-        merge(updatedContactData[contactIndex], updatedFields);
-      } else {
-        updatedContactData.push({ type, ...updatedFields } as NotificationSettingsContactData);
-      }
-
-      await updateSettings({ ...data, contactData: updatedContactData });
-    },
-    [contactData],
-  );
-
-  const updateSettings = async (updatedData: Partial<NotificationSettingsApiResponse>) =>
-    await call(updatedData, () => {
-      refetch();
+    const smsContact = find(contactData, { type: 'PHONE' });
+    const updatedContact = {
+      type: 'PHONE',
+      value: smsContact?.value || '',
+      informationSending: val,
+      invoiceDisplay: smsContact?.invoiceDisplay || false,
+      invoiceSending: smsContact?.invoiceSending || false,
+      credentialsSending: smsContact?.credentialsSending || false,
+    };
+    await updateSettings({
+      contactData: [
+        {
+          ...updatedContact,
+          type: 'PHONE' as const,
+        },
+      ],
     });
+  };
+
+  const handleToggleNewsletter = async (val: boolean) => {
+    if (!contactData) return;
+
+    toggleNewsletter(val);
+    const emailContact = find(contactData, { type: 'EMAIL' });
+    const updatedContact = {
+      type: 'EMAIL',
+      value: emailContact?.value || '',
+      informationSending: val,
+      invoiceDisplay: emailContact?.invoiceDisplay || false,
+      invoiceSending: emailContact?.invoiceSending || false,
+      credentialsSending: emailContact?.credentialsSending || false,
+    };
+    await updateSettings({
+      contactData: [
+        {
+          ...updatedContact,
+          type: 'EMAIL' as const,
+        },
+      ],
+    });
+  };
+
+  const updateSettings = async (updatedData: Partial<NotificationSettingsApiResponse>) => {
+    try {
+      await call(updatedData);
+    } catch (error) {
+      if (updatedData.contactData?.[0].type === 'PHONE') {
+        toggleSms(!updatedData.contactData[0].informationSending);
+      } else if (updatedData.contactData?.[0].type === 'EMAIL') {
+        toggleNewsletter(!updatedData.contactData[0].informationSending);
+      }
+    }
+  };
 
   return {
     loading: initialLoad && axiosLoading,
     smsEnabled,
     newsletterEnabled,
     sendPushNotifications,
-    refetch,
     handleToggleSms,
     handleToggleNewsletter,
     handleTogglePushNotifications,

@@ -28,7 +28,10 @@
     "no_payment_history": "Nu există istoric de plăți.",
     "successfully_registered_new_card": "Noul card a fost înregistrat cu succes",
     "register_new_card": "Înregistrează un card nou",
-    "reimbursable": "Rambursabil"
+    "reimbursable": "Rambursabil",
+    "SUBSCRIPTION": "Abonament",
+    "CREDIT_SCORE": "Scor de Credit",
+    "CREDIT_REPORT_SUMMARY": "Date Raport de Credit"
   },
 
   "feedback": {
