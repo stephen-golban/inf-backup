@@ -180,9 +180,9 @@ PODS:
     - nanopb/encode (= 3.30910.0)
   - nanopb/decode (3.30910.0)
   - nanopb/encode (3.30910.0)
-  - OneSignalXCFramework (5.2.5):
-    - OneSignalXCFramework/OneSignalComplete (= 5.2.5)
-  - OneSignalXCFramework/OneSignal (5.2.5):
+  - OneSignalXCFramework (5.2.4):
+    - OneSignalXCFramework/OneSignalComplete (= 5.2.4)
+  - OneSignalXCFramework/OneSignal (5.2.4):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalExtension
     - OneSignalXCFramework/OneSignalLiveActivities
@@ -190,38 +190,38 @@ PODS:
     - OneSignalXCFramework/OneSignalOSCore
     - OneSignalXCFramework/OneSignalOutcomes
     - OneSignalXCFramework/OneSignalUser
-  - OneSignalXCFramework/OneSignalComplete (5.2.5):
+  - OneSignalXCFramework/OneSignalComplete (5.2.4):
     - OneSignalXCFramework/OneSignal
     - OneSignalXCFramework/OneSignalInAppMessages
     - OneSignalXCFramework/OneSignalLocation
-  - OneSignalXCFramework/OneSignalCore (5.2.5)
-  - OneSignalXCFramework/OneSignalExtension (5.2.5):
+  - OneSignalXCFramework/OneSignalCore (5.2.4)
+  - OneSignalXCFramework/OneSignalExtension (5.2.4):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalOutcomes
-  - OneSignalXCFramework/OneSignalInAppMessages (5.2.5):
+  - OneSignalXCFramework/OneSignalInAppMessages (5.2.4):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalNotifications
     - OneSignalXCFramework/OneSignalOSCore
     - OneSignalXCFramework/OneSignalOutcomes
     - OneSignalXCFramework/OneSignalUser
-  - OneSignalXCFramework/OneSignalLiveActivities (5.2.5):
+  - OneSignalXCFramework/OneSignalLiveActivities (5.2.4):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalOSCore
     - OneSignalXCFramework/OneSignalUser
-  - OneSignalXCFramework/OneSignalLocation (5.2.5):
+  - OneSignalXCFramework/OneSignalLocation (5.2.4):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalNotifications
     - OneSignalXCFramework/OneSignalOSCore
     - OneSignalXCFramework/OneSignalUser
-  - OneSignalXCFramework/OneSignalNotifications (5.2.5):
+  - OneSignalXCFramework/OneSignalNotifications (5.2.4):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalExtension
     - OneSignalXCFramework/OneSignalOutcomes
-  - OneSignalXCFramework/OneSignalOSCore (5.2.5):
+  - OneSignalXCFramework/OneSignalOSCore (5.2.4):
     - OneSignalXCFramework/OneSignalCore
-  - OneSignalXCFramework/OneSignalOutcomes (5.2.5):
+  - OneSignalXCFramework/OneSignalOutcomes (5.2.4):
     - OneSignalXCFramework/OneSignalCore
-  - OneSignalXCFramework/OneSignalUser (5.2.5):
+  - OneSignalXCFramework/OneSignalUser (5.2.4):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalNotifications
     - OneSignalXCFramework/OneSignalOSCore
@@ -1516,14 +1516,14 @@ PODS:
     - Yoga
   - react-native-netinfo (11.4.1):
     - React-Core
-  - react-native-onesignal (5.2.5):
-    - OneSignalXCFramework (= 5.2.5)
+  - react-native-onesignal (5.2.4):
+    - OneSignalXCFramework (= 5.2.4)
     - React (< 1.0.0, >= 0.13.0)
-  - react-native-safe-area-context (4.11.1):
+  - react-native-safe-area-context (4.11.0):
     - React-Core
   - react-native-splash-screen (3.3.0):
     - React-Core
-  - react-native-webview (13.12.3):
+  - react-native-webview (13.12.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1812,18 +1812,18 @@ PODS:
     - React-Core
   - RNDeviceInfo (11.1.0):
     - React-Core
-  - RNFastImage (8.8.0):
+  - RNFastImage (8.7.0):
     - React-Core
     - SDWebImage (~> 5.18.7)
     - SDWebImageWebPCoder (~> 0.14)
-  - RNFBAnalytics (21.3.0):
+  - RNFBAnalytics (21.4.0):
     - Firebase/Analytics (<= 11.4.0)
     - React-Core
     - RNFBApp
-  - RNFBApp (21.3.0):
+  - RNFBApp (21.4.0):
     - Firebase/CoreOnly (<= 11.4.0)
     - React-Core
-  - RNFBCrashlytics (21.3.0):
+  - RNFBCrashlytics (21.4.0):
     - Firebase/Crashlytics (<= 11.4.0)
     - FirebaseCoreExtension (<= 11.4.0)
     - React-Core
@@ -1854,7 +1854,7 @@ PODS:
     - Yoga
   - RNFS (2.20.0):
     - React-Core
-  - RNGestureHandler (2.20.2):
+  - RNGestureHandler (2.19.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1881,7 +1881,7 @@ PODS:
     - React-Core
   - RNPermissions (4.1.5):
     - React-Core
-  - RNReanimated (3.16.1):
+  - RNReanimated (3.15.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1901,32 +1901,10 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated (= 3.16.1)
-    - RNReanimated/worklets (= 3.16.1)
+    - RNReanimated/reanimated (= 3.15.1)
+    - RNReanimated/worklets (= 3.15.1)
     - Yoga
-  - RNReanimated/reanimated (3.16.1):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated/apple (= 3.16.1)
-    - Yoga
-  - RNReanimated/reanimated/apple (3.16.1):
+  - RNReanimated/reanimated (3.15.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1947,7 +1925,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNReanimated/worklets (3.16.1):
+  - RNReanimated/worklets (3.15.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1968,7 +1946,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.34.1):
+  - RNScreens (3.34.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1990,7 +1968,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNShare (11.0.4):
+  - RNShare (11.0.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2011,7 +1989,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNSVG (15.8.0):
+  - RNSVG (15.6.0):
     - React-Core
   - SDWebImage (5.18.12):
     - SDWebImage/Core (= 5.18.12)
@@ -2393,7 +2371,7 @@ SPEC CHECKSUMS:
   MMKV: 817ba1eea17421547e01e087285606eb270a8dcb
   MMKVCore: af055b00e27d88cd92fad301c5fecd1ff9b26dd9
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
-  OneSignalXCFramework: 76ca508fc2b941317729d13fdec96817f8ef5b3b
+  OneSignalXCFramework: 46ca7cd13f44fc5bec42ec3a5f4ff1548a9244d4
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   RCT-Folly: 4464f4d875961fce86008d45f4ecf6cef6de0740
@@ -2431,10 +2409,10 @@ SPEC CHECKSUMS:
   react-native-image-resizer: fd0c333eca55147bd55c5e054cac95dcd0da6814
   react-native-mmkv: 7d0b6c2a79e73100b933f2947a9c8741d664e18b
   react-native-netinfo: f0a9899081c185db1de5bb2fdc1c88c202a059ac
-  react-native-onesignal: 505a974a74b97e81d7ab090a63ea065566e2339f
-  react-native-safe-area-context: 5141f11858b033636f1788b14f32eaba92cee810
+  react-native-onesignal: b2ccb145f06433f23c834be17a5f6522308e80f0
+  react-native-safe-area-context: 851c62c48dce80ccaa5637b6aa5991a1bc36eca9
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
-  react-native-webview: 926d2665cf3196e39c4449a72d136d0a53b9df8a
+  react-native-webview: 7aaf4bb5b2ec08901c821aceb4b55908ad012b04
   react-native-worklets-core: f51430dd07bf5343d4918d28a4bb00fe8f98b982
   React-nativeconfig: 57781b79e11d5af7573e6f77cbf1143b71802a6d
   React-NativeModulesApple: 7ff2e2cfb2e5fa5bdedcecf28ce37e696c6ef1e1
@@ -2464,21 +2442,21 @@ SPEC CHECKSUMS:
   ReactCommon: 6ef348087d250257c44c0204461c03f036650e9b
   RNDateTimePicker: 40ffda97d071a98a10fdca4fa97e3977102ccd14
   RNDeviceInfo: b899ce37a403a4dea52b7cb85e16e49c04a5b88e
-  RNFastImage: c19a8226e823abe8eed10272d71d9dbd501f2e9d
-  RNFBAnalytics: e1894971ab2737af9754b89223ebdd3c39bb5691
-  RNFBApp: fcb5659457f5a4857b7e54b4c29a5bbaa8b3b9a9
-  RNFBCrashlytics: 3cadf45171fae63023b42e971d8c7cb9eb34e940
+  RNFastImage: 2436a2364eea55cd3626732d5ca0b06ef1474cf2
+  RNFBAnalytics: 712c1b3c507e5ff82f7387f4884cb27c921ed3f0
+  RNFBApp: 2c2b87a93ae481b0cce1f0e151bbec9d78d4c4ff
+  RNFBCrashlytics: 998f55b823f6a5ef42a501b8180b89f69685d6da
   RNFBML: 911e324c584e8e02f1bda3c0c304f42aa5673403
   RNFlashList: 115dd44377580761bff386a0caebf165424cf16f
   RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
-  RNGestureHandler: 511250b190a284388f9dd0d2e56c1df76f14cfb8
+  RNGestureHandler: 3b6fa2bfa341c413d3d08444b838515b58e48ee7
   RNInAppBrowser: e36d6935517101ccba0e875bac8ad7b0cb655364
   RNKeychain: bfe3d12bf4620fe488771c414530bf16e88f3678
   RNPermissions: 4c53bb31f4a1800d5cf02fd44ead9709e997ecd1
-  RNReanimated: f42a5044d121d68e91680caacb0293f4274228eb
-  RNScreens: 00e01e05e3cf66bd701148c2531965437e9583e4
-  RNShare: eaeb5e7dc1618d19db6234da1af91fc60dd6bc0f
-  RNSVG: 8b1a777d54096b8c2a0fd38fc9d5a454332bbb4d
+  RNReanimated: b0912c8ba12f6c03db07c851c4de71c3eed6c83c
+  RNScreens: 19719a9c326e925498ac3b2d35c4e50fe87afc06
+  RNShare: 6bc9f3e30364688bc85529526e060361f55687bb
+  RNSVG: 5da7a24f31968ec74f0b091e3440080f347e279b
   SDWebImage: 2d6d229046fea284d62e36bfb8ebe8287dfc5b10
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
@@ -2488,4 +2466,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8ea8a1420337131554e030258a0f8d284f8fe969
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.14.3
