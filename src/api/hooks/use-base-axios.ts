@@ -4,7 +4,6 @@ import { useEffect, useCallback } from 'react';
 import useAxiosCancel from './use-axios-cancel';
 import useAxiosReducer from './use-axios-reducer';
 import { useToast } from 'react-native-toast-notifications';
-import useNetworkStatus from '@library/hooks/useNetworkStatus';
 import { useFirebaseServices, useTranslation } from '@library/hooks';
 
 import type { AxiosResponse } from 'axios';
@@ -20,9 +19,6 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
   const isMounted = useMountedState();
   const [{ data, error, loading }, dispatch] = useAxiosReducer<Data>(typeof param1 === 'string' ? param2.ssrData : param1.ssrData);
   const { cancel, cancelToken } = useAxiosCancel();
-  const [isConnected, canAccess] = useNetworkStatus();
-
-  console.log('isConnected', isConnected);
 
   const createAxiosInvoker = () => {
     if (typeof param1 === 'string') {
@@ -54,12 +50,6 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
   const getData = useCallback(
     async (lazyData: Config<Data>['data'], onSuccess?: OnSuccess<Data>, lazyConfig?: Config<Data>) => {
       dispatch({ type: 'REQUEST_INIT' });
-
-      if (!__DEV__ && !isConnected && !canAccess) {
-        toast.show(t('ui:toasts:no_internet_connection'), { type: 'warning' });
-        dispatch({ type: 'REQUEST_FAILED', payload: new Error('No internet connection') });
-        return;
-      }
 
       logEvent('backend_call_initiated', { url: typeof param1 === 'string' ? param1 : param1.url });
 
@@ -101,7 +91,7 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
         }
       }
     },
-    [cancelToken, `${JSON.stringify(param1)}.${JSON.stringify(param2)}`, isConnected],
+    [cancelToken, `${JSON.stringify(param1)}.${JSON.stringify(param2)}`],
   );
 
   useEffect(() => {
