@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1050194977595",
-    "project_id": "infodebitmobileapi",
-    "storage_bucket": "infodebitmobileapi.firebasestorage.app"
+    "project_number": "211774229900",
+    "project_id": "infodebit-27f7a",
+    "storage_bucket": "infodebit-27f7a.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1050194977595:android:d45ee6a2d1078450c90d1e",
+        "mobilesdk_app_id": "1:211774229900:android:a5a244a022669056afdaa9",
         "android_client_info": {
           "package_name": "com.infodebit"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDPrzrYJ32_6uSRARiug0Pc0J2MNyLcygA"
+          "current_key": "AIzaSyAqFBJhd33ak5_-6SDgpbYvAgUepUce91w"
         }
       ],
       "services": {
