@@ -59,12 +59,12 @@ const getSubscriptionDetails = (
   const creditScoreService = servicesAccesses?.find(s => s.service === 'CreditScore');
   const isCreditScoreIncluded = creditScoreService?.included || false;
   const creditScorePrice = creditScoreService?.prices[0].price || 0;
-  let discountText = undefined;
-  if (discountData?.discount || discountData?.annualDiscount) {
-    discountText = t('subscriptions:discount_text_other_subscription', {
-      discountAmount: discountData.discountAmount + (discountData.annualDiscount && !discountData.discount ? '%' : ' MDL'),
-    });
-  }
+  // let discountText = undefined;
+  // if (discountData?.discount || discountData?.annualDiscount) {
+  //   discountText = t('subscriptions:discount_text_other_subscription', {
+  //     discountAmount: discountData.discountAmount + (discountData.annualDiscount && !discountData.discount ? '%' : ' MDL'),
+  //   });
+  // }
   if ((trial && !isExpired) || isExpired) {
     return {
       message: t('subscription.trial_message'),
@@ -76,7 +76,7 @@ const getSubscriptionDetails = (
       costText: t('subscription.trial_cost_text', { price: 87 }),
       secondButtonType: 'outlined',
       lowerButtonText: t('subscription.trial_lower_button_text'),
-      discountText: discountText,
+      discountText: t('subscriptions:annual_discount_text', { discountAmount: '35%' }),
       onPressFirstButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
       onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
     };
@@ -92,7 +92,7 @@ const getSubscriptionDetails = (
       secondButtonTextColor: 'white',
       lowerButtonText: t('subscription.extra_inquiries_lower_button_text'),
       discountText: t('subscriptions:discount_text_other_subscription', {
-        discountAmount: discountData.discountAmount + (discountData.annualDiscount && !discountData.discount ? '%' : ' MDL'),
+        discountAmount: '35%',
       }),
       onPressFirstButton: () => {},
       onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),

@@ -65,12 +65,12 @@ const getReportSummaryOptions = (
   const isCreditScoreIncluded = creditScoreService?.included || false;
   const creditScorePrice = creditScoreService?.prices[0].price || 0;
 
-  let discountText = undefined;
-  if (discountData?.discount || discountData?.annualDiscount) {
-    discountText = t('subscriptions:discount_text_other_subscription', {
-      discountAmount: discountData.discountAmount + (discountData.annualDiscount && !discountData.discount ? '%' : ' MDL'),
-    });
-  }
+  // let discountText = undefined;
+  // if (discountData?.discount || discountData?.annualDiscount) {
+  //   discountText = t('subscriptions:discount_text_other_subscription', {
+  //     discountAmount: discountData.discountAmount + (discountData.annualDiscount && !discountData.discount ? '%' : ' MDL'),
+  //   });
+  // }
   if ((trial && !isExpired) || isExpired) {
     return {
       message: t('ui:subscription:trial_message'),
@@ -82,7 +82,7 @@ const getReportSummaryOptions = (
       costText: t('ui:subscription:trial_cost_text', { price: 87 }),
       secondButtonType: 'outlined',
       lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:for_complete_data_choose_a_subscription'),
-      discountText: discountText,
+      discountText: t('subscriptions:annual_discount_text', { discountAmount: '35%' }),
       onPressFirstButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
       onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
     };
@@ -98,7 +98,7 @@ const getReportSummaryOptions = (
       secondButtonTextColor: 'white',
       lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:download_complete_report'),
       discountText: t('subscriptions:discount_text_other_subscription', {
-        discountAmount: discountData.discountAmount + (discountData.annualDiscount && !discountData.discount ? '%' : ' MDL'),
+        discountAmount: '35%',
       }),
       onPressFirstButton: () => {},
       onPressSecondButton: () =>

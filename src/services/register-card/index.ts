@@ -11,7 +11,7 @@ function useRegisterCardService() {
   const { t } = useTranslation();
 
   const [register, { loading: loadingRegister }] = useLazyAxios<RegisterCardApiResponse>('/bank-card-accounts', { method: 'post' });
-  const [callback, { loading: callbackLoading }] = useLazyAxios('/bank-card-accounts/call-back-registration', { method: 'post' });
+  const [callback, { loading: callbackLoading }] = useLazyAxios('/bank-card-accounts/call-back-registration', { method: 'get' });
 
   const onSuccessfulCallback = useTryCatch(async (cb?: () => Promise<void>) => {
     closeInAppBrowser();
