@@ -33,6 +33,8 @@ const useNewCredit = () => {
 
   const { fetchInquiryReport } = useLastInquiryService(false);
 
+  const isTrialSubscription = subscription?.trial;
+
   const isPositive = data?.creditReportQualityType === 'POSITIVE';
 
   const isSubscriptionValid = useMemo(() => {
@@ -42,6 +44,7 @@ const useNewCredit = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const termDate = new Date(subscription.subscriptionAccounts[0].termDateTime);
+    termDate.setHours(0, 0, 0, 0);
 
     return !subscription.trial && isAfter(termDate, today);
   }, [subscription]);
@@ -115,6 +118,7 @@ const useNewCredit = () => {
     showLoanModal,
     loanFormLoading,
     getLoanResponseType,
+    isTrialSubscription,
     isSubscriptionValid,
     fns: {
       refetch,

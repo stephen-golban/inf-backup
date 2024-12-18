@@ -12,7 +12,8 @@ import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, SUBSCRIPTIONS_SCREENS, type 
 const NewCredit: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.NewCredit>> = ({ navigation }) => {
   const { colors } = useTheme();
   const inquiry = useAppDataCheckStore(state => state.inquiry);
-  const { loading, loanFormLoading, getLoanResponseType, isSubscriptionValid, isPositive, showLoanModal, fns } = useWhoCheckedCredit();
+  const { loading, loanFormLoading, getLoanResponseType, isSubscriptionValid, isTrialSubscription, isPositive, showLoanModal, fns } =
+    useWhoCheckedCredit();
 
   const onPressDownload = () => {
     if (isSubscriptionValid && inquiry) {
@@ -43,6 +44,7 @@ const NewCredit: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.NewCred
         loanFormLoading={loanFormLoading}
         onPressDownload={onPressDownload}
         isSubscriptionValid={isSubscriptionValid}
+        isTrialSubscription={isTrialSubscription}
       />
       <BottomSheet
         isVisible={showLoanModal}
