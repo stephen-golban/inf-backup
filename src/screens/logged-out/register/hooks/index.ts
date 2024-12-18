@@ -3,6 +3,9 @@ import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
 import { useTokenService } from '@services/tokens';
 
+import { saveString } from '@library/storage';
+import { MMKV_KEY } from '@library/constants';
+
 import { noop } from 'lodash';
 import { createQueryParams } from './util';
 
@@ -33,6 +36,7 @@ export default function useRegisterScreen(
       const res = await call(queryParams, noop, { headers });
       if (res) {
         if (res) {
+          saveString(MMKV_KEY.INSERT_OTP, '1');
           navigation.navigate(LOGGED_OUT_SCREENS.SuccessRecognition, { sentTo: values.phone, otpNotificationType: 'SMS' });
         } else {
           navigation.navigate(LOGGED_OUT_SCREENS.FailedRecognition);
