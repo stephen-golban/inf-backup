@@ -10,11 +10,11 @@
 		00E356F31AD99517003FC87E /* infodebitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* infodebitTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2240AD722CD9943E0001EC44 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2240AD712CD9943E0001EC44 /* GoogleService-Info.plist */; };
 		4DFCB70AA23CA1E71BA8D9C1 /* libPods-infodebit-infodebitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DB39FBE1FC72A2789D5780 /* libPods-infodebit-infodebitTests.a */; };
 		77DBA1092CC67DE4CF050657 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 68E1B6B7017665CFBA5A1831 /* PrivacyInfo.xcprivacy */; };
 		9F3FF0E92C5B9AB40074D663 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0E82C5B9AB40074D663 /* Images.xcassets */; };
 		9F3FF0EB2C5BA0300074D663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */; };
+		9F943E082D11A29F009095C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F943E072D11A29F009095C4 /* GoogleService-Info.plist */; };
 		A88BCF0ADBDEC2B8C64D9670 /* libPods-infodebit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1539C288C0268632C7BF1314 /* libPods-infodebit.a */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +53,6 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = infodebit/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = infodebit/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1539C288C0268632C7BF1314 /* libPods-infodebit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-infodebit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2240AD712CD9943E0001EC44 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2BE22E2BB8464EF5BBAE2E4E /* Pods-infodebit-infodebitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit-infodebitTests.debug.xcconfig"; path = "Target Support Files/Pods-infodebit-infodebitTests/Pods-infodebit-infodebitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6196E7EEF4E6740D6884F908 /* Pods-infodebit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit.release.xcconfig"; path = "Target Support Files/Pods-infodebit/Pods-infodebit.release.xcconfig"; sourceTree = "<group>"; };
 		66DB39FBE1FC72A2789D5780 /* libPods-infodebit-infodebitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-infodebit-infodebitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +63,7 @@
 		9F5958E72C8E01C700A81407 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		9F5958E92C8E01C700A81407 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F7ACAF12C80B3CD00B9631A /* infodebit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = infodebit.entitlements; path = infodebit/infodebit.entitlements; sourceTree = "<group>"; };
+		9F943E072D11A29F009095C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -112,6 +112,7 @@
 				9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				9F943E072D11A29F009095C4 /* GoogleService-Info.plist */,
 				9F3FF0E82C5B9AB40074D663 /* Images.xcassets */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
@@ -140,7 +141,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				2240AD712CD9943E0001EC44 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* infodebit */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* infodebitTests */,
@@ -280,8 +280,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F943E082D11A29F009095C4 /* GoogleService-Info.plist in Resources */,
 				9F3FF0EB2C5BA0300074D663 /* LaunchScreen.storyboard in Resources */,
-				2240AD722CD9943E0001EC44 /* GoogleService-Info.plist in Resources */,
 				9F3FF0E92C5B9AB40074D663 /* Images.xcassets in Resources */,
 				77DBA1092CC67DE4CF050657 /* PrivacyInfo.xcprivacy in Resources */,
 			);
@@ -549,7 +549,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.10;
+				MARKETING_VERSION = 1.11;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -585,7 +585,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.10;
+				MARKETING_VERSION = 1.11;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

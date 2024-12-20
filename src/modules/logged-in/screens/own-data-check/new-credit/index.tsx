@@ -15,6 +15,7 @@ interface INewCreditModule {
   isPositive: boolean;
   onPressDownload(): void;
   isSubscriptionValid: boolean;
+  isTrialSubscription?: boolean;
   onSubmitLoan(args: LoanFormFields): void;
   // data: CreditReportQualityApiResponse | undefined;
 }
@@ -24,6 +25,7 @@ const NewCreditModule: React.FC<INewCreditModule> = ({
   isPositive,
   loanFormLoading,
   isSubscriptionValid,
+  isTrialSubscription,
   onRefresh,
   onSubmitLoan,
   onPressDownload,
@@ -58,7 +60,7 @@ const NewCreditModule: React.FC<INewCreditModule> = ({
         mt="xxl"
         onPress={onPressDownload}
         textProps={{ variant: '14-reg' }}
-        t18n={`logged_in:credit_report:new:button${isSubscriptionValid ? '_positive' : '_negative'}`}
+        t18n={`logged_in:credit_report:new:button${isSubscriptionValid && !isTrialSubscription ? '_positive' : '_negative'}`}
       />
 
       {isPositive && (

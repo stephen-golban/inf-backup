@@ -20,12 +20,12 @@ const InviteFriendsModule: React.FC<IInviteFriendsModule> = ({ onInvite }) => {
             <Text t18n="profile:invite_friends:send_link" />
           </View>
 
-          <View row g="sm" px="md" mb="sm">
+          <View row g="sm" px="md" my="sm">
             <Icon icon="FavoriteIcon" />
             <Text t18n="profile:invite_friends:get_month" />
           </View>
 
-          <View row g="sm" px="md" my="sm">
+          <View row g="sm" px="md" mb="sm">
             <Icon icon="EstateAgentIcon" />
             <Text t18n="profile:invite_friends:discounts_accumulate" />
           </View>
