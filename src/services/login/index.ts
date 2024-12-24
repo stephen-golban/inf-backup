@@ -47,6 +47,8 @@ function useLoginService() {
   };
 
   const onRequestSuccess = useTryCatch(async (data: any) => {
+    if (!data || !data?.access_token || !data?.refresh_token) return;
+
     const { access_token, refresh_token } = data;
 
     await saveTokens(access_token, refresh_token);

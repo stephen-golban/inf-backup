@@ -26,7 +26,7 @@ const DownloadReport: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.Do
   const formattedGenerationDateTime = React.useMemo(() => {
     if (!generationDateTime) return '';
     const parsedDate = new Date(generationDateTime.replace(' ', 'T'));
-    return format(parsedDate, 'MM/dd/yyyy');
+    return format(parsedDate, 'dd/MM/yyyy');
   }, [generationDateTime]);
 
   const onPressNotNow = () => navigation.navigate(LOGGED_IN_STACK.TABS, { screen: LOGGED_IN_TABS.HOME });

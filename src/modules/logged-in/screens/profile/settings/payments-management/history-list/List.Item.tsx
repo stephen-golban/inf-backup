@@ -36,7 +36,7 @@ const ListItem: React.FC<PaymentDetail> = ({ purchasedServiceName, id, paymentDa
           <Text variant="12-semi" text={serviceName} ml="sm" flex />
         </View>
         <View>
-          <Text variant="12-reg" text={format(paymentDateTime, 'MM.dd.yyyy')} />
+          <Text variant="12-reg" text={format(paymentDateTime, 'dd/MM/yyyy')} />
           <Text variant="12-reg" text={t('profile:settings:payment_history_screen:amount', { amount })} mt="xs" />
         </View>
       </View>
@@ -46,7 +46,5 @@ const ListItem: React.FC<PaymentDetail> = ({ purchasedServiceName, id, paymentDa
     </>
   );
 };
-
-// TODO: CHECK ANDROID
 
 export default ListItem;

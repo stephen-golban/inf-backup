@@ -27,7 +27,9 @@ export default function useLoginScreen() {
       password: values.password,
     };
 
-    await call(queryParams, onRequestSuccess);
+    const res = await call(queryParams);
+    if (!res) return;
+    return onRequestSuccess(res);
   });
 
   const onPressMpass = useTryCatch(async () => {
