@@ -44,11 +44,10 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
     }),
   );
 
-  const sourceIdnos = commitments.map(commitment => commitment.sourceIdno);
   const searchSourceIdno = '1009600029036';
 
   const incassoCommitments = commitments.filter(
-    commitment => commitment.type === 'activeNegativeCommitments' && sourceIdnos.includes(searchSourceIdno),
+    commitment => commitment.type === 'activeNegativeCommitments' && commitment.sourceIdno === searchSourceIdno,
   );
   const reportRequestDateTime = creditReportSummary?.requestDateTime;
   const reportResponseDateTime = creditReportSummary?.responseDateTime;

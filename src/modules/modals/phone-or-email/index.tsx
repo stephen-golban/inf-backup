@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Platform } from 'react-native';
+
 import { useNotificationSettingsService } from '@services/notification-settings';
 
 import { EmailInput, PhoneInput } from './parts';
@@ -36,7 +38,7 @@ const PhoneOrEmailModule: React.FC<IPhoneOrEmailModule> = ({ onSuccess, type, tr
   return (
     <View>
       {triggerButton}
-      <BottomSheet isVisible={isVisible} onDismiss={() => setIsVisible(false)} snapPoints={['30%']}>
+      <BottomSheet isVisible={isVisible} onDismiss={() => setIsVisible(false)} snapPoints={[Platform.OS === 'ios' ? '30%' : '40%']}>
         <Form resolver={phoneOrEmail_form_schema(type)}>
           {({ setValue, watch, formState, handleSubmit }) => {
             return (

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useAppStore } from '@store/app';
-import { useLazyAxios } from '@api/hooks';
 import { useCreditScoreService } from '@services/credit-score';
 
 import { BottomSheet } from '@components/common';
@@ -9,7 +8,6 @@ import { useAppDataCheckStore } from '@store/data-check';
 import { useExecutePaymentService } from '@services/execute-payment';
 import { PaymentCardsModule, ScoringDetailsModule } from '@modules/logged-in';
 
-import { LastInquiryApiResponse } from '@typings/responses';
 import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
 
 const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>> = ({ navigation }) => {

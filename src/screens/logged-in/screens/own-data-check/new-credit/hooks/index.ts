@@ -1,14 +1,15 @@
 import { lead_api } from '@api/base';
-import { useAppStore } from '@store/app';
+import { setAppSubscription, useAppStore } from '@store/app';
 import { useMemo, useState } from 'react';
-import { useTranslation } from '@library/hooks';
+import { useTranslation, useTryCatchWithCallback } from '@library/hooks';
 import { useAxios, useLazyAxios } from '@api/hooks';
 import { differenceInDays, format, isAfter } from 'date-fns';
 
 import type { LoanApiResponse } from '@typings/responses/loan';
-import type { CreditReportQualityApiResponse } from '@typings/responses';
+import type { CreditReportQualityApiResponse, ISubscription } from '@typings/responses';
 import type { LoanFormFields } from '@modules/logged-in/screens/own-data-check/new-credit/loan-form/resolver';
 import { useLastInquiryService } from '@services/last-inquiry';
+import { useMount } from 'react-use';
 
 const useNewCredit = () => {
   const { t } = useTranslation();
@@ -31,7 +32,21 @@ const useNewCredit = () => {
     axiosInstance: lead_api,
   });
 
+  const [getSubscription, { loading: subscriptionLoading }] = useLazyAxios<ISubscription>('/admin-api/subscriptions/purchased', {
+    method: 'get',
+    params: { lastSubscription: true },
+  });
+
+  useMount(async () => {
+    const res = await getSubscription();
+    if (res) {
+      setAppSubscription(res as any);
+    }
+  });
+
   const { fetchInquiryReport } = useLastInquiryService(false);
+
+  const isTrialSubscription = subscription?.trial;
 
   const isPositive = data?.creditReportQualityType === 'POSITIVE';
 
@@ -42,6 +57,7 @@ const useNewCredit = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const termDate = new Date(subscription.subscriptionAccounts[0].termDateTime);
+    termDate.setHours(0, 0, 0, 0);
 
     return !subscription.trial && isAfter(termDate, today);
   }, [subscription]);
@@ -110,12 +126,13 @@ const useNewCredit = () => {
 
   return {
     data,
-    loading,
     isPositive,
     showLoanModal,
     loanFormLoading,
     getLoanResponseType,
+    isTrialSubscription,
     isSubscriptionValid,
+    loading: loading || subscriptionLoading,
     fns: {
       refetch,
       onSubmitLoan,

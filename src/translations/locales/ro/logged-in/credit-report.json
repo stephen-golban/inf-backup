@@ -71,7 +71,7 @@
       "get_loan": "Obține împrumut",
       "credit_term": "{{amount}} luni",
       "data_protection": "Toate datele transmise sunt protejate în mod sigur",
-      "disclaimer": "<1>*Infodebit nu oferă credite și nu percepe comision pentru acest serviciu.</1> <2>Tu decizi dacă accepți ofertele instituțiilor financiare partenere, care își desfășoară activitatea de finanțare sub supravegherea Comisiei Naționale a Pieței Financiare.</2>"
+      "disclaimer": "<1>*Infodebit nu oferă credite și nu percepe comision pentru acest serviciu.</1> <2>Tu decizi dacă accepți ofertele instituțiilor financiare partenere, care își desfășoară activitatea de finanțare sub supravegherea Băncii Naționale a Moldovei.</2>"
     },
     "fail": {
       "title": "Ohhhh, nu!",

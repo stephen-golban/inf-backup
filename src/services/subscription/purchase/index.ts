@@ -6,6 +6,7 @@ import { useExecutePaymentService } from '@services/execute-payment';
 import type { SelectedCardParams } from '@typings/responses';
 import type { SelectedPlan } from '@modules/logged-in/screens/subscriptions/subscriptions/type';
 import { useLastInquiryService } from '@services/last-inquiry';
+import { setAppSubscription } from '@store/app';
 
 type Props = {
   onSuccess?: () => void;
@@ -37,6 +38,7 @@ function usePurchaseSubscriptionService({ selectedPlan, retentionOffer = false, 
         if (response) {
           onSuccess?.();
           await fetchInquiryReport();
+          await setAppSubscription(response as any); // temporary type. Will check with backend
           toast.show(response, { type: 'success' });
         }
       });

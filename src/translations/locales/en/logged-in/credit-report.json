@@ -71,7 +71,7 @@
       "get_loan": "Get loan",
       "credit_term": "{{amount}} months",
       "data_protection": "All transmitted data is securely protected",
-      "disclaimer": "<1>*Infodebit does not offer loans and does not charge a fee for this service.</1> <2>You decide whether to accept offers from partner financial institutions, which operate under the supervision of the National Financial Market Commission.</2>"
+      "disclaimer": "<1>*Infodebit does not offer loans and does not charge a fee for this service.</1> <2>You decide whether to accept offers from partner financial institutions, which operate under the supervision of the National Bank of Moldova.</2>"
     },
     "fail": {
       "title": "Ohhhh, no!",
