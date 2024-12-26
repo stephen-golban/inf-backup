@@ -1,12 +1,13 @@
 import { useLazyAxios } from '@api/hooks';
+import { useGetSubscription } from '../get';
 import { useTryCatch } from '@library/hooks';
+import { useAppDataCheckStore } from '@store/data-check';
 import { useToast } from 'react-native-toast-notifications';
+import { useLastInquiryService } from '@services/last-inquiry';
 import { useExecutePaymentService } from '@services/execute-payment';
 
-import type { SelectedCardParams } from '@typings/responses';
+import type { CreditReportEventsApiResponse, SelectedCardParams } from '@typings/responses';
 import type { SelectedPlan } from '@modules/logged-in/screens/subscriptions/subscriptions/type';
-import { useLastInquiryService } from '@services/last-inquiry';
-import { setAppSubscription } from '@store/app';
 
 type Props = {
   onSuccess?: () => void;
@@ -19,8 +20,15 @@ function usePurchaseSubscriptionService({ selectedPlan, retentionOffer = false, 
   const paymentService = useExecutePaymentService(false);
   const { fetchInquiryReport, loadingInquiry } = useLastInquiryService();
 
+  const { getSubscription, loading: subscriptionLoading } = useGetSubscription(true);
+
   const [purchaseSubscription, { loading: loadingPurchase }] = useLazyAxios<string>('/subscription-management/purchase', {
     method: 'post',
+  });
+
+  const [reportEvents, { loading: loadingReportEvents }] = useLazyAxios<CreditReportEventsApiResponse>({
+    method: 'post',
+    url: '/credit-report-events?subscriptionFreeAccess=true',
   });
 
   const onPaySuccess = useTryCatch(async (params: { payId: string; orderId: string }, automaticTermExtension: boolean) => {
@@ -36,9 +44,12 @@ function usePurchaseSubscriptionService({ selectedPlan, retentionOffer = false, 
 
       await purchaseSubscription(body, async response => {
         if (response) {
-          onSuccess?.();
+          await getSubscription();
           await fetchInquiryReport();
-          await setAppSubscription(response as any); // temporary type. Will check with backend
+          await reportEvents(undefined, res => {
+            useAppDataCheckStore.setState({ reportEvents: res });
+          });
+          onSuccess?.();
           toast.show(response, { type: 'success' });
         }
       });
@@ -54,7 +65,7 @@ function usePurchaseSubscriptionService({ selectedPlan, retentionOffer = false, 
     }
   };
 
-  const loadingPayment = paymentService.loading || loadingInquiry;
+  const loadingPayment = paymentService.loading || loadingInquiry || loadingReportEvents || subscriptionLoading;
 
   return {
     loadingPayment,

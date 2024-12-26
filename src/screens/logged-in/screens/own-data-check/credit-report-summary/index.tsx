@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { useAppStore } from '@store/app';
 import { useLazyAxios } from '@api/hooks';
 import { useAppDataCheckStore } from '@store/data-check';
+import { useGetSubscription } from '@services/subscription/get';
 import { useCreditReportSummaryService } from '@services/credit-report-summary';
 
 import { CreditReportSummaryModule, PaymentCardsModule } from '@modules/logged-in';
@@ -22,9 +22,9 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
 
   const paymentService = useExecutePaymentService();
 
-  const subscription = useAppStore(state => state.subscription);
+  const { subscription, loading: subscriptionLoading } = useGetSubscription(true);
 
-  const amount = subscription?.servicesAccesses.find(service => service.service === 'CreditScore')?.prices[0].price;
+  const amount = subscription?.servicesAccesses?.find(service => service.service === 'CreditScore')?.prices[0].price;
 
   const [call, { loading }] = useLazyAxios({
     method: 'post',
@@ -55,7 +55,7 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
         subscription={subscription}
         onSubmit={data => call({ ...data })}
         data={report}
-        loadReport={loadingReport}
+        loadReport={loadingReport || subscriptionLoading}
         feedbackLoading={loading}
         onOrderReport={onOrderReport}
       />
