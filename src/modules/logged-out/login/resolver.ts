@@ -1,14 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { stringifyObjectValidate } from '@library/string';
 
-import { type InferType, object, string } from 'yup';
+import { type InferType, object } from 'yup';
 
-import { yupPasswordValidation, yupTermsAndAgreements } from '@library/yup-validate';
+import { yupPasswordValidation, yupPhoneValidation, yupTermsAndAgreements } from '@library/yup-validate';
 
 const shape = object({
-  phone: string()
-    .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))
-    .min(8, stringifyObjectValidate({ keyT: 'validation:min_chars_length', options: { count: 8 } })),
+  phone: yupPhoneValidation,
   password: yupPasswordValidation,
   ...yupTermsAndAgreements,
 });

@@ -4,7 +4,7 @@ import { stringifyObjectValidate } from '@library/string';
 import { type InferType, object, string, date } from 'yup';
 
 import { REGEX } from '@library/constants';
-import { yupTermsAndAgreements } from '@library/yup-validate';
+import { yupPhoneValidation, yupTermsAndAgreements } from '@library/yup-validate';
 
 const IDNP_REGEX = /^((2\d{12})|(09\d{11}))$/;
 
@@ -58,9 +58,7 @@ const shape = object({
       excludeEmptyString: true,
     }),
 
-  phone: string()
-    .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))
-    .min(8, stringifyObjectValidate({ keyT: 'validation:min_chars_length', options: { count: 8 } })),
+  phone: yupPhoneValidation,
   ...yupTermsAndAgreements,
 });
 

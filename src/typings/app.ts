@@ -8,9 +8,12 @@ import type {
   PurchasedSubscription,
   LastInquiryApiResponse,
 } from './responses';
+import { CountryCode } from 'libphonenumber-js/types';
 
 export interface IAppState {
   user: User | null;
+
+  cca2: CountryCode | null;
 
   isAuthenticated: boolean;
 

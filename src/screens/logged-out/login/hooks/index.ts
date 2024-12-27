@@ -23,11 +23,13 @@ export default function useLoginScreen() {
   const onSubmit = useTryCatch(async (values: LoginFormFields) => {
     const queryParams = {
       grant_type: 'password',
-      username: '+373' + values.phone,
+      username: values.phone,
       password: values.password,
     };
 
-    await call(queryParams, onRequestSuccess);
+    const res = await call(queryParams);
+    if (!res) return;
+    return onRequestSuccess(res);
   });
 
   const onPressMpass = useTryCatch(async () => {

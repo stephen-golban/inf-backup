@@ -5,8 +5,7 @@ import { useWindowDimensions } from 'react-native';
 import useKeyboardHeight from '@api/hooks/use-keyboard-height';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { LoggedOutPhoneInput } from '@modules/logged-out/parts';
-import { BottomSheet, FilledButton, Form, Text, View } from '@components/common';
+import { BottomSheet, FilledButton, Form, PhoneInput, Text, View } from '@components/common';
 
 interface IDebtModal {
   loading: boolean;
@@ -46,11 +45,11 @@ const DebtModal: React.FC<IDebtModal> = props => {
           {({ setValue, watch, handleSubmit }) => {
             return (
               <View>
-                <LoggedOutPhoneInput
+                <PhoneInput
                   autoFocus
                   returnKeyType="none"
                   value={watch('phone')}
-                  onChange={txt => setValue('phone', txt, { shouldValidate: true })}
+                  onChangeText={txt => setValue('phone', txt, { shouldValidate: true })}
                 />
                 <FilledButton
                   t18n="logged_in:credit_report:summary:bottom_modal:yes"

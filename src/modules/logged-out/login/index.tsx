@@ -2,12 +2,11 @@ import React from 'react';
 import { TextInput } from 'react-native';
 
 import { AuthLayout } from '@components/layouts';
-import { FilledButton, Form, Icon, View } from '@components/common';
-import { LoggedOutPasswordInput, LoggedOutPhoneInput, TermsAgreements, TextRow } from '../parts';
-
-import { login_form_schema, type LoginFormFields } from './resolver';
+import { LoggedOutPasswordInput, TermsAgreements, TextRow } from '../parts';
+import { FilledButton, Form, Icon, PhoneInput, View } from '@components/common';
 
 import { DEFAULT_VALUES } from './mock';
+import { login_form_schema, type LoginFormFields } from './resolver';
 
 interface ILoginModule {
   loading?: boolean;
@@ -28,11 +27,10 @@ const LoginModule: React.FC<ILoginModule> = ({ onPressForgotPassword, onPressReg
           return (
             <View fill>
               <View fill>
-                <LoggedOutPhoneInput
+                <PhoneInput
                   value={watch('phone')}
-                  contextMenuHidden={true}
                   onSubmitEditing={() => passwordRef.current?.focus()}
-                  onChange={txt => setValue('phone', txt, { shouldValidate: true })}
+                  onChangeText={txt => setValue('phone', txt, { shouldValidate: true })}
                 />
                 <LoggedOutPasswordInput contextMenuHidden={true} ref={passwordRef} />
 

@@ -9,6 +9,7 @@ import { APP_DISPLAY_NAME } from '@env';
 
 const app_state: IAppState = {
   user: null,
+  cca2: null,
   theme: 'light',
   loadingApp: false,
   nomenclature: null,
@@ -31,6 +32,10 @@ function setAppStore<K extends keyof IAppState>(key: K, value: IAppState[K]) {
 
 function setAppIsAuthenticated(isAuthenticated: IAppState['isAuthenticated']) {
   useAppStore.setState({ isAuthenticated });
+}
+
+function setAppCca2(cca2: IAppState['cca2']) {
+  useAppStore.setState({ cca2 });
 }
 
 function setAppUser(user: IAppState['user']) {
@@ -64,6 +69,7 @@ function resetAppStore() {
 
 export {
   setAppUser,
+  setAppCca2,
   setAppTheme,
   setAppStore,
   setAppLocale,

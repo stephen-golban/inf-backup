@@ -19,7 +19,7 @@ import { PortalHost } from '@rn-primitives/portal';
 
 // import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 
-// // This is the default configuration
+// // // This is the default configuration
 // configureReanimatedLogger({
 //   level: ReanimatedLogLevel.warn,
 //   strict: false, // Reanimated runs in strict mode by default

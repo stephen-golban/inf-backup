@@ -129,7 +129,12 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
         isVisible={isVisible}
         onPressYes={async ({ phone }) => {
           const formattedCommitments = formatCommitmentsForBackend(incassoCommitments);
-          await onSubmit({ phone: '+373' + phone, commitments: formattedCommitments, reportRequestDateTime, reportResponseDateTime });
+          await onSubmit({
+            phone: phone,
+            commitments: formattedCommitments,
+            reportRequestDateTime,
+            reportResponseDateTime,
+          });
           const currentTimestamp = Date.now();
           saveString(MMKV_KEY.INCASSO_REMIND, currentTimestamp.toString());
           setIsVisible(false);
