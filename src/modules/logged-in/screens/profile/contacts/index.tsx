@@ -2,20 +2,22 @@ import React from 'react';
 
 import { Linking } from 'react-native';
 
-import { useTheme } from '@theme/index';
+import { useAppStore } from '@store/app';
+import { phoneNumberService } from '@services/phone-number';
 
 import { Divider } from '@components/ui/divider';
 import { BaseButton, Icon, Screen, Text, View } from '@components/common';
 
-import { IContactsResponse } from '@typings/responses/contacts';
-import { fullPhoneNumberFormatter } from '@services/phone-number';
+import type { IContactsResponse } from '@typings/responses/contacts';
 
 interface IContactsModule {
   contacts?: IContactsResponse;
 }
 
 const ContactsModule: React.FC<IContactsModule> = ({ contacts }) => {
-  const { spacing } = useTheme();
+  const cca2 = useAppStore(state => state.cca2!);
+  const { fullPattern } = phoneNumberService.createPhoneUtil(cca2);
+
   return (
     <View bg="white" fill>
       <Screen p="md" scroll unsafe>
@@ -26,7 +28,7 @@ const ContactsModule: React.FC<IContactsModule> = ({ contacts }) => {
         <Divider isHorizontal mt="sm" mb="md" />
         {contacts?.contactData.phones.map(phone => (
           <Text my="sm" variant="14-reg" key={'contacts-phone-number' + phone}>
-            {fullPhoneNumberFormatter(phone)}
+            {phoneNumberService.fullPhoneNumberFormatter(fullPattern, phone)}
           </Text>
         ))}
         <Divider isHorizontal mt="sm" mb="lg" />

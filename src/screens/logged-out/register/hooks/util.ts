@@ -25,7 +25,7 @@ export const createQueryParams = (values: RegisterFormFields, locale: IAppState[
         type: 'PHONE',
         invoiceDisplay: true,
         invoiceSending: false,
-        value: '+373' + phone,
+        value: phone,
         credentialsSending: false,
         informationSending: true,
       },

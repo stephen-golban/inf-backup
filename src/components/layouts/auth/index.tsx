@@ -7,13 +7,21 @@ import type { I18nKey } from '@translations/locales';
 interface IAuthLayout extends ScreenProps {
   page_title: I18nKey;
   isLongSheet?: boolean;
+  loading?: boolean;
   isChangePassword?: boolean;
 }
 
-const AuthLayout: React.FC<IAuthLayout> = ({ children, page_title, isLongSheet = false, isChangePassword = false, ...props }) => {
+const AuthLayout: React.FC<IAuthLayout> = ({
+  children,
+  page_title,
+  loading = false,
+  isLongSheet = false,
+  isChangePassword = false,
+  ...props
+}) => {
   return (
     <KeyboardAware>
-      <Screen bg="lightGray" p="zero" statusColor="primary" {...props}>
+      <Screen bg="lightGray" p="zero" statusColor="primary" {...props} loading={loading}>
         <View fill bg="primary" between rg={isLongSheet ? 'lg' : 'xxl'}>
           <View center mt={isLongSheet ? 'lg' : 'xxl'} px="lg">
             {!isChangePassword && (

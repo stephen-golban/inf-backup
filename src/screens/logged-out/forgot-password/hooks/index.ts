@@ -15,10 +15,10 @@ const useForgotPassword = (navigation: any) => {
   const service = useTokenService(true);
 
   const onSendOTPSuccess = (_res: TokensApiResponse, values: any) => {
-    saveString(MMKV_KEY.SEND_TO, values.selected_type === '✉️   EMAIL' ? values.email || '' : '+373' + values.phone || '');
+    saveString(MMKV_KEY.SEND_TO, values.selected_type === '✉️   EMAIL' ? values.email || '' : values.phone || '');
 
     navigation.navigate(LOGGED_OUT_SCREENS.OneTimePassword, {
-      sentTo: values.selected_type === '✉️   EMAIL' ? values.email || '' : '+373' + values.phone || '',
+      sentTo: values.selected_type === '✉️   EMAIL' ? values.email || '' : values.phone || '',
       otpNotificationType: values.selected_type === '✉️   EMAIL' ? 'EMAIL' : 'SMS',
     });
   };
@@ -33,7 +33,7 @@ const useForgotPassword = (navigation: any) => {
 
       const queryParams = {
         otpNotificationType: values.selected_type === '✉️   EMAIL' ? 'EMAIL' : 'SMS',
-        sendTo: values.selected_type === '✉️   EMAIL' ? values.email || '' : '+373' + values.phone || '',
+        sendTo: values.selected_type === '✉️   EMAIL' ? values.email || '' : values.phone || '',
       };
 
       await sendOTP(queryParams, res => onSendOTPSuccess(res, values), { headers });

@@ -23,7 +23,7 @@ export default function useLoginScreen() {
   const onSubmit = useTryCatch(async (values: LoginFormFields) => {
     const queryParams = {
       grant_type: 'password',
-      username: '+373' + values.phone,
+      username: values.phone,
       password: values.password,
     };
 

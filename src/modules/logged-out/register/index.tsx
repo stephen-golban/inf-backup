@@ -5,8 +5,8 @@ import useRegisterModule from './hooks';
 import { format, subYears } from 'date-fns';
 
 import { AuthLayout } from '@components/layouts';
-import { LoggedOutPhoneInput, TermsAgreements, TextRow } from '../parts';
-import { DatePicker, FilledButton, Form, FormInput, Icon, Text, View } from '@components/common';
+import { TermsAgreements, TextRow } from '../parts';
+import { DatePicker, FilledButton, Form, FormInput, Icon, PhoneInput, Text, View } from '@components/common';
 
 import { Controller } from 'react-hook-form';
 import { register_form_schema, type RegisterFormFields } from './resolver';
@@ -80,11 +80,11 @@ const RegisterModule: React.FC<IRegisterModule> = ({ loading, onPressLogin, onSu
                   textContentType="emailAddress"
                   onSubmitEditing={() => phoneRef.current?.focus()}
                 />
-                <LoggedOutPhoneInput
+                <PhoneInput
                   ref={phoneRef}
                   value={watch('phone')}
                   onSubmitEditing={() => phoneRef.current?.blur()}
-                  onChange={txt => setValue('phone', txt, { shouldValidate: true })}
+                  onChangeText={txt => setValue('phone', txt, { shouldValidate: true })}
                 />
 
                 <View mt={20}>
