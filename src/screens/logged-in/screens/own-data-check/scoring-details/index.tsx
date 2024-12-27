@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useAppStore } from '@store/app';
 import { useCreditScoreService } from '@services/credit-score';
+import { useGetSubscription } from '@services/subscription/get';
 
 import { BottomSheet } from '@components/common';
 import { useAppDataCheckStore } from '@store/data-check';
@@ -12,13 +12,15 @@ import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } fr
 
 const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>> = ({ navigation }) => {
   const { creditScore, fetchScore, loading: loadingCreditScore } = useCreditScoreService(false);
-  const subscription = useAppStore(state => state.subscription);
+  const { subscription, loading: subscriptionLoading } = useGetSubscription(true);
 
   const [toggleBottomSheet, setToggleBottomSheet] = React.useState<boolean>(false);
 
   const paymentService = useExecutePaymentService();
 
-  const amount = subscription?.servicesAccesses.find(service => service.service === 'CreditScore')?.prices[0].price;
+  const amount = subscription?.servicesAccesses?.find(service => service.service === 'CreditScore')?.prices[0].price;
+
+  console.log('subscriptionaa', subscription);
 
   const onPayReport = () => {
     setToggleBottomSheet(true);
@@ -33,7 +35,7 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
         navigation={navigation}
         subscription={subscription}
         score={creditScore?.scoreValue}
-        loading={loadingCreditScore}
+        loading={loadingCreditScore || subscriptionLoading}
         onPressUpdate={async () => {
           await fetchScore();
         }}
