@@ -37,7 +37,10 @@ export default function useRegisterScreen(
       if (res) {
         if (res) {
           saveString(MMKV_KEY.INSERT_OTP, '1');
-          navigation.navigate(LOGGED_OUT_SCREENS.SuccessRecognition, { sentTo: values.phone, otpNotificationType: 'SMS' });
+          navigation.navigate(LOGGED_OUT_SCREENS.SuccessRecognition, {
+            sentTo: values.phone,
+            otpNotificationType: 'SMS',
+          });
         } else {
           navigation.navigate(LOGGED_OUT_SCREENS.FailedRecognition);
         }

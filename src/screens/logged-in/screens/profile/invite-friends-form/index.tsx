@@ -15,7 +15,12 @@ const InviteFriendsFormScreen: React.FC<ProfileStackScreenProps<PROFILE_SCREENS.
   return (
     <InviteFriendsFormModule
       onSubmit={async data => {
-        await call({ firstName: data.firstName, lastName: data.lastName, email: data.email, phone: '+373' + data.phone });
+        await call({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone,
+        });
         await navigation.goBack();
       }}
       loading={loading}

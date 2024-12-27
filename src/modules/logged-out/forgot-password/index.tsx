@@ -4,8 +4,8 @@ import { Controller } from 'react-hook-form';
 import useForgotPasswordModule from './hooks';
 
 import { AuthLayout } from '@components/layouts';
-import { LoggedOutPhoneInput, TermsAgreements, TextRow } from '../parts';
-import { Dropdown, FilledButton, Form, FormInput, View } from '@components/common';
+import { TermsAgreements, TextRow } from '../parts';
+import { Dropdown, FilledButton, Form, FormInput, PhoneInput, View } from '@components/common';
 
 import { forgot_password_form_schema, type ForgotPasswordFormFields } from './resolver';
 
@@ -23,7 +23,7 @@ const ForgotPasswordModule: React.FC<IForgotPasswordModule> = ({ loading, onPres
   return (
     <AuthLayout page_title="logged_out:forgot-password:page_title">
       <Form defaultValues={DEFAULT_VALUES} resolver={forgot_password_form_schema}>
-        {({ setValue, resetField, watch, control, formState, handleSubmit, getValues }) => {
+        {({ setValue, resetField, watch, control, formState, handleSubmit }) => {
           return (
             <View fill mt="md">
               <View fill>
@@ -46,7 +46,7 @@ const ForgotPasswordModule: React.FC<IForgotPasswordModule> = ({ loading, onPres
                 />
 
                 {watch('selected_type') === DROPDOWN_OPTIONS[0].value && (
-                  <LoggedOutPhoneInput value={watch('phone') || ''} onChange={txt => setValue('phone', txt, { shouldValidate: true })} />
+                  <PhoneInput value={watch('phone') || ''} onChangeText={txt => setValue('phone', txt, { shouldValidate: true })} />
                 )}
                 {watch('selected_type') === DROPDOWN_OPTIONS[1].value && (
                   <FormInput

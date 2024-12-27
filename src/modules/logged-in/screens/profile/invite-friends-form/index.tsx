@@ -3,8 +3,7 @@ import { TextInput } from 'react-native';
 
 import useInviteFriendsModule from './hooks';
 
-import { LoggedOutPhoneInput } from '@modules/logged-out/parts';
-import { FilledButton, Form, FormInput, Screen, Text, View } from '@components/common';
+import { FilledButton, Form, FormInput, PhoneInput, Screen, Text, View } from '@components/common';
 
 import { invite_friends_form_schema, type InviteFriendsFormFields } from './resolver';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -68,11 +67,11 @@ const InviteFriendsFormModule: React.FC<IInviteFriendsModule> = ({ loading, onSu
                     textContentType="emailAddress"
                     onSubmitEditing={() => phoneRef.current?.focus()}
                   />
-                  <LoggedOutPhoneInput
+                  <PhoneInput
                     ref={phoneRef}
                     value={watch('phone')}
                     onSubmitEditing={() => phoneRef.current?.blur()}
-                    onChange={txt => setValue('phone', txt, { shouldValidate: true })}
+                    onChangeText={txt => setValue('phone', txt, { shouldValidate: true })}
                   />
                 </View>
                 <View rg="sm" mt="xl">

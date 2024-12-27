@@ -22,6 +22,7 @@ export * from './text-input';
 export * from './date-picker';
 export * from './radio-group';
 export * from './scroll-view';
+export * from './phone-input';
 export * from './bottom-sheet';
 export * from './progress-bar';
 export * from './progress-bar';

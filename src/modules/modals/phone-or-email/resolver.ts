@@ -4,6 +4,7 @@ import { stringifyObjectValidate } from '@library/string';
 import { type InferType, object, string } from 'yup';
 
 import { REGEX } from '@library/constants';
+import { yupPhoneValidation } from '@library/yup-validate';
 
 const createShape = (type: 'PHONE' | 'EMAIL') => {
   if (type === 'EMAIL') {
@@ -14,9 +15,7 @@ const createShape = (type: 'PHONE' | 'EMAIL') => {
     });
   } else {
     return object({
-      phone: string()
-        .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))
-        .min(8, stringifyObjectValidate({ keyT: 'validation:min_chars_length', options: { count: 8 } })),
+      phone: yupPhoneValidation,
     });
   }
 };

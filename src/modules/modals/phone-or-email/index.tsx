@@ -4,8 +4,8 @@ import { Platform } from 'react-native';
 
 import { useNotificationSettingsService } from '@services/notification-settings';
 
-import { EmailInput, PhoneInput } from './parts';
-import { BaseButton, BottomSheet, FilledButton, Form, View } from '@components/common';
+import { EmailInput } from './parts';
+import { BaseButton, BottomSheet, FilledButton, Form, PhoneInput, View } from '@components/common';
 
 import { phoneOrEmail_form_schema } from './resolver';
 
@@ -19,6 +19,7 @@ interface IPhoneOrEmailModule {
 
 const PhoneOrEmailModule: React.FC<IPhoneOrEmailModule> = ({ onSuccess, type, trigger }) => {
   const [isVisible, setIsVisible] = React.useState(false);
+
   const { save, loading } = useNotificationSettingsService(onSuccess);
 
   const triggerButton = React.useMemo(() => {
@@ -47,16 +48,18 @@ const PhoneOrEmailModule: React.FC<IPhoneOrEmailModule> = ({ onSuccess, type, tr
                   {type === 'EMAIL' ? (
                     <EmailInput />
                   ) : (
-                    <PhoneInput value={watch('phone')} onChange={txt => setValue('phone', txt, { shouldValidate: true })} />
+                    <PhoneInput value={watch('phone')} onChangeText={txt => setValue('phone', txt, { shouldValidate: true })} />
                   )}
                 </View>
                 <FilledButton
                   t18n="ui:save"
                   loading={loading}
                   disabled={!formState.isValid}
-                  onPress={handleSubmit(data =>
-                    save(type, type === 'PHONE' ? `+373${data[type.toLowerCase()]}` : data[type.toLowerCase()]),
-                  )}
+                  onPress={handleSubmit(data => {
+                    const key = type.toLowerCase();
+                    const entry = data[key];
+                    save(key as any, entry);
+                  })}
                 />
               </View>
             );
