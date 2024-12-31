@@ -18,7 +18,7 @@ const FaceDetection: React.FC<LoggedOutStackScreenProps<LOGGED_OUT_SCREENS.FaceD
     if (base64Image && !hasSubmitted) {
       const allValues = { ...values, base64Image };
       onSubmit(allValues);
-      saveString(MMKV_KEY.SEND_TO, '+373' + values.phone);
+      saveString(MMKV_KEY.SEND_TO, values.phone);
       setHasSubmitted(true);
     }
   }, [base64Image, hasSubmitted]);

@@ -23,12 +23,14 @@ const LoginModule: React.FC<ILoginModule> = ({ onPressForgotPassword, onPressReg
   return (
     <AuthLayout page_title="logged_out:login:page_title">
       <Form defaultValues={DEFAULT_VALUES} resolver={login_form_schema}>
-        {({ setValue, watch, control, formState, handleSubmit }) => {
+        {({ setValue, control, formState, handleSubmit, getValues }) => {
+          const termsAccepted = getValues('terms_conditions_agreement');
+
           return (
             <View fill>
               <View fill>
                 <PhoneInput
-                  value={watch('phone')}
+                  value={getValues('phone')}
                   onSubmitEditing={() => passwordRef.current?.focus()}
                   onChangeText={txt => setValue('phone', txt, { shouldValidate: true })}
                 />
@@ -37,8 +39,15 @@ const LoginModule: React.FC<ILoginModule> = ({ onPressForgotPassword, onPressReg
                 <TermsAgreements control={control} />
               </View>
               <View rg="sm" mt="xl">
-                <FilledButton bg="lightBlue" w={115} h={39} loading={mpassLoading} alignSelf="center" onPress={onPressMpass}>
-                  <Icon icon="MpassIcon" disabled />
+                <FilledButton
+                  disabled={!termsAccepted}
+                  bg="lightBlue"
+                  w={115}
+                  h={39}
+                  loading={mpassLoading}
+                  alignSelf="center"
+                  onPress={onPressMpass}>
+                  <Icon icon="MpassIcon" disabled={!termsAccepted} />
                 </FilledButton>
                 <View mt="md" rg="sm">
                   <TextRow title="logged_out:login:questions:register" onPress={onPressRegister} />

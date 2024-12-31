@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Platform } from 'react-native';
+import { isIos } from '@library/method';
+import { useWindowDimensions } from 'react-native';
 
 import { useNotificationSettingsService } from '@services/notification-settings';
 
@@ -10,6 +11,8 @@ import { BaseButton, BottomSheet, FilledButton, Form, PhoneInput, View } from '@
 import { phoneOrEmail_form_schema } from './resolver';
 
 import type { Noop } from 'react-hook-form';
+import useKeyboardHeight from '@api/hooks/use-keyboard-height';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface IPhoneOrEmailModule {
   onSuccess: Noop;
@@ -36,10 +39,22 @@ const PhoneOrEmailModule: React.FC<IPhoneOrEmailModule> = ({ onSuccess, type, tr
     );
   }, [trigger]);
 
+  const insets = useSafeAreaInsets();
+  const { height } = useWindowDimensions();
+  const keyboardHeight = useKeyboardHeight();
+
+  const snapPoints = [
+    keyboardHeight
+      ? isIos
+        ? height - keyboardHeight - insets.bottom + 100
+        : height - keyboardHeight - insets.bottom - 100
+      : height * 0.85,
+  ];
+
   return (
     <View>
       {triggerButton}
-      <BottomSheet isVisible={isVisible} onDismiss={() => setIsVisible(false)} snapPoints={[Platform.OS === 'ios' ? '30%' : '40%']}>
+      <BottomSheet isVisible={isVisible} onDismiss={() => setIsVisible(false)} snapPoints={snapPoints}>
         <Form resolver={phoneOrEmail_form_schema(type)}>
           {({ setValue, watch, formState, handleSubmit }) => {
             return (
@@ -48,7 +63,7 @@ const PhoneOrEmailModule: React.FC<IPhoneOrEmailModule> = ({ onSuccess, type, tr
                   {type === 'EMAIL' ? (
                     <EmailInput />
                   ) : (
-                    <PhoneInput value={watch('phone')} onChangeText={txt => setValue('phone', txt, { shouldValidate: true })} />
+                    <PhoneInput autoFocus value={watch('phone')} onChangeText={txt => setValue('phone', txt, { shouldValidate: true })} />
                   )}
                 </View>
                 <FilledButton

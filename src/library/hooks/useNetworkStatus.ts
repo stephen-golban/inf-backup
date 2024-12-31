@@ -4,15 +4,18 @@ import NetInfo, { NetInfoState } from '@react-native-community/netinfo';
 type NetInfoTuple = [boolean, boolean];
 
 export default function useNetWorkStatus(): NetInfoTuple {
-  const [status, setStatus] = useState<boolean>(false);
-
-  const [canAccess, setCanAccess] = useState<boolean>(false);
+  const [status, setStatus] = useState<boolean>(true);
+  const [canAccess, setCanAccess] = useState<boolean>(true);
 
   useEffect(() => {
-    const unsubscribe = NetInfo.addEventListener((state: NetInfoState) => {
-      setStatus(state.isConnected ?? false);
+    NetInfo.fetch().then((state: NetInfoState) => {
+      setStatus(state.isConnected ?? true);
+      setCanAccess(state.isInternetReachable ?? true);
+    });
 
-      setCanAccess(state.isInternetReachable ?? false);
+    const unsubscribe = NetInfo.addEventListener((state: NetInfoState) => {
+      setStatus(state.isConnected ?? true);
+      setCanAccess(state.isInternetReachable ?? true);
     });
 
     return () => {

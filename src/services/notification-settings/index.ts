@@ -13,7 +13,7 @@ function useNotificationSettingsService(onSuccess: Noop = noop) {
 
   const save = useTryCatch(async (type: 'EMAIL' | 'PHONE', value: string) => {
     const body = {
-      type,
+      type: type.toUpperCase(),
       value,
       invoiceDisplay: true,
       invoiceSending: true,
