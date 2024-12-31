@@ -18,7 +18,7 @@ interface IMyAccountModule {
 }
 
 const MyAccountModule: React.FC<IMyAccountModule> = props => {
-  const { onRemoveAccount, onChangePassword, loading, onRefresh, onHandleSubscription } = props;
+  const { onRemoveAccount, onChangePassword, loading, onHandleSubscription } = props;
   const { getMe, loading: loadingMe, me } = useMe();
 
   const email = me?.contactData?.find(contact => contact.type === 'EMAIL')?.value;
