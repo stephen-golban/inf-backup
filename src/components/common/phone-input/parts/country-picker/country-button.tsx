@@ -10,7 +10,7 @@ import type { ItemTemplateProps } from 'react-native-country-codes-picker';
 
 interface ICountryButton extends ItemTemplateProps {}
 
-const unknownCodes = ['AQ', 'AN', 'GS'];
+const unknownCodes = ['AQ', 'AN', 'GS', 'PN'];
 
 const CountryButton: React.FC<ICountryButton> = ({ item, name, style, ...rest }) => {
   const dial_code = React.useMemo(() => {

@@ -17,7 +17,8 @@ const useHomeScreen = () => {
   const isPurchasedSubscriptionExpired = useCurrentSubscriptionExpiryService();
 
   useEffect(() => {
-    OneSignal.initialize('cf0531b4-57fe-487f-bede-5f71b6b94043');
+    // OneSignal.initialize('cf0531b4-57fe-487f-bede-5f71b6b94043');
+    OneSignal.initialize('e59eb20d-8e97-4f53-b5d5-3f3a7b63215d');
     OneSignal.login(String(me?.id));
     OneSignal.Notifications.requestPermission(true);
   }, []);
