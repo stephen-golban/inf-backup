@@ -6,8 +6,9 @@ import { Divider } from '@components/ui/divider';
 import { OutlinedButton, Screen } from '@components/common';
 import { AccountDetails, SubscriptionDetails } from './parts';
 
-import { formatPhoneNumber } from '@library/method';
 import { useMe } from '@services/me';
+import { phoneNumberService } from '@services/phone-number';
+import { useCurrentCca2 } from '@library/hooks';
 
 interface IMyAccountModule {
   loading?: boolean;
@@ -19,11 +20,13 @@ interface IMyAccountModule {
 
 const MyAccountModule: React.FC<IMyAccountModule> = props => {
   const { onRemoveAccount, onChangePassword, loading, onHandleSubscription } = props;
+  const { cca2 } = useCurrentCca2();
   const { getMe, loading: loadingMe, me } = useMe();
+  const { fullPattern } = phoneNumberService.createPhoneUtil(cca2);
 
   const email = me?.contactData?.find(contact => contact.type === 'EMAIL')?.value;
   const phone = me?.contactData?.find(contact => contact.type === 'PHONE')?.value;
-  const formattedPhone = phone ? formatPhoneNumber(phone, true) : 'N/A';
+  const formattedPhone = phone ? phoneNumberService.fullPhoneNumberFormatter(fullPattern, phone) : 'N/A';
 
   return (
     <Screen scroll unsafe loading={loading || loadingMe} onRefresh={getMe} style={{ paddingHorizontal: 0 }}>

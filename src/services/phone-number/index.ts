@@ -1,6 +1,8 @@
 import examples from 'libphonenumber-js/mobile/examples';
+import DeviceCountry, { TYPE_CONFIGURATION, TYPE_TELEPHONY } from 'react-native-device-country';
 import parsePhoneNumber, { CountryCode, getExampleNumber, NationalNumber } from 'libphonenumber-js';
 import { countries } from '@library/constants';
+import { isAndroid } from '@library/method';
 
 const createPlaceholder = (number: NationalNumber | undefined, formatted: string | undefined) => {
   if (!number || !formatted) return PHONE_UTILS.placeholder;
@@ -78,16 +80,24 @@ const validatePhoneNumberValue = (pattern: string, val: string | undefined) => {
   return phoneFormatter(pattern, validatePhone(val));
 };
 
-const getDefaultCountryCode = async () => {
+const getDefaultCountryCode = async (): Promise<string> => {
   try {
-    const res = await fetch('https://ipapi.co/json');
-    if (res.status === 200) {
-      const { country_code } = await res.json();
-      return country_code as string;
+    if (isAndroid) {
+      const telephony = await DeviceCountry.getCountryCode(TYPE_TELEPHONY);
+      const config = await DeviceCountry.getCountryCode(TYPE_CONFIGURATION);
+
+      if (!telephony?.code || !config?.code) return 'MD';
+
+      return telephony.code || config.code;
     }
-    return 'MD';
+    // iOS - use default method
+    const result = await DeviceCountry.getCountryCode();
+    console.log('result', result);
+    if (!result?.code) return 'MD';
+
+    return result.code;
   } catch (error) {
-    console.error('Error fetching geo data:', error);
+    console.error('Error getting country code:', error);
     return 'MD';
   }
 };
