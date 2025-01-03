@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useMemo, useCallback } from 'react';
 import { BottomSheetBackdrop, BottomSheetBackdropProps, BottomSheetModal, BottomSheetModalProps } from '@gorhom/bottom-sheet';
 import { BackHandler, Platform } from 'react-native';
-import useKeyboardHeight from '@api/hooks/use-keyboard-height';
+import { useKeyboardHeight } from '@library/hooks';
 
 interface IBottomSheet extends Omit<BottomSheetModalProps, 'ref' | 'backdropComponent' | 'handleComponent'> {
   isVisible: boolean;

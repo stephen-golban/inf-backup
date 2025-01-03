@@ -92,7 +92,6 @@ const getDefaultCountryCode = async (): Promise<string> => {
     }
     // iOS - use default method
     const result = await DeviceCountry.getCountryCode();
-    console.log('result', result);
     if (!result?.code) return 'MD';
 
     return result.code;

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import useBaseAxios from './use-base-axios';
+import useBaseAxios from './base-axios';
 
 import type { BaseAxiosProps, Config } from './type';
 
