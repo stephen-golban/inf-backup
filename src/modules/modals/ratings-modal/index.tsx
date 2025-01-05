@@ -4,7 +4,7 @@ import { useTheme } from '@theme/index';
 import { useRatingsModal } from './hooks';
 import { useTranslation } from '@library/hooks';
 import { useToast } from 'react-native-toast-notifications';
-import useKeyboardHeight from '@api/hooks/use-keyboard-height';
+import useKeyboardHeight from '@library/hooks/useKeyboardHeight';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { isIos } from '@library/method';

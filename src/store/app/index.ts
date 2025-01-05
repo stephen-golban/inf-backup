@@ -13,6 +13,7 @@ const app_state: IAppState = {
   theme: 'light',
   loadingApp: false,
   nomenclature: null,
+  isConnected: false,
   isAuthenticated: false,
   subscription: undefined,
   locale: null as IAppState['locale'] | any,
@@ -54,6 +55,9 @@ function setAppSubscription(subscription: IAppState['subscription']) {
 function setAppNomenclature(nomenclature: IAppState['nomenclature']) {
   useAppStore.setState({ nomenclature });
 }
+function setAppIsConnected(isConnected: IAppState['isConnected']) {
+  useAppStore.setState({ isConnected });
+}
 function setAppLocale(locale: IAppState['locale']) {
   i18n.changeLanguage(locale);
   useAppStore.setState({ locale });
@@ -61,6 +65,8 @@ function setAppLocale(locale: IAppState['locale']) {
 function resetAppStore() {
   useAppStore.setState({
     user: null,
+    cca2: null,
+    isConnected: false,
     nomenclature: null,
     isAuthenticated: false,
     subscription: undefined,
@@ -75,6 +81,7 @@ export {
   setAppLocale,
   resetAppStore,
   setAppLoading,
+  setAppIsConnected,
   setAppNomenclature,
   setAppSubscription,
   setAppIsAuthenticated,

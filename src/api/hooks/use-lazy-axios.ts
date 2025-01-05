@@ -1,5 +1,5 @@
 import { BaseAxios, Config } from './type';
-import useBaseAxios from './use-base-axios';
+import useBaseAxios from './base-axios';
 
 function useLazyAxios<Data>(url: string): BaseAxios<Data>;
 function useLazyAxios<Data>(config: Config<Data>): BaseAxios<Data>;

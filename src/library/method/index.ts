@@ -57,20 +57,6 @@ export const validatePassword = (password: string, confirmPassword: string) => {
   return { isUppercase, isNumber, isSpecialChar, isMin8Char, isPasswordSame };
 };
 
-export const formatPhoneNumber = (phoneNumber: string, isMasked: boolean = true): string => {
-  const prefix = phoneNumber.slice(0, 4);
-  const firstDigit = phoneNumber.slice(4, 5);
-
-  if (isMasked) {
-    const maskedPart = 'x xxx xxx';
-    return `${prefix} ${firstDigit}${maskedPart}`;
-  } else {
-    const firstPart = phoneNumber.slice(5, 8);
-    const secondPart = phoneNumber.slice(8, 11);
-    return `${prefix} ${firstDigit} ${firstPart} ${secondPart}`;
-  }
-};
-
 export const currencyFormat = (price: number | string, currency: string = 'LEI') => {
   const numberPrice = typeof price === 'string' ? parseFloat(price.replace(',', '.')) : price;
 

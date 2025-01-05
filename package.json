@@ -53,6 +53,7 @@
     "react-native-camera": "^4.2.1",
     "react-native-confirmation-code-field": "^7.4.0",
     "react-native-country-codes-picker": "^2.3.5",
+    "react-native-device-country": "^1.0.5",
     "react-native-device-info": "^11.1.0",
     "react-native-dotenv": "^3.4.11",
     "react-native-element-dropdown": "^2.12.1",

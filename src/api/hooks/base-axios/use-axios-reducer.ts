@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-import type { Action, RequestState } from './type';
+import type { Action, RequestState } from '../type';
 
 export const createInitialState = <Data>(data?: Data) => ({
   data: typeof data === 'undefined' ? undefined : data,

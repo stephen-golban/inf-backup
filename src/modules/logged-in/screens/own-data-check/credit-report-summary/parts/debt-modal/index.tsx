@@ -2,7 +2,7 @@ import React from 'react';
 import { isIos } from '@library/method';
 
 import { useWindowDimensions } from 'react-native';
-import useKeyboardHeight from '@api/hooks/use-keyboard-height';
+import useKeyboardHeight from '@library/hooks/useKeyboardHeight';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BottomSheet, FilledButton, Form, PhoneInput, Text, View } from '@components/common';

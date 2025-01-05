@@ -3,6 +3,7 @@
   "login": "Autentificare",
   "error": "Eroare",
   "submit": "Trimite",
+  "retry": "Încearcă din nou",
   "cancel": "Anulează",
   "apply": "Aplică",
   "select": "Selectează",
@@ -53,6 +54,7 @@
   "empty_state": "Nu am găsit date de afișat...",
 
   "update_data": "Actualizează datele",
+  "check_internet_connection": "Vă rugăm să verificați conexiunea la internet și încercați din nou.",
 
   "delete_card": {
     "title": "Șterge cardul",

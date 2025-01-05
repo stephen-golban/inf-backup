@@ -51,6 +51,7 @@ export * from './credit-report';
 export * from './person-search';
 export * from './yellow-plus';
 export * from './notifications';
+export * from './connected-world';
 export * from './infodebit-logo';
 export * from './envelope-image';
 export * from './shield-success';

@@ -11,7 +11,7 @@ import { BaseButton, BottomSheet, FilledButton, Form, PhoneInput, View } from '@
 import { phoneOrEmail_form_schema } from './resolver';
 
 import type { Noop } from 'react-hook-form';
-import useKeyboardHeight from '@api/hooks/use-keyboard-height';
+import useKeyboardHeight from '@library/hooks/useKeyboardHeight';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface IPhoneOrEmailModule {

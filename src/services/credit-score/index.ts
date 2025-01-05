@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useAppStore } from '@store/app';
-import { useAxios, useLazyAxios } from '@api/hooks';
+import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
 import { useAppDataCheckStore } from '@store/data-check';
 
 import type { ICreditScoreResponse } from '@typings/responses/credit-score';
-import { CreditReportEventsApiResponse, CreditReportQualityApiResponse, LastInquiryApiResponse } from '@typings/responses';
+import { CreditReportEventsApiResponse, LastInquiryApiResponse } from '@typings/responses';
 
 const CREDIT_SCORE_QUERY_PARAMS = {
   subjectType: 'INDIVIDUAL',
@@ -23,9 +23,9 @@ function useCreditScoreService(runOnMount = true) {
     headers: { 'Subscription-Id': subscription?.id || 60 },
   });
 
-  const { user } = useAppStore(state => state);
+  // const { user } = useAppStore(state => state);
 
-  const userAccountId = user?.accounts[0].accountId || subscription?.subscriptionAccounts?.[0].accountId;
+  // const userAccountId = user?.accounts[0].accountId || subscription?.subscriptionAccounts?.[0].accountId;
 
   const [reportEvents, { loading: loadingReportEvents }] = useLazyAxios<CreditReportEventsApiResponse>({
     method: 'post',

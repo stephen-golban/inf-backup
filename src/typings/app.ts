@@ -23,6 +23,8 @@ export interface IAppState {
 
   theme: ThemeType;
 
+  isConnected: boolean;
+
   locale: 'en' | 'ru' | 'ro';
 
   nomenclature: StageNomenclatureResponse[] | any;

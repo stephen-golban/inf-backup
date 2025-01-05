@@ -3,6 +3,7 @@
   "login": "Login",
   "error": "Error",
   "submit": "Submit",
+  "retry": "Retry",
   "cancel": "Cancel",
   "apply": "Apply",
   "select": "Select",
@@ -53,6 +54,7 @@
   "empty_state": "No data found to display...",
 
   "update_data": "Update data",
+  "check_internet_connection": "Please check your internet connection and try again.",
 
   "delete_card": {
     "title": "Delete Card",
