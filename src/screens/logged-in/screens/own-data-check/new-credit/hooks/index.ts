@@ -106,9 +106,7 @@ const useNewCredit = () => {
 
       if (status === 409) {
         setShowLoanModal(true);
-        console.log('status', status);
         const days = differenceInDays(new Date(), new Date(lastLeadDate));
-        console.log('days', days);
         if (days <= 2) {
           return {
             text: t('logged_in:credit_report:new:sheets:request_pending'),
