@@ -109,7 +109,7 @@ android {
         applicationId "com.infodebit"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 27
+        versionCode 28
         versionName "1.16"
         // resValue "string", "build_config_package", "com.infodebit"
          ndk {
