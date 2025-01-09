@@ -1,15 +1,17 @@
 import { lead_api } from '@api/base';
-import { setAppSubscription, useAppStore } from '@store/app';
+
+import { useMount } from 'react-use';
 import { useMemo, useState } from 'react';
-import { useTranslation, useTryCatchWithCallback } from '@library/hooks';
+import { useTranslation } from '@library/hooks';
 import { useAxios, useLazyAxios } from '@api/hooks';
+import { setAppSubscription, useAppStore } from '@store/app';
+import { useLastInquiryService } from '@services/last-inquiry';
+
 import { differenceInDays, format, isAfter } from 'date-fns';
 
 import type { LoanApiResponse } from '@typings/responses/loan';
 import type { CreditReportQualityApiResponse, ISubscription } from '@typings/responses';
 import type { LoanFormFields } from '@modules/logged-in/screens/own-data-check/new-credit/loan-form/resolver';
-import { useLastInquiryService } from '@services/last-inquiry';
-import { useMount } from 'react-use';
 
 const useNewCredit = () => {
   const { t } = useTranslation();
@@ -90,7 +92,9 @@ const useNewCredit = () => {
       creditReportQuality: data?.creditReportQualityType,
       otherActiveNegativeCommitments: data?.otherActiveNegativeCommitments,
     };
-    await call(body, setLoanResponse, { hideErrors: true }).then(() => setShowLoanModal(true));
+    await call(body, setLoanResponse, { hideErrors: true }).then(() => {
+      setShowLoanModal(true);
+    });
     await fetchInquiryReport();
   };
 
@@ -101,8 +105,10 @@ const useNewCredit = () => {
       const { lastLeadDate, expirationDate, lastLeadId } = data;
 
       if (status === 409) {
+        setShowLoanModal(true);
+        console.log('status', status);
         const days = differenceInDays(new Date(), new Date(lastLeadDate));
-
+        console.log('days', days);
         if (days <= 2) {
           return {
             text: t('logged_in:credit_report:new:sheets:request_pending'),

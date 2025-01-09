@@ -4,12 +4,12 @@ apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
-project.ext.envConfigFiles = [
-   production: ".env.production",
-   staging: ".env.staging",
-   development: ".env.development"
-]
-apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+// project.ext.envConfigFiles = [
+//    production: ".env.production",
+//    staging: ".env.staging",
+//    development: ".env.development"
+// ]
+// apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -84,24 +84,24 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-        flavorDimensions "default"
-        productFlavors {
-            production {
-                minSdkVersion rootProject.ext.minSdkVersion
-                applicationId "com.infodebit"
-                targetSdkVersion rootProject.ext.targetSdkVersion
-            }
-            staging {
-                minSdkVersion rootProject.ext.minSdkVersion
-                applicationId "com.infodebit.staging"
-                targetSdkVersion rootProject.ext.targetSdkVersion
-            }
-            development {
-                minSdkVersion rootProject.ext.minSdkVersion
-                applicationId "com.infodebit.development"
-                targetSdkVersion rootProject.ext.targetSdkVersion
-            }
-        }
+        // flavorDimensions "default"
+        // productFlavors {
+        //     production {
+        //         minSdkVersion rootProject.ext.minSdkVersion
+        //         applicationId "com.infodebit"
+        //         targetSdkVersion rootProject.ext.targetSdkVersion
+        //     }
+        //     staging {
+        //         minSdkVersion rootProject.ext.minSdkVersion
+        //         applicationId "com.infodebit.staging"
+        //         targetSdkVersion rootProject.ext.targetSdkVersion
+        //     }
+        //     development {
+        //         minSdkVersion rootProject.ext.minSdkVersion
+        //         applicationId "com.infodebit.development"
+        //         targetSdkVersion rootProject.ext.targetSdkVersion
+        //     }
+        // }
 
     namespace "com.infodebit"
     defaultConfig {
@@ -109,9 +109,9 @@ android {
         applicationId "com.infodebit"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 25
-        versionName "1.14"
-        resValue "string", "build_config_package", "com.infodebit"
+        versionCode 27
+        versionName "1.16"
+        // resValue "string", "build_config_package", "com.infodebit"
          ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64" 
         }
@@ -127,7 +127,7 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
-            matchingFallbacks = ['debug', 'release']
+            // matchingFallbacks = ['debug', 'release']
         }
         release {
             // Caution! In production, you need to generate your own keystore file.

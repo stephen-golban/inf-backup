@@ -29,7 +29,7 @@
 		9F9BD89C2D2AD6AD00F15FB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */; };
 		9F9BD89D2D2AD6AD00F15FB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0E82C5B9AB40074D663 /* Images.xcassets */; };
 		9F9BD89E2D2AD6AD00F15FB0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 68E1B6B7017665CFBA5A1831 /* PrivacyInfo.xcprivacy */; };
-		A88BCF0ADBDEC2B8C64D9670 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		A88BCF0ADBDEC2B8C64D9670 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		F4059D449944059C00190D5C /* libPods-infodebit-infodebitDevelopment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E33862F768C683A2F416C4DC /* libPods-infodebit-infodebitDevelopment.a */; };
 /* End PBXBuildFile section */
 
@@ -125,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A88BCF0ADBDEC2B8C64D9670 /* BuildFile in Frameworks */,
+				A88BCF0ADBDEC2B8C64D9670 /* (null) in Frameworks */,
 				27E1DE77D14C072448C550AA /* libPods-infodebit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -852,7 +852,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.14;
+				MARKETING_VERSION = 1.16;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -889,7 +889,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.14;
+				MARKETING_VERSION = 1.16;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -988,10 +988,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -1075,10 +1072,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

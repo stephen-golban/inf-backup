@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "android:dev": "react-native run-android --variant=developmentdebug --appId=com.infodebit.development",
+    "android:dev": "react-native run-android --variant=developmentDebug --appId=com.infodebit.development",
     "android:stag": "react-native run-android --variant=stagingrelease --appId=com.infodebit.staging",
     "android:prod": "react-native run-android --variant=productionrelease --appId=com.infodebit",
     "ios": "react-native run-ios",
