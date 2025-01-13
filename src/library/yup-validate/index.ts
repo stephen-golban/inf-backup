@@ -50,7 +50,6 @@ export const yupPhoneValidationWithSchema = (schema: Schema) =>
       const { minLength, displayLength } = usePhoneNumberInputStore.getState();
 
       // Check if the number meets minimum length requirements
-      console.log(value.length, minLength);
       if (value.length < minLength) {
         return this.createError({
           message: stringifyObjectValidate({

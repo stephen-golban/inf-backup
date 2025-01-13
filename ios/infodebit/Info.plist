@@ -26,6 +26,8 @@
 		<string/>
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
+		<key>ITSAppUsesNonExemptEncryption</key>
+		<false/>
 		<key>NSCameraUsageDescription</key>
 		<string>We need access to the camera to detect faces.</string>
 		<key>NSAppTransportSecurity</key>

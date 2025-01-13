@@ -19,7 +19,7 @@ export const PhoneInput = React.forwardRef<any, PhoneInputProps>((props, ref) =>
   const { value, onChangeText, name = 'phone', returnKeyType = 'next', disabled = false, ...rest } = props;
 
   const { cca2: defaultCCA2 } = useCurrentCca2();
-  const [cca2, setCca2] = React.useState<CountryCode>(defaultCCA2 || 'MD');
+  const [cca2, setCca2] = React.useState<CountryCode>(defaultCCA2 || ('MD' as any));
 
   const util = React.useMemo(() => phoneNumberService.createPhoneUtil(cca2), [cca2]);
 

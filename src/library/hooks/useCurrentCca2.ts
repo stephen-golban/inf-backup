@@ -6,17 +6,17 @@ import { phoneNumberService } from '@services/phone-number';
 import type { CountryCode } from 'libphonenumber-js';
 
 export default function useCurrentCca2() {
-  const cca2 = useAppStore(state => state.cca2);
+  const cca2 = useAppStore(state => state.cca2?.toUpperCase());
   const [loading, setLoading] = useState(false);
 
   const getCca2 = useCallback(async () => {
     setLoading(true);
     try {
       const countryCode = await phoneNumberService.getDefaultCountryCode();
-      setAppCca2(countryCode as CountryCode);
+      setAppCca2(countryCode.toUpperCase() as CountryCode);
     } catch (error) {
       console.error('Error getting country code:', error);
-      setAppCca2('MD');
+      setAppCca2('MD' as CountryCode);
     } finally {
       setLoading(false);
     }

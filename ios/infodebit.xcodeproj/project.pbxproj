@@ -10,12 +10,27 @@
 		00E356F31AD99517003FC87E /* infodebitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* infodebitTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		20996AED4247D8C422CD7C23 /* libPods-infodebit-infodebitStaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C00D2D1D7AB38AA7B36122AF /* libPods-infodebit-infodebitStaging.a */; };
+		27E1DE77D14C072448C550AA /* libPods-infodebit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D8CACDA324C8A788D94DAD8 /* libPods-infodebit.a */; };
 		4DFCB70AA23CA1E71BA8D9C1 /* libPods-infodebit-infodebitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DB39FBE1FC72A2789D5780 /* libPods-infodebit-infodebitTests.a */; };
 		77DBA1092CC67DE4CF050657 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 68E1B6B7017665CFBA5A1831 /* PrivacyInfo.xcprivacy */; };
 		9F3FF0E92C5B9AB40074D663 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0E82C5B9AB40074D663 /* Images.xcassets */; };
 		9F3FF0EB2C5BA0300074D663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */; };
 		9F943E082D11A29F009095C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F943E072D11A29F009095C4 /* GoogleService-Info.plist */; };
-		A88BCF0ADBDEC2B8C64D9670 /* libPods-infodebit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1539C288C0268632C7BF1314 /* libPods-infodebit.a */; };
+		9F9BD87F2D2AD69D00F15FB0 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
+		9F9BD8802D2AD69D00F15FB0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		9F9BD8842D2AD69D00F15FB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F943E072D11A29F009095C4 /* GoogleService-Info.plist */; };
+		9F9BD8852D2AD69D00F15FB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */; };
+		9F9BD8862D2AD69D00F15FB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0E82C5B9AB40074D663 /* Images.xcassets */; };
+		9F9BD8872D2AD69D00F15FB0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 68E1B6B7017665CFBA5A1831 /* PrivacyInfo.xcprivacy */; };
+		9F9BD8962D2AD6AD00F15FB0 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
+		9F9BD8972D2AD6AD00F15FB0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		9F9BD89B2D2AD6AD00F15FB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F943E072D11A29F009095C4 /* GoogleService-Info.plist */; };
+		9F9BD89C2D2AD6AD00F15FB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */; };
+		9F9BD89D2D2AD6AD00F15FB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0E82C5B9AB40074D663 /* Images.xcassets */; };
+		9F9BD89E2D2AD6AD00F15FB0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 68E1B6B7017665CFBA5A1831 /* PrivacyInfo.xcprivacy */; };
+		A88BCF0ADBDEC2B8C64D9670 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		F4059D449944059C00190D5C /* libPods-infodebit-infodebitDevelopment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E33862F768C683A2F416C4DC /* libPods-infodebit-infodebitDevelopment.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +54,26 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		9F9BD8892D2AD69D00F15FB0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		9F9BD8A02D2AD6AD00F15FB0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -52,18 +87,28 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = infodebit/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = infodebit/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = infodebit/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		1539C288C0268632C7BF1314 /* libPods-infodebit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-infodebit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D8CACDA324C8A788D94DAD8 /* libPods-infodebit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-infodebit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BE22E2BB8464EF5BBAE2E4E /* Pods-infodebit-infodebitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit-infodebitTests.debug.xcconfig"; path = "Target Support Files/Pods-infodebit-infodebitTests/Pods-infodebit-infodebitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5BC53FCD046D1D06A39AF371 /* Pods-infodebit-infodebitStaging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit-infodebitStaging.debug.xcconfig"; path = "Target Support Files/Pods-infodebit-infodebitStaging/Pods-infodebit-infodebitStaging.debug.xcconfig"; sourceTree = "<group>"; };
 		6196E7EEF4E6740D6884F908 /* Pods-infodebit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit.release.xcconfig"; path = "Target Support Files/Pods-infodebit/Pods-infodebit.release.xcconfig"; sourceTree = "<group>"; };
 		66DB39FBE1FC72A2789D5780 /* libPods-infodebit-infodebitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-infodebit-infodebitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68E1B6B7017665CFBA5A1831 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = infodebit/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		6D62F87922765CA6BD08D8F9 /* Pods-infodebit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit.debug.xcconfig"; path = "Target Support Files/Pods-infodebit/Pods-infodebit.debug.xcconfig"; sourceTree = "<group>"; };
+		87304F4A4C99FC1CF59B979B /* Pods-infodebit-infodebitDevelopment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit-infodebitDevelopment.release.xcconfig"; path = "Target Support Files/Pods-infodebit-infodebitDevelopment/Pods-infodebit-infodebitDevelopment.release.xcconfig"; sourceTree = "<group>"; };
 		9F3FF0E82C5B9AB40074D663 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = infodebit/Images.xcassets; sourceTree = "<group>"; };
 		9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F5958E72C8E01C700A81407 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		9F5958E92C8E01C700A81407 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F7ACAF12C80B3CD00B9631A /* infodebit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = infodebit.entitlements; path = infodebit/infodebit.entitlements; sourceTree = "<group>"; };
 		9F943E072D11A29F009095C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9F9BD8912D2AD69D00F15FB0 /* infodebitDevelopment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = infodebitDevelopment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9BD8922D2AD69D00F15FB0 /* infodebitDevelopment-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "infodebitDevelopment-Info.plist"; path = "/Users/ioncojocari/dev/icr-mobile/ios/infodebitDevelopment-Info.plist"; sourceTree = "<absolute>"; };
+		9F9BD8A82D2AD6AD00F15FB0 /* infodebitStaging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = infodebitStaging.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F9BD8A92D2AD6AD00F15FB0 /* infodebitStaging-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "infodebitStaging-Info.plist"; path = "/Users/ioncojocari/dev/icr-mobile/ios/infodebitStaging-Info.plist"; sourceTree = "<absolute>"; };
+		C00D2D1D7AB38AA7B36122AF /* libPods-infodebit-infodebitStaging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-infodebit-infodebitStaging.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9DA2C4889509E0FEA3E7C96 /* Pods-infodebit-infodebitDevelopment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit-infodebitDevelopment.debug.xcconfig"; path = "Target Support Files/Pods-infodebit-infodebitDevelopment/Pods-infodebit-infodebitDevelopment.debug.xcconfig"; sourceTree = "<group>"; };
+		E1BF8DEDCB46453BEEC64448 /* Pods-infodebit-infodebitStaging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit-infodebitStaging.release.xcconfig"; path = "Target Support Files/Pods-infodebit-infodebitStaging/Pods-infodebit-infodebitStaging.release.xcconfig"; sourceTree = "<group>"; };
+		E33862F768C683A2F416C4DC /* libPods-infodebit-infodebitDevelopment.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-infodebit-infodebitDevelopment.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -80,7 +125,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A88BCF0ADBDEC2B8C64D9670 /* libPods-infodebit.a in Frameworks */,
+				A88BCF0ADBDEC2B8C64D9670 /* (null) in Frameworks */,
+				27E1DE77D14C072448C550AA /* libPods-infodebit.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F9BD8812D2AD69D00F15FB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4059D449944059C00190D5C /* libPods-infodebit-infodebitDevelopment.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F9BD8982D2AD6AD00F15FB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20996AED4247D8C422CD7C23 /* libPods-infodebit-infodebitStaging.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,8 +187,10 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				1539C288C0268632C7BF1314 /* libPods-infodebit.a */,
 				66DB39FBE1FC72A2789D5780 /* libPods-infodebit-infodebitTests.a */,
+				E33862F768C683A2F416C4DC /* libPods-infodebit-infodebitDevelopment.a */,
+				C00D2D1D7AB38AA7B36122AF /* libPods-infodebit-infodebitStaging.a */,
+				1D8CACDA324C8A788D94DAD8 /* libPods-infodebit.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -148,6 +212,8 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				9F9BD8922D2AD69D00F15FB0 /* infodebitDevelopment-Info.plist */,
+				9F9BD8A92D2AD6AD00F15FB0 /* infodebitStaging-Info.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -159,6 +225,8 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* infodebit.app */,
 				00E356EE1AD99517003FC87E /* infodebitTests.xctest */,
+				9F9BD8912D2AD69D00F15FB0 /* infodebitDevelopment.app */,
+				9F9BD8A82D2AD6AD00F15FB0 /* infodebitStaging.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,6 +247,10 @@
 				6196E7EEF4E6740D6884F908 /* Pods-infodebit.release.xcconfig */,
 				2BE22E2BB8464EF5BBAE2E4E /* Pods-infodebit-infodebitTests.debug.xcconfig */,
 				0875B78952DB587E73BB6350 /* Pods-infodebit-infodebitTests.release.xcconfig */,
+				D9DA2C4889509E0FEA3E7C96 /* Pods-infodebit-infodebitDevelopment.debug.xcconfig */,
+				87304F4A4C99FC1CF59B979B /* Pods-infodebit-infodebitDevelopment.release.xcconfig */,
+				5BC53FCD046D1D06A39AF371 /* Pods-infodebit-infodebitStaging.debug.xcconfig */,
+				E1BF8DEDCB46453BEEC64448 /* Pods-infodebit-infodebitStaging.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -231,6 +303,50 @@
 			productReference = 13B07F961A680F5B00A75B9A /* infodebit.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9F9BD87C2D2AD69D00F15FB0 /* infodebitDevelopment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F9BD88E2D2AD69D00F15FB0 /* Build configuration list for PBXNativeTarget "infodebitDevelopment" */;
+			buildPhases = (
+				9F9BD87D2D2AD69D00F15FB0 /* [CP] Check Pods Manifest.lock */,
+				9F9BD87E2D2AD69D00F15FB0 /* Sources */,
+				9F9BD8812D2AD69D00F15FB0 /* Frameworks */,
+				9F9BD8832D2AD69D00F15FB0 /* Resources */,
+				9F9BD8882D2AD69D00F15FB0 /* Bundle React Native code and images */,
+				9F9BD8892D2AD69D00F15FB0 /* Embed Foundation Extensions */,
+				9F9BD88A2D2AD69D00F15FB0 /* [CP] Embed Pods Frameworks */,
+				9F9BD88B2D2AD69D00F15FB0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = infodebitDevelopment;
+			productName = infodebit;
+			productReference = 9F9BD8912D2AD69D00F15FB0 /* infodebitDevelopment.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9F9BD8932D2AD6AD00F15FB0 /* infodebitStaging */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F9BD8A52D2AD6AD00F15FB0 /* Build configuration list for PBXNativeTarget "infodebitStaging" */;
+			buildPhases = (
+				9F9BD8942D2AD6AD00F15FB0 /* [CP] Check Pods Manifest.lock */,
+				9F9BD8952D2AD6AD00F15FB0 /* Sources */,
+				9F9BD8982D2AD6AD00F15FB0 /* Frameworks */,
+				9F9BD89A2D2AD6AD00F15FB0 /* Resources */,
+				9F9BD89F2D2AD6AD00F15FB0 /* Bundle React Native code and images */,
+				9F9BD8A02D2AD6AD00F15FB0 /* Embed Foundation Extensions */,
+				9F9BD8A12D2AD6AD00F15FB0 /* [CP] Embed Pods Frameworks */,
+				9F9BD8A22D2AD6AD00F15FB0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = infodebitStaging;
+			productName = infodebit;
+			productReference = 9F9BD8A82D2AD6AD00F15FB0 /* infodebitStaging.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -264,6 +380,8 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* infodebit */,
 				00E356ED1AD99517003FC87E /* infodebitTests */,
+				9F9BD87C2D2AD69D00F15FB0 /* infodebitDevelopment */,
+				9F9BD8932D2AD6AD00F15FB0 /* infodebitStaging */,
 			);
 		};
 /* End PBXProject section */
@@ -284,6 +402,28 @@
 				9F3FF0EB2C5BA0300074D663 /* LaunchScreen.storyboard in Resources */,
 				9F3FF0E92C5B9AB40074D663 /* Images.xcassets in Resources */,
 				77DBA1092CC67DE4CF050657 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F9BD8832D2AD69D00F15FB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F9BD8842D2AD69D00F15FB0 /* GoogleService-Info.plist in Resources */,
+				9F9BD8852D2AD69D00F15FB0 /* LaunchScreen.storyboard in Resources */,
+				9F9BD8862D2AD69D00F15FB0 /* Images.xcassets in Resources */,
+				9F9BD8872D2AD69D00F15FB0 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F9BD89A2D2AD6AD00F15FB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F9BD89B2D2AD6AD00F15FB0 /* GoogleService-Info.plist in Resources */,
+				9F9BD89C2D2AD6AD00F15FB0 /* LaunchScreen.storyboard in Resources */,
+				9F9BD89D2D2AD6AD00F15FB0 /* Images.xcassets in Resources */,
+				9F9BD89E2D2AD6AD00F15FB0 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +541,150 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9F9BD87D2D2AD69D00F15FB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-infodebit-infodebitDevelopment-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F9BD8882D2AD69D00F15FB0 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/.xcode.env",
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+		};
+		9F9BD88A2D2AD69D00F15FB0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitDevelopment/Pods-infodebit-infodebitDevelopment-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitDevelopment/Pods-infodebit-infodebitDevelopment-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitDevelopment/Pods-infodebit-infodebitDevelopment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F9BD88B2D2AD69D00F15FB0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitDevelopment/Pods-infodebit-infodebitDevelopment-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitDevelopment/Pods-infodebit-infodebitDevelopment-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitDevelopment/Pods-infodebit-infodebitDevelopment-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F9BD8942D2AD6AD00F15FB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-infodebit-infodebitStaging-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F9BD89F2D2AD6AD00F15FB0 /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.xcode.env.local",
+				"$(SRCROOT)/.xcode.env",
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+		};
+		9F9BD8A12D2AD6AD00F15FB0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitStaging/Pods-infodebit-infodebitStaging-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitStaging/Pods-infodebit-infodebitStaging-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitStaging/Pods-infodebit-infodebitStaging-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F9BD8A22D2AD6AD00F15FB0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitStaging/Pods-infodebit-infodebitStaging-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitStaging/Pods-infodebit-infodebitStaging-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-infodebit-infodebitStaging/Pods-infodebit-infodebitStaging-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DA8F8971E0D710FDB76AFF39 /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -462,6 +746,24 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F9BD87E2D2AD69D00F15FB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F9BD87F2D2AD69D00F15FB0 /* AppDelegate.mm in Sources */,
+				9F9BD8802D2AD69D00F15FB0 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F9BD8952D2AD6AD00F15FB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F9BD8962D2AD6AD00F15FB0 /* AppDelegate.mm in Sources */,
+				9F9BD8972D2AD6AD00F15FB0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,7 +852,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.13;
+				MARKETING_VERSION = 1.16;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -587,7 +889,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.13;
+				MARKETING_VERSION = 1.16;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -686,10 +988,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -773,14 +1072,157 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9F9BD88F2D2AD69D00F15FB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9DA2C4889509E0FEA3E7C96 /* Pods-infodebit-infodebitDevelopment.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = infodebit/infodebit.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77CZ7BWL8R;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "infodebitDevelopment-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "MyInfodebit dev";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.14;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "infodebit-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		9F9BD8902D2AD69D00F15FB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87304F4A4C99FC1CF59B979B /* Pods-infodebit-infodebitDevelopment.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = infodebit/infodebit.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77CZ7BWL8R;
+				INFOPLIST_FILE = "infodebitDevelopment-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "MyInfodebit dev";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.14;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "infodebit-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		9F9BD8A62D2AD6AD00F15FB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BC53FCD046D1D06A39AF371 /* Pods-infodebit-infodebitStaging.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = infodebit/infodebit.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77CZ7BWL8R;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "infodebitStaging-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "MyInfodebit staging";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.14;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "infodebit-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		9F9BD8A72D2AD6AD00F15FB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1BF8DEDCB46453BEEC64448 /* Pods-infodebit-infodebitStaging.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = infodebit/infodebit.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 77CZ7BWL8R;
+				INFOPLIST_FILE = "infodebitStaging-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "MyInfodebit staging";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.14;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "infodebit-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -810,6 +1252,24 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F9BD88E2D2AD69D00F15FB0 /* Build configuration list for PBXNativeTarget "infodebitDevelopment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F9BD88F2D2AD69D00F15FB0 /* Debug */,
+				9F9BD8902D2AD69D00F15FB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F9BD8A52D2AD6AD00F15FB0 /* Build configuration list for PBXNativeTarget "infodebitStaging" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F9BD8A62D2AD6AD00F15FB0 /* Debug */,
+				9F9BD8A72D2AD6AD00F15FB0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

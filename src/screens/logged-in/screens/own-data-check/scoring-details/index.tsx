@@ -20,8 +20,6 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
 
   const amount = subscription?.servicesAccesses?.find(service => service.service === 'CreditScore')?.prices[0].price;
 
-  console.log('subscriptionaa', subscription);
-
   const onPayReport = () => {
     setToggleBottomSheet(true);
   };
