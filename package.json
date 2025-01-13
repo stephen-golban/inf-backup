@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android:dev": "react-native run-android --variant=developmentDebug --appId=com.infodebit.development",
+    "android:stag": "react-native run-android --variant=stagingrelease --appId=com.infodebit.staging",
+    "android:prod": "react-native run-android --variant=productionrelease --appId=com.infodebit",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start --reset-cache"
@@ -51,6 +54,7 @@
     "react-native-base64": "^0.2.1",
     "react-native-blob-util": "^0.19.11",
     "react-native-camera": "^4.2.1",
+    "react-native-config": "^1.5.3",
     "react-native-confirmation-code-field": "^7.4.0",
     "react-native-country-codes-picker": "^2.3.5",
     "react-native-device-country": "^1.0.5",

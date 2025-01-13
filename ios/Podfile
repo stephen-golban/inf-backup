@@ -50,11 +50,20 @@ target 'infodebit' do
   pod 'FirebaseInstallations', :modular_headers => true
   pod 'GoogleDataTransport', :modular_headers => true
   pod 'nanopb', :modular_headers => true
-  pod 'FirebaseCoreExtension', :modular_headers => true  # Adăugat pentru FirebaseSessions
+  pod 'FirebaseCoreExtension', :modular_headers => true  
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
 
   target 'infodebitTests' do
     inherit! :complete
     # Pods for testing
+  end
+
+  target 'infodebitDevelopment' do
+    inherit! :complete
+  end
+
+  target 'infodebitStaging' do
+    inherit! :complete
   end
 
   post_install do |installer|
