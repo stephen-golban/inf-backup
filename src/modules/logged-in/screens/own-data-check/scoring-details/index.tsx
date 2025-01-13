@@ -19,14 +19,15 @@ interface IScoringDetailsModuleProps {
   navigation: OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>['navigation'];
   score?: number;
   loading: boolean;
-  onPayReport(): void;
+  onPayReport(withoutBottomSheet?: boolean): void;
+  onPayReportLoading?: boolean;
   onPressUpdate(): void;
   subscription: PurchasedSubscription | undefined;
   creditReportEvents: CreditReportEventsApiResponse | null;
 }
 
 const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
-  const { navigation, score, loading, subscription, onPressUpdate, onPayReport, creditReportEvents } = props;
+  const { navigation, onPayReportLoading = false, score, loading, subscription, onPressUpdate, onPayReport, creditReportEvents } = props;
   const { t } = useTranslation();
   const { creditScore } = useAppDataCheckStore();
 
@@ -121,8 +122,8 @@ const ScoringDetailsModule: React.FC<IScoringDetailsModuleProps> = props => {
         buttonText={buttonText}
         discountText={discountText}
         subscription={subscription}
-        isLoading={loading}
         onNavigate={onPressFirstButton}
+        isLoading={loading || onPayReportLoading}
       />
 
       <ScoringDetailsBenefits />

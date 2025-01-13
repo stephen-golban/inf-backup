@@ -102,7 +102,6 @@ function useBaseAxios<Data>(param1: string | Config<Data>, param2: Config<Data> 
 
           const err = handleError(e as BaseError<Data>, `Error in useBaseAxios with URL: ${url}`, lazyConfig?.hideErrors);
           dispatch({ type: 'REQUEST_FAILED', payload: err });
-          throw err;
         } finally {
           requestCache.delete(cacheKey);
         }

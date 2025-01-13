@@ -14,7 +14,8 @@ export interface ICreditReportSummaryModule {
   data: ICreditReportSummaryResponse | null;
   subscription: PurchasedSubscription | undefined;
   onPressUpdate(): void;
-  onPayReport(): void;
+  onPayReport(withoutBottomSheet?: boolean): void;
+  onPayReportLoading?: boolean;
   navigation: OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.CreditReportSummary>['navigation'];
 }
 

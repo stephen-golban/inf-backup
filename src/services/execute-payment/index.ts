@@ -6,7 +6,7 @@ import { createPaymentBody } from './util';
 
 import type { ExecutePaymentApiResponse, ExecutePaymentBodyArgs } from '@typings/responses';
 
-type OnSuccess = (params: { payId: string; orderId: string; status?: string }) => Promise<void>;
+type OnSuccess = (params: { payId: string; orderId: string; status?: string; payUrl?: string }) => Promise<void>;
 
 function useExecutePaymentService(refreshInquiryReport = true) {
   const { fetchInquiryReport, loadingInquiry } = useLastInquiryService();
@@ -18,7 +18,7 @@ function useExecutePaymentService(refreshInquiryReport = true) {
 
   const onPressPayCallback = useTryCatch(async ({ result, ok }: ExecutePaymentApiResponse, onSuccess: OnSuccess) => {
     if (ok) {
-      onSuccess({ payId: result.payId, orderId: result.orderId });
+      onSuccess({ payId: result.payId, orderId: result.orderId, payUrl: result?.payUrl || '' });
       if (refreshInquiryReport) {
         await fetchInquiryReport();
       }

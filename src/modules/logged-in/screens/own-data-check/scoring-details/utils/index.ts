@@ -24,7 +24,7 @@ const getSubscriptionDetails = (
   subscription: PurchasedSubscription | undefined,
   navigation: OwnDataCheckScreenProps<any>['navigation'],
   onPressUpdate: () => void,
-  onPayReport: () => void,
+  onPayReport: (withoutBottomSheet?: boolean) => void,
 ): SubscriptionResult => {
   const { t } = useTranslation();
 
@@ -110,7 +110,7 @@ const getSubscriptionDetails = (
       lowerButtonText: t('subscription.no_credit_score_lower_button_text'),
       discountText: t('subscription.no_credit_score_discount_text'),
       secondaryText: t('subscription.no_credit_score_discount_text'),
-      onPressFirstButton: onPayReport,
+      onPressFirstButton: () => onPayReport(true),
       onPressSecondButton: () => navigation.navigate(LOGGED_IN_SCREENS.SUBSCRIPTIONS, { screen: SUBSCRIPTIONS_SCREENS.INDEX }),
     };
   } else if (!trial && !extraInquiriesRestriction && !isExpired && isCreditScoreIncluded) {
