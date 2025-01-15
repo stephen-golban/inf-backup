@@ -13,7 +13,6 @@ const SubscriptionsScreen: React.FC<SubscriptionsStackScreenProps<SUBSCRIPTIONS_
   const { selectedPlan, screenLoading, allSubscriptions, subscriptionService, onDismiss, onRefresh, ...fns } = useSubscriptionsScreen();
 
   const onSuccess = () => {
-    onRefresh();
     onDismiss();
     navigation.navigate(LOGGED_IN_STACK.TABS, { screen: LOGGED_IN_TABS.HOME });
   };

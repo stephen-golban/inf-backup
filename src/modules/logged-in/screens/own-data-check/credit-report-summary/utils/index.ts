@@ -30,7 +30,7 @@ const getReportSummaryOptions = (
   const { t } = useTranslation();
 
   const report = useAppDataCheckStore(state => state.creditReportSummary);
-  const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportSummaryId);
+  const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportId);
 
   if (!subscription) {
     return {

@@ -10,8 +10,6 @@ import { useCurrentSubscriptionExpiryService } from '@services/subscription';
 
 import type { CreditReportEventsApiResponse } from '@typings/responses';
 
-import Config from 'react-native-config';
-
 const useHomeScreen = () => {
   const me = useAppStore(state => state.user);
   const subscription = useAppStore(state => state.subscription);

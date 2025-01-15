@@ -109,8 +109,8 @@ android {
         applicationId "com.infodebit"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 28
-        versionName "1.16"
+        versionCode 30
+        versionName "1.18"
         // resValue "string", "build_config_package", "com.infodebit"
          ndk {
             abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64" 
