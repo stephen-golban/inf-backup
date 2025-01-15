@@ -25,7 +25,7 @@ const getReportSummaryOptions = (
   subscription: PurchasedSubscription | undefined,
   navigation: OwnDataCheckScreenProps<any>['navigation'],
   onPressUpdate: () => void,
-  onPayReport: () => void,
+  onPayReport: (withoutBottomSheet?: boolean) => void,
 ): SubscriptionResult => {
   const { t } = useTranslation();
 
@@ -104,7 +104,6 @@ const getReportSummaryOptions = (
       onPressSecondButton: () =>
         navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
           id: reportId || 0,
-          generationDateTime: report?.responseDateTime as any,
         }),
     };
   } else if (!trial && !extraInquiriesRestriction && !isExpired && !isCreditScoreIncluded) {
@@ -120,11 +119,10 @@ const getReportSummaryOptions = (
       lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:download_complete_report'),
       discountText: t('ui:subscription:no_credit_score_discount_text'),
       secondaryText: t('ui:subscription:no_credit_score_discount_text'),
-      onPressFirstButton: onPayReport,
+      onPressFirstButton: () => onPayReport(true),
       onPressSecondButton: () =>
         navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
           id: reportId || 0,
-          generationDateTime: report?.responseDateTime as any,
         }),
     };
   } else if (!trial && !extraInquiriesRestriction && !isExpired && isCreditScoreIncluded) {
@@ -143,7 +141,6 @@ const getReportSummaryOptions = (
       onPressSecondButton: () =>
         navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
           id: reportId || 0,
-          generationDateTime: report?.responseDateTime as any,
         }),
     };
   }

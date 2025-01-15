@@ -11,6 +11,7 @@ import { BottomSheet } from '@components/common';
 import { useExecutePaymentService } from '@services/execute-payment';
 
 import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
+import { openBrowserAuthAsync } from '@library/method';
 
 const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.CreditReportSummary>> = ({ navigation }) => {
   const report = useAppDataCheckStore(state => state.creditReportSummary);
@@ -35,13 +36,33 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
     if (reportId) {
       navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
         id: reportId,
-        generationDateTime: report?.responseDateTime as any,
       });
     }
   }
 
-  const onPayReport = () => {
-    setToggleBottomSheet(true);
+  const onPayReport = (withoutBottomSheet?: boolean) => {
+    if (withoutBottomSheet) {
+      const queryData = {
+        paymentServiceName: 'MAIB',
+        purchasedServiceName: 'CREDIT_REPORT_SUMMARY',
+        cardId: 0,
+        amount,
+        currency: 'MDL',
+      };
+      return paymentService.onPressPay(queryData as any, async res => {
+        if (res.payUrl) {
+          const response = await openBrowserAuthAsync(res.payUrl, 'infodebit://payment-purchases/genius-pay-per-click');
+          if (response && response.type === 'success') {
+            await fetchCreditReport();
+            navigation.navigate(LOGGED_IN_SCREENS.OWN_DATA_CHECK, {
+              screen: OWN_DATA_CHECK_SCREENS.SummaryReportStatus,
+              params: { status: res.status === 'OK' ? 'accepted' : 'rejected' },
+            });
+          }
+        }
+      });
+    }
+    return setToggleBottomSheet(true);
   };
 
   return (
@@ -51,6 +72,7 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
           fetchCreditReport();
         }}
         onPayReport={onPayReport}
+        onPayReportLoading={paymentService.loading}
         navigation={navigation}
         subscription={subscription}
         onSubmit={data => call({ ...data })}
