@@ -9,6 +9,7 @@ import { useExecutePaymentService } from '@services/execute-payment';
 import { PaymentCardsModule, ScoringDetailsModule } from '@modules/logged-in';
 
 import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
+import { openBrowserAuthAsync } from '@library/method';
 
 const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>> = ({ navigation }) => {
   const { creditScore, fetchScore, loading: loadingCreditScore } = useCreditScoreService(false);
@@ -20,8 +21,29 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
 
   const amount = subscription?.servicesAccesses?.find(service => service.service === 'CreditScore')?.prices[0].price;
 
-  const onPayReport = () => {
-    setToggleBottomSheet(true);
+  const onPayReport = (withoutBottomSheet?: boolean) => {
+    if (withoutBottomSheet) {
+      const queryData = {
+        paymentServiceName: 'MAIB',
+        purchasedServiceName: 'CREDIT_SCORE',
+        cardId: 0,
+        amount,
+        currency: 'MDL',
+      };
+      return paymentService.onPressPay(queryData as any, async res => {
+        if (res.payUrl) {
+          const response = await openBrowserAuthAsync(res.payUrl, 'infodebit://payment-purchases/genius-pay-per-click');
+          if (response && response.type === 'success') {
+            await fetchScore();
+            navigation.navigate(LOGGED_IN_SCREENS.OWN_DATA_CHECK, {
+              screen: OWN_DATA_CHECK_SCREENS.SummaryReportStatus,
+              params: { status: res.status === 'OK' ? 'accepted' : 'rejected' },
+            });
+          }
+        }
+      });
+    }
+    return setToggleBottomSheet(true);
   };
 
   const { reportEvents } = useAppDataCheckStore(state => state);
@@ -33,6 +55,7 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
         navigation={navigation}
         subscription={subscription}
         score={creditScore?.scoreValue}
+        onPayReportLoading={paymentService.loading}
         loading={loadingCreditScore || subscriptionLoading}
         onPressUpdate={async () => {
           await fetchScore();

@@ -19,7 +19,7 @@ import type { StageNomenclatureResponse } from '@typings/responses/nomenclatures
 import { I18nKey } from '@translations/locales';
 
 const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props => {
-  const { feedbackLoading, onSubmit, subscription, onPressUpdate, onPayReport, navigation, loadReport } = props;
+  const { feedbackLoading, onSubmit, subscription, onPayReportLoading = false, onPressUpdate, onPayReport, navigation, loadReport } = props;
   const { nomenclature, locale } = useAppStore();
 
   const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportSummaryId);
@@ -106,7 +106,7 @@ const CreditReportSummaryModule: React.FC<ICreditReportSummaryModule> = props =>
             discountText={discountText}
             buttonText={buttonText}
             subscription={subscription}
-            isLoading={loadingReport || loadReport}
+            isLoading={loadingReport || loadReport || onPayReportLoading}
             onNavigate={onPressFirstButton}
           />
           <Text variant="18-semi" t18n="logged_in:credit_report:summary:last_24_months" />

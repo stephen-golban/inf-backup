@@ -16,6 +16,7 @@ export type ExecutePaymentApiResponse = {
     cardNumber: string;
     currency: string;
     orderId: string;
+    payUrl: string;
     payId: string;
     rrn: string;
     status: string;
