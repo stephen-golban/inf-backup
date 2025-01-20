@@ -1,11 +1,12 @@
 import React from 'react';
 
+import { FaqList } from './parts';
+
 import { Loader } from '@components/ui';
 import { ScrollView } from '@components/common';
-import { FaqList } from './parts';
+
 import { IFaqResponse } from '@typings/responses';
 import { openBrowserAsync } from '@library/method';
-import { useTheme } from '@theme/index';
 
 interface IFaqModule {
   loading: boolean;

@@ -3,7 +3,9 @@ import { initReactI18next } from 'react-i18next';
 import i18n, { LanguageDetectorAsyncModule, Resource } from 'i18next';
 
 import { resources } from './locales';
-import { DEFAULT_FALLBACK_LNG_I18n } from '@env';
+
+import Config from 'react-native-config';
+const { DEFAULT_FALLBACK_LNG_I18n } = Config;
 
 const languageDetector: LanguageDetectorAsyncModule = {
   type: 'languageDetector',

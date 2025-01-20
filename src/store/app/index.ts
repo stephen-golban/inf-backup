@@ -5,7 +5,9 @@ import { localStorage } from '@library/storage';
 import { createJSONStorage, persist, type PersistOptions } from 'zustand/middleware';
 
 import type { IAppState } from '@typings/app';
-import { APP_DISPLAY_NAME } from '@env';
+
+import Config from 'react-native-config';
+const { APP_DISPLAY_NAME } = Config;
 
 const app_state: IAppState = {
   user: null,

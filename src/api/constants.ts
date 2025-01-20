@@ -1,4 +1,7 @@
-import {
+import Config from 'react-native-config';
+
+const {
+  OAUTH_IP,
   SERVER_IP,
   PORT_OAUTH,
   DEV_CLIENT_ID,
@@ -12,11 +15,11 @@ import {
   LEAD_CLIENT_SECRET,
   MPASS_CLIENT_ID,
   MPASS_CLIENT_SECRET,
-} from '@env';
+} = Config;
 import base64 from 'react-native-base64';
 
 export const BASE_URL = `http://${SERVER_IP}:${PORT_SERVICES}`;
-export const BASE_OAUTH_URL = `http://${SERVER_IP}:${PORT_OAUTH}`;
+export const BASE_OAUTH_URL = `http://${OAUTH_IP}:${PORT_OAUTH}`;
 export const BASE_LEAD_URL = `http://${LEAD_SERVER_IP}:${PORT_LEAD}`;
 
 export const OAUTH_TOKEN = base64.encode(`${DEV_CLIENT_ID}:${DEV_CLIENT_SECRET}`);

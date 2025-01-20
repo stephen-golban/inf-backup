@@ -1,5 +1,7 @@
 import { MMKV } from 'react-native-mmkv';
-import { APP_DISPLAY_NAME, PRIVATE_KEY_STORAGE } from '@env';
+import Config from 'react-native-config';
+
+const { APP_DISPLAY_NAME, PRIVATE_KEY_STORAGE } = Config;
 
 const AppStorage = new MMKV({
   id: `user-${APP_DISPLAY_NAME}-storage`,

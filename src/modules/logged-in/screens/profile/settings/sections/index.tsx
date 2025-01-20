@@ -7,7 +7,9 @@ import { StyleSheet, Switch } from 'react-native';
 import { BaseButton, Icon, Screen, Text, View } from '@components/common';
 import { useTranslation } from '@library/hooks';
 
-import { APP_VERSION } from '@env';
+import Config from 'react-native-config';
+
+const { APP_VERSION } = Config;
 
 interface ISettingsSectionsModule {
   onPressFeedback(): void;

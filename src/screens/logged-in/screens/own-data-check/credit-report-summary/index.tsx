@@ -25,7 +25,7 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
 
   const { subscription, loading: subscriptionLoading } = useGetSubscription(true);
 
-  const amount = subscription?.servicesAccesses?.find(service => service.service === 'CreditScore')?.prices[0].price;
+  const amount = subscription?.servicesAccesses?.find(service => service.service === 'CreditScore')?.prices[0]?.price;
 
   const [call, { loading }] = useLazyAxios({
     method: 'post',
@@ -51,7 +51,7 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
       };
       return paymentService.onPressPay(queryData as any, async res => {
         if (res.payUrl) {
-          const response = await openBrowserAuthAsync(res.payUrl, 'infodebit://payment-purchases/genius-pay-per-click');
+          const response = await openBrowserAuthAsync(res.payUrl, '');
           if (response && response.type === 'success') {
             await fetchCreditReport();
             navigation.navigate(LOGGED_IN_SCREENS.OWN_DATA_CHECK, {
