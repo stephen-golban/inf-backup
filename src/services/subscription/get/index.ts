@@ -15,7 +15,9 @@ const useGetSubscription = (runOnMount = false) => {
 
   const getSubscription = useTryCatchWithCallback(async () => {
     const response = await call();
-    setAppSubscription(response);
+    if (response) {
+      setAppSubscription(response as any);
+    }
 
     return response;
   }, [call]);
@@ -24,7 +26,7 @@ const useGetSubscription = (runOnMount = false) => {
     useMount(async () => {
       const res = await getSubscription();
       if (res) {
-        setAppSubscription(res);
+        setAppSubscription(res as any);
       }
     });
   }

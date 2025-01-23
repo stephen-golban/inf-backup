@@ -12,6 +12,7 @@ declare module '@env' {
   export const PORT_ACTUATOR: string;
   export const PORT_LEAD: string;
 
+  export const OAUTH_IP: string;
   export const SERVER_IP: string;
   export const LEAD_SERVER_IP: string;
 

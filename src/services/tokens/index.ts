@@ -2,9 +2,11 @@ import { auth_api, reset_password_api } from '@api/base';
 import { useLazyAxios } from '@api/hooks';
 import { useTryCatch } from '@library/hooks';
 
-import { DEV_CLIENT_ID, DEV_CLIENT_SECRET, DEV_RESET_PASSWORD_CID, DEV_RESET_PASSWORD_CSECR } from '@env';
+import Config from 'react-native-config';
 
 import { TokensApiResponse } from '@typings/responses/tokens';
+
+const { DEV_CLIENT_ID, DEV_CLIENT_SECRET, DEV_RESET_PASSWORD_CID, DEV_RESET_PASSWORD_CSECR } = Config;
 
 const queryParams = {
   grant_type: 'password',

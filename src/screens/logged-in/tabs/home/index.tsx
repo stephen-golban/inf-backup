@@ -18,7 +18,7 @@ import {
 
 const Home: React.FC<LoggedInTabsProps<LOGGED_IN_TABS.HOME>> = ({ navigation }) => {
   const report = useAppDataCheckStore(state => state.creditReportSummary);
-  const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportSummaryId);
+  const reportId = useAppDataCheckStore(state => state.inquiry?.basicServices.creditReportId);
   const { loading, onRefresh, isTrialModalVisible, setIsTrialModalVisible, trialTermDate } = useHomeScreen();
 
   useGoBack(false, navigation.goBack);

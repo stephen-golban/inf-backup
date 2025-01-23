@@ -19,7 +19,7 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
 
   const paymentService = useExecutePaymentService();
 
-  const amount = subscription?.servicesAccesses?.find(service => service.service === 'CreditScore')?.prices[0].price;
+  const amount = subscription?.servicesAccesses?.find(service => service.service === 'CreditScore')?.prices[0]?.price;
 
   const onPayReport = (withoutBottomSheet?: boolean) => {
     if (withoutBottomSheet) {
@@ -32,7 +32,7 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
       };
       return paymentService.onPressPay(queryData as any, async res => {
         if (res.payUrl) {
-          const response = await openBrowserAuthAsync(res.payUrl, 'infodebit://payment-purchases/genius-pay-per-click');
+          const response = await openBrowserAuthAsync(res.payUrl, '');
           if (response && response.type === 'success') {
             await fetchScore();
             navigation.navigate(LOGGED_IN_SCREENS.OWN_DATA_CHECK, {

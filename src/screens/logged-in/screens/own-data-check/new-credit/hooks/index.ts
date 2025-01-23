@@ -34,18 +34,6 @@ const useNewCredit = () => {
     axiosInstance: lead_api,
   });
 
-  const [getSubscription, { loading: subscriptionLoading }] = useLazyAxios<ISubscription>('/admin-api/subscriptions/purchased', {
-    method: 'get',
-    params: { lastSubscription: true },
-  });
-
-  useMount(async () => {
-    const res = await getSubscription();
-    if (res) {
-      setAppSubscription(res as any);
-    }
-  });
-
   const { fetchInquiryReport } = useLastInquiryService(false);
 
   const isTrialSubscription = subscription?.trial;
@@ -130,13 +118,13 @@ const useNewCredit = () => {
 
   return {
     data,
+    loading,
     isPositive,
     showLoanModal,
     loanFormLoading,
     getLoanResponseType,
     isTrialSubscription,
     isSubscriptionValid,
-    loading: loading || subscriptionLoading,
     fns: {
       refetch,
       onSubmitLoan,

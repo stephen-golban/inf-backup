@@ -58,7 +58,7 @@ const getSubscriptionDetails = (
 
   const creditScoreService = servicesAccesses?.find(s => s.service === 'CreditScore');
   const isCreditScoreIncluded = creditScoreService?.included || false;
-  const creditScorePrice = creditScoreService?.prices[0].price || 0;
+  const creditScorePrice = creditScoreService?.prices[0]?.price || 0;
   // let discountText = undefined;
   // if (discountData?.discount || discountData?.annualDiscount) {
   //   discountText = t('subscriptions:discount_text_other_subscription', {
