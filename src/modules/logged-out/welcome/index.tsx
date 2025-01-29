@@ -14,8 +14,8 @@ const WelcomeModule: React.FC<IWelcomeModule> = ({ onPressContinue }) => {
   return (
     <Screen excludeEdges={['top']} bg="primary" p="lg">
       <View fill center>
-        <View w={239} h={190}>
-          <Image br="lg" resizeMode="cover" source={require('@assets/images/welcome-logo.jpeg')} />
+        <View w={300} h={300}>
+          <Image resizeMode="cover" source={require('@assets/images/welcome-logo.png')} />
         </View>
 
         <Text variant="18-reg" mt="xl" textAlign="center" mb="lg" color="secondary" t18n="logged_out:welcome:language_select" />
