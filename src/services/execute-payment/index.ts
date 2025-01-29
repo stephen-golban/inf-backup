@@ -25,11 +25,6 @@ function useExecutePaymentService(refreshInquiryReport = true) {
   const onPressPayCallback = useTryCatch(async ({ result, ok }: ExecutePaymentApiResponse, onSuccess: OnSuccess) => {
     if (ok) {
       onSuccess({ payId: result.payId, orderId: result.orderId, payUrl: result?.payUrl || '' });
-      await callbackPayment({payId: result.payId,}, res => {
-
-        //TODO: handle callback payment
-        console.log('res', res);
-      });
       if (refreshInquiryReport) {
         await fetchInquiryReport();
       }
@@ -43,9 +38,14 @@ function useExecutePaymentService(refreshInquiryReport = true) {
     return await initiatePayment(body, res => onPressPayCallback(res, onSuccess));
   });
 
-  const loading = initiatePaymentUtils.loading || (refreshInquiryReport && loadingInquiry);
+  const onCallbackPayment = useTryCatch(async (payId: string) => {
+    return await callbackPayment(undefined, res => {
+    }, {additionalUrl: `?payId=${payId}`});
+  });
 
-  return { loading, onPressPay };
+  const loading = initiatePaymentUtils.loading || loadingCallbackPayment || (refreshInquiryReport && loadingInquiry);
+
+  return { loading, onPressPay, onCallbackPayment };
 }
 
 export { useExecutePaymentService };

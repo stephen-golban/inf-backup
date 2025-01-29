@@ -35,6 +35,7 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
           const response = await openBrowserAuthAsync(res.payUrl, '');
           if (response && response.type === 'success') {
             await fetchScore();
+            await paymentService.onCallbackPayment(res.payId);
             navigation.navigate(LOGGED_IN_SCREENS.OWN_DATA_CHECK, {
               screen: OWN_DATA_CHECK_SCREENS.SummaryReportStatus,
               params: { status: res.status === 'OK' ? 'accepted' : 'rejected' },
