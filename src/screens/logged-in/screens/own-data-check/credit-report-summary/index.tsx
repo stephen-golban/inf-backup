@@ -32,6 +32,9 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
     url: `/feedback/credit-report`,
   });
 
+
+  
+
   function onOrderReport() {
     if (reportId) {
       navigation.navigate(OWN_DATA_CHECK_SCREENS.DownloadReport, {
@@ -54,6 +57,7 @@ const CreditReportSummaryScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK
           const response = await openBrowserAuthAsync(res.payUrl, '');
           if (response && response.type === 'success') {
             await fetchCreditReport();
+            await paymentService.onCallbackPayment(res.payId);
             navigation.navigate(LOGGED_IN_SCREENS.OWN_DATA_CHECK, {
               screen: OWN_DATA_CHECK_SCREENS.SummaryReportStatus,
               params: { status: res.status === 'OK' ? 'accepted' : 'rejected' },
