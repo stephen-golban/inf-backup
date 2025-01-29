@@ -10,14 +10,15 @@ import { useCurrentSubscriptionExpiryService } from '@services/subscription';
 
 import type { CreditReportEventsApiResponse } from '@typings/responses';
 
+import Config from 'react-native-config';
+
 const useHomeScreen = () => {
   const me = useAppStore(state => state.user);
   const subscription = useAppStore(state => state.subscription);
   const { fetchInquiryReport, loadingInquiry } = useLastInquiryService(true);
   const isPurchasedSubscriptionExpired = useCurrentSubscriptionExpiryService();
-
   useEffect(() => {
-    OneSignal.initialize('e59eb20d-8e97-4f53-b5d5-3f3a7b63215d');
+    OneSignal.initialize(String(Config.ONE_SIGNAL_APP_ID));
     OneSignal.login(String(me?.id));
     OneSignal.Notifications.requestPermission(true);
   }, []);

@@ -17,8 +17,7 @@ const {
   MPASS_CLIENT_SECRET,
 } = Config;
 import base64 from 'react-native-base64';
-
-export const BASE_URL = `http://${SERVER_IP}:${PORT_SERVICES}`;
+export const BASE_URL = SERVER_IP?.includes('https') ? `${SERVER_IP}` : `http://${SERVER_IP}:${PORT_SERVICES}`;
 export const BASE_OAUTH_URL = `http://${OAUTH_IP}:${PORT_OAUTH}`;
 export const BASE_LEAD_URL = `http://${LEAD_SERVER_IP}:${PORT_LEAD}`;
 

@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">MyInfodebit</string>
+    <string name="app_name">@string/app_name</string>
     <string name="onesignal_notification_accent_color">21338E</string>
 </resources>

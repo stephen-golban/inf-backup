@@ -16,7 +16,7 @@ function useRegisterCardService() {
   const onSuccessfulCallback = useTryCatch(async (cb?: () => Promise<void>) => {
     closeInAppBrowser();
     await cb?.();
-    toast.show(t('profile:settings:payment_history_screen:successfully_registered_new_card'), { type: 'success' });
+    // toast.show(t('profile:settings:payment_history_screen:successfully_registered_new_card'), { type: 'success' });
   });
 
   const onRegisterCallback = useTryCatch(async ({ result }: RegisterCardApiResponse, cb?: () => Promise<void>) => {

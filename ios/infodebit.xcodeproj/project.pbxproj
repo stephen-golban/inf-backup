@@ -29,7 +29,8 @@
 		9F9BD89C2D2AD6AD00F15FB0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */; };
 		9F9BD89D2D2AD6AD00F15FB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF0E82C5B9AB40074D663 /* Images.xcassets */; };
 		9F9BD89E2D2AD6AD00F15FB0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 68E1B6B7017665CFBA5A1831 /* PrivacyInfo.xcprivacy */; };
-		A88BCF0ADBDEC2B8C64D9670 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		9FB8F95A2D493EB5002DA84D /* InfodebitProducts.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 9FB8F9592D493EB5002DA84D /* InfodebitProducts.storekit */; };
+		A88BCF0ADBDEC2B8C64D9670 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		F4059D449944059C00190D5C /* libPods-infodebit-infodebitDevelopment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E33862F768C683A2F416C4DC /* libPods-infodebit-infodebitDevelopment.a */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,7 @@
 		9F9BD8922D2AD69D00F15FB0 /* infodebitDevelopment-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "infodebitDevelopment-Info.plist"; path = "/Users/ioncojocari/dev/icr-mobile/ios/infodebitDevelopment-Info.plist"; sourceTree = "<absolute>"; };
 		9F9BD8A82D2AD6AD00F15FB0 /* infodebitStaging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = infodebitStaging.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9BD8A92D2AD6AD00F15FB0 /* infodebitStaging-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "infodebitStaging-Info.plist"; path = "/Users/ioncojocari/dev/icr-mobile/ios/infodebitStaging-Info.plist"; sourceTree = "<absolute>"; };
+		9FB8F9592D493EB5002DA84D /* InfodebitProducts.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = InfodebitProducts.storekit; sourceTree = "<group>"; };
 		C00D2D1D7AB38AA7B36122AF /* libPods-infodebit-infodebitStaging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-infodebit-infodebitStaging.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9DA2C4889509E0FEA3E7C96 /* Pods-infodebit-infodebitDevelopment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit-infodebitDevelopment.debug.xcconfig"; path = "Target Support Files/Pods-infodebit-infodebitDevelopment/Pods-infodebit-infodebitDevelopment.debug.xcconfig"; sourceTree = "<group>"; };
 		E1BF8DEDCB46453BEEC64448 /* Pods-infodebit-infodebitStaging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-infodebit-infodebitStaging.release.xcconfig"; path = "Target Support Files/Pods-infodebit-infodebitStaging/Pods-infodebit-infodebitStaging.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,7 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A88BCF0ADBDEC2B8C64D9670 /* (null) in Frameworks */,
+				A88BCF0ADBDEC2B8C64D9670 /* BuildFile in Frameworks */,
 				27E1DE77D14C072448C550AA /* libPods-infodebit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				9F7ACAF12C80B3CD00B9631A /* infodebit.entitlements */,
+				9FB8F9592D493EB5002DA84D /* InfodebitProducts.storekit */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				9F3FF0EA2C5BA0300074D663 /* LaunchScreen.storyboard */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -398,6 +401,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FB8F95A2D493EB5002DA84D /* InfodebitProducts.storekit in Resources */,
 				9F943E082D11A29F009095C4 /* GoogleService-Info.plist in Resources */,
 				9F3FF0EB2C5BA0300074D663 /* LaunchScreen.storyboard in Resources */,
 				9F3FF0E92C5B9AB40074D663 /* Images.xcassets in Resources */,
@@ -852,7 +856,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.20;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -889,7 +893,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.20;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -988,7 +992,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -1072,7 +1079,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

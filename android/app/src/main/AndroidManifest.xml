@@ -6,7 +6,6 @@
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
 
-  <!-- Adăugarea tag-ului <uses-feature> pentru camera -->
   <uses-feature android:name="android.hardware.camera" android:required="false"/>
 
   <application android:name=".MainApplication" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:usesCleartextTraffic="true" android:allowBackup="false" android:theme="@style/AppTheme" android:supportsRtl="true">
