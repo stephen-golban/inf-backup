@@ -26,9 +26,10 @@ const History: React.FC<IHistory> = ({ reportId, onPressNotNow, onPressChooseSub
       <Text variant="12-reg" mt="sm" color="black" t18n="logged_in:credit_report:download:history:subtitle" />
       {isTrial ? (
         <FilledButton
-          br={12}
+          br={8}
           bg="blue"
           mt="lg"
+          textProps={{ variant: '14-mid' }}
           onPress={onPressChooseSubscription}
           t18n="logged_in:credit_report:download:history:choose_subscription"
         />

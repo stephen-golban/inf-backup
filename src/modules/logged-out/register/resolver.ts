@@ -39,12 +39,12 @@ const shape = object({
 
   firstName: string()
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))
-    .matches(/^[A-Z][a-z-]+$/, stringifyObjectValidate({ keyT: 'validation:invalid_format' }))
+    .matches(/^[A-Z][a-z]+(?:(?:\s|-)[A-Z](?:[a-z]+)?)*$/, stringifyObjectValidate({ keyT: 'validation:invalid_format' }))
     .min(3, stringifyObjectValidate({ keyT: 'validation:min_chars_length', options: { count: 3 } })),
 
   lastName: string()
     .required(stringifyObjectValidate({ keyT: 'validation:field_required' }))
-    .matches(/^[A-Z][a-z-]+$/, stringifyObjectValidate({ keyT: 'validation:invalid_format' }))
+    .matches(/^[A-Z][a-z]+(?:(?:\s|-)[A-Z](?:[a-z]+)?)*$/, stringifyObjectValidate({ keyT: 'validation:invalid_format' }))
     .min(3, stringifyObjectValidate({ keyT: 'validation:min_chars_length', options: { count: 3 } })),
 
   promoCode: string()

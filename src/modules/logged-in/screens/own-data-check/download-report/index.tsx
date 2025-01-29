@@ -27,12 +27,14 @@ const DownloadReportModule: React.FC<IDownloadReportModule> = ({
   return (
     <Screen excludeEdges={['top']} scroll bg="white" loading={loading}>
       <History reportId={reportId} onPressNotNow={onPressNotNow} onPressChooseSubscription={onPressChooseSubscription} />
-      <Text color="gray_66" mt="lg" textAlign="justify" variant="16-mid" t18n="logged_in:credit_report:download:subscription_info" />
+      <Text color="gray_66" mt="lg" textAlign="justify" variant="14-mid" t18n="logged_in:credit_report:download:subscription_info" />
       {isTrial ? (
         <FilledButton
-          br={12}
+          br={8}
           bg="blue"
           mt="lg"
+          textProps={{ variant: '14-mid' }}
+
           onPress={onPressChooseSubscription}
           t18n="logged_in:credit_report:download:history:choose_subscription"
         />

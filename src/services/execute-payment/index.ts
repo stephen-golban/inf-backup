@@ -12,6 +12,12 @@ function useExecutePaymentService(refreshInquiryReport = true) {
   const { fetchInquiryReport, loadingInquiry } = useLastInquiryService();
   const [initiatePayment, initiatePaymentUtils] = useLazyAxios<ExecutePaymentApiResponse>('/payment-purchases', { method: 'post' });
 
+  const [callbackPayment, { loading: loadingCallbackPayment }] = useLazyAxios({
+    method: 'get',
+    url: '/payment-purchases/call-back-payment',
+  });
+
+
   const onPaymentFailure = useTryCatch(() => {
     initiatePaymentUtils.cancel();
   });
@@ -19,6 +25,11 @@ function useExecutePaymentService(refreshInquiryReport = true) {
   const onPressPayCallback = useTryCatch(async ({ result, ok }: ExecutePaymentApiResponse, onSuccess: OnSuccess) => {
     if (ok) {
       onSuccess({ payId: result.payId, orderId: result.orderId, payUrl: result?.payUrl || '' });
+      await callbackPayment({payId: result.payId,}, res => {
+
+        //TODO: handle callback payment
+        console.log('res', res);
+      });
       if (refreshInquiryReport) {
         await fetchInquiryReport();
       }
