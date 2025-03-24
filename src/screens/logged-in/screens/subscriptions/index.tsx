@@ -5,7 +5,7 @@ import { StayScreen } from './stay';
 import { ReasonScreen } from './reason';
 import { RemoveScreen } from './remove';
 import { TellUsMore } from './tell-more';
-import { SubscriptionsScreen } from './subscriptions';
+import { SubscriptionsScreen } from './subscriptions/index';
 
 import { LOGGED_IN_SCREENS, SUBSCRIPTIONS_SCREENS, type SubscriptionsStackParams, type LoggedInScreensProps } from '@typings/navigation';
 

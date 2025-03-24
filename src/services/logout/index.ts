@@ -5,6 +5,7 @@ import { resetAppDataCheckStore } from '@store/data-check';
 import { usePinCodeStore } from '@store/pin-code';
 import * as Keychain from 'react-native-keychain';
 import { OneSignal } from 'react-native-onesignal';
+import Purchases from 'react-native-purchases';
 
 async function logout() {
   const isMpassLogin = loadString(MMKV_KEY.IS_MPASS_LOGIN) === 'true';
@@ -15,6 +16,7 @@ async function logout() {
   remove(PIN_CODE.pin);
   resetAppStore();
   OneSignal.logout();
+  await Purchases.logOut();
   isMpassLogin && remove(MMKV_KEY.IS_MPASS_LOGIN);
 }
 

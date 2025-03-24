@@ -6,6 +6,7 @@ import RowInfo from './Row.Info';
 import { FilledButton, Icon, Text, View } from '@components/common';
 
 import type { RenderedPlans } from '../../../type';
+import { isIos } from '@library/method';
 
 type RenderedPlan = RenderedPlans[keyof RenderedPlans];
 
@@ -47,7 +48,7 @@ const ComparisionTab: React.FC<IComparisionTabProps> = ({
       </View>
 
       <View mt="md" bg="lightGray" py="lg" center rg="md">
-        <Text variant="24-bold" text={t(`subscriptions:index:card:${isAnnual ? 'price_y' : 'price_m'}`, { price })} />
+        <Text variant="24-bold" text={t(`subscriptions:index:card:${isAnnual ? 'price_y' : 'price_m'}${isIos ? '_ios' : ''}`, { price })} />
         <FilledButton
           br="md"
           px="xxxl"

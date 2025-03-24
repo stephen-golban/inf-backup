@@ -26,6 +26,7 @@ const ComparisionTabs: React.FC<IComparisionTabs> = ({ data, purchaseLoading, se
     }
     return setSelectedPlan({
       id: data[key].id,
+      name: key,
       price: data[key].price,
       discount: data[key].discount,
       isAnnual: data[key].isAnnual,

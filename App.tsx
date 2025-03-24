@@ -16,14 +16,17 @@ import SplashScreen from 'react-native-splash-screen';
 
 import { THEME } from '@theme/index';
 import { PortalHost } from '@rn-primitives/portal';
+import { RevenueCatProvider } from '@providers/revenue-cat';
 
-// import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
+import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 
-// // // This is the default configuration
-// configureReanimatedLogger({
-//   level: ReanimatedLogLevel.warn,
-//   strict: false, // Reanimated runs in strict mode by default
-// });
+// // This is the default configuration
+configureReanimatedLogger({
+  level: ReanimatedLogLevel.warn,
+  strict: false, // Reanimated runs in strict mode by default
+});
+
+(globalThis as any).RNFB_SILENCE_MODULAR_DEPRECATION_WARNINGS = true;
 
 const MyApp = () => {
   const scheme = useColorScheme();
@@ -44,12 +47,14 @@ const MyApp = () => {
       <SafeAreaProvider>
         <I18nextProvider i18n={internationalization}>
           <ThemeProvider theme={THEME[themeType]}>
-            <GestureHandlerRootView style={{ flex: 1 }}>
-              <BottomSheetModalProvider>
-                <ApplicationNavigator />
-                <PortalHost />
-              </BottomSheetModalProvider>
-            </GestureHandlerRootView>
+            <RevenueCatProvider>
+              <GestureHandlerRootView style={{ flex: 1 }}>
+                <BottomSheetModalProvider>
+                  <ApplicationNavigator />
+                  <PortalHost />
+                </BottomSheetModalProvider>
+              </GestureHandlerRootView>
+            </RevenueCatProvider>
           </ThemeProvider>
         </I18nextProvider>
       </SafeAreaProvider>

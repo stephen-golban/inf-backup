@@ -20,6 +20,7 @@ function usePinScreen() {
 
   async function authorize() {
     await getMe();
+
     await getSubscription();
     setLastLogin();
   }

@@ -41,14 +41,25 @@
 
   "toasts": {
     "limit_was_exceeded": "Превышен лимит",
-    "subscription_expired": "Подписка истекла",
+    "subscription_expired": "Срок подписки истек",
     "no_subscription_purchased": "Подписка не приобретена",
     "rating_submitted_successfully": "Оценка успешно отправлена",
     "no_response_from_server": "Нет ответа от сервера",
-    "no_valid_term_date": "Нет действительной даты истечения",
+    "no_valid_term_date": "Нет действительной даты окончания",
     "invitation_submitted_successfully": "Приглашение успешно отправлено",
     "user_subscription_no_access": "Услуга не включена в подписку",
-    "no_internet_connection": "Нет доступного интернет-соединения"
+    "credit_card_deleted": "Ваша кредитная карта успешно удалена",
+    "no_internet_connection": "Нет доступного интернет-соединения",
+
+    "revenuecat_unknown_error": "Произошла неизвестная ошибка при покупке",
+    "revenuecat_purchase_cancelled": "Покупка была отменена",
+    "revenuecat_product_not_available": "Продукт недоступен",
+    "revenuecat_store_problem": "Возникла проблема с App Store",
+    "revenuecat_purchase_pending": "Покупка ожидает подтверждения",
+    "revenuecat_receipt_validation_failed": "Ошибка проверки чека",
+    "revenuecat_invalid_app_user_id": "Недействительный ID пользователя",
+    "revenuecat_restore_success": "Покупки успешно восстановлены",
+    "revenuecat_purchase_success": "Покупка успешно выполнена"
   },
 
   "empty_state": "Данные для отображения не найдены...",
@@ -78,6 +89,8 @@
     "trial_message": "Подпишитесь на MyInfodebit, чтобы скачать свою кредитную историю и иметь всю информацию под рукой.",
     "trial_button_text": "Посмотреть все подписки",
     "trial_lower_button_text": "Выберите подходящую подписку",
+    "trial_cost_text": "От {{price}} лей/месяц - Вы можете отменить в любой момент",
+    "trial_cost_text_ios": "От ${{price}}/месяц - Вы можете отменить в любой момент",
     "extra_inquiries_message": "Вы действительно свободны, когда у вас есть доступ к информации и контроль над своими финансовыми решениями.",
     "extra_inquiries_button_text": "Хочу кредитный рейтинг на сегодня",
     "extra_inquiries_lower_button_text": "Обновите для получения дополнительных преимуществ",
@@ -87,6 +100,7 @@
     "no_credit_score_button_text": "Хочу кредитный рейтинг на сегодня",
     "no_credit_score_lower_button_text": "Обновите для неограниченного доступа",
     "no_credit_score_cost_text": "{{creditScorePrice}} лей за запрос (нажатие на кнопку)",
+    "no_credit_score_cost_text_ios": "${{creditScorePrice}} за запрос (нажатие на кнопку)",
     "no_credit_score_discount_text": "*Платная услуга в соответствии с вашей подпиской. Для получения подробной информации, пожалуйста, обратитесь к разделу Подписки",
     "credit_score_included_message": "Вы действительно свободны, когда у вас есть доступ к информации и контроль над своими финансовыми решениями.",
     "credit_score_included_button_text": "Хочу кредитный рейтинг на сегодня",

@@ -4,6 +4,8 @@ import { PurchasedSubscription } from '@typings/responses';
 import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps, SUBSCRIPTIONS_SCREENS } from '@typings/navigation';
 import { useTranslation } from '@library/hooks';
 import { useAppDataCheckStore } from '@store/data-check';
+import { isIos } from '@library/method';
+import { useRevenueCat } from '@providers/revenue-cat';
 
 interface SubscriptionResult {
   message: string;
@@ -49,6 +51,10 @@ const getReportSummaryOptions = (
 
   const { trial, extraInquiriesRestriction, servicesAccesses, subscriptionAccounts, discountData, price } = subscription;
 
+  const { products } = useRevenueCat();
+  const oneTimePrice = products?.find(item => item.identifier.includes('one_time'))?.price;
+  const smartPlanPrice = products?.find(item => item.identifier.includes('smart'))?.price;
+
   const account = subscriptionAccounts?.[0];
   const termDateTime = account?.termDateTime;
   let isExpired = true;
@@ -63,7 +69,7 @@ const getReportSummaryOptions = (
 
   const creditScoreService = servicesAccesses?.find(s => s.service === 'CreditScore');
   const isCreditScoreIncluded = creditScoreService?.included || false;
-  const creditScorePrice = creditScoreService?.prices[0]?.price || 0;
+  const creditScorePrice = isIos ? oneTimePrice || 0.99 : creditScoreService?.prices[0]?.price || 0;
 
   // let discountText = undefined;
   // if (discountData?.discount || discountData?.annualDiscount) {
@@ -79,7 +85,9 @@ const getReportSummaryOptions = (
       secondButtonTextColor: 'blue',
       firstButtonType: 'filled',
       disabled: false,
-      costText: t('ui:subscription:trial_cost_text', { price: 87 }),
+      costText: t(isIos ? 'ui:subscription:trial_cost_text_ios' : 'ui:subscription:trial_cost_text', {
+        price: isIos ? smartPlanPrice || 4.99 : 87,
+      }),
       secondButtonType: 'outlined',
       lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:for_complete_data_choose_a_subscription'),
       discountText: t('subscriptions:annual_discount_text', { discountAmount: '35%' }),
@@ -115,7 +123,9 @@ const getReportSummaryOptions = (
       secondButtonType: 'outlined',
       firstButtonTextColor: 'white',
       secondButtonTextColor: 'blue',
-      costText: t('ui:subscription:no_credit_score_cost_text', { creditScorePrice }),
+      costText: t(isIos ? 'ui:subscription:no_credit_score_cost_text_ios' : 'ui:subscription:no_credit_score_cost_text', {
+        creditScorePrice,
+      }),
       lowerButtonText: t('logged_in:credit_report:credit_report_summary_options:download_complete_report'),
       discountText: t('ui:subscription:no_credit_score_discount_text'),
       secondaryText: t('ui:subscription:no_credit_score_discount_text'),

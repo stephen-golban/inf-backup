@@ -3,6 +3,7 @@ import { ICreditReportSummaryResponse, IvePositiveCommitment, PurchasedSubscript
 
 export interface ICreditReportSummaryModule {
   loadReport: boolean;
+  isLoadingIap?: boolean;
   feedbackLoading: boolean;
   onOrderReport(): void;
   onSubmit(arg: {

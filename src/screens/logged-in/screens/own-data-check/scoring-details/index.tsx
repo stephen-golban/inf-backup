@@ -9,11 +9,13 @@ import { useExecutePaymentService } from '@services/execute-payment';
 import { PaymentCardsModule, ScoringDetailsModule } from '@modules/logged-in';
 
 import { LOGGED_IN_SCREENS, OWN_DATA_CHECK_SCREENS, OwnDataCheckScreenProps } from '@typings/navigation';
-import { openBrowserAuthAsync } from '@library/method';
+import { isIos, openBrowserAuthAsync } from '@library/method';
+import { useRevenueCat } from '@providers/revenue-cat';
 
 const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCREENS.ScoringDetails>> = ({ navigation }) => {
   const { creditScore, fetchScore, loading: loadingCreditScore } = useCreditScoreService(false);
   const { subscription, loading: subscriptionLoading } = useGetSubscription(true);
+  const { onOneTimePurchase, isLoading } = useRevenueCat();
 
   const [toggleBottomSheet, setToggleBottomSheet] = React.useState<boolean>(false);
 
@@ -21,9 +23,19 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
 
   const amount = subscription?.servicesAccesses?.find(service => service.service === 'CreditScore')?.prices[0]?.price;
 
-  const onPayReport = (withoutBottomSheet?: boolean) => {
-    if (withoutBottomSheet) {
-      const queryData = {
+  const onPayReport = async(withoutBottomSheet?: boolean) => {
+    if (isIos) {
+      return await onOneTimePurchase(async () => {
+        await fetchScore();
+        navigation.navigate(LOGGED_IN_SCREENS.OWN_DATA_CHECK, {
+          screen: OWN_DATA_CHECK_SCREENS.SummaryReportStatus,
+          params: { status: 'accepted' },
+        });
+      });
+    }else {
+
+      if (withoutBottomSheet) {
+        const queryData = {
         paymentServiceName: 'MAIB',
         purchasedServiceName: 'CREDIT_SCORE',
         cardId: 0,
@@ -45,6 +57,7 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
       });
     }
     return setToggleBottomSheet(true);
+  }
   };
 
   const { reportEvents } = useAppDataCheckStore(state => state);
@@ -57,7 +70,7 @@ const ScoringDetailsScreen: React.FC<OwnDataCheckScreenProps<OWN_DATA_CHECK_SCRE
         subscription={subscription}
         score={creditScore?.scoreValue}
         onPayReportLoading={paymentService.loading}
-        loading={loadingCreditScore || subscriptionLoading}
+        loading={loadingCreditScore || subscriptionLoading || isLoading}
         onPressUpdate={async () => {
           await fetchScore();
         }}

@@ -10,7 +10,9 @@
       "paid_monthly": "(оплачивается ежемесячно)",
       "paid_annually": "(оплачивается ежегодно)",
       "price_m": "{{price}} лей/месяц",
-      "price_y": "{{price}} лей/год"
+      "price_y": "{{price}} лей/год",
+      "price_m_ios": "${{price}}/месяц",
+      "price_y_ios": "${{price}}/год"
     },
 
     "smart_plan": {

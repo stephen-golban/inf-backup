@@ -48,7 +48,17 @@
     "invitation_submitted_successfully": "Invitation submitted successfully",
     "user_subscription_no_access": "Service not included in subscription",
     "credit_card_deleted": "Your credit card was deleted successfully",
-    "no_internet_connection": "No internet connection available"
+    "no_internet_connection": "No internet connection available",
+
+    "revenuecat_unknown_error": "An unknown error occurred during purchase",
+    "revenuecat_purchase_cancelled": "Purchase was cancelled",
+    "revenuecat_product_not_available": "The product is not available",
+    "revenuecat_store_problem": "There was a problem with the App Store",
+    "revenuecat_purchase_pending": "Purchase is pending approval",
+    "revenuecat_receipt_validation_failed": "Receipt validation failed",
+    "revenuecat_invalid_app_user_id": "Invalid user ID",
+    "revenuecat_restore_success": "Purchases restored successfully",
+    "revenuecat_purchase_success": "Purchase successful"
   },
 
   "empty_state": "No data found to display...",
@@ -79,6 +89,7 @@
     "trial_button_text": "See all subscriptions",
     "trial_lower_button_text": "Choose the right subscription",
     "trial_cost_text": "From {{price}} lei/month - You can cancel anytime",
+    "trial_cost_text_ios": "From ${{price}}/month - You can cancel anytime",
     "extra_inquiries_message": "You are truly free when you have access to information and control over your financial decisions.",
     "extra_inquiries_button_text": "I want today's credit score",
     "extra_inquiries_lower_button_text": "Upgrade for more benefits",
@@ -88,6 +99,7 @@
     "no_credit_score_button_text": "I want today's credit score",
     "no_credit_score_lower_button_text": "Upgrade for unlimited access",
     "no_credit_score_cost_text": "{{creditScorePrice}} lei per query (button press)",
+    "no_credit_score_cost_text_ios": "${{creditScorePrice}} per query (button press)",
     "no_credit_score_discount_text": "*Paid service according to your subscription. For details, please refer to the Subscriptions section",
     "credit_score_included_message": "You are truly free when you have access to information and control over your financial decisions.",
     "credit_score_included_button_text": "I want today's credit score",

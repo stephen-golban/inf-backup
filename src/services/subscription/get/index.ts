@@ -8,7 +8,7 @@ import type { ISubscription } from '@typings/responses';
 const useGetSubscription = (runOnMount = false) => {
   const subscription = useAppStore(state => state.subscription);
 
-  const [call, { loading }] = useLazyAxios<ISubscription>('/admin-api/subscriptions/purchased', {
+  const [call, { loading, cancel }] = useLazyAxios<ISubscription>('/admin-api/subscriptions/purchased', {
     method: 'get',
     params: { lastSubscription: true },
   });
@@ -31,7 +31,7 @@ const useGetSubscription = (runOnMount = false) => {
     });
   }
 
-  return { subscription, loading, getSubscription };
+  return { subscription, loading, getSubscription, cancel };
 };
 
 export { useGetSubscription };

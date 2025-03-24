@@ -2,6 +2,7 @@ import type { ISubscription } from '@typings/responses';
 
 export type SelectedPlan = {
   id: number;
+  name: string;
   price: number;
   discount: number;
   isAnnual: boolean;

@@ -7,6 +7,7 @@ import { useToast } from 'react-native-toast-notifications';
 import { useTranslation, useTryCatch } from '@library/hooks';
 
 import type { ICreditReportSummaryResponse, LastInquiryApiResponse } from '@typings/responses';
+import { ValidateApplePay } from '@providers/revenue-cat';
 
 const CREDIT_REPORT_QUERY_PARAMS = {
   subjectType: 'INDIVIDUAL',
@@ -44,12 +45,16 @@ function useCreditReportSummaryService(runOnMount = true) {
     return false;
   };
 
-  const fetchCreditReport = useTryCatch(async () => {
+  const fetchCreditReport = useTryCatch(async (dto?: ValidateApplePay, onSuccess?: () => void) => {
+    const body = dto
+      ? { ...CREDIT_REPORT_QUERY_PARAMS, transactionId: dto.transactionId, paymentServiceName: 'APPLE_PAY' }
+      : CREDIT_REPORT_QUERY_PARAMS;
     await Promise.all([
-      callWithSubscription(CREDIT_REPORT_QUERY_PARAMS, response => {
+      callWithSubscription(body, response => {
         if (response) {
           const { message } = response;
           if (!handleResponseError(message)) {
+            onSuccess?.();
             useAppDataCheckStore.setState({ creditReportSummary: response });
           }
         }

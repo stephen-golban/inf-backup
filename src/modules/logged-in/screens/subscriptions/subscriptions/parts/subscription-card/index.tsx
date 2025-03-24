@@ -8,6 +8,7 @@ import { Checkbox, FilledButton, Switch, Text, View } from '@components/common';
 
 import type { I18nKey } from '@translations/locales';
 import type { RenderedSubscription, SelectedPlan } from '../../type';
+import { isIos } from '@library/method';
 
 interface ISubscriptionCard extends RenderedSubscription {
   loading?: boolean;
@@ -35,13 +36,21 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
 
   const calculateAnnual = (val: number) => val * 12;
 
+  const roundTo99 = (value: number) => {
+    // Get the integer part and decimal part
+    const intPart = Math.floor(value);
+    // If decimal part is not .99, round to .99
+    return Number((intPart + 0.99).toFixed(2));
+  };
+
   const handleToggle = (checked: boolean) => {
     setIsChecked(checked);
     if (checked) {
       const formula = price - (price * discount) / 100;
-      const newPrice = isPremium ? Number(formula.toFixed(2)) : Number(calculateAnnual(formula).toFixed(2));
-      updatePrice(newPrice, checked);
-      setCalculatedPrice(newPrice);
+      const newPriceIos = isPremium ? roundTo99(formula) : roundTo99(calculateAnnual(formula));
+      const newPriceAndroid = isPremium ? formula : calculateAnnual(formula);
+      updatePrice(isIos ? newPriceIos : newPriceAndroid, checked);
+      setCalculatedPrice(isIos ? newPriceIos : newPriceAndroid);
     } else {
       updatePrice(price, checked);
       setCalculatedPrice(price);
@@ -61,7 +70,7 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
   };
 
   const handleOnSelectPlan = () => {
-    onSelectPlan({ id, price: calculatedPrice, discount, isAnnual });
+    onSelectPlan({ id, price: calculatedPrice, discount, isAnnual, name: plan });
   };
 
   const planTranslation = (keys: string) => t(`subscriptions:index:${plan}:${keys}` as I18nKey);
@@ -86,7 +95,7 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
           )}
           {price !== calculatedPrice && (
             <FilledButton
-              text={t('subscriptions:index:card:price_y', { price: isPremium ? price : calculateAnnual(price) })}
+              text={t(`subscriptions:index:card:price_y${isIos ? '_ios' : ''}`, { price: isPremium ? isIos ? roundTo99(price) : price : isIos ? roundTo99(calculateAnnual(price)) : calculateAnnual(price) })}
               bg="goldenYellow"
               bc="lightGray"
               shadow="card"
@@ -111,7 +120,7 @@ const SubscriptionCard: React.FC<ISubscriptionCard> = ({
         <Text
           mt="xs"
           variant="32-bold"
-          text={t(`subscriptions:index:card:price_${isPremium ? 'y' : isChecked ? 'y' : 'm'}`, {
+          text={t(`subscriptions:index:card:price_${isPremium ? 'y' : isChecked ? 'y' : 'm'}${isIos ? '_ios' : ''}`, {
             price: calculatedPrice,
           })}
         />

@@ -10,7 +10,9 @@
       "paid_monthly": "(paid monthly)",
       "paid_annually": "(paid annually)",
       "price_m": "{{price}} lei/month",
-      "price_y": "{{price}} lei/year"
+      "price_y": "{{price}} lei/year",
+      "price_m_ios": "${{price}}/month",
+      "price_y_ios": "${{price}}/year"
     },
 
     "smart_plan": {

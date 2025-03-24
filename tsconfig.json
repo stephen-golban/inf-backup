@@ -8,6 +8,7 @@
     "noEmit": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
+    "moduleSuffixes": [".ios", ".android", ".native", ""],
     "strict": true,
     "types": ["react-native"],
     "moduleResolution": "node",
@@ -24,7 +25,8 @@
       "@services/*": ["services/*"],
       "@navigation/*": ["navigation/*"],
       "@components/*": ["components/*"],
-      "@translations/*": ["translations/*"]
+      "@translations/*": ["translations/*"],
+      "@providers/*": ["providers/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

@@ -10,7 +10,9 @@
       "paid_monthly": "(plătit lunar)",
       "paid_annually": "(plătit anual)",
       "price_m": "{{price}} lei/lună",
-      "price_y": "{{price}} lei/an"
+      "price_y": "{{price}} lei/an",
+      "price_m_ios": "${{price}}/lună",
+      "price_y_ios": "${{price}}/an"
     },
 
     "smart_plan": {

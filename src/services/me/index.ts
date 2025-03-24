@@ -11,7 +11,12 @@ function useMe(runOnMount = true) {
   const me = useAppStore(state => state.user);
   const [call, { loading }] = useLazyAxios<User>({ method: 'get', url: '/admin-api/person' });
 
-  const getMe = useTryCatch(async () => await call(undefined, res => setAppUser(res)));
+  const getMe = useTryCatch(async () => {
+    const res = await call();
+    if (!res) return;
+    setAppUser(res);
+    return res;
+  });
 
   useEffect(() => {
     logEvent('app_start');
